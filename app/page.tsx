@@ -68,7 +68,7 @@ export default function Home() {
         </Slide>
 
         {/* 페이지 2: 헤드카피 */}
-        <Slide id="slide-2" className="!justify-start !pt-64">
+        <Slide id="slide-2">
           <div className="text-left space-y-12 px-4 w-full max-w-md">
             <h2 className="text-3xl font-bold fade-in-1">
               다음달 매입에 필요한
@@ -88,7 +88,7 @@ export default function Home() {
         </Slide>
 
         {/* 페이지 3: 성공 사례 */}
-        <Slide id="slide-3" className="!justify-start !pt-52">
+        <Slide id="slide-3">
           <div className="text-left space-y-12 px-4 w-full max-w-md">
             <h2 className="text-3xl font-bold fade-in-1">
               지난 해 <span className="gradient-text">300%</span> 성장한
@@ -140,7 +140,7 @@ export default function Home() {
         </Slide>
 
         {/* 페이지 5: 혜택 1 */}
-        <Slide id="slide-5" className="!justify-start !pt-52">
+        <Slide id="slide-5">
           <div className="text-left space-y-10 px-4 max-w-md">
             <div className="section-header !text-left !items-start fade-in-1">
               <div className="section-label">Solution 01</div>
