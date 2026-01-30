@@ -46,7 +46,7 @@ export default function Home() {
               문제는 돈이 아닙니다
               <br />
               <span className="gradient-text">타이밍</span>입니다
-            </h1>
+          </h1>
             <p className="text-base text-gray-600 font-light fade-in-2">
               매출 성장에 맞춰 자금도 함께 성장하는
               <br />
@@ -103,7 +103,9 @@ export default function Home() {
             <p className="text-lg font-bold fade-in-3">
               월 <span className="gradient-text">4,000만원</span> 한도가 제공된다면,
               <br />
-              연 <span className="gradient-text">5억원</span>의 대출을 <span className="gradient-text">무이자</span>로 받는 것과 같은 효과이죠
+              연 <span className="gradient-text">5억원</span>의 대출을 <span className="gradient-text">무이자</span>로 받는
+              <br />
+              것과 같은 효과이죠
             </p>
             <p className="text-sm text-gray-500 mt-40 fade-in-4">
               *중소기업 대출 금리 (4%~7%) 기준
@@ -117,22 +119,24 @@ export default function Home() {
 
         {/* 페이지 4: 고위드 소개 */}
         <Slide id="slide-4">
-          <div className="text-left space-y-10 px-4 w-full max-w-md">
-            <h2 className="text-2xl font-bold fade-in-1">
-              돈을 벌고 나서 쓰는 것 ㅡ
-              <br />
-              고위드와는 가능합니다
-            </h2>
-            <p className="text-base text-gray-700 font-light fade-in-2">
-              <span className="gradient-text font-bold">3,500개</span> 사가 선택한
-              <br />
-              고위드는 이미 알고 있습니다
-            </p>
-            <p className="text-base text-gray-700 font-light fade-in-3">
-              법인카드를 성장의
-              <br />
-              레버리지로 사용하는 방법을
-            </p>
+          <div className="text-left px-4 w-full max-w-md">
+            <div className="space-y-6 mb-6">
+              <h2 className="text-2xl font-bold fade-in-1">
+                돈을 벌고 나서 쓰는 것 ㅡ
+                <br />
+                고위드와는 가능합니다
+              </h2>
+              <p className="text-base text-gray-700 font-light fade-in-2">
+                <span className="gradient-text font-bold">3,500개</span> 사가 선택한
+                <br />
+                고위드는 이미 알고 있습니다
+              </p>
+              <p className="text-base text-gray-700 font-light fade-in-3">
+                법인카드를 성장의
+                <br />
+                레버리지로 사용하는 방법을
+              </p>
+            </div>
             <div className="fade-in-4">
               <TestimonialCarousel />
             </div>
@@ -141,9 +145,9 @@ export default function Home() {
 
         {/* 페이지 5: 혜택 1 */}
         <Slide id="slide-5">
-          <div className="text-left space-y-10 px-4 max-w-md">
-            <div className="section-header !text-left !items-start fade-in-1">
-              <div className="section-label">Solution 01</div>
+          <div className="text-left space-y-10 px-4 w-full max-w-md">
+            <div className="text-left fade-in-1">
+              <div className="text-sm font-semibold mb-2" style={{color: '#5BC500'}}>SOLUTION 01</div>
               <h2 className="text-2xl font-bold">
                 최적의 한도를 받으세요
               </h2>
@@ -167,15 +171,15 @@ export default function Home() {
 
         {/* 페이지 6: 혜택 2 */}
         <Slide id="slide-6">
-          <div className="text-left space-y-8 px-4 max-w-md">
-            <div className="section-header !text-left !items-start fade-in-1">
-              <div className="section-label">Solution 02</div>
+          <div className="text-left space-y-8 px-4 w-full max-w-md">
+            <div className="text-left fade-in-1">
+              <div className="text-sm font-semibold mb-2" style={{color: '#5BC500'}}>SOLUTION 02</div>
               <h2 className="text-2xl font-bold">
                 공여일을 연장하세요
               </h2>
             </div>
             <div className="space-y-8">
-              <p className="text-base text-gray-700 text-left fade-in-2">
+              <p className="text-base text-gray-700 text-center fade-in-2">
                 최대 공여일 연장으로
                 <br />
                 지출 이연 효과를 누려보세요
@@ -207,7 +211,10 @@ export default function Home() {
                   {/* 통합 게이지 바 */}
                   <div className="relative h-4 bg-gray-200 rounded-full overflow-hidden">
                     {/* 애니메이션 게이지 */}
-                    <div className="absolute inset-0 h-full bg-gradient-to-r from-gray-300 via-accent/70 to-accent unified-gauge-bar rounded-full"></div>
+                    <div 
+                      className="absolute inset-0 h-full unified-gauge-bar rounded-full"
+                      style={{background: 'linear-gradient(90deg, #5BC500 0%, #4a9f00 100%)'}}
+                    ></div>
                   </div>
                 </div>
                 
@@ -223,9 +230,9 @@ export default function Home() {
 
         {/* 페이지 7: 혜택 3 */}
         <Slide id="slide-7">
-          <div className="text-left space-y-8 px-4 max-w-md">
-            <div className="section-header !text-left !items-start fade-in-1">
-              <div className="section-label">Solution 03</div>
+          <div className="text-left space-y-8 px-4 w-full max-w-md">
+            <div className="text-left fade-in-1">
+              <div className="text-sm font-semibold mb-2" style={{color: '#5BC500'}}>SOLUTION 03</div>
               <h2 className="text-2xl font-bold">
                 세금계산서를 카드 결제로
               </h2>
@@ -236,11 +243,11 @@ export default function Home() {
                 <span className="badge">결제 시스템 설치 X</span>
               </div>
               <div className="flex flex-col gap-4 items-center max-w-2xl mx-auto">
-                <div className="text-center p-4 bg-gray-50 rounded-xl">
+                <div className="text-center p-4 bg-gray-50 rounded-xl w-full">
                   <div className="text-xl font-bold text-gray-400 mb-1">세금계산서 발행</div>
                   <p className="text-sm text-gray-500">현금만 받던 거래처</p>
                 </div>
-                <div className="text-center p-4 bg-gradient-to-br from-accent/10 to-accent/5 rounded-xl border-2 border-accent animate-card-nudge">
+                <div className="text-center p-4 bg-white rounded-xl border-2 animate-cta-nudge w-full" style={{borderColor: '#5BC500'}}>
                   <div className="text-xl font-bold gradient-text mb-1">카드 결제</div>
                   <p className="text-sm text-gray-700">고위드로 가능</p>
                 </div>
@@ -251,16 +258,16 @@ export default function Home() {
 
         {/* 페이지 8: 혜택 4 */}
         <Slide id="slide-8">
-          <div className="text-left space-y-8 px-4 max-w-md w-full">
-            <div className="section-header !text-left !items-start !mb-8 fade-in-1">
-              <div className="section-label">Solution 04</div>
+          <div className="text-left space-y-8 px-4 w-full max-w-md">
+            <div className="text-left fade-in-1">
+              <div className="text-sm font-semibold mb-2" style={{color: '#5BC500'}}>SOLUTION 04</div>
               <h2 className="text-2xl font-bold">
                 성장에 따라
                 <br />
                 한도도 늘어납니다
               </h2>
             </div>
-            <p className="text-lg text-gray-700 font-medium -ml-0 fade-in-2">
+            <p className="text-xl text-gray-700 font-medium -ml-0 fade-in-2">
               시즌성 매출 급증,
               <br />
               글로벌 진출 등
@@ -272,7 +279,7 @@ export default function Home() {
 
         {/* 페이지 9: 최종 메시지 */}
         <Slide id="slide-9">
-          <div className="text-left space-y-12 px-4 max-w-md">
+          <div className="text-center space-y-12 px-4 max-w-md">
             <h2 className="text-2xl font-bold fade-in-1">
               <span className="gradient-text">매출 후 매입</span>,
               <br />
@@ -284,29 +291,32 @@ export default function Home() {
               더이상
               <br />
               기회를 놓치지 않습니다
-            </p>
-          </div>
+          </p>
+        </div>
         </Slide>
 
         {/* 페이지 10: CTA */}
         <Slide id="slide-10">
-          <div className="text-center space-y-12 px-4 max-w-4xl">
+          <div className="text-center space-y-8 px-4 max-w-md w-full">
             <h2 className="text-2xl font-bold fade-in-1">
               우리 기업의 시작 한도
               <br />
               <span className="gradient-text">지금 확인하세요</span>
             </h2>
-            <a
-              href="https://gowid.com/card-apply-lead/?utm_source=facebook&utm_medium=paid-social&utm_campaign=menu-01-2026&utm_content=commerce-newlanding-260130"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-block bg-gradient-to-r from-accent to-green-600 text-white font-bold text-lg px-16 py-6 rounded-full transition-all duration-500 touch-manipulation animate-cta-pulse hover:animate-none hover:scale-110 hover:shadow-[0_20px_60px_rgba(91,197,0,0.6)] active:scale-100 cursor-pointer scale-in-2"
-            >
-              한도 확인하기
-            </a>
+            <div className="fade-in-2">
+              <a
+                href="https://gowid.com/card-apply-lead/?utm_source=facebook&utm_medium=paid-social&utm_campaign=menu-01-2026&utm_content=commerce-newlanding-260130"
+            target="_blank"
+            rel="noopener noreferrer"
+                className="inline-block text-white font-bold text-lg px-12 py-5 rounded-full transition-all duration-300 animate-cta-pulse hover:animate-none hover:scale-105 hover:shadow-xl active:scale-100 cursor-pointer w-full max-w-xs"
+                style={{background: 'linear-gradient(135deg, #5BC500 0%, #4a9f00 100%)'}}
+              >
+                한도 확인하기
+          </a>
+        </div>
           </div>
         </Slide>
-      </div>
+    </div>
 
       <NavigationHint 
         currentSlide={currentSlide} 

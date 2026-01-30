@@ -38,24 +38,24 @@ const testimonials: Testimonial[] = [
 
 export default function TestimonialCarousel() {
   const [current, setCurrent] = useState(0);
-  const [isHovered, setIsHovered] = useState(false);
+  const [isPaused, setIsPaused] = useState(false);
 
   useEffect(() => {
-    const delay = isHovered ? 8000 : 6000; // 클릭/호버 후 8초, 일반 6초
+    if (isPaused) return; // 멈춤 상태면 자동 전환 안 함
+    
     const interval = setInterval(() => {
       setCurrent((prev) => (prev + 1) % testimonials.length);
-      setIsHovered(false); // 자동 전환 후 원래 속도로
-    }, delay);
+    }, 4000); // 4초마다 자동 전환
 
     return () => clearInterval(interval);
-  }, [current, isHovered]);
+  }, [current, isPaused]);
 
   const handleCardClick = () => {
-    setIsHovered(true);
+    setIsPaused(!isPaused); // 클릭할 때마다 토글
   };
 
   return (
-    <div className="w-full mt-16 md:mt-20">
+    <div className="w-full">
       <div className="relative min-h-[280px]">
         {testimonials.map((testimonial, index) => (
           <div
@@ -67,8 +67,15 @@ export default function TestimonialCarousel() {
             }`}
           >
             <div 
-              className="feature-card text-left space-y-4 cursor-pointer"
+              className={`feature-card text-left space-y-4 cursor-pointer transition-all duration-300 ${
+                isPaused ? 'scale-105 shadow-2xl' : ''
+              }`}
               onClick={handleCardClick}
+              style={{
+                boxShadow: isPaused 
+                  ? '0 12px 40px rgba(91, 197, 0, 0.25)' 
+                  : '0 8px 30px rgba(91, 197, 0, 0.15)'
+              }}
             >
               <div className="flex items-center gap-3">
                 <span className="badge">
@@ -88,20 +95,6 @@ export default function TestimonialCarousel() {
               </div>
             </div>
           </div>
-        ))}
-      </div>
-
-      {/* 인디케이터 */}
-      <div className="flex justify-center gap-2 mt-1">
-        {testimonials.map((_, index) => (
-          <button
-            key={index}
-            onClick={() => setCurrent(index)}
-            className={`h-1 rounded-full transition-all duration-300 touch-manipulation ${
-              index === current ? 'w-12 bg-accent' : 'w-1 bg-gray-300'
-            }`}
-            aria-label={`후기 ${index + 1}`}
-          />
         ))}
       </div>
     </div>
