@@ -31,14 +31,14 @@ export default function NavigationHint({ currentSlide, totalSlides, onNext }: Na
   return (
     <>
       {/* 오른쪽 중앙 스와이프 힌트 - 첫 페이지만 점프, 나머지는 화살표만 */}
-      <div className={`fixed right-8 top-1/2 -translate-y-1/2 z-40 hidden md:flex flex-col items-center gap-2 ${isFirstSlide && showAnimation ? 'animate-jump' : ''}`}>
-        <div className="text-gray-400 text-sm font-medium text-center">스와이프</div>
+      <div className={`fixed right-8 top-1/2 -translate-y-1/2 z-30 hidden md:flex flex-col items-center gap-2 ${isFirstSlide && showAnimation ? 'animate-jump' : ''}`}>
+        <div className="text-gray-400/60 text-sm font-medium text-center">스와이프</div>
         <svg 
           width="40" 
           height="40" 
           viewBox="0 0 24 24" 
           fill="none" 
-          className={`text-accent ${!isFirstSlide ? 'animate-arrow-nudge' : ''}`}
+          className={`text-accent/40 ${!isFirstSlide ? 'animate-arrow-nudge' : ''}`}
         >
           <path 
             d="M5 12h14m-6-6l6 6-6 6" 
@@ -51,15 +51,15 @@ export default function NavigationHint({ currentSlide, totalSlides, onNext }: Na
       </div>
 
       {/* 하단 스와이프 안내 텍스트 (모바일용) - 첫 페이지만 점프, 나머지는 화살표만 */}
-      <div className={`fixed bottom-32 left-1/2 -translate-x-1/2 z-40 md:hidden ${isFirstSlide && showAnimation ? 'animate-jump' : ''}`}>
-        <div className="text-gray-400 text-xs font-medium flex items-center justify-center gap-2 text-center">
+      <div className={`fixed bottom-20 left-1/2 -translate-x-1/2 z-30 md:hidden ${isFirstSlide && showAnimation ? 'animate-jump' : ''}`}>
+        <div className="text-gray-400/60 text-xs font-medium flex items-center justify-center gap-2 text-center">
           <span>좌우로 스와이프하세요</span>
           <svg 
             width="16" 
             height="16" 
             viewBox="0 0 24 24" 
             fill="none"
-            className={!isFirstSlide ? 'animate-arrow-nudge' : ''}
+            className={`text-gray-400/60 ${!isFirstSlide ? 'animate-arrow-nudge' : ''}`}
           >
             <path 
               d="M5 12h14" 
