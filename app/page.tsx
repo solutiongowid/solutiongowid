@@ -197,7 +197,13 @@ export default function Home() {
     <>
       {/* 상단 고정 헤더 */}
       <div className="fixed top-4 left-4 right-4 z-50 flex items-center justify-between">
-        <img src="/logo.png" alt="gowid" className="h-8" />
+        <a
+          href="https://gowid.com/card-apply-lead/?utm_source=facebook&utm_medium=paid-social&utm_campaign=menu-01-2026&utm_content=commerce-newlanding-260130"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <img src="/logo.png" alt="gowid" className="h-8 hover:opacity-80 transition-opacity" />
+        </a>
         <a
           href="https://gowid.com/card-apply-lead/?utm_source=facebook&utm_medium=paid-social&utm_campaign=menu-01-2026&utm_content=commerce-newlanding-260130"
           target="_blank"
@@ -510,7 +516,7 @@ export default function Home() {
       {currentSlide < totalSlides - 1 && (
         <button
           onClick={() => goToSlide(currentSlide + 1)}
-          className="fixed bottom-20 right-4 bg-white/90 backdrop-blur-sm text-gray-700 text-sm font-medium px-4 py-2 rounded-full shadow-lg border border-gray-200 hover:bg-gray-50 hover:shadow-xl transition-all duration-200 active:scale-95 z-50 animate-pulse-scale"
+          className="fixed bottom-16 right-4 bg-white/90 backdrop-blur-sm text-gray-700 text-sm font-medium px-4 py-2 rounded-full shadow-lg border border-gray-200 hover:bg-gray-50 hover:shadow-xl transition-all duration-200 active:scale-95 z-50 animate-pulse-scale"
         >
           다음 →
         </button>
