@@ -108,7 +108,7 @@ export default function Home() {
           target="_blank"
           rel="noopener noreferrer"
         >
-          <img src="/logo.png" alt="gowid" className="h-8 hover:opacity-80 transition-opacity" />
+          <img src="/Group 626579.png" alt="gowid" className="h-8 hover:opacity-80 transition-opacity" />
         </a>
         <a
           href="https://gowid.com/card-apply-lead/?utm_source=facebook&utm_medium=paid-social&utm_campaign=menu-01-2026&utm_content=commerce-newlanding-260130"
@@ -117,7 +117,7 @@ export default function Home() {
           className="text-white text-xs font-semibold px-3 py-2 rounded-md shadow-md hover:shadow-lg transition-all duration-200 active:scale-95"
           style={{background: 'linear-gradient(135deg, #5BC500 0%, #4a9f00 100%)'}}
         >
-          지금 한도 확인하기
+          도입 신청하기
         </a>
       </div>
 
@@ -246,17 +246,14 @@ export default function Home() {
               </h2>
             </div>
             <div className="grid grid-cols-1 gap-4">
-              <div className="feature-card text-left space-y-2 fade-in-2">
-                <div className="badge">높은 한도</div>
-                <p className="text-sm text-gray-700">기존 금융 대비 더 높은 한도</p>
+              <div className="feature-card text-left fade-in-2">
+                <p className="text-base font-semibold text-gray-800">기존 금융 대비 더 높은 한도</p>
               </div>
-              <div className="feature-card text-left space-y-2 fade-in-3">
-                <div className="badge">최고 페이백</div>
-                <p className="text-sm text-gray-700">업계 최고의 페이백율</p>
+              <div className="feature-card text-left fade-in-3">
+                <p className="text-base font-semibold text-gray-800">업계 최고의 페이백율</p>
               </div>
-              <div className="feature-card text-left space-y-2 fade-in-4">
-                <div className="badge">매월 복원</div>
-                <p className="text-sm text-gray-700">매월 1일 마다 복원되는 한도</p>
+              <div className="feature-card text-left fade-in-4">
+                <p className="text-base font-semibold text-gray-800">매월 1일 마다 복원되는 한도</p>
               </div>
             </div>
           </div>
@@ -296,8 +293,8 @@ export default function Home() {
                       <span className="text-gray-700 text-[10px] leading-tight">고위드 기본</span>
                       <span className="text-sm font-bold text-gray-700">61일</span>
                     </div>
-                    <div className="text-right flex flex-col">
-                      <span className="text-accent text-[10px] font-bold leading-tight">고위드 최대</span>
+                    <div className="text-right flex flex-col animate-pulse">
+                      <span className="text-[10px] font-bold leading-tight" style={{color: '#5BC500'}}>고위드 최대</span>
                       <span className="text-base font-bold gradient-text">83일</span>
                     </div>
                   </div>
@@ -342,7 +339,7 @@ export default function Home() {
                   <div className="text-xl font-bold text-gray-400 mb-1">세금계산서 발행</div>
                   <p className="text-sm text-gray-500">현금만 받던 거래처</p>
                 </div>
-                <div className="text-center p-4 bg-white rounded-xl border-2 animate-cta-nudge w-full" style={{borderColor: '#5BC500'}}>
+                <div className="text-center p-4 bg-white rounded-xl border-2 w-full" style={{borderColor: '#5BC500'}}>
                   <div className="text-xl font-bold gradient-text mb-1">카드 결제</div>
                   <p className="text-sm text-gray-700">고위드로 가능</p>
                 </div>
@@ -395,23 +392,23 @@ export default function Home() {
         {/* 페이지 9: CTA */}
         <Slide id="slide-9">
           <div className="text-center space-y-8 px-4 max-w-md w-full">
-            <div className="text-4xl fade-in-1">🔍</div>
+            <div className="text-4xl fade-in-1">🚀</div>
             <h2 className="text-2xl font-bold fade-in-1">
-              우리 기업의 시작 한도
+              커머스 기업 폭풍 성장,
               <br />
-              <span className="gradient-text">지금 확인하세요</span>
+              <span className="gradient-text">지금 고위드와 함께하세요</span>
             </h2>
             <div className="fade-in-2">
               <a
                 href="https://gowid.com/card-apply-lead/?utm_source=facebook&utm_medium=paid-social&utm_campaign=menu-01-2026&utm_content=commerce-newlanding-260130"
-            target="_blank"
-            rel="noopener noreferrer"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="inline-block text-white font-bold text-lg px-12 py-5 rounded-full transition-all duration-300 animate-cta-pulse hover:animate-none hover:scale-105 hover:shadow-xl active:scale-100 cursor-pointer w-full max-w-xs"
                 style={{background: 'linear-gradient(135deg, #5BC500 0%, #4a9f00 100%)'}}
               >
-                한도 확인하기
-          </a>
-        </div>
+                도입 신청하기
+              </a>
+            </div>
           </div>
         </Slide>
         </div>

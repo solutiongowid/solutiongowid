@@ -41,22 +41,49 @@ export default function TestimonialCarousel() {
   const [isPaused, setIsPaused] = useState(false);
 
   useEffect(() => {
-    if (isPaused) return; // 멈춤 상태면 자동 전환 안 함
+    if (isPaused) return;
     
     const interval = setInterval(() => {
       setCurrent((prev) => (prev + 1) % testimonials.length);
-    }, 4000); // 4초마다 자동 전환
+    }, 4000);
 
     return () => clearInterval(interval);
   }, [current, isPaused]);
 
-  const handleCardClick = () => {
-    setIsPaused(!isPaused); // 클릭할 때마다 토글
+  const goToPrev = () => {
+    setCurrent((prev) => (prev - 1 + testimonials.length) % testimonials.length);
+  };
+
+  const goToNext = () => {
+    setCurrent((prev) => (prev + 1) % testimonials.length);
   };
 
   return (
     <div className="w-full">
-      <div className="relative min-h-[280px]">
+      <div 
+        className="relative min-h-[280px]"
+        onMouseEnter={() => setIsPaused(true)}
+        onMouseLeave={() => setIsPaused(false)}
+        onTouchStart={() => setIsPaused(true)}
+        onTouchEnd={() => setIsPaused(false)}
+      >
+        {/* 스택 효과 - 뒤 카드들 */}
+        <div 
+          className="absolute inset-0 feature-card opacity-30 scale-[0.92]"
+          style={{ 
+            transform: 'translateY(16px) scale(0.92)',
+            zIndex: 1 
+          }}
+        />
+        <div 
+          className="absolute inset-0 feature-card opacity-50 scale-[0.96]"
+          style={{ 
+            transform: 'translateY(8px) scale(0.96)',
+            zIndex: 2 
+          }}
+        />
+        
+        {/* 메인 카드 */}
         {testimonials.map((testimonial, index) => (
           <div
             key={index}
@@ -65,12 +92,12 @@ export default function TestimonialCarousel() {
                 ? 'opacity-100 translate-y-0'
                 : 'opacity-0 translate-y-4 pointer-events-none'
             }`}
+            style={{ zIndex: 3 }}
           >
             <div 
-              className={`feature-card text-left space-y-4 cursor-pointer transition-all duration-300 ${
-                isPaused ? 'scale-105 shadow-2xl' : ''
+              className={`feature-card text-left space-y-4 transition-all duration-300 ${
+                isPaused ? 'scale-[1.02] shadow-2xl' : ''
               }`}
-              onClick={handleCardClick}
               style={{
                 boxShadow: isPaused 
                   ? '0 12px 40px rgba(91, 197, 0, 0.25)' 
@@ -95,6 +122,33 @@ export default function TestimonialCarousel() {
               </div>
             </div>
           </div>
+        ))}
+
+        {/* 좌우 버튼 */}
+        <button
+          onClick={goToPrev}
+          className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-3 w-8 h-8 bg-white rounded-full shadow-lg flex items-center justify-center text-gray-600 hover:bg-gray-50 hover:scale-110 active:scale-95 transition-all z-10"
+        >
+          ‹
+        </button>
+        <button
+          onClick={goToNext}
+          className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-3 w-8 h-8 bg-white rounded-full shadow-lg flex items-center justify-center text-gray-600 hover:bg-gray-50 hover:scale-110 active:scale-95 transition-all z-10"
+        >
+          ›
+        </button>
+      </div>
+
+      {/* 인디케이터 */}
+      <div className="flex justify-center gap-2 mt-4">
+        {testimonials.map((_, index) => (
+          <button
+            key={index}
+            onClick={() => setCurrent(index)}
+            className={`w-2 h-2 rounded-full transition-all duration-300 ${
+              index === current ? 'bg-green-500 w-4' : 'bg-gray-300'
+            }`}
+          />
         ))}
       </div>
     </div>
