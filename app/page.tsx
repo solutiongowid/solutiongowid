@@ -12,7 +12,7 @@ export default function Home() {
   const touchStartXRef = useRef(0);
   const touchStartTimeRef = useRef(0);
   const isTransitioningRef = useRef(false);
-  const totalSlides = 10;
+  const totalSlides = 9;
 
   useEffect(() => {
     const container = scrollContainerRef.current;
@@ -154,58 +154,50 @@ export default function Home() {
           </div>
         </Slide>
 
-        {/* 페이지 2: 헤드카피 */}
+        {/* 페이지 2: 헤드카피 + 성공 사례 통합 */}
         <Slide id="slide-2">
-          <div className="text-left space-y-12 px-4 w-full max-w-md">
-            <h2 className="text-3xl font-bold fade-in-1">
-              다음달 매입에 필요한
-              <br />
-              자금이 <span className="gradient-text">무이자</span>로
-              <br />
-              제공된다면 어떨까요?
-            </h2>
-            <h2 className="text-3xl font-bold fade-in-2">
-              게다가 매월
-              <br />
-              사용액의 <span className="gradient-text">0.5%</span>씩
-              <br />
-              돌려드리면요?
-            </h2>
+          <div className="text-left space-y-4 px-4 w-full max-w-md">
+            {/* 헤드카피 섹션 */}
+            <div className="space-y-3 fade-in-1">
+              <h2 className="text-xl font-bold leading-tight">
+                다음달 매입 자금이 <span className="gradient-text">무이자</span>로 제공된다면?
+              </h2>
+              <p className="text-base font-bold">
+                게다가 매월 사용액의 <span className="gradient-text">0.5%</span>씩 돌려드리면요?
+              </p>
+            </div>
+
+            {/* 구분선 */}
+            <div className="border-t border-gray-200 my-2"></div>
+
+            {/* 성공 사례 섹션 */}
+            <div className="space-y-3 fade-in-2">
+              <div className="flex items-center gap-2">
+                <span className="badge text-[10px] px-2 py-1">성공 사례</span>
+                <span className="text-sm font-bold">지난 해 <span className="gradient-text">300%</span> 성장 조인앤조인(널담)</span>
+              </div>
+              <p className="text-sm text-gray-600">
+                이번달 광고비와 발주금액 <span className="gradient-text font-bold">4,000만원</span>이 당장 다음달에 나갑니다
+              </p>
+            </div>
+
+            {/* 핵심 메시지 카드 */}
+            <div className="feature-card bg-gradient-to-br from-green-50 to-white py-3 px-4 fade-in-3">
+              <p className="text-base font-bold text-gray-900 leading-snug">
+                월 <span className="gradient-text">4,000만원</span> 한도 제공 시,<br />
+                연 <span className="gradient-text">5억원</span> <span className="gradient-text">무이자</span> 대출 효과
+              </p>
+            </div>
+
+            {/* 주석 */}
+            <p className="text-[11px] text-gray-400 fade-in-4 leading-snug">
+              *중소기업 대출 금리 (4%~7%) 기준, 월 이자 160만원 절감
+            </p>
           </div>
         </Slide>
 
-        {/* 페이지 3: 성공 사례 */}
+        {/* 페이지 3: 고위드 소개 */}
         <Slide id="slide-3">
-          <div className="text-left space-y-12 px-4 w-full max-w-md">
-            <h2 className="text-3xl font-bold fade-in-1">
-              지난 해 <span className="gradient-text">300%</span> 성장한
-              <br />
-              조인앤조인(널담)
-            </h2>
-            <p className="text-base text-gray-600 font-light fade-in-2">
-              이번달 광고비와 발주금액 <span className="gradient-text font-bold">4,000만원</span>이
-              <br />
-              당장 다음달에 나갑니다
-            </p>
-            <p className="text-lg font-bold fade-in-3">
-              월 <span className="gradient-text">4,000만원</span> 한도가 제공된다면,
-              <br />
-              연 <span className="gradient-text">5억원</span>의 대출을 <span className="gradient-text">무이자</span>로 받는
-              <br />
-              것과 같은 효과이죠
-            </p>
-            <p className="text-sm text-gray-500 mt-40 fade-in-4">
-              *중소기업 대출 금리 (4%~7%) 기준
-              <br />
-              월 4,000만원, 연 5억원을 대출할 경우,
-              <br />
-              월 이자 160만원으로 총 2,000만원 손실
-            </p>
-          </div>
-        </Slide>
-
-        {/* 페이지 4: 고위드 소개 */}
-        <Slide id="slide-4">
           <div className="text-left px-4 w-full max-w-md">
             <div className="space-y-6 mb-6">
               <h2 className="text-2xl font-bold fade-in-1">
@@ -230,8 +222,8 @@ export default function Home() {
           </div>
         </Slide>
 
-        {/* 페이지 5: 혜택 1 */}
-        <Slide id="slide-5">
+        {/* 페이지 4: 혜택 1 */}
+        <Slide id="slide-4">
           <div className="text-left space-y-10 px-4 w-full max-w-md">
             <div className="text-left fade-in-1">
               <div className="text-sm font-semibold mb-2" style={{color: '#5BC500'}}>SOLUTION 01</div>
@@ -256,8 +248,8 @@ export default function Home() {
           </div>
         </Slide>
 
-        {/* 페이지 6: 혜택 2 */}
-        <Slide id="slide-6">
+        {/* 페이지 5: 혜택 2 */}
+        <Slide id="slide-5">
           <div className="text-left space-y-8 px-4 w-full max-w-md">
             <div className="text-left fade-in-1">
               <div className="text-sm font-semibold mb-2" style={{color: '#5BC500'}}>SOLUTION 02</div>
@@ -315,8 +307,8 @@ export default function Home() {
           </div>
         </Slide>
 
-        {/* 페이지 7: 혜택 3 */}
-        <Slide id="slide-7">
+        {/* 페이지 6: 혜택 3 */}
+        <Slide id="slide-6">
           <div className="text-left space-y-8 px-4 w-full max-w-md">
             <div className="text-left fade-in-1">
               <div className="text-sm font-semibold mb-2" style={{color: '#5BC500'}}>SOLUTION 03</div>
@@ -343,8 +335,8 @@ export default function Home() {
           </div>
         </Slide>
 
-        {/* 페이지 8: 혜택 4 */}
-        <Slide id="slide-8">
+        {/* 페이지 7: 혜택 4 */}
+        <Slide id="slide-7">
           <div className="text-left space-y-8 px-4 w-full max-w-md">
             <div className="text-left fade-in-1">
               <div className="text-sm font-semibold mb-2" style={{color: '#5BC500'}}>SOLUTION 04</div>
@@ -364,8 +356,8 @@ export default function Home() {
           </div>
         </Slide>
 
-        {/* 페이지 9: 최종 메시지 */}
-        <Slide id="slide-9">
+        {/* 페이지 8: 최종 메시지 */}
+        <Slide id="slide-8">
           <div className="text-center space-y-12 px-4 max-w-md">
             <h2 className="text-2xl font-bold fade-in-1">
               <span className="gradient-text">매출 후 매입</span>,
@@ -382,8 +374,8 @@ export default function Home() {
         </div>
         </Slide>
 
-        {/* 페이지 10: CTA */}
-        <Slide id="slide-10">
+        {/* 페이지 9: CTA */}
+        <Slide id="slide-9">
           <div className="text-center space-y-8 px-4 max-w-md w-full">
             <h2 className="text-2xl font-bold fade-in-1">
               우리 기업의 시작 한도
@@ -421,7 +413,7 @@ export default function Home() {
         </button>
       )}
       
-      <SlideIndicator total={10} current={currentSlide} />
+      <SlideIndicator total={9} current={currentSlide} />
     </>
   );
 }
