@@ -7,7 +7,7 @@ interface SlideIndicatorProps {
 
 export default function SlideIndicator({ total, current }: SlideIndicatorProps) {
   return (
-    <div className="fixed bottom-8 left-1/2 -translate-x-1/2 flex items-center gap-2 z-50">
+    <div className="fixed bottom-36 left-1/2 -translate-x-1/2 flex items-center gap-2 z-50">
       {Array.from({ length: total }).map((_, index) => (
         <div
           key={index}
