@@ -69,16 +69,16 @@ export default function TestimonialCarousel() {
       >
         {/* 스택 효과 - 뒤 카드들 */}
         <div 
-          className="absolute inset-0 feature-card opacity-30 scale-[0.92]"
+          className="absolute inset-0 feature-card opacity-40"
           style={{ 
-            transform: 'translateY(16px) scale(0.92)',
+            transform: 'translateY(10px) scale(0.95)',
             zIndex: 1 
           }}
         />
         <div 
-          className="absolute inset-0 feature-card opacity-50 scale-[0.96]"
+          className="absolute inset-0 feature-card opacity-60"
           style={{ 
-            transform: 'translateY(8px) scale(0.96)',
+            transform: 'translateY(5px) scale(0.97)',
             zIndex: 2 
           }}
         />
