@@ -510,35 +510,11 @@ export default function Home() {
       {currentSlide < totalSlides - 1 && (
         <button
           onClick={() => goToSlide(currentSlide + 1)}
-          className="fixed bottom-56 right-4 bg-white/90 backdrop-blur-sm text-gray-700 text-sm font-medium px-4 py-2 rounded-full shadow-lg border border-gray-200 hover:bg-gray-50 hover:shadow-xl transition-all duration-200 active:scale-95 z-50 animate-pulse-scale"
+          className="fixed bottom-20 right-4 bg-white/90 backdrop-blur-sm text-gray-700 text-sm font-medium px-4 py-2 rounded-full shadow-lg border border-gray-200 hover:bg-gray-50 hover:shadow-xl transition-all duration-200 active:scale-95 z-50 animate-pulse-scale"
         >
           다음 →
         </button>
       )}
-
-
-      {/* 고정 푸터 */}
-      <footer className="fixed bottom-0 left-0 right-0 bg-gray-50 border-t border-gray-200 z-40 px-4 py-3">
-        <div className="max-w-md mx-auto space-y-2">
-          {/* 로고 */}
-          <div className="flex justify-center">
-            <img src="/logo.png" alt="gowid" className="h-5 opacity-60" />
-          </div>
-          
-          {/* 회사 설명 */}
-          <p className="text-[10px] text-gray-400 text-center leading-relaxed">
-            고위드는 성장 기업에 최적의 혜택을 연결하고 효율적인 비용관리 솔루션을 제공하는 핀테크 서비스이며,
-            법인카드 발급·심사·정산 등 금융 관련 업무는 제휴 금융기관이 수행합니다.
-          </p>
-          
-          {/* 회사 정보 */}
-          <p className="text-[9px] text-gray-500 text-center leading-relaxed">
-            주식회사 고위드 | 대표이사 : 김항기 | 사업자등록번호 : 261-81-25793<br />
-            통신판매업신고 : 제 2020-서울강남-01863호<br />
-            서울특별시 강남구 도산대로 317, 14층 (신사동, 호림아트센터 1빌딩)
-          </p>
-        </div>
-      </footer>
       
       <SlideIndicator total={10} current={currentSlide} />
     </>
