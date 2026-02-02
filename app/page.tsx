@@ -12,7 +12,19 @@ export default function Home() {
   const touchStartXRef = useRef(0);
   const touchStartYRef = useRef(0);
   const isTransitioningRef = useRef(false);
-  const totalSlides = 10;
+  const totalSlides = 9;
+  const [showCTA, setShowCTA] = useState(false);
+
+  // 마지막 슬라이드 애니메이션
+  useEffect(() => {
+    if (currentSlide === 8) {
+      setShowCTA(false);
+      const timer = setTimeout(() => {
+        setShowCTA(true);
+      }, 2000); // 2초 후 CTA 표시
+      return () => clearTimeout(timer);
+    }
+  }, [currentSlide]);
 
   // 페이지 이동 함수
   const goToSlide = (newSlide: number) => {
@@ -370,44 +382,61 @@ export default function Home() {
           </div>
         </Slide>
 
-        {/* 페이지 8: 최종 메시지 */}
+        {/* 페이지 8: 최종 메시지 + CTA 통합 */}
         <Slide id="slide-8">
-          <div className="text-center space-y-12 px-4 max-w-md">
-            <div className="text-4xl fade-in-1">✨</div>
-            <h2 className="text-2xl font-bold fade-in-1">
-              <span className="gradient-text">매출 후 매입</span>,
-              <br />
-              들어올 돈과 나갈 돈의
-              <br />
-              타이밍이 맞기 시작합니다
-            </h2>
-            <p className="text-lg text-gray-700 font-medium fade-in-2">
-              더이상
-              <br />
-              기회를 놓치지 않습니다
-          </p>
-        </div>
-        </Slide>
+          <div className="text-center px-4 max-w-md w-full relative overflow-hidden">
+            {/* 첫 번째 내용 - 위로 올라가며 사라짐 */}
+            <div 
+              className={`transition-all duration-700 ease-out ${
+                showCTA 
+                  ? 'opacity-0 -translate-y-20' 
+                  : 'opacity-100 translate-y-0'
+              }`}
+            >
+              <div className="space-y-8">
+                <div className="text-4xl">✨</div>
+                <h2 className="text-2xl font-bold">
+                  <span className="gradient-text">매출 후 매입</span>,
+                  <br />
+                  들어올 돈과 나갈 돈의
+                  <br />
+                  타이밍이 맞기 시작합니다
+                </h2>
+                <p className="text-lg text-gray-700 font-medium">
+                  더이상
+                  <br />
+                  기회를 놓치지 않습니다
+                </p>
+              </div>
+            </div>
 
-        {/* 페이지 9: CTA */}
-        <Slide id="slide-9">
-          <div className="text-center space-y-8 px-4 max-w-md w-full">
-            <div className="text-4xl fade-in-1">🚀</div>
-            <h2 className="text-2xl font-bold fade-in-1">
-              커머스 기업 폭풍 성장,
-              <br />
-              <span className="gradient-text">지금 고위드와 함께하세요</span>
-            </h2>
-            <div className="fade-in-2">
-              <a
-                href="https://gowid.com/card-apply-lead/?utm_source=facebook&utm_medium=paid-social&utm_campaign=menu-01-2026&utm_content=commerce-newlanding-260130"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-block text-white font-bold text-lg px-12 py-5 rounded-full transition-all duration-300 animate-cta-pulse hover:animate-none hover:scale-105 hover:shadow-xl active:scale-100 cursor-pointer w-full max-w-xs"
-                style={{background: 'linear-gradient(135deg, #5BC500 0%, #4a9f00 100%)'}}
-              >
-                도입 신청하기
-              </a>
+            {/* 두 번째 내용 - 뿅뿅뿅 나타남 */}
+            <div 
+              className={`absolute inset-0 flex items-center justify-center transition-all duration-500 ${
+                showCTA 
+                  ? 'opacity-100' 
+                  : 'opacity-0 pointer-events-none'
+              }`}
+            >
+              <div className="space-y-8 w-full">
+                <div className={`text-4xl transition-all duration-300 ${showCTA ? 'scale-100 opacity-100' : 'scale-50 opacity-0'}`} style={{transitionDelay: '0ms'}}>🚀</div>
+                <h2 className={`text-2xl font-bold transition-all duration-300 ${showCTA ? 'scale-100 opacity-100' : 'scale-75 opacity-0'}`} style={{transitionDelay: '150ms'}}>
+                  커머스 기업 폭풍 성장,
+                  <br />
+                  <span className="gradient-text">지금 고위드와 함께하세요</span>
+                </h2>
+                <div className={`transition-all duration-300 ${showCTA ? 'scale-100 opacity-100' : 'scale-75 opacity-0'}`} style={{transitionDelay: '300ms'}}>
+                  <a
+                    href="https://gowid.com/card-apply-lead/?utm_source=facebook&utm_medium=paid-social&utm_campaign=menu-01-2026&utm_content=commerce-newlanding-260130"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-block text-white font-bold text-lg px-12 py-5 rounded-full transition-all duration-300 animate-cta-pulse hover:animate-none hover:scale-105 hover:shadow-xl active:scale-100 cursor-pointer w-full max-w-xs"
+                    style={{background: 'linear-gradient(135deg, #5BC500 0%, #4a9f00 100%)'}}
+                  >
+                    도입 신청하기
+                  </a>
+                </div>
+              </div>
             </div>
           </div>
         </Slide>
@@ -420,7 +449,7 @@ export default function Home() {
         onNext={handleNext}
       />
       
-      <SlideIndicator total={10} current={currentSlide} />
+      <SlideIndicator total={9} current={currentSlide} />
     </>
   );
 }
