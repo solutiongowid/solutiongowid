@@ -156,41 +156,40 @@ export default function Home() {
 
         {/* 페이지 2: 헤드카피 + 성공 사례 통합 */}
         <Slide id="slide-2">
-          <div className="text-left space-y-4 px-4 w-full max-w-md">
+          <div className="text-left space-y-5 px-4 w-full max-w-sm">
             {/* 헤드카피 섹션 */}
-            <div className="space-y-3 fade-in-1">
-              <h2 className="text-xl font-bold leading-tight">
-                다음달 매입 자금이 <span className="gradient-text">무이자</span>로 제공된다면?
+            <div className="space-y-2 fade-in-1">
+              <h2 className="text-2xl font-bold leading-snug">
+                다음달 매입 자금이<br />
+                <span className="gradient-text">무이자</span>로 제공된다면?
               </h2>
-              <p className="text-base font-bold">
+              <p className="text-sm font-bold">
                 게다가 매월 사용액의 <span className="gradient-text">0.5%</span>씩 돌려드리면요?
               </p>
             </div>
 
             {/* 구분선 */}
-            <div className="border-t border-gray-200 my-2"></div>
+            <div className="border-t border-gray-200 my-4"></div>
 
             {/* 성공 사례 섹션 */}
-            <div className="space-y-3 fade-in-2">
-              <div className="flex items-center gap-2">
-                <span className="badge text-[10px] px-2 py-1">성공 사례</span>
-                <span className="text-sm font-bold">지난 해 <span className="gradient-text">300%</span> 성장 조인앤조인(널담)</span>
-              </div>
-              <p className="text-sm text-gray-600">
-                이번달 광고비와 발주금액 <span className="gradient-text font-bold">4,000만원</span>이 당장 다음달에 나갑니다
+            <div className="space-y-4 fade-in-2">
+              <h3 className="text-base font-bold">
+                지난 해 <span className="gradient-text">300%</span> 성장한<br />
+                조인앤조인(널담)
+              </h3>
+              <p className="text-sm text-gray-600 leading-relaxed">
+                이번달 광고비와 발주금액 <span className="gradient-text font-bold">4,000만원</span>이<br />
+                당장 다음달에 나갑니다
               </p>
-            </div>
-
-            {/* 핵심 메시지 카드 */}
-            <div className="feature-card bg-gradient-to-br from-green-50 to-white py-3 px-4 fade-in-3">
-              <p className="text-base font-bold text-gray-900 leading-snug">
-                월 <span className="gradient-text">4,000만원</span> 한도 제공 시,<br />
-                연 <span className="gradient-text">5억원</span> <span className="gradient-text">무이자</span> 대출 효과
+              <p className="text-sm font-bold leading-relaxed fade-in-3">
+                월 <span className="gradient-text">4,000만원</span> 한도가 제공된다면,<br />
+                연 <span className="gradient-text">5억원</span>의 대출을 <span className="gradient-text">무이자</span>로 받는<br />
+                것과 같은 효과이죠
               </p>
             </div>
 
             {/* 주석 */}
-            <p className="text-[11px] text-gray-400 fade-in-4 leading-snug">
+            <p className="text-[10px] text-gray-400 fade-in-4 leading-snug">
               *중소기업 대출 금리 (4%~7%) 기준, 월 이자 160만원 절감
             </p>
           </div>
