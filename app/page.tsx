@@ -510,7 +510,7 @@ export default function Home() {
       {currentSlide < totalSlides - 1 && (
         <button
           onClick={() => goToSlide(currentSlide + 1)}
-          className="fixed bottom-52 right-4 bg-white/90 backdrop-blur-sm text-gray-700 text-sm font-medium px-4 py-2 rounded-full shadow-lg border border-gray-200 hover:bg-gray-50 hover:shadow-xl transition-all duration-200 active:scale-95 z-50 animate-pulse-scale"
+          className="fixed bottom-56 right-4 bg-white/90 backdrop-blur-sm text-gray-700 text-sm font-medium px-4 py-2 rounded-full shadow-lg border border-gray-200 hover:bg-gray-50 hover:shadow-xl transition-all duration-200 active:scale-95 z-50 animate-pulse-scale"
         >
           다음 →
         </button>
