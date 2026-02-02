@@ -24,37 +24,29 @@ export default function Home() {
     if (newSlide === currentSlide) return;
 
     isTransitioningRef.current = true;
-    container.classList.add('transitioning');
     
     const targetPosition = newSlide * container.clientWidth;
     const startPosition = container.scrollLeft;
     const distance = targetPosition - startPosition;
-    const duration = 600; // 600ms로 늘려서 더 부드럽게
+    const duration = 500; // 500ms
     let startTime: number | null = null;
 
-    // easeInOutCubic 이징 함수 - 시작과 끝이 모두 부드러움
-    const easeInOutCubic = (t: number) => {
-      return t < 0.5
-        ? 4 * t * t * t
-        : 1 - Math.pow(-2 * t + 2, 3) / 2;
-    };
+    // easeOutQuart 이징 함수 - 끝이 매우 부드러움
+    const easeOutQuart = (t: number) => 1 - Math.pow(1 - t, 4);
 
     const animateScroll = (currentTime: number) => {
       if (startTime === null) startTime = currentTime;
       const elapsed = currentTime - startTime;
       const progress = Math.min(elapsed / duration, 1);
-      const easedProgress = easeInOutCubic(progress);
+      const easedProgress = easeOutQuart(progress);
       
       container.scrollLeft = startPosition + (distance * easedProgress);
       
       if (progress < 1) {
         requestAnimationFrame(animateScroll);
       } else {
-        container.classList.remove('transitioning');
         setCurrentSlide(newSlide);
-        setTimeout(() => {
-          isTransitioningRef.current = false;
-        }, 50);
+        isTransitioningRef.current = false;
       }
     };
 
@@ -144,34 +136,23 @@ export default function Home() {
       }
     };
 
-    const handleScroll = (e: Event) => {
+    // 터치 중 스크롤 방지
+    const handleTouchMove = (e: TouchEvent) => {
       if (isTransitioningRef.current) {
-        return;
-      }
-      
-      const scrollLeft = container.scrollLeft;
-      const slideWidth = container.clientWidth;
-      const calculatedSlide = Math.round(scrollLeft / slideWidth);
-      
-      if (Math.abs(calculatedSlide - currentSlide) > 1) {
         e.preventDefault();
-        container.scrollTo({
-          left: currentSlide * slideWidth,
-          behavior: 'smooth'
-        });
       }
     };
 
     container.addEventListener('touchstart', handleTouchStart, { passive: false });
+    container.addEventListener('touchmove', handleTouchMove, { passive: false });
     container.addEventListener('touchend', handleTouchEnd, { passive: false });
     container.addEventListener('wheel', handleWheel, { passive: false });
-    container.addEventListener('scroll', handleScroll, { passive: false });
 
     return () => {
       container.removeEventListener('touchstart', handleTouchStart);
+      container.removeEventListener('touchmove', handleTouchMove);
       container.removeEventListener('touchend', handleTouchEnd);
       container.removeEventListener('wheel', handleWheel);
-      container.removeEventListener('scroll', handleScroll);
     };
   }, [currentSlide, totalSlides]);
 
