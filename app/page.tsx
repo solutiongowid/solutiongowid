@@ -10,9 +10,52 @@ export default function Home() {
   const [currentSlide, setCurrentSlide] = useState(0);
   const scrollContainerRef = useRef<HTMLDivElement>(null);
   const touchStartXRef = useRef(0);
+  const touchStartYRef = useRef(0);
   const touchStartTimeRef = useRef(0);
   const isTransitioningRef = useRef(false);
-  const totalSlides = 9;
+  const totalSlides = 10;
+
+  // 페이지 이동 함수
+  const goToSlide = (newSlide: number) => {
+    const container = scrollContainerRef.current;
+    if (!container || isTransitioningRef.current) return;
+    
+    if (newSlide < 0 || newSlide >= totalSlides) return;
+    if (newSlide === currentSlide) return;
+
+    isTransitioningRef.current = true;
+    container.classList.add('transitioning');
+    
+    const targetPosition = newSlide * container.clientWidth;
+    const startPosition = container.scrollLeft;
+    const distance = targetPosition - startPosition;
+    const duration = 400; // 400ms
+    let startTime: number | null = null;
+
+    // easeOutCubic 이징 함수
+    const easeOutCubic = (t: number) => 1 - Math.pow(1 - t, 3);
+
+    const animateScroll = (currentTime: number) => {
+      if (startTime === null) startTime = currentTime;
+      const elapsed = currentTime - startTime;
+      const progress = Math.min(elapsed / duration, 1);
+      const easedProgress = easeOutCubic(progress);
+      
+      container.scrollLeft = startPosition + (distance * easedProgress);
+      
+      if (progress < 1) {
+        requestAnimationFrame(animateScroll);
+      } else {
+        container.classList.remove('transitioning');
+        setCurrentSlide(newSlide);
+        setTimeout(() => {
+          isTransitioningRef.current = false;
+        }, 100);
+      }
+    };
+
+    requestAnimationFrame(animateScroll);
+  };
 
   useEffect(() => {
     const container = scrollContainerRef.current;
@@ -24,6 +67,7 @@ export default function Home() {
         return;
       }
       touchStartXRef.current = e.touches[0].clientX;
+      touchStartYRef.current = e.touches[0].clientY;
       touchStartTimeRef.current = Date.now();
     };
 
@@ -34,38 +78,45 @@ export default function Home() {
       }
 
       const touchEndX = e.changedTouches[0].clientX;
-      const touchDiff = touchStartXRef.current - touchEndX;
+      const touchEndY = e.changedTouches[0].clientY;
+      const touchDiffX = touchStartXRef.current - touchEndX;
+      const touchDiffY = touchStartYRef.current - touchEndY;
       const touchDuration = Date.now() - touchStartTimeRef.current;
       const slideWidth = container.clientWidth;
       
       // 스와이프 거리가 충분하거나 빠른 스와이프인 경우
-      const threshold = slideWidth * 0.2; // 20% 이상 스와이프
-      const velocity = Math.abs(touchDiff) / touchDuration; // px/ms
+      const thresholdX = slideWidth * 0.2; // 20% 이상 스와이프
+      const thresholdY = 50; // 50px 이상 세로 스와이프
+      const velocityX = Math.abs(touchDiffX) / touchDuration;
+      const velocityY = Math.abs(touchDiffY) / touchDuration;
       
       let newSlide = currentSlide;
       
-      if (Math.abs(touchDiff) > threshold || velocity > 0.5) {
-        if (touchDiff > 0 && currentSlide < totalSlides - 1) {
-          // 왼쪽으로 스와이프 (다음 페이지)
-          newSlide = currentSlide + 1;
-        } else if (touchDiff < 0 && currentSlide > 0) {
-          // 오른쪽으로 스와이프 (이전 페이지)
-          newSlide = currentSlide - 1;
+      // 가로 스와이프가 더 큰 경우
+      if (Math.abs(touchDiffX) > Math.abs(touchDiffY)) {
+        if (Math.abs(touchDiffX) > thresholdX || velocityX > 0.5) {
+          if (touchDiffX > 0 && currentSlide < totalSlides - 1) {
+            newSlide = currentSlide + 1;
+          } else if (touchDiffX < 0 && currentSlide > 0) {
+            newSlide = currentSlide - 1;
+          }
+        }
+      } 
+      // 세로 스와이프가 더 큰 경우 (위로 스와이프 = 다음, 아래로 스와이프 = 이전)
+      else {
+        if (Math.abs(touchDiffY) > thresholdY || velocityY > 0.3) {
+          if (touchDiffY > 0 && currentSlide < totalSlides - 1) {
+            // 위로 스와이프 (다음 페이지)
+            newSlide = currentSlide + 1;
+          } else if (touchDiffY < 0 && currentSlide > 0) {
+            // 아래로 스와이프 (이전 페이지)
+            newSlide = currentSlide - 1;
+          }
         }
       }
 
       if (newSlide !== currentSlide) {
-        isTransitioningRef.current = true;
-        setCurrentSlide(newSlide);
-        
-        container.scrollTo({
-          left: newSlide * slideWidth,
-          behavior: 'smooth'
-        });
-
-        setTimeout(() => {
-          isTransitioningRef.current = false;
-        }, 500);
+        goToSlide(newSlide);
       } else {
         // 현재 페이지로 다시 스냅
         container.scrollTo({
@@ -75,17 +126,34 @@ export default function Home() {
       }
     };
 
+    // 마우스 휠 이벤트 (데스크탑에서 스크롤)
+    const handleWheel = (e: WheelEvent) => {
+      if (isTransitioningRef.current) {
+        e.preventDefault();
+        return;
+      }
+
+      e.preventDefault();
+      
+      // deltaY > 0: 아래로 스크롤 (다음 페이지), deltaY < 0: 위로 스크롤 (이전 페이지)
+      if (Math.abs(e.deltaY) > 30) {
+        if (e.deltaY > 0 && currentSlide < totalSlides - 1) {
+          goToSlide(currentSlide + 1);
+        } else if (e.deltaY < 0 && currentSlide > 0) {
+          goToSlide(currentSlide - 1);
+        }
+      }
+    };
+
     const handleScroll = (e: Event) => {
       if (isTransitioningRef.current) {
         return;
       }
       
-      // 스크롤 중에 현재 페이지 위치 확인
       const scrollLeft = container.scrollLeft;
       const slideWidth = container.clientWidth;
       const calculatedSlide = Math.round(scrollLeft / slideWidth);
       
-      // 현재 페이지와 너무 멀리 떨어진 경우 강제로 되돌리기
       if (Math.abs(calculatedSlide - currentSlide) > 1) {
         e.preventDefault();
         container.scrollTo({
@@ -97,11 +165,13 @@ export default function Home() {
 
     container.addEventListener('touchstart', handleTouchStart, { passive: false });
     container.addEventListener('touchend', handleTouchEnd, { passive: false });
+    container.addEventListener('wheel', handleWheel, { passive: false });
     container.addEventListener('scroll', handleScroll, { passive: false });
 
     return () => {
       container.removeEventListener('touchstart', handleTouchStart);
       container.removeEventListener('touchend', handleTouchEnd);
+      container.removeEventListener('wheel', handleWheel);
       container.removeEventListener('scroll', handleScroll);
     };
   }, [currentSlide, totalSlides]);
@@ -125,11 +195,37 @@ export default function Home() {
 
   return (
     <>
+      {/* 상단 고정 헤더 */}
+      <div className="fixed top-4 left-4 right-4 z-50 flex items-center justify-between">
+        <img src="/logo.png" alt="gowid" className="h-8" />
+        <a
+          href="https://gowid.com/card-apply-lead/?utm_source=facebook&utm_medium=paid-social&utm_campaign=menu-01-2026&utm_content=commerce-newlanding-260130"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="text-white text-xs font-semibold px-3 py-2 rounded-md shadow-md hover:shadow-lg transition-all duration-200 active:scale-95"
+          style={{background: 'linear-gradient(135deg, #5BC500 0%, #4a9f00 100%)'}}
+        >
+          지금 한도 확인하기
+        </a>
+      </div>
+
       <div ref={scrollContainerRef} className="scroll-container">
-        {/* 페이지 1: 메인 히어로 */}
+        {/* 페이지 1: 표지 */}
+        <Slide id="slide-cover">
+          <div className="text-center space-y-4 px-4 w-full max-w-md">
+            <div className="text-4xl fade-in-1">📈</div>
+            <h1 className="text-2xl font-bold leading-snug fade-in-2">
+              성장하는 내 커머스 비즈니스,<br />
+              <span className="gradient-text">J 커브</span>를 꿈꾸시나요?
+            </h1>
+          </div>
+        </Slide>
+
+        {/* 페이지 2: 메인 히어로 */}
         <Slide id="slide-1">
           <div className="text-left space-y-8 px-4 w-full max-w-md">
-            <h1 className="text-3xl font-bold fade-in-1">
+            <div className="text-3xl fade-in-1">⏰</div>
+            <h1 className="text-2xl font-bold fade-in-1">
               문제는 돈이 아닙니다
               <br />
               <span className="gradient-text">타이밍</span>입니다
@@ -143,12 +239,12 @@ export default function Home() {
               <div className="feature-card text-left space-y-1">
                 <div className="badge mb-2">CASE 1</div>
                 <p className="text-lg text-gray-600 leading-tight">발주 주기는 짧아졌는데</p>
-                <p className="text-lg font-semibold leading-tight">발주 금액은 더 커져요</p>
+                <p className="text-lg font-semibold leading-tight">발주 금액은 더 커질 때</p>
               </div>
               <div className="feature-card text-left space-y-1">
                 <div className="badge mb-2">CASE 2</div>
                 <p className="text-lg text-gray-600 leading-tight">광고비 효율은 상승했는데</p>
-                <p className="text-lg font-semibold leading-tight">카드 한도는 작년이랑 똑같아요</p>
+                <p className="text-lg font-semibold leading-tight">카드 한도는 작년이랑 똑같을 때</p>
               </div>
             </div>
           </div>
@@ -159,6 +255,7 @@ export default function Home() {
           <div className="text-left space-y-5 px-4 w-full max-w-sm">
             {/* 헤드카피 섹션 */}
             <div className="space-y-2 fade-in-1">
+              <div className="text-3xl mb-2">💰</div>
               <h2 className="text-2xl font-bold leading-snug">
                 다음달 매입 자금이<br />
                 <span className="gradient-text">무이자</span>로 제공된다면?
@@ -181,7 +278,7 @@ export default function Home() {
                 이번달 광고비와 발주금액 <span className="gradient-text font-bold">4,000만원</span>이<br />
                 당장 다음달에 나갑니다
               </p>
-              <p className="text-sm font-bold leading-relaxed fade-in-3">
+              <p className="text-lg font-bold leading-relaxed fade-in-3">
                 월 <span className="gradient-text">4,000만원</span> 한도가 제공된다면,<br />
                 연 <span className="gradient-text">5억원</span>의 대출을 <span className="gradient-text">무이자</span>로 받는<br />
                 것과 같은 효과이죠
@@ -199,6 +296,7 @@ export default function Home() {
         <Slide id="slide-3">
           <div className="text-left px-4 w-full max-w-md">
             <div className="space-y-6 mb-6">
+              <div className="text-3xl fade-in-1">💳</div>
               <h2 className="text-2xl font-bold fade-in-1">
                 돈을 벌고 나서 쓰는 것 ㅡ
                 <br />
@@ -225,6 +323,7 @@ export default function Home() {
         <Slide id="slide-4">
           <div className="text-left space-y-10 px-4 w-full max-w-md">
             <div className="text-left fade-in-1">
+              <div className="text-3xl mb-2">🎯</div>
               <div className="text-sm font-semibold mb-2" style={{color: '#5BC500'}}>SOLUTION 01</div>
               <h2 className="text-2xl font-bold">
                 최적의 한도를 받으세요
@@ -251,6 +350,7 @@ export default function Home() {
         <Slide id="slide-5">
           <div className="text-left space-y-8 px-4 w-full max-w-md">
             <div className="text-left fade-in-1">
+              <div className="text-3xl mb-2">📅</div>
               <div className="text-sm font-semibold mb-2" style={{color: '#5BC500'}}>SOLUTION 02</div>
               <h2 className="text-2xl font-bold">
                 공여일을 연장하세요
@@ -310,6 +410,7 @@ export default function Home() {
         <Slide id="slide-6">
           <div className="text-left space-y-8 px-4 w-full max-w-md">
             <div className="text-left fade-in-1">
+              <div className="text-3xl mb-2">📄</div>
               <div className="text-sm font-semibold mb-2" style={{color: '#5BC500'}}>SOLUTION 03</div>
               <h2 className="text-2xl font-bold">
                 세금계산서를 카드 결제로
@@ -338,6 +439,7 @@ export default function Home() {
         <Slide id="slide-7">
           <div className="text-left space-y-8 px-4 w-full max-w-md">
             <div className="text-left fade-in-1">
+              <div className="text-3xl mb-2">🚀</div>
               <div className="text-sm font-semibold mb-2" style={{color: '#5BC500'}}>SOLUTION 04</div>
               <h2 className="text-2xl font-bold">
                 성장에 따라
@@ -358,6 +460,7 @@ export default function Home() {
         {/* 페이지 8: 최종 메시지 */}
         <Slide id="slide-8">
           <div className="text-center space-y-12 px-4 max-w-md">
+            <div className="text-4xl fade-in-1">✨</div>
             <h2 className="text-2xl font-bold fade-in-1">
               <span className="gradient-text">매출 후 매입</span>,
               <br />
@@ -376,6 +479,7 @@ export default function Home() {
         {/* 페이지 9: CTA */}
         <Slide id="slide-9">
           <div className="text-center space-y-8 px-4 max-w-md w-full">
+            <div className="text-4xl fade-in-1">🔍</div>
             <h2 className="text-2xl font-bold fade-in-1">
               우리 기업의 시작 한도
               <br />
@@ -405,14 +509,38 @@ export default function Home() {
       {/* 다음 버튼 */}
       {currentSlide < totalSlides - 1 && (
         <button
-          onClick={handleNext}
-          className="fixed bottom-24 right-4 bg-white/90 backdrop-blur-sm text-gray-700 text-sm font-medium px-4 py-2 rounded-full shadow-lg border border-gray-200 hover:bg-gray-50 hover:shadow-xl transition-all duration-200 active:scale-95 z-50"
+          onClick={() => goToSlide(currentSlide + 1)}
+          className="fixed bottom-40 right-4 bg-white/90 backdrop-blur-sm text-gray-700 text-sm font-medium px-4 py-2 rounded-full shadow-lg border border-gray-200 hover:bg-gray-50 hover:shadow-xl transition-all duration-200 active:scale-95 z-50 animate-pulse-scale"
         >
           다음 →
         </button>
       )}
+
+
+      {/* 고정 푸터 */}
+      <footer className="fixed bottom-0 left-0 right-0 bg-gray-50 border-t border-gray-200 z-40 px-4 py-3">
+        <div className="max-w-md mx-auto space-y-2">
+          {/* 로고 */}
+          <div className="flex justify-center">
+            <img src="/logo.png" alt="gowid" className="h-5 opacity-60" />
+          </div>
+          
+          {/* 회사 설명 */}
+          <p className="text-[10px] text-gray-400 text-center leading-relaxed">
+            고위드는 성장 기업에 최적의 혜택을 연결하고 효율적인 비용관리 솔루션을 제공하는 핀테크 서비스이며,
+            법인카드 발급·심사·정산 등 금융 관련 업무는 제휴 금융기관이 수행합니다.
+          </p>
+          
+          {/* 회사 정보 */}
+          <p className="text-[9px] text-gray-500 text-center leading-relaxed">
+            주식회사 고위드 | 대표이사 : 김항기 | 사업자등록번호 : 261-81-25793<br />
+            통신판매업신고 : 제 2020-서울강남-01863호<br />
+            서울특별시 강남구 도산대로 317, 14층 (신사동, 호림아트센터 1빌딩)
+          </p>
+        </div>
+      </footer>
       
-      <SlideIndicator total={9} current={currentSlide} />
+      <SlideIndicator total={10} current={currentSlide} />
     </>
   );
 }

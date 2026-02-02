@@ -30,8 +30,14 @@ html, body {
   overflow-x: auto;
   overflow-y: hidden;
   scroll-snap-type: x mandatory;
+  scroll-behavior: smooth;
   -webkit-overflow-scrolling: touch;
   scrollbar-width: none;
+}
+
+.scroll-container.transitioning {
+  scroll-snap-type: none;
+  scroll-behavior: auto;
 }
 
 .scroll-container::-webkit-scrollbar {
@@ -224,5 +230,20 @@ html, body {
 
 .animate-jump {
   animation: jump 1s ease-in-out infinite;
+  will-change: transform;
+}
+
+/* 다음 버튼 펄스 스케일 애니메이션 */
+@keyframes pulseScale {
+  0%, 100% {
+    transform: scale(1) translateZ(0);
+  }
+  50% {
+    transform: scale(1.05) translateZ(0);
+  }
+}
+
+.animate-pulse-scale {
+  animation: pulseScale 2s ease-in-out infinite;
   will-change: transform;
 }
