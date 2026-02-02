@@ -9,66 +9,118 @@ import NavigationHint from './components/NavigationHint';
 export default function Home() {
   const [currentSlide, setCurrentSlide] = useState(0);
   const scrollContainerRef = useRef<HTMLDivElement>(null);
-  const isScrollingRef = useRef(false);
-  const scrollTimeoutRef = useRef<NodeJS.Timeout | null>(null);
+  const touchStartXRef = useRef(0);
+  const touchStartTimeRef = useRef(0);
+  const isTransitioningRef = useRef(false);
   const totalSlides = 10;
 
   useEffect(() => {
     const container = scrollContainerRef.current;
     if (!container) return;
 
-    const handleScroll = () => {
-      if (isScrollingRef.current) return;
-
-      // 스크롤이 끝나는 것을 감지하기 위한 타이머
-      if (scrollTimeoutRef.current) {
-        clearTimeout(scrollTimeoutRef.current);
+    const handleTouchStart = (e: TouchEvent) => {
+      if (isTransitioningRef.current) {
+        e.preventDefault();
+        return;
       }
-
-      scrollTimeoutRef.current = setTimeout(() => {
-        const scrollLeft = container.scrollLeft;
-        const slideWidth = container.clientWidth;
-        const targetSlide = Math.round(scrollLeft / slideWidth);
-        
-        // 현재 슬라이드에서 ±1 범위로만 이동 가능
-        const maxSlide = Math.min(currentSlide + 1, totalSlides - 1);
-        const minSlide = Math.max(currentSlide - 1, 0);
-        const newSlide = Math.max(minSlide, Math.min(maxSlide, targetSlide));
-
-        if (newSlide !== currentSlide) {
-          isScrollingRef.current = true;
-          setCurrentSlide(newSlide);
-          
-          // 정확한 위치로 스냅
-          container.scrollTo({
-            left: newSlide * slideWidth,
-            behavior: 'smooth'
-          });
-
-          setTimeout(() => {
-            isScrollingRef.current = false;
-          }, 300);
-        }
-      }, 50);
+      touchStartXRef.current = e.touches[0].clientX;
+      touchStartTimeRef.current = Date.now();
     };
 
-    container.addEventListener('scroll', handleScroll);
-    return () => {
-      container.removeEventListener('scroll', handleScroll);
-      if (scrollTimeoutRef.current) {
-        clearTimeout(scrollTimeoutRef.current);
+    const handleTouchEnd = (e: TouchEvent) => {
+      if (isTransitioningRef.current) {
+        e.preventDefault();
+        return;
       }
+
+      const touchEndX = e.changedTouches[0].clientX;
+      const touchDiff = touchStartXRef.current - touchEndX;
+      const touchDuration = Date.now() - touchStartTimeRef.current;
+      const slideWidth = container.clientWidth;
+      
+      // 스와이프 거리가 충분하거나 빠른 스와이프인 경우
+      const threshold = slideWidth * 0.2; // 20% 이상 스와이프
+      const velocity = Math.abs(touchDiff) / touchDuration; // px/ms
+      
+      let newSlide = currentSlide;
+      
+      if (Math.abs(touchDiff) > threshold || velocity > 0.5) {
+        if (touchDiff > 0 && currentSlide < totalSlides - 1) {
+          // 왼쪽으로 스와이프 (다음 페이지)
+          newSlide = currentSlide + 1;
+        } else if (touchDiff < 0 && currentSlide > 0) {
+          // 오른쪽으로 스와이프 (이전 페이지)
+          newSlide = currentSlide - 1;
+        }
+      }
+
+      if (newSlide !== currentSlide) {
+        isTransitioningRef.current = true;
+        setCurrentSlide(newSlide);
+        
+        container.scrollTo({
+          left: newSlide * slideWidth,
+          behavior: 'smooth'
+        });
+
+        setTimeout(() => {
+          isTransitioningRef.current = false;
+        }, 500);
+      } else {
+        // 현재 페이지로 다시 스냅
+        container.scrollTo({
+          left: currentSlide * slideWidth,
+          behavior: 'smooth'
+        });
+      }
+    };
+
+    const handleScroll = (e: Event) => {
+      if (isTransitioningRef.current) {
+        return;
+      }
+      
+      // 스크롤 중에 현재 페이지 위치 확인
+      const scrollLeft = container.scrollLeft;
+      const slideWidth = container.clientWidth;
+      const calculatedSlide = Math.round(scrollLeft / slideWidth);
+      
+      // 현재 페이지와 너무 멀리 떨어진 경우 강제로 되돌리기
+      if (Math.abs(calculatedSlide - currentSlide) > 1) {
+        e.preventDefault();
+        container.scrollTo({
+          left: currentSlide * slideWidth,
+          behavior: 'smooth'
+        });
+      }
+    };
+
+    container.addEventListener('touchstart', handleTouchStart, { passive: false });
+    container.addEventListener('touchend', handleTouchEnd, { passive: false });
+    container.addEventListener('scroll', handleScroll, { passive: false });
+
+    return () => {
+      container.removeEventListener('touchstart', handleTouchStart);
+      container.removeEventListener('touchend', handleTouchEnd);
+      container.removeEventListener('scroll', handleScroll);
     };
   }, [currentSlide, totalSlides]);
 
   const handleNext = () => {
     const container = scrollContainerRef.current;
-    if (!container || currentSlide >= totalSlides - 1) return;
+    if (!container || currentSlide >= totalSlides - 1 || isTransitioningRef.current) return;
+    
+    isTransitioningRef.current = true;
+    setCurrentSlide(currentSlide + 1);
     
     container.scrollTo({
       left: (currentSlide + 1) * container.clientWidth,
       behavior: 'smooth'
     });
+
+    setTimeout(() => {
+      isTransitioningRef.current = false;
+    }, 500);
   };
 
   return (
