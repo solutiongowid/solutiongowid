@@ -430,7 +430,7 @@ export default function Home() {
                     href="https://gowid.com/card-apply-lead/?utm_source=facebook&utm_medium=paid-social&utm_campaign=menu-01-2026&utm_content=commerce-newlanding-260130"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="inline-block text-white font-bold text-lg px-12 py-5 rounded-full transition-all duration-300 animate-cta-pulse hover:animate-none hover:scale-105 hover:shadow-xl active:scale-100 cursor-pointer w-full max-w-xs"
+                    className="inline-block text-white font-bold text-lg px-10 py-4 rounded-full transition-transform duration-300 animate-cta-pulse hover:animate-none hover:scale-105 active:scale-100 cursor-pointer"
                     style={{background: 'linear-gradient(135deg, #5BC500 0%, #4a9f00 100%)'}}
                   >
                     도입 신청하기
