@@ -26,10 +26,12 @@ html, body {
 .slide-wrapper {
   width: 100%;
   height: 100%;
+  padding-top: 60px;
   overflow: hidden;
   position: relative;
   -webkit-backface-visibility: hidden;
   backface-visibility: hidden;
+  box-sizing: border-box;
 }
 
 /* 스크롤 컨테이너 */

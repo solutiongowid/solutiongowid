@@ -129,8 +129,8 @@ export default function Home() {
         {/* 페이지 1: 표지 */}
         <Slide id="slide-cover">
           <div className="text-center space-y-4 px-4 w-full max-w-md">
-            <div className="text-4xl fade-in-1">📈</div>
-            <h1 className="text-2xl font-bold leading-snug fade-in-2">
+            <div className="text-4xl">📈</div>
+            <h1 className="text-2xl font-bold leading-snug">
               성장하는 내 커머스 비즈니스,<br />
               <span className="gradient-text">J 커브</span>를 꿈꾸시나요?
             </h1>
