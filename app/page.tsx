@@ -9,6 +9,8 @@ import NavigationHint from './components/NavigationHint';
 export default function Home() {
   const [currentSlide, setCurrentSlide] = useState(0);
   const scrollContainerRef = useRef<HTMLDivElement>(null);
+  const isScrollingRef = useRef(false);
+  const scrollTimeoutRef = useRef<NodeJS.Timeout | null>(null);
   const totalSlides = 10;
 
   useEffect(() => {
@@ -16,15 +18,48 @@ export default function Home() {
     if (!container) return;
 
     const handleScroll = () => {
-      const scrollLeft = container.scrollLeft;
-      const slideWidth = container.clientWidth;
-      const newSlide = Math.round(scrollLeft / slideWidth);
-      setCurrentSlide(newSlide);
+      if (isScrollingRef.current) return;
+
+      // 스크롤이 끝나는 것을 감지하기 위한 타이머
+      if (scrollTimeoutRef.current) {
+        clearTimeout(scrollTimeoutRef.current);
+      }
+
+      scrollTimeoutRef.current = setTimeout(() => {
+        const scrollLeft = container.scrollLeft;
+        const slideWidth = container.clientWidth;
+        const targetSlide = Math.round(scrollLeft / slideWidth);
+        
+        // 현재 슬라이드에서 ±1 범위로만 이동 가능
+        const maxSlide = Math.min(currentSlide + 1, totalSlides - 1);
+        const minSlide = Math.max(currentSlide - 1, 0);
+        const newSlide = Math.max(minSlide, Math.min(maxSlide, targetSlide));
+
+        if (newSlide !== currentSlide) {
+          isScrollingRef.current = true;
+          setCurrentSlide(newSlide);
+          
+          // 정확한 위치로 스냅
+          container.scrollTo({
+            left: newSlide * slideWidth,
+            behavior: 'smooth'
+          });
+
+          setTimeout(() => {
+            isScrollingRef.current = false;
+          }, 300);
+        }
+      }, 50);
     };
 
     container.addEventListener('scroll', handleScroll);
-    return () => container.removeEventListener('scroll', handleScroll);
-  }, []);
+    return () => {
+      container.removeEventListener('scroll', handleScroll);
+      if (scrollTimeoutRef.current) {
+        clearTimeout(scrollTimeoutRef.current);
+      }
+    };
+  }, [currentSlide, totalSlides]);
 
   const handleNext = () => {
     const container = scrollContainerRef.current;
