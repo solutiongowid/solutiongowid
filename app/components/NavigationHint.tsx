@@ -51,7 +51,7 @@ export default function NavigationHint({ currentSlide, totalSlides, onNext }: Na
       </div>
 
       {/* 하단 스와이프 안내 텍스트 (모바일용) - 첫 페이지만 점프, 나머지는 화살표만 */}
-      <div className={`fixed bottom-16 left-1/2 -translate-x-1/2 z-30 md:hidden ${isFirstSlide && showAnimation ? 'animate-jump' : ''}`}>
+      <div className={`fixed bottom-12 left-1/2 -translate-x-1/2 z-30 md:hidden ${isFirstSlide && showAnimation ? 'animate-jump' : ''}`}>
         <div className="text-gray-400/60 text-xs font-medium flex items-center justify-center gap-2 text-center">
           <span>좌우로 스와이프하세요</span>
           <svg 

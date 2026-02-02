@@ -102,15 +102,12 @@ export default function Home() {
           }
         }
       } 
-      // 세로 스와이프가 더 큰 경우 (위로 스와이프 = 다음, 아래로 스와이프 = 이전)
+      // 세로 스와이프가 더 큰 경우 (위/아래 모두 다음 페이지로 이동)
       else {
         if (Math.abs(touchDiffY) > thresholdY || velocityY > 0.3) {
-          if (touchDiffY > 0 && currentSlide < totalSlides - 1) {
-            // 위로 스와이프 (다음 페이지)
+          if (currentSlide < totalSlides - 1) {
+            // 위/아래 스와이프 모두 다음 페이지로
             newSlide = currentSlide + 1;
-          } else if (touchDiffY < 0 && currentSlide > 0) {
-            // 아래로 스와이프 (이전 페이지)
-            newSlide = currentSlide - 1;
           }
         }
       }
@@ -135,12 +132,10 @@ export default function Home() {
 
       e.preventDefault();
       
-      // deltaY > 0: 아래로 스크롤 (다음 페이지), deltaY < 0: 위로 스크롤 (이전 페이지)
+      // 위/아래 스크롤 모두 다음 페이지로 이동
       if (Math.abs(e.deltaY) > 30) {
-        if (e.deltaY > 0 && currentSlide < totalSlides - 1) {
+        if (currentSlide < totalSlides - 1) {
           goToSlide(currentSlide + 1);
-        } else if (e.deltaY < 0 && currentSlide > 0) {
-          goToSlide(currentSlide - 1);
         }
       }
     };
@@ -511,16 +506,6 @@ export default function Home() {
         totalSlides={totalSlides}
         onNext={handleNext}
       />
-      
-      {/* 다음 버튼 */}
-      {currentSlide < totalSlides - 1 && (
-        <button
-          onClick={() => goToSlide(currentSlide + 1)}
-          className="fixed bottom-16 right-4 bg-white/90 backdrop-blur-sm text-gray-700 text-sm font-medium px-4 py-2 rounded-full shadow-lg border border-gray-200 hover:bg-gray-50 hover:shadow-xl transition-all duration-200 active:scale-95 z-50 animate-pulse-scale"
-        >
-          다음 →
-        </button>
-      )}
       
       <SlideIndicator total={10} current={currentSlide} />
     </>
