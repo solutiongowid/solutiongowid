@@ -410,6 +410,17 @@ export default function Home() {
         totalSlides={totalSlides}
         onNext={handleNext}
       />
+      
+      {/* 다음 버튼 */}
+      {currentSlide < totalSlides - 1 && (
+        <button
+          onClick={handleNext}
+          className="fixed bottom-24 right-4 bg-white/90 backdrop-blur-sm text-gray-700 text-sm font-medium px-4 py-2 rounded-full shadow-lg border border-gray-200 hover:bg-gray-50 hover:shadow-xl transition-all duration-200 active:scale-95 z-50"
+        >
+          다음 →
+        </button>
+      )}
+      
       <SlideIndicator total={10} current={currentSlide} />
     </>
   );
