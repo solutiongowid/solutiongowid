@@ -21,7 +21,7 @@ export default function Home() {
       setShowCTA(false);
       const timer = setTimeout(() => {
         setShowCTA(true);
-      }, 2000); // 2초 후 CTA 표시
+      }, 1200); // 1.2초 후 CTA 표시
       return () => clearTimeout(timer);
     }
   }, [currentSlide]);
