@@ -8,127 +8,73 @@ import NavigationHint from './components/NavigationHint';
 
 export default function Home() {
   const [currentSlide, setCurrentSlide] = useState(0);
-  const scrollContainerRef = useRef<HTMLDivElement>(null);
+  const wrapperRef = useRef<HTMLDivElement>(null);
   const touchStartXRef = useRef(0);
   const touchStartYRef = useRef(0);
-  const touchStartTimeRef = useRef(0);
   const isTransitioningRef = useRef(false);
   const totalSlides = 10;
 
   // 페이지 이동 함수
   const goToSlide = (newSlide: number) => {
-    const container = scrollContainerRef.current;
-    if (!container || isTransitioningRef.current) return;
-    
+    if (isTransitioningRef.current) return;
     if (newSlide < 0 || newSlide >= totalSlides) return;
     if (newSlide === currentSlide) return;
 
     isTransitioningRef.current = true;
+    setCurrentSlide(newSlide);
     
-    const targetPosition = newSlide * container.clientWidth;
-    const startPosition = container.scrollLeft;
-    const distance = targetPosition - startPosition;
-    const duration = 500; // 500ms
-    let startTime: number | null = null;
-
-    // easeOutQuart 이징 함수 - 끝이 매우 부드러움
-    const easeOutQuart = (t: number) => 1 - Math.pow(1 - t, 4);
-
-    const animateScroll = (currentTime: number) => {
-      if (startTime === null) startTime = currentTime;
-      const elapsed = currentTime - startTime;
-      const progress = Math.min(elapsed / duration, 1);
-      const easedProgress = easeOutQuart(progress);
-      
-      container.scrollLeft = startPosition + (distance * easedProgress);
-      
-      if (progress < 1) {
-        requestAnimationFrame(animateScroll);
-      } else {
-        setCurrentSlide(newSlide);
-        isTransitioningRef.current = false;
-      }
-    };
-
-    requestAnimationFrame(animateScroll);
+    // CSS transition이 끝나면 플래그 해제
+    setTimeout(() => {
+      isTransitioningRef.current = false;
+    }, 550);
   };
 
   useEffect(() => {
-    const container = scrollContainerRef.current;
-    if (!container) return;
+    const wrapper = wrapperRef.current;
+    if (!wrapper) return;
 
     const handleTouchStart = (e: TouchEvent) => {
-      if (isTransitioningRef.current) {
-        e.preventDefault();
-        return;
-      }
+      if (isTransitioningRef.current) return;
       touchStartXRef.current = e.touches[0].clientX;
       touchStartYRef.current = e.touches[0].clientY;
-      touchStartTimeRef.current = Date.now();
     };
 
     const handleTouchEnd = (e: TouchEvent) => {
-      if (isTransitioningRef.current) {
-        e.preventDefault();
-        return;
-      }
+      if (isTransitioningRef.current) return;
 
       const touchEndX = e.changedTouches[0].clientX;
       const touchEndY = e.changedTouches[0].clientY;
       const touchDiffX = touchStartXRef.current - touchEndX;
       const touchDiffY = touchStartYRef.current - touchEndY;
-      const touchDuration = Date.now() - touchStartTimeRef.current;
-      const slideWidth = container.clientWidth;
       
-      // 스와이프 거리가 충분하거나 빠른 스와이프인 경우
-      const thresholdX = slideWidth * 0.2; // 20% 이상 스와이프
-      const thresholdY = 50; // 50px 이상 세로 스와이프
-      const velocityX = Math.abs(touchDiffX) / touchDuration;
-      const velocityY = Math.abs(touchDiffY) / touchDuration;
-      
-      let newSlide = currentSlide;
+      const thresholdX = 50;
+      const thresholdY = 50;
       
       // 가로 스와이프가 더 큰 경우
       if (Math.abs(touchDiffX) > Math.abs(touchDiffY)) {
-        if (Math.abs(touchDiffX) > thresholdX || velocityX > 0.5) {
+        if (Math.abs(touchDiffX) > thresholdX) {
           if (touchDiffX > 0 && currentSlide < totalSlides - 1) {
-            newSlide = currentSlide + 1;
+            goToSlide(currentSlide + 1);
           } else if (touchDiffX < 0 && currentSlide > 0) {
-            newSlide = currentSlide - 1;
+            goToSlide(currentSlide - 1);
           }
         }
       } 
-      // 세로 스와이프가 더 큰 경우 (위/아래 모두 다음 페이지로 이동)
+      // 세로 스와이프가 더 큰 경우 (위/아래 모두 다음 페이지로)
       else {
-        if (Math.abs(touchDiffY) > thresholdY || velocityY > 0.3) {
+        if (Math.abs(touchDiffY) > thresholdY) {
           if (currentSlide < totalSlides - 1) {
-            // 위/아래 스와이프 모두 다음 페이지로
-            newSlide = currentSlide + 1;
+            goToSlide(currentSlide + 1);
           }
         }
       }
-
-      if (newSlide !== currentSlide) {
-        goToSlide(newSlide);
-      } else {
-        // 현재 페이지로 다시 스냅
-        container.scrollTo({
-          left: currentSlide * slideWidth,
-          behavior: 'smooth'
-        });
-      }
     };
 
-    // 마우스 휠 이벤트 (데스크탑에서 스크롤)
+    // 마우스 휠 이벤트
     const handleWheel = (e: WheelEvent) => {
-      if (isTransitioningRef.current) {
-        e.preventDefault();
-        return;
-      }
-
+      if (isTransitioningRef.current) return;
       e.preventDefault();
       
-      // 위/아래 스크롤 모두 다음 페이지로 이동
       if (Math.abs(e.deltaY) > 30) {
         if (currentSlide < totalSlides - 1) {
           goToSlide(currentSlide + 1);
@@ -136,41 +82,21 @@ export default function Home() {
       }
     };
 
-    // 터치 중 스크롤 방지
-    const handleTouchMove = (e: TouchEvent) => {
-      if (isTransitioningRef.current) {
-        e.preventDefault();
-      }
-    };
-
-    container.addEventListener('touchstart', handleTouchStart, { passive: false });
-    container.addEventListener('touchmove', handleTouchMove, { passive: false });
-    container.addEventListener('touchend', handleTouchEnd, { passive: false });
-    container.addEventListener('wheel', handleWheel, { passive: false });
+    wrapper.addEventListener('touchstart', handleTouchStart, { passive: true });
+    wrapper.addEventListener('touchend', handleTouchEnd, { passive: true });
+    wrapper.addEventListener('wheel', handleWheel, { passive: false });
 
     return () => {
-      container.removeEventListener('touchstart', handleTouchStart);
-      container.removeEventListener('touchmove', handleTouchMove);
-      container.removeEventListener('touchend', handleTouchEnd);
-      container.removeEventListener('wheel', handleWheel);
+      wrapper.removeEventListener('touchstart', handleTouchStart);
+      wrapper.removeEventListener('touchend', handleTouchEnd);
+      wrapper.removeEventListener('wheel', handleWheel);
     };
   }, [currentSlide, totalSlides]);
 
   const handleNext = () => {
-    const container = scrollContainerRef.current;
-    if (!container || currentSlide >= totalSlides - 1 || isTransitioningRef.current) return;
-    
-    isTransitioningRef.current = true;
-    setCurrentSlide(currentSlide + 1);
-    
-    container.scrollTo({
-      left: (currentSlide + 1) * container.clientWidth,
-      behavior: 'smooth'
-    });
-
-    setTimeout(() => {
-      isTransitioningRef.current = false;
-    }, 500);
+    if (currentSlide < totalSlides - 1) {
+      goToSlide(currentSlide + 1);
+    }
   };
 
   return (
@@ -195,7 +121,11 @@ export default function Home() {
         </a>
       </div>
 
-      <div ref={scrollContainerRef} className="scroll-container">
+      <div ref={wrapperRef} className="slide-wrapper">
+        <div 
+          className="scroll-container"
+          style={{ transform: `translateX(-${currentSlide * 100}%)` }}
+        >
         {/* 페이지 1: 표지 */}
         <Slide id="slide-cover">
           <div className="text-center space-y-4 px-4 w-full max-w-md">
@@ -484,7 +414,8 @@ export default function Home() {
         </div>
           </div>
         </Slide>
-    </div>
+        </div>
+      </div>
 
       <NavigationHint 
         currentSlide={currentSlide} 
