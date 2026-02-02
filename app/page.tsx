@@ -29,17 +29,21 @@ export default function Home() {
     const targetPosition = newSlide * container.clientWidth;
     const startPosition = container.scrollLeft;
     const distance = targetPosition - startPosition;
-    const duration = 400; // 400ms
+    const duration = 600; // 600ms로 늘려서 더 부드럽게
     let startTime: number | null = null;
 
-    // easeOutCubic 이징 함수
-    const easeOutCubic = (t: number) => 1 - Math.pow(1 - t, 3);
+    // easeInOutCubic 이징 함수 - 시작과 끝이 모두 부드러움
+    const easeInOutCubic = (t: number) => {
+      return t < 0.5
+        ? 4 * t * t * t
+        : 1 - Math.pow(-2 * t + 2, 3) / 2;
+    };
 
     const animateScroll = (currentTime: number) => {
       if (startTime === null) startTime = currentTime;
       const elapsed = currentTime - startTime;
       const progress = Math.min(elapsed / duration, 1);
-      const easedProgress = easeOutCubic(progress);
+      const easedProgress = easeInOutCubic(progress);
       
       container.scrollLeft = startPosition + (distance * easedProgress);
       
@@ -50,7 +54,7 @@ export default function Home() {
         setCurrentSlide(newSlide);
         setTimeout(() => {
           isTransitioningRef.current = false;
-        }, 100);
+        }, 50);
       }
     };
 
