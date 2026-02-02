@@ -159,21 +159,19 @@ html, body {
   will-change: opacity, transform;
 }
 
-/* CTA 버튼 애니메이션 - 오로라 효과 */
+/* CTA 버튼 애니메이션 */
 @keyframes ctaPulse {
   0%, 100% {
     transform: scale(1) translateZ(0);
-    filter: drop-shadow(0 4px 15px rgba(91, 197, 0, 0.4)) drop-shadow(0 8px 25px rgba(91, 197, 0, 0.2));
   }
   50% {
     transform: scale(1.02) translateZ(0);
-    filter: drop-shadow(0 6px 20px rgba(91, 197, 0, 0.5)) drop-shadow(0 12px 35px rgba(91, 197, 0, 0.3));
   }
 }
 
 .animate-cta-pulse {
   animation: ctaPulse 2s ease-in-out infinite;
-  will-change: transform, filter;
+  will-change: transform;
 }
 
 /* 게이지 애니메이션 - 하드웨어 가속 */
