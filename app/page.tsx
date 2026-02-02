@@ -152,16 +152,16 @@ export default function Home() {
                 최적의 한도를 받으세요
               </h2>
             </div>
-            <div className="grid grid-cols-1 gap-4 fade-in-2">
-              <div className="feature-card text-left space-y-2">
+            <div className="grid grid-cols-1 gap-4">
+              <div className="feature-card text-left space-y-2 fade-in-2">
                 <div className="badge">높은 한도</div>
                 <p className="text-sm text-gray-700">기존 금융 대비 더 높은 한도</p>
               </div>
-              <div className="feature-card text-left space-y-2">
+              <div className="feature-card text-left space-y-2 fade-in-3">
                 <div className="badge">최고 페이백</div>
                 <p className="text-sm text-gray-700">업계 최고의 페이백율</p>
               </div>
-              <div className="feature-card text-left space-y-2">
+              <div className="feature-card text-left space-y-2 fade-in-4">
                 <div className="badge">매월 복원</div>
                 <p className="text-sm text-gray-700">매월 1일 마다 복원되는 한도</p>
               </div>

@@ -84,130 +84,145 @@ html, body {
   letter-spacing: 0.05em;
 }
 
-/* 애니메이션 */
+/* 애니메이션 - 하드웨어 가속 적용 */
 @keyframes fadeIn {
   from {
     opacity: 0;
-    transform: translateY(20px);
+    transform: translateY(20px) translateZ(0);
   }
   to {
     opacity: 1;
-    transform: translateY(0);
+    transform: translateY(0) translateZ(0);
   }
 }
 
 @keyframes scaleIn {
   from {
     opacity: 0;
-    transform: scale(0.95);
+    transform: scale(0.95) translateZ(0);
   }
   to {
     opacity: 1;
-    transform: scale(1);
+    transform: scale(1) translateZ(0);
   }
 }
 
 .slide-active .fade-in-1 {
-  animation: fadeIn 0.6s ease-out 0.1s both;
+  animation: fadeIn 0.5s cubic-bezier(0.4, 0, 0.2, 1) 0.1s both;
+  will-change: opacity, transform;
 }
 
 .slide-active .fade-in-2 {
-  animation: fadeIn 0.6s ease-out 0.3s both;
+  animation: fadeIn 0.5s cubic-bezier(0.4, 0, 0.2, 1) 0.4s both;
+  will-change: opacity, transform;
 }
 
 .slide-active .fade-in-3 {
-  animation: fadeIn 0.6s ease-out 0.5s both;
+  animation: fadeIn 0.5s cubic-bezier(0.4, 0, 0.2, 1) 0.7s both;
+  will-change: opacity, transform;
 }
 
 .slide-active .fade-in-4 {
-  animation: fadeIn 0.6s ease-out 0.7s both;
+  animation: fadeIn 0.5s cubic-bezier(0.4, 0, 0.2, 1) 1.0s both;
+  will-change: opacity, transform;
 }
 
 .slide-active .fade-in-5 {
-  animation: fadeIn 0.6s ease-out 0.9s both;
+  animation: fadeIn 0.5s cubic-bezier(0.4, 0, 0.2, 1) 1.3s both;
+  will-change: opacity, transform;
 }
 
 .slide-active .scale-in-1 {
-  animation: scaleIn 0.6s ease-out 0.1s both;
+  animation: scaleIn 0.5s cubic-bezier(0.4, 0, 0.2, 1) 0.1s both;
+  will-change: opacity, transform;
 }
 
 .slide-active .scale-in-2 {
-  animation: scaleIn 0.6s ease-out 0.3s both;
+  animation: scaleIn 0.5s cubic-bezier(0.4, 0, 0.2, 1) 0.4s both;
+  will-change: opacity, transform;
 }
 
 .slide-active .scale-in-3 {
-  animation: scaleIn 0.6s ease-out 0.5s both;
+  animation: scaleIn 0.5s cubic-bezier(0.4, 0, 0.2, 1) 0.7s both;
+  will-change: opacity, transform;
 }
 
-/* CTA 버튼 애니메이션 */
+/* CTA 버튼 애니메이션 - 하드웨어 가속 */
 @keyframes ctaPulse {
   0%, 100% {
-    transform: scale(1);
+    transform: scale(1) translateZ(0);
     box-shadow: 0 8px 30px rgba(91, 197, 0, 0.3);
   }
   50% {
-    transform: scale(1.02);
+    transform: scale(1.02) translateZ(0);
     box-shadow: 0 12px 40px rgba(91, 197, 0, 0.4);
   }
 }
 
 .animate-cta-pulse {
   animation: ctaPulse 2s ease-in-out infinite;
+  will-change: transform, box-shadow;
 }
 
-/* 게이지 애니메이션 */
+/* 게이지 애니메이션 - 하드웨어 가속 */
 @keyframes fillGaugeFull {
   from {
     width: 0%;
+    transform: translateZ(0);
   }
   to {
     width: 100%;
+    transform: translateZ(0);
   }
 }
 
 .unified-gauge-bar {
   width: 0%;
-  animation: fillGaugeFull 2.5s ease-out 0.5s forwards;
+  animation: fillGaugeFull 2s cubic-bezier(0.4, 0, 0.2, 1) 0.5s forwards;
+  will-change: width;
 }
 
-/* 카드 넛징 애니메이션 */
+/* 카드 넛징 애니메이션 - 하드웨어 가속 */
 @keyframes ctaNudge {
   0%, 100% {
-    transform: translateY(0);
+    transform: translateY(0) translateZ(0);
   }
   50% {
-    transform: translateY(-4px);
+    transform: translateY(-4px) translateZ(0);
   }
 }
 
 .animate-cta-nudge {
   animation: ctaNudge 1.5s ease-in-out infinite;
+  will-change: transform;
 }
 
-/* 화살표 넛징 */
+/* 화살표 넛징 - 하드웨어 가속 */
 @keyframes arrowNudge {
   0%, 100% {
-    transform: translateX(0);
+    transform: translateX(0) translateZ(0);
   }
   50% {
-    transform: translateX(4px);
+    transform: translateX(4px) translateZ(0);
   }
 }
 
 .animate-arrow-nudge {
   animation: arrowNudge 1s ease-in-out infinite;
+  will-change: transform;
 }
 
-/* 점프 애니메이션 */
+/* 점프 애니메이션 - 하드웨어 가속 */
 @keyframes jump {
   0%, 100% {
-    transform: translateY(0);
+    transform: translateY(0) translateZ(0);
   }
   50% {
-    transform: translateY(-8px);
+    transform: translateY(-8px) translateZ(0);
   }
 }
 
 .animate-jump {
   animation: jump 1s ease-in-out infinite;
+  will-change: transform;
 }
