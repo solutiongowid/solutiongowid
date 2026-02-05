@@ -21,8 +21,8 @@ export default function CommerceReportPage() {
                 <Image 
                   src="/Group 626579.png" 
                   alt="GOWID" 
-                  width={120} 
-                  height={40}
+                  width={84} 
+                  height={28}
                   priority
                 />
               </a>
