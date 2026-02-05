@@ -666,7 +666,7 @@ html, body {
     text-align: left;
   }
   
-  .report-feature-description br {
+  .report-feature-description .desktop-br {
     display: none;
   }
 }
