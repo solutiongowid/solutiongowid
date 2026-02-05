@@ -345,6 +345,12 @@ html, body {
   }
 }
 
+@media (max-width: 768px) {
+  .report-header {
+    padding: 8rem 0 4rem;
+  }
+}
+
 .report-header-text-wrapper {
   display: flex;
   flex-direction: column;

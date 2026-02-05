@@ -17,7 +17,7 @@ export default function CommerceReportPage() {
         <nav className="report-nav">
           <div className="report-container">
             <div className="report-nav-content">
-              <a href="/" className="report-brand">
+              <a href="https://gowid.com" className="report-brand" target="_blank" rel="noopener noreferrer">
                 <Image 
                   src="/Group 626579.png" 
                   alt="GOWID" 
