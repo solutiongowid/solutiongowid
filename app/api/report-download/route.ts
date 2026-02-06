@@ -4,10 +4,10 @@ export async function POST(request: NextRequest) {
   try {
     const body = await request.json();
     
-    const { name, email, timestamp } = body;
+    const { name, company, email, timestamp } = body;
 
     // 필수 필드 검증
-    if (!name || !email) {
+    if (!name || !company || !email) {
       return NextResponse.json(
         { error: '모든 필드를 입력해주세요.' },
         { status: 400 }
@@ -23,7 +23,7 @@ export async function POST(request: NextRequest) {
       
       // 개발 환경에서는 콘솔에만 로그 출력
       if (process.env.NODE_ENV === 'development') {
-        console.log('Form Data:', { name, email, timestamp });
+        console.log('Form Data:', { name, company, email, timestamp });
         return NextResponse.json({ 
           success: true, 
           message: 'Development mode: Data logged to console' 
@@ -44,6 +44,7 @@ export async function POST(request: NextRequest) {
       },
       body: JSON.stringify({
         name,
+        company,
         email,
         timestamp,
       }),

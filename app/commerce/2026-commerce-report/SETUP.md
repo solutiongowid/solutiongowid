@@ -13,8 +13,9 @@
 3. 첫 번째 행에 다음 헤더를 입력:
    ```
    A1: 제출일시
-   B1: 회사명
-   C1: 회사 이메일
+   B1: 이름
+   C1: 회사명
+   D1: 회사 이메일
    ```
 
 ### 2단계: Apps Script 설정
@@ -32,6 +33,7 @@ function doPost(e) {
     sheet.appendRow([
       data.timestamp || new Date().toISOString(),
       data.name || '',
+      data.company || '',
       data.email || ''
     ]);
     

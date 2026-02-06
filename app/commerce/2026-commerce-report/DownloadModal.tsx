@@ -10,6 +10,7 @@ interface DownloadModalProps {
 export default function DownloadModal({ isOpen, onClose }: DownloadModalProps) {
   const [formData, setFormData] = useState({
     name: '',
+    company: '',
     email: '',
     agreePrivacy: false,
   });
@@ -38,6 +39,10 @@ export default function DownloadModal({ isOpen, onClose }: DownloadModalProps) {
 
     // 유효성 검사
     if (!formData.name.trim()) {
+      setSubmitError('이름을 입력해주세요.');
+      return;
+    }
+    if (!formData.company.trim()) {
       setSubmitError('회사명을 입력해주세요.');
       return;
     }
@@ -85,6 +90,7 @@ export default function DownloadModal({ isOpen, onClose }: DownloadModalProps) {
       // 폼 초기화
       setFormData({
         name: '',
+        company: '',
         email: '',
         agreePrivacy: false,
       });
@@ -163,13 +169,29 @@ export default function DownloadModal({ isOpen, onClose }: DownloadModalProps) {
         <form onSubmit={handleSubmit} className="modal-form">
           <div className="form-group">
             <label htmlFor="name" className="form-label">
-              회사명 <span className="required">*</span>
+              이름 <span className="required">*</span>
             </label>
             <input
               type="text"
               id="name"
               name="name"
               value={formData.name}
+              onChange={handleChange}
+              className="form-input"
+              placeholder="홍길동"
+              required
+            />
+          </div>
+
+          <div className="form-group">
+            <label htmlFor="company" className="form-label">
+              회사명 <span className="required">*</span>
+            </label>
+            <input
+              type="text"
+              id="company"
+              name="company"
+              value={formData.company}
               onChange={handleChange}
               className="form-input"
               placeholder="고위드"
