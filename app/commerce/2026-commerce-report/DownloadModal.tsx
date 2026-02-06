@@ -67,15 +67,19 @@ export default function DownloadModal({ isOpen, onClose }: DownloadModalProps) {
       const kstTime = new Date(now.getTime() + (9 * 60 * 60 * 1000)); // UTC+9
       const formattedTimestamp = kstTime.toISOString().replace('T', ' ').substring(0, 19) + ' (KST)';
       
+      const submitData = {
+        ...formData,
+        timestamp: formattedTimestamp,
+      };
+      
+      console.log('제출 데이터:', submitData);
+      
       const response = await fetch('/api/report-download', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({
-          ...formData,
-          timestamp: formattedTimestamp,
-        }),
+        body: JSON.stringify(submitData),
       });
 
       const data = await response.json();
