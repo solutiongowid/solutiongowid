@@ -1141,6 +1141,11 @@ html, body {
   box-shadow: 0 2px 8px rgba(102, 126, 234, 0.3) !important;
 }
 
+/* 성공 모달 추가 스타일 */
+.modal-content.success-modal {
+  padding: 0;
+}
+
 @media (max-width: 768px) {
   .modal-content {
     max-height: 95vh;
@@ -1158,8 +1163,16 @@ html, body {
     padding: 1.5rem;
   }
   
+  .modal-content.success-modal {
+    padding: 0;
+  }
+  
+  .modal-content.success-modal > div {
+    padding: 2rem 1.5rem !important;
+  }
+  
   .success-button {
-    padding: 1.125rem 1.25rem !important;
+    padding: 1.125rem 1rem !important;
     font-size: 0.9375rem !important;
   }
 }

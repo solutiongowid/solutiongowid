@@ -122,63 +122,74 @@ export default function DownloadModal({ isOpen, onClose }: DownloadModalProps) {
   if (isSuccess) {
     return (
       <div className="modal-overlay" onClick={handleClose}>
-        <div className="modal-content" onClick={(e) => e.stopPropagation()}>
+        <div className="modal-content success-modal" onClick={(e) => e.stopPropagation()}>
           <button className="modal-close" onClick={handleClose} aria-label="닫기">
             ✕
           </button>
           
-          <div className="modal-header">
-            <h2 className="modal-title">감사합니다!</h2>
-            <p className="modal-description" style={{ fontSize: '1.125rem', marginTop: '1.5rem' }}>
+          <div style={{ 
+            padding: '3rem 2.5rem',
+            display: 'flex',
+            flexDirection: 'column',
+            alignItems: 'center',
+            textAlign: 'center'
+          }}>
+            <h2 className="modal-title" style={{ marginBottom: '1.5rem' }}>감사합니다!</h2>
+            <p className="modal-description" style={{ 
+              fontSize: '1.125rem', 
+              color: '#6b7280',
+              marginBottom: '3rem',
+              lineHeight: '1.6'
+            }}>
               아래 링크에서 리포트를 다운로드 해주세요.
             </p>
-          </div>
 
-          <div style={{ 
-            display: 'flex', 
-            gap: '0.75rem', 
-            marginTop: '2.5rem',
-            width: '100%'
-          }}>
-            <button 
-              onClick={handleClose}
-              className="success-button secondary-button"
-              style={{ 
-                flex: 1,
-                padding: '1rem 1.5rem',
-                fontSize: '1rem',
-                fontWeight: '600',
-                borderRadius: '8px',
-                border: '2px solid #e5e7eb',
-                background: '#ffffff',
-                color: '#374151',
-                cursor: 'pointer',
-                transition: 'all 0.2s ease',
-                minHeight: '52px'
-              }}
-            >
-              닫기
-            </button>
-            <button 
-              onClick={handleDownload}
-              className="success-button primary-button"
-              style={{ 
-                flex: 1,
-                padding: '1rem 1.5rem',
-                fontSize: '1rem',
-                fontWeight: '600',
-                borderRadius: '8px',
-                border: 'none',
-                background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
-                color: '#ffffff',
-                cursor: 'pointer',
-                transition: 'all 0.2s ease',
-                minHeight: '52px',
-                boxShadow: '0 4px 12px rgba(102, 126, 234, 0.4)'
-              }}
-            >
-              다운로드 페이지
-            </button>
+            <div style={{ 
+              display: 'flex', 
+              gap: '1rem', 
+              width: '100%',
+              maxWidth: '400px'
+            }}>
+              <button 
+                onClick={handleClose}
+                className="success-button secondary-button"
+                style={{ 
+                  flex: 1,
+                  padding: '1rem 1.5rem',
+                  fontSize: '1rem',
+                  fontWeight: '600',
+                  borderRadius: '8px',
+                  border: '2px solid #e5e7eb',
+                  background: '#ffffff',
+                  color: '#374151',
+                  cursor: 'pointer',
+                  transition: 'all 0.2s ease',
+                  minHeight: '52px'
+                }}
+              >
+                닫기
+              </button>
+              <button 
+                onClick={handleDownload}
+                className="success-button primary-button"
+                style={{ 
+                  flex: 1,
+                  padding: '1rem 1.5rem',
+                  fontSize: '1rem',
+                  fontWeight: '600',
+                  borderRadius: '8px',
+                  border: 'none',
+                  background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
+                  color: '#ffffff',
+                  cursor: 'pointer',
+                  transition: 'all 0.2s ease',
+                  minHeight: '52px',
+                  boxShadow: '0 4px 12px rgba(102, 126, 234, 0.4)'
+                }}
+              >
+                다운로드 페이지
+              </button>
+            </div>
           </div>
         </div>
       </div>
