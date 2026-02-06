@@ -1110,6 +1110,37 @@ html, body {
   pointer-events: none;
 }
 
+/* 성공 화면 버튼 스타일 */
+.success-button {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: transparent;
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+.success-button.secondary-button:hover {
+  background: #f9fafb !important;
+  border-color: #d1d5db !important;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.08);
+}
+
+.success-button.secondary-button:active {
+  transform: translateY(0);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.06);
+}
+
+.success-button.primary-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(102, 126, 234, 0.5) !important;
+}
+
+.success-button.primary-button:active {
+  transform: translateY(0);
+  box-shadow: 0 2px 8px rgba(102, 126, 234, 0.3) !important;
+}
+
 @media (max-width: 768px) {
   .modal-content {
     max-height: 95vh;
@@ -1125,5 +1156,10 @@ html, body {
   
   .modal-form {
     padding: 1.5rem;
+  }
+  
+  .success-button {
+    padding: 1.125rem 1.25rem !important;
+    font-size: 0.9375rem !important;
   }
 }

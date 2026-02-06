@@ -134,18 +134,48 @@ export default function DownloadModal({ isOpen, onClose }: DownloadModalProps) {
             </p>
           </div>
 
-          <div style={{ display: 'flex', gap: '1rem', marginTop: '2rem' }}>
+          <div style={{ 
+            display: 'flex', 
+            gap: '0.75rem', 
+            marginTop: '2.5rem',
+            width: '100%'
+          }}>
             <button 
               onClick={handleClose}
-              className="form-submit-button"
-              style={{ flex: 1, background: '#6b7280', padding: '0.875rem 1rem', fontSize: '0.9375rem', minHeight: '44px' }}
+              className="success-button secondary-button"
+              style={{ 
+                flex: 1,
+                padding: '1rem 1.5rem',
+                fontSize: '1rem',
+                fontWeight: '600',
+                borderRadius: '8px',
+                border: '2px solid #e5e7eb',
+                background: '#ffffff',
+                color: '#374151',
+                cursor: 'pointer',
+                transition: 'all 0.2s ease',
+                minHeight: '52px'
+              }}
             >
               닫기
             </button>
             <button 
               onClick={handleDownload}
-              className="form-submit-button"
-              style={{ flex: 1, padding: '0.875rem 1rem', fontSize: '0.9375rem', minHeight: '44px' }}
+              className="success-button primary-button"
+              style={{ 
+                flex: 1,
+                padding: '1rem 1.5rem',
+                fontSize: '1rem',
+                fontWeight: '600',
+                borderRadius: '8px',
+                border: 'none',
+                background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
+                color: '#ffffff',
+                cursor: 'pointer',
+                transition: 'all 0.2s ease',
+                minHeight: '52px',
+                boxShadow: '0 4px 12px rgba(102, 126, 234, 0.4)'
+              }}
             >
               다운로드 페이지
             </button>
