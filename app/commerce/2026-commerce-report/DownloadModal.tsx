@@ -28,6 +28,12 @@ export default function DownloadModal({ isOpen, onClose }: DownloadModalProps) {
 
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
+    
+    // 이미 제출 중이면 무시
+    if (isSubmitting) {
+      return;
+    }
+    
     setSubmitError('');
 
     // 유효성 검사
@@ -122,14 +128,14 @@ export default function DownloadModal({ isOpen, onClose }: DownloadModalProps) {
             <button 
               onClick={handleClose}
               className="form-submit-button"
-              style={{ flex: 1, background: '#6b7280' }}
+              style={{ flex: 1, background: '#6b7280', padding: '0.875rem 1rem', fontSize: '0.9375rem', minHeight: '44px' }}
             >
               닫기
             </button>
             <button 
               onClick={handleDownload}
               className="form-submit-button"
-              style={{ flex: 1 }}
+              style={{ flex: 1, padding: '0.875rem 1rem', fontSize: '0.9375rem', minHeight: '44px' }}
             >
               다운로드 페이지
             </button>
