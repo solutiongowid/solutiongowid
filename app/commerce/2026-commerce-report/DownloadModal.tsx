@@ -38,7 +38,7 @@ export default function DownloadModal({ isOpen, onClose }: DownloadModalProps) {
 
     // 유효성 검사
     if (!formData.name.trim()) {
-      setSubmitError('이름을 입력해주세요.');
+      setSubmitError('회사명을 입력해주세요.');
       return;
     }
     if (!formData.email.trim()) {
@@ -163,7 +163,7 @@ export default function DownloadModal({ isOpen, onClose }: DownloadModalProps) {
         <form onSubmit={handleSubmit} className="modal-form">
           <div className="form-group">
             <label htmlFor="name" className="form-label">
-              이름 <span className="required">*</span>
+              회사명 <span className="required">*</span>
             </label>
             <input
               type="text"
@@ -172,7 +172,7 @@ export default function DownloadModal({ isOpen, onClose }: DownloadModalProps) {
               value={formData.name}
               onChange={handleChange}
               className="form-input"
-              placeholder="홍길동"
+              placeholder="고위드"
               required
             />
           </div>
