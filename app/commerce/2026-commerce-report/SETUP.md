@@ -14,10 +14,7 @@
    ```
    A1: 제출일시
    B1: 이름
-   C1: 회사명
-   D1: 이메일
-   E1: 연락처
-   F1: 직무
+   C1: 회사 이메일
    ```
 
 ### 2단계: Apps Script 설정
@@ -35,10 +32,7 @@ function doPost(e) {
     sheet.appendRow([
       data.timestamp || new Date().toISOString(),
       data.name || '',
-      data.company || '',
-      data.email || '',
-      data.phone || '',
-      data.position || ''
+      data.email || ''
     ]);
     
     return ContentService

@@ -50,6 +50,11 @@ export default function DownloadModal({ isOpen, onClose }: DownloadModalProps) {
     setIsSubmitting(true);
 
     try {
+      // 한국 시간으로 제출 일시 생성
+      const now = new Date();
+      const kstTime = new Date(now.getTime() + (9 * 60 * 60 * 1000)); // UTC+9
+      const formattedTimestamp = kstTime.toISOString().replace('T', ' ').substring(0, 19) + ' (KST)';
+      
       const response = await fetch('/api/report-download', {
         method: 'POST',
         headers: {
@@ -57,7 +62,7 @@ export default function DownloadModal({ isOpen, onClose }: DownloadModalProps) {
         },
         body: JSON.stringify({
           ...formData,
-          timestamp: new Date().toISOString(),
+          timestamp: formattedTimestamp,
         }),
       });
 
