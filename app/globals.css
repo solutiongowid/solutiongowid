@@ -624,6 +624,7 @@ html, body {
   overflow: hidden;
   border-radius: 1rem;
   box-shadow: 0 10px 40px rgba(0, 0, 0, 0.15);
+  background: #000000;
 }
 
 .carousel-slide {
@@ -645,7 +646,7 @@ html, body {
 .carousel-image {
   width: 100%;
   height: 100%;
-  object-fit: cover;
+  object-fit: contain;
 }
 
 .carousel-nav-button {
