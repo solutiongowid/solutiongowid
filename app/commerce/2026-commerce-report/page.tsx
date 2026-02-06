@@ -59,12 +59,14 @@ export default function CommerceReportPage() {
                 </button>
               </div>
               <div className="report-header-image-wrapper">
-                <div className="report-cover-placeholder">
-                  <div className="report-cover-text">
-                    <div className="report-cover-title">커머스 벤치마크<br/>리포트 2026</div>
-                    <div className="report-cover-subtitle">GOWID</div>
-                  </div>
-                </div>
+                <Image 
+                  src="/commerce-report-2026.png" 
+                  alt="커머스 벤치마크 리포트 2026"
+                  width={600}
+                  height={450}
+                  priority
+                  className="report-cover-image"
+                />
               </div>
             </div>
           </div>
@@ -97,11 +99,13 @@ export default function CommerceReportPage() {
               </div>
               <div className="report-recommendation-right">
                 <div className="report-preview-image">
-                  <div className="report-cover-placeholder small">
-                    <div className="report-cover-text">
-                      <div className="report-cover-title">리포트 미리보기</div>
-                    </div>
-                  </div>
+                  <Image 
+                    src="/commerce-report-2026.png" 
+                    alt="리포트 미리보기"
+                    width={400}
+                    height={300}
+                    className="report-preview-image-img"
+                  />
                 </div>
               </div>
             </div>
