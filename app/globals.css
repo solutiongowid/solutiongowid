@@ -916,8 +916,6 @@ html, body {
   z-index: 9999;
   padding: 1rem;
   -webkit-overflow-scrolling: touch; /* iOS 부드러운 스크롤 */
-}
-  padding: 1rem;
   backdrop-filter: blur(4px);
   animation: fadeIn 0.2s ease-out;
 }
