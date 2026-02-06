@@ -10,10 +10,7 @@ interface DownloadModalProps {
 export default function DownloadModal({ isOpen, onClose }: DownloadModalProps) {
   const [formData, setFormData] = useState({
     name: '',
-    company: '',
     email: '',
-    phone: '',
-    position: '',
     agreePrivacy: false,
   });
 
@@ -37,24 +34,12 @@ export default function DownloadModal({ isOpen, onClose }: DownloadModalProps) {
       setSubmitError('이름을 입력해주세요.');
       return;
     }
-    if (!formData.company.trim()) {
-      setSubmitError('회사명을 입력해주세요.');
-      return;
-    }
     if (!formData.email.trim()) {
-      setSubmitError('이메일을 입력해주세요.');
+      setSubmitError('회사 이메일을 입력해주세요.');
       return;
     }
     if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email)) {
       setSubmitError('올바른 이메일 형식을 입력해주세요.');
-      return;
-    }
-    if (!formData.phone.trim()) {
-      setSubmitError('연락처를 입력해주세요.');
-      return;
-    }
-    if (!formData.position.trim()) {
-      setSubmitError('직책을 입력해주세요.');
       return;
     }
     if (!formData.agreePrivacy) {
@@ -88,10 +73,7 @@ export default function DownloadModal({ isOpen, onClose }: DownloadModalProps) {
       // 폼 초기화 및 모달 닫기
       setFormData({
         name: '',
-        company: '',
         email: '',
-        phone: '',
-        position: '',
         agreePrivacy: false,
       });
       onClose();
@@ -141,22 +123,6 @@ export default function DownloadModal({ isOpen, onClose }: DownloadModalProps) {
           </div>
 
           <div className="form-group">
-            <label htmlFor="company" className="form-label">
-              회사명 <span className="required">*</span>
-            </label>
-            <input
-              type="text"
-              id="company"
-              name="company"
-              value={formData.company}
-              onChange={handleChange}
-              className="form-input"
-              placeholder="(주)고위드"
-              required
-            />
-          </div>
-
-          <div className="form-group">
             <label htmlFor="email" className="form-label">
               회사 이메일 <span className="required">*</span>
             </label>
@@ -168,38 +134,6 @@ export default function DownloadModal({ isOpen, onClose }: DownloadModalProps) {
               onChange={handleChange}
               className="form-input"
               placeholder="contact@gowid.com"
-              required
-            />
-          </div>
-
-          <div className="form-group">
-            <label htmlFor="phone" className="form-label">
-              연락처 <span className="required">*</span>
-            </label>
-            <input
-              type="tel"
-              id="phone"
-              name="phone"
-              value={formData.phone}
-              onChange={handleChange}
-              className="form-input"
-              placeholder="010-1234-5678"
-              required
-            />
-          </div>
-
-          <div className="form-group">
-            <label htmlFor="position" className="form-label">
-              직책 <span className="required">*</span>
-            </label>
-            <input
-              type="text"
-              id="position"
-              name="position"
-              value={formData.position}
-              onChange={handleChange}
-              className="form-input"
-              placeholder="예: 대표 / 재무담당 / 경영지원팀장 등"
               required
             />
           </div>
