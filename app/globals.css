@@ -915,6 +915,9 @@ html, body {
   justify-content: center;
   z-index: 9999;
   padding: 1rem;
+  -webkit-overflow-scrolling: touch; /* iOS 부드러운 스크롤 */
+}
+  padding: 1rem;
   backdrop-filter: blur(4px);
   animation: fadeIn 0.2s ease-out;
 }
@@ -929,6 +932,7 @@ html, body {
   position: relative;
   box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
   animation: slideUp 0.3s ease-out;
+  -webkit-overflow-scrolling: touch; /* iOS 부드러운 스크롤 */
 }
 
 @keyframes slideUp {
@@ -1080,27 +1084,32 @@ html, body {
   font-size: 1rem;
   font-weight: 700;
   cursor: pointer;
-  transition: all 0.2s ease;
-  min-height: 48px; /* 터치 타겟 최소 크기 */
+  transition: all 0.15s ease;
+  min-height: 52px; /* 터치 타겟 최소 크기 증가 */
   touch-action: manipulation; /* 터치 지연 제거 */
   -webkit-tap-highlight-color: transparent; /* 모바일 탭 하이라이트 제거 */
   user-select: none; /* 텍스트 선택 방지 */
+  -webkit-user-select: none;
+  position: relative;
+  z-index: 10;
 }
 
 .form-submit-button:hover:not(:disabled) {
-  transform: translateY(-1px);
-  box-shadow: 0 6px 20px rgba(91, 197, 0, 0.4);
+  transform: scale(1.01);
+  box-shadow: 0 4px 16px rgba(91, 197, 0, 0.35);
 }
 
 .form-submit-button:active:not(:disabled) {
-  transform: translateY(1px);
+  transform: scale(0.98);
   box-shadow: 0 2px 8px rgba(91, 197, 0, 0.3);
+  transition: all 0.1s ease;
 }
 
 .form-submit-button:disabled {
   opacity: 0.6;
   cursor: not-allowed;
   transform: none;
+  pointer-events: none;
 }
 
 @media (max-width: 768px) {

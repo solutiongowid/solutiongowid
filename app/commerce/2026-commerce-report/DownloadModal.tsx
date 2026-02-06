@@ -222,13 +222,20 @@ export default function DownloadModal({ isOpen, onClose }: DownloadModalProps) {
             <div className="form-error">{submitError}</div>
           )}
 
-          <button 
-            type="submit" 
-            className="form-submit-button"
-            disabled={isSubmitting}
-          >
-            {isSubmitting ? '제출 중...' : '제출하기'}
-          </button>
+          <div style={{ marginTop: '1.5rem' }}>
+            <button 
+              type="submit" 
+              className="form-submit-button"
+              disabled={isSubmitting}
+              style={{
+                position: 'relative',
+                zIndex: 10,
+                pointerEvents: isSubmitting ? 'none' : 'auto',
+              }}
+            >
+              {isSubmitting ? '제출 중...' : '제출하기'}
+            </button>
+          </div>
         </form>
       </div>
     </div>
