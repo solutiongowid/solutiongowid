@@ -179,12 +179,12 @@ export default function DownloadModal({ isOpen, onClose }: DownloadModalProps) {
                   fontWeight: '600',
                   borderRadius: '8px',
                   border: 'none',
-                  background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
+                  background: 'linear-gradient(135deg, #5BC500 0%, #4a9f00 100%)',
                   color: '#ffffff',
                   cursor: 'pointer',
                   transition: 'all 0.2s ease',
                   minHeight: '52px',
-                  boxShadow: '0 4px 12px rgba(102, 126, 234, 0.4)'
+                  boxShadow: '0 4px 12px rgba(91, 197, 0, 0.4)'
                 }}
               >
                 다운로드 페이지

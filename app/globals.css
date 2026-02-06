@@ -1133,12 +1133,12 @@ html, body {
 
 .success-button.primary-button:hover {
   transform: translateY(-2px);
-  box-shadow: 0 6px 16px rgba(102, 126, 234, 0.5) !important;
+  box-shadow: 0 6px 16px rgba(91, 197, 0, 0.5) !important;
 }
 
 .success-button.primary-button:active {
   transform: translateY(0);
-  box-shadow: 0 2px 8px rgba(102, 126, 234, 0.3) !important;
+  box-shadow: 0 2px 8px rgba(91, 197, 0, 0.3) !important;
 }
 
 /* 성공 모달 추가 스타일 */
