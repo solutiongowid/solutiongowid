@@ -16,6 +16,7 @@ export default function DownloadModal({ isOpen, onClose }: DownloadModalProps) {
 
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitError, setSubmitError] = useState('');
+  const [isSuccess, setIsSuccess] = useState(false);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value, type, checked } = e.target;
@@ -72,19 +73,15 @@ export default function DownloadModal({ isOpen, onClose }: DownloadModalProps) {
         throw new Error(data.error || '제출에 실패했습니다.');
       }
 
-      // 성공 시 리포트 다운로드 (임시로 알림)
-      alert('감사합니다! 리포트 다운로드가 곧 시작됩니다.');
+      // 성공 시 성공 화면 표시
+      setIsSuccess(true);
       
-      // 폼 초기화 및 모달 닫기
+      // 폼 초기화
       setFormData({
         name: '',
         email: '',
         agreePrivacy: false,
       });
-      onClose();
-
-      // TODO: 실제 PDF 다운로드 로직 추가
-      // window.open('/reports/commerce-benchmark-2026.pdf', '_blank');
 
     } catch (error) {
       console.error('Error submitting form:', error);
@@ -94,8 +91,55 @@ export default function DownloadModal({ isOpen, onClose }: DownloadModalProps) {
     }
   };
 
+  const handleClose = () => {
+    setIsSuccess(false);
+    onClose();
+  };
+
+  const handleDownload = () => {
+    window.open('https://drive.google.com/file/d/1qBB-4jR19NY-VVTd3BZ7PWsKFV7Ill6_/view?usp=sharing', '_blank');
+  };
+
   if (!isOpen) return null;
 
+  // 성공 화면
+  if (isSuccess) {
+    return (
+      <div className="modal-overlay" onClick={handleClose}>
+        <div className="modal-content" onClick={(e) => e.stopPropagation()}>
+          <button className="modal-close" onClick={handleClose} aria-label="닫기">
+            ✕
+          </button>
+          
+          <div className="modal-header">
+            <h2 className="modal-title">감사합니다!</h2>
+            <p className="modal-description" style={{ fontSize: '1.125rem', marginTop: '1.5rem' }}>
+              아래 링크에서 리포트를 다운로드 해주세요.
+            </p>
+          </div>
+
+          <div style={{ display: 'flex', gap: '1rem', marginTop: '2rem' }}>
+            <button 
+              onClick={handleClose}
+              className="form-submit-button"
+              style={{ flex: 1, background: '#6b7280' }}
+            >
+              닫기
+            </button>
+            <button 
+              onClick={handleDownload}
+              className="form-submit-button"
+              style={{ flex: 1 }}
+            >
+              다운로드 페이지
+            </button>
+          </div>
+        </div>
+      </div>
+    );
+  }
+
+  // 폼 화면
   return (
     <div className="modal-overlay" onClick={onClose}>
       <div className="modal-content" onClick={(e) => e.stopPropagation()}>
