@@ -61,7 +61,7 @@ export default function CommerceReportPage() {
               </div>
               <div className="report-header-image-wrapper">
                 <Image 
-                  src="/commerce-report-2026.png" 
+                  src="/image 15.png" 
                   alt="커머스 벤치마크 리포트 2026"
                   width={600}
                   height={450}
