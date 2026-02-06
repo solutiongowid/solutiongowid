@@ -3,6 +3,7 @@
 import { useState } from 'react';
 import Image from 'next/image';
 import DownloadModal from './DownloadModal';
+import ReportPreviewCarousel from './ReportPreviewCarousel';
 
 export default function CommerceReportPage() {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -98,15 +99,7 @@ export default function CommerceReportPage() {
                 </div>
               </div>
               <div className="report-recommendation-right">
-                <div className="report-preview-image">
-                  <Image 
-                    src="/commerce-report-2026.png" 
-                    alt="리포트 미리보기"
-                    width={400}
-                    height={300}
-                    className="report-preview-image-img"
-                  />
-                </div>
+                <ReportPreviewCarousel />
               </div>
             </div>
           </div>
