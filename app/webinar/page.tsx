@@ -55,8 +55,14 @@ export default function WebinarPage() {
           <div className="report-container">
             <div style={{ maxWidth: '640px', margin: '0 auto', textAlign: 'center' }}>
               {/* 상단 텍스트 */}
-              <p style={{ fontSize: '1.125rem', color: '#555', marginBottom: '2rem', lineHeight: '1.8' }}>
+              <p style={{ fontSize: '1.125rem', color: '#555', marginBottom: '1rem', lineHeight: '1.8' }}>
                 리포트에서 공식은 확인하셨습니다.
+              </p>
+              <p style={{ fontSize: '0.8125rem', color: '#999', marginBottom: '2rem', lineHeight: '1.6' }}>
+                💡 혹시 아직 리포트를 확인하지 못하셨다면?{' '}
+                <a href="https://www.solutiongowid.com/commerce/2026-commerce-report-v2" target="_blank" rel="noopener noreferrer" style={{ color: '#5BC500', textDecoration: 'underline', fontWeight: '500' }}>
+                  2026 벤치마크 리포트 다운하기
+                </a>
               </p>
 
               {/* 핵심 지표 카드 */}
@@ -174,9 +180,6 @@ export default function WebinarPage() {
                   </div>
                 </div>
               </div>
-              <button onClick={openModal} className="report-button-primary" style={{ marginTop: '2.5rem' }}>
-                웨비나 신청하기
-              </button>
             </div>
           </div>
         </section>
