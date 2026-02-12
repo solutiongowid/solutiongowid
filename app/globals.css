@@ -397,6 +397,15 @@ html, body {
   .desktop-br {
     display: none;
   }
+
+  .webinar-logo-grid {
+    max-width: 360px;
+    margin: 0 auto;
+    display: grid !important;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem 1rem;
+    justify-items: center;
+  }
 }
 
 .report-subtitle {

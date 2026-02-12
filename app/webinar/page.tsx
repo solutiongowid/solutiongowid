@@ -53,28 +53,46 @@ export default function WebinarPage() {
         {/* 도입부 섹션 */}
         <section className="report-section" style={{ background: '#ffffff' }}>
           <div className="report-container">
-            <div style={{ maxWidth: '720px', margin: '0 auto', textAlign: 'center' }}>
-              <div style={{ fontSize: '1.125rem', lineHeight: '2', color: '#333', fontWeight: '400' }}>
-                <p style={{ marginBottom: '1.5rem' }}>
-                  리포트에서 공식은 확인하셨습니다.
-                </p>
-                <p style={{ marginBottom: '1.5rem' }}>
-                  공헌이익률 <strong style={{ color: '#1a1a1a' }}>30%</strong>.<br className="desktop-br" />{' '}
-                  인당 매출 <strong style={{ color: '#1a1a1a' }}>3.5억</strong>.<br />
-                  효율이 유지되는 범위 내에서 투자.
-                </p>
-                <p style={{ marginBottom: '1.5rem' }}>
-                  그런데 한 가지가 남아 있습니다.
-                </p>
-                <p style={{ fontSize: '1.375rem', fontWeight: '700', color: '#1a1a1a', lineHeight: '1.6' }}>
+            <div style={{ maxWidth: '640px', margin: '0 auto', textAlign: 'center' }}>
+              {/* 상단 텍스트 */}
+              <p style={{ fontSize: '1.125rem', color: '#555', marginBottom: '2rem', lineHeight: '1.8' }}>
+                리포트에서 공식은 확인하셨습니다.
+              </p>
+
+              {/* 핵심 지표 카드 */}
+              <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1rem', marginBottom: '1.25rem' }}>
+                <div style={{ background: '#f8fcf5', borderRadius: '1rem', padding: '1.5rem 1rem', border: '1px solid rgba(91, 197, 0, 0.15)' }}>
+                  <div style={{ fontSize: '0.8125rem', color: '#777', marginBottom: '0.375rem' }}>공헌이익률</div>
+                  <div className="gradient-text" style={{ fontSize: '2rem', fontWeight: '800', lineHeight: '1' }}>30%</div>
+                </div>
+                <div style={{ background: '#f8fcf5', borderRadius: '1rem', padding: '1.5rem 1rem', border: '1px solid rgba(91, 197, 0, 0.15)' }}>
+                  <div style={{ fontSize: '0.8125rem', color: '#777', marginBottom: '0.375rem' }}>인당 매출</div>
+                  <div className="gradient-text" style={{ fontSize: '2rem', fontWeight: '800', lineHeight: '1' }}>3.5억</div>
+                </div>
+              </div>
+              <p style={{ fontSize: '0.9375rem', color: '#999', marginBottom: '2.5rem' }}>
+                효율이 유지되는 범위 내에서 투자.
+              </p>
+
+              {/* 구분선 */}
+              <div style={{ width: '40px', height: '2px', background: '#e0e0e0', margin: '0 auto 2.5rem' }} />
+
+              {/* 질문 */}
+              <p style={{ fontSize: '1rem', color: '#555', marginBottom: '1.5rem' }}>
+                그런데 한 가지가 남아 있습니다.
+              </p>
+              <div style={{ background: '#fafafa', borderLeft: '3px solid #5BC500', borderRadius: '0 0.75rem 0.75rem 0', padding: '1.5rem 1.75rem', marginBottom: '2rem' }}>
+                <p style={{ fontSize: '1.25rem', fontWeight: '700', color: '#1a1a1a', lineHeight: '1.6', margin: 0 }}>
                   &ldquo;우리 회사 숫자로 보면,<br />
                   지금 뭘 먼저 해야 하는가.&rdquo;
                 </p>
-                <p style={{ marginTop: '1.5rem' }}>
-                  이 웨비나는 그 답을<br />
-                  <strong className="gradient-text">우리 회사 한도 기준으로</strong> 보여드립니다.
-                </p>
               </div>
+
+              {/* 결론 */}
+              <p style={{ fontSize: '1.0625rem', color: '#333', lineHeight: '1.8' }}>
+                이 웨비나는 그 답을<br />
+                <strong className="gradient-text" style={{ fontSize: '1.125rem' }}>우리 회사 한도 기준으로</strong> 보여드립니다.
+              </p>
             </div>
           </div>
         </section>
@@ -82,7 +100,7 @@ export default function WebinarPage() {
         {/* 웨비나 확인 사항 섹션 */}
         <section className="report-section report-section-recommendations">
           <div className="report-container">
-            <h2 className="report-h2" style={{ textAlign: 'center', marginBottom: '3rem' }}>이 웨비나에서<br className="desktop-br" /> 확인하실 것</h2>
+            <h2 className="report-h2" style={{ textAlign: 'center', marginBottom: '3rem', whiteSpace: 'nowrap' }}>이 웨비나에서 확인하실 것</h2>
             <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '1.5rem', maxWidth: '1000px', margin: '0 auto' }}>
               {/* 카드 1 */}
               <div className="feature-card" style={{ padding: '1.5rem' }}>
@@ -169,7 +187,7 @@ export default function WebinarPage() {
             <div style={{ textAlign: 'center' }}>
               <h2 className="report-h2" style={{ textAlign: 'center', marginBottom: '1rem', fontSize: '1.625rem' }}>392개 기업을 분석한 팀이,<br />이번엔 우리 회사를 봅니다.</h2>
               <p style={{ fontSize: '1rem', color: '#777', marginBottom: '2.5rem' }}>3,500개+ 기업이 고위드와 함께 성장하고 있습니다</p>
-              <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '1.5rem 1rem', alignItems: 'center', justifyItems: 'center', maxWidth: '360px', margin: '0 auto', opacity: 0.7 }}>
+              <div className="webinar-logo-grid" style={{ display: 'flex', justifyContent: 'center', gap: '2.5rem', flexWrap: 'wrap', alignItems: 'center', opacity: 0.7 }}>
                 {[
                   { src: '/logo-dasique.png', alt: 'dasique' },
                   { src: '/logo-anua v2.png', alt: 'anua' },
