@@ -32,7 +32,7 @@ export default function WebinarPage() {
           <div className="report-container">
             <div style={{ maxWidth: '800px', margin: '0 auto', textAlign: 'center' }}>
               <div style={{ marginBottom: '1.5rem' }}>
-                <span className="badge" style={{ fontSize: '0.875rem', padding: '0.5rem 1.25rem' }}>2월 26일 (목) 오후 X시 | 온라인 라이브</span>
+                <span className="badge" style={{ fontSize: '0.875rem', padding: '0.5rem 1.25rem' }}>2월 26일 (목) 오후 4시 | 온라인 라이브</span>
               </div>
               <h1 className="report-h1" style={{ textAlign: 'center', marginBottom: '1.5rem' }}>
                 <strong>
