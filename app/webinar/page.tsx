@@ -182,16 +182,10 @@ export default function WebinarPage() {
                   </div>
                 </div>
               </div>
+              <button onClick={openModal} className="report-button-primary" style={{ marginTop: '2.5rem' }}>
+                웨비나 신청하기
+              </button>
             </div>
-          </div>
-        </section>
-
-        {/* 중간 CTA */}
-        <section className="report-section" style={{ background: '#ffffff', paddingTop: '0', paddingBottom: '2rem' }}>
-          <div className="report-container" style={{ textAlign: 'center' }}>
-            <button onClick={openModal} className="report-button-primary">
-              웨비나 신청하기
-            </button>
           </div>
         </section>
 
