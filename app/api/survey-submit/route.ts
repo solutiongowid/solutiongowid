@@ -35,50 +35,18 @@ export async function POST(request: NextRequest) {
     // Google Sheets Apps Script Web App URL
     const GOOGLE_SCRIPT_URL = process.env.GOOGLE_SCRIPT_SURVEY_URL || '';
 
-    if (!GOOGLE_SCRIPT_URL) {
-      console.error('GOOGLE_SCRIPT_SURVEY_URL environment variable is not set');
-      
-      // 개발 환경에서는 콘솔에만 로그 출력
-      if (process.env.NODE_ENV === 'development') {
-        console.log('Survey Data:', { companyName, name, position, email, phone, timestamp });
-        return NextResponse.json({ 
-          success: true, 
-          message: 'Development mode: Data logged to console' 
-        });
-      }
-      
-      return NextResponse.json(
-        { error: 'Google Sheets 연동이 설정되지 않았습니다.' },
-        { status: 500 }
-      );
+    // Google Sheets에 데이터 전송 (설정된 경우에만)
+    if (GOOGLE_SCRIPT_URL) {
+      fetch(GOOGLE_SCRIPT_URL, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ companyName, name, position, email, phone, timestamp }),
+      }).catch((err) => console.error('Google Sheets error:', err));
     }
 
-    // Google Sheets에 데이터 전송
-    const response = await fetch(GOOGLE_SCRIPT_URL, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({
-        companyName,
-        name,
-        position,
-        email,
-        phone,
-        timestamp,
-      }),
-    });
-
-    if (!response.ok) {
-      throw new Error('Google Sheets 저장에 실패했습니다.');
-    }
-
-    const result = await response.json();
-
-    return NextResponse.json({ 
-      success: true, 
+    return NextResponse.json({
+      success: true,
       message: '정보가 성공적으로 제출되었습니다.',
-      data: result 
     });
 
   } catch (error) {
