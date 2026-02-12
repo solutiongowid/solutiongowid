@@ -1,28 +1,41 @@
 'use client';
 
+import { useState } from 'react';
 import Image from 'next/image';
 import ReportPreviewCarousel from '../2026-commerce-report/ReportPreviewCarousel';
 import SurveyForm from './SurveyForm';
 
 export default function CommerceReportV2Page() {
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const openModal = () => setIsModalOpen(true);
+  const closeModal = () => setIsModalOpen(false);
+
   return (
-    <div className="report-page">
-      {/* 네비게이션 */}
-      <nav className="report-nav">
-        <div className="report-container">
-          <div className="report-nav-content">
-            <a href="https://gowid.com" className="report-brand" target="_blank" rel="noopener noreferrer">
-              <Image 
-                src="/Group 626579.png" 
-                alt="GOWID" 
-                width={84} 
-                height={28}
-                priority
-              />
-            </a>
+    <>
+      <div className="report-page">
+        {/* 네비게이션 */}
+        <nav className="report-nav">
+          <div className="report-container">
+            <div className="report-nav-content">
+              <a href="https://gowid.com" className="report-brand" target="_blank" rel="noopener noreferrer">
+                <Image 
+                  src="/Group 626579.png" 
+                  alt="GOWID" 
+                  width={84} 
+                  height={28}
+                  priority
+                />
+              </a>
+              <button 
+                onClick={openModal}
+                className="report-nav-button"
+              >
+                무료 다운로드
+              </button>
+            </div>
           </div>
-        </div>
-      </nav>
+        </nav>
 
       {/* 히어로 섹션 */}
       <header className="report-header">
@@ -39,6 +52,12 @@ export default function CommerceReportV2Page() {
                 탑티어 커머스 기업들의 성장 공식,<br/>
                 387개 커머스 기업의 재무 데이터에서 답을 찾다
               </div>
+              <button 
+                onClick={openModal}
+                className="report-button-primary"
+              >
+                무료 다운로드
+              </button>
             </div>
             <div className="report-header-image-wrapper">
               <Image 
@@ -83,13 +102,6 @@ export default function CommerceReportV2Page() {
               <ReportPreviewCarousel />
             </div>
           </div>
-        </div>
-      </section>
-
-      {/* 설문 폼 섹션 */}
-      <section className="report-section report-section-survey">
-        <div className="report-container">
-          <SurveyForm />
         </div>
       </section>
 
@@ -142,6 +154,23 @@ export default function CommerceReportV2Page() {
         </div>
       </section>
 
+      {/* CTA 섹션 */}
+      <section className="report-section report-section-cta">
+        <div className="report-container">
+          <div className="report-cta-content">
+            <h3 className="report-h3">
+              <strong>커머스 기업의 성장 기준,<br/>지금 바로 확인하세요</strong>
+            </h3>
+            <button 
+              onClick={openModal}
+              className="report-button-cta"
+            >
+              무료 다운로드
+            </button>
+          </div>
+        </div>
+      </section>
+
       {/* 푸터 */}
       <footer className="report-footer">
         <div className="report-container">
@@ -161,6 +190,10 @@ export default function CommerceReportV2Page() {
           </div>
         </div>
       </footer>
-    </div>
+      </div>
+
+      {/* 설문 폼 모달 */}
+      <SurveyForm isOpen={isModalOpen} onClose={closeModal} />
+    </>
   );
 }

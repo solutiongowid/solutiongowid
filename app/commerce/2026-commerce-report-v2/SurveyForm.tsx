@@ -2,7 +2,12 @@
 
 import { useState, FormEvent } from 'react';
 
-export default function SurveyForm() {
+interface SurveyFormProps {
+  isOpen: boolean;
+  onClose: () => void;
+}
+
+export default function SurveyForm({ isOpen, onClose }: SurveyFormProps) {
   const [formData, setFormData] = useState({
     companyName: '',
     name: '',
@@ -110,34 +115,106 @@ export default function SurveyForm() {
     window.open('https://drive.google.com/file/d/1qBB-4jR19NY-VVTd3BZ7PWsKFV7Ill6_/view?usp=sharing', '_blank');
   };
 
+  const handleClose = () => {
+    setIsSuccess(false);
+    onClose();
+  };
+
+  if (!isOpen) return null;
+
   if (isSuccess) {
     return (
-      <div className="survey-success">
-        <h3 className="survey-success-title">감사합니다!</h3>
-        <p className="survey-success-description">
-          제출이 완료되었습니다.<br/>
-          아래 버튼을 클릭하여 리포트를 다운로드하세요.
-        </p>
-        <button 
-          onClick={handleDownload}
-          className="survey-download-button"
-        >
-          리포트 다운로드
-        </button>
+      <div className="modal-overlay" onClick={handleClose}>
+        <div className="modal-content success-modal" onClick={(e) => e.stopPropagation()}>
+          <button className="modal-close" onClick={handleClose} aria-label="닫기">
+            ✕
+          </button>
+          
+          <div style={{ 
+            padding: '3rem 2.5rem',
+            display: 'flex',
+            flexDirection: 'column',
+            alignItems: 'center',
+            textAlign: 'center'
+          }}>
+            <h2 className="modal-title" style={{ marginBottom: '1.5rem' }}>감사합니다!</h2>
+            <p className="modal-description" style={{ 
+              fontSize: '1.125rem', 
+              color: '#6b7280',
+              marginBottom: '3rem',
+              lineHeight: '1.6'
+            }}>
+              제출이 완료되었습니다.<br/>
+              아래 버튼을 클릭하여 리포트를 다운로드하세요.
+            </p>
+
+            <div style={{ 
+              display: 'flex', 
+              gap: '1rem', 
+              width: '100%',
+              maxWidth: '400px'
+            }}>
+              <button 
+                onClick={handleClose}
+                className="success-button secondary-button"
+                style={{ 
+                  flex: 1,
+                  padding: '1rem 1.5rem',
+                  fontSize: '1rem',
+                  fontWeight: '600',
+                  borderRadius: '8px',
+                  border: '2px solid #e5e7eb',
+                  background: '#ffffff',
+                  color: '#374151',
+                  cursor: 'pointer',
+                  transition: 'all 0.2s ease',
+                  minHeight: '52px'
+                }}
+              >
+                닫기
+              </button>
+              <button 
+                onClick={handleDownload}
+                className="success-button primary-button"
+                style={{ 
+                  flex: 1,
+                  padding: '1rem 1.5rem',
+                  fontSize: '1rem',
+                  fontWeight: '600',
+                  borderRadius: '8px',
+                  border: 'none',
+                  background: 'linear-gradient(135deg, #5BC500 0%, #4a9f00 100%)',
+                  color: '#ffffff',
+                  cursor: 'pointer',
+                  transition: 'all 0.2s ease',
+                  minHeight: '52px',
+                  boxShadow: '0 4px 12px rgba(91, 197, 0, 0.4)'
+                }}
+              >
+                리포트 다운로드
+              </button>
+            </div>
+          </div>
+        </div>
       </div>
     );
   }
 
   return (
-    <div className="survey-form-container">
-      <div className="survey-form-header">
-        <h2 className="survey-form-title">리포트 다운로드 신청</h2>
-        <p className="survey-form-description">
-          정보를 입력하시면 무료로 리포트를 다운로드하실 수 있습니다.
-        </p>
-      </div>
+    <div className="modal-overlay" onClick={onClose}>
+      <div className="modal-content" onClick={(e) => e.stopPropagation()}>
+        <button className="modal-close" onClick={onClose} aria-label="닫기">
+          ✕
+        </button>
+        
+        <div className="modal-header">
+          <h2 className="modal-title">리포트 다운로드 신청</h2>
+          <p className="modal-description">
+            정보를 입력하시면 무료로 리포트를 다운로드하실 수 있습니다.
+          </p>
+        </div>
 
-      <form onSubmit={handleSubmit} className="survey-form">
+        <form onSubmit={handleSubmit} className="modal-form">
         {submitError && (
           <div className="form-error">{submitError}</div>
         )}
@@ -238,20 +315,21 @@ export default function SurveyForm() {
           </label>
         </div>
 
-        <div style={{ 
-          position: 'relative', 
-          zIndex: 10,
-          pointerEvents: isSubmitting ? 'none' : 'auto'
-        }}>
-          <button
-            type="submit"
-            disabled={isSubmitting}
-            className="form-submit-button"
-          >
-            {isSubmitting ? '제출 중...' : '제출하기'}
-          </button>
-        </div>
-      </form>
+          <div style={{ 
+            position: 'relative', 
+            zIndex: 10,
+            pointerEvents: isSubmitting ? 'none' : 'auto'
+          }}>
+            <button
+              type="submit"
+              disabled={isSubmitting}
+              className="form-submit-button"
+            >
+              {isSubmitting ? '제출 중...' : '제출하기'}
+            </button>
+          </div>
+        </form>
+      </div>
     </div>
   );
 }
