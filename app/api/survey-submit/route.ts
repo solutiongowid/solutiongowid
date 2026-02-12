@@ -1,4 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
+import { supabase } from '@/app/lib/supabase';
 
 export async function POST(request: NextRequest) {
   try {
@@ -12,6 +13,23 @@ export async function POST(request: NextRequest) {
         { error: '모든 필드를 입력해주세요.' },
         { status: 400 }
       );
+    }
+
+    // Supabase에 데이터 저장
+    const { error: supabaseError } = await supabase
+      .from('report_downloads')
+      .insert([
+        {
+          company_name: companyName,
+          name,
+          position,
+          email,
+          phone,
+        },
+      ]);
+
+    if (supabaseError) {
+      console.error('Supabase error:', supabaseError);
     }
 
     // Google Sheets Apps Script Web App URL
