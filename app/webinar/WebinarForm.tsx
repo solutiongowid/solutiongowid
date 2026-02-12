@@ -7,7 +7,7 @@ interface WebinarFormProps {
   onClose: () => void;
 }
 
-const OPEN_CHAT_LINK = 'https://open.kakao.com/o/gXXXXXXX'; // TODO: 실제 오픈채팅방 링크로 교체
+const OPEN_CHAT_LINK = 'https://open.kakao.com/o/gc91S5fi';
 
 export default function WebinarForm({ isOpen, onClose }: WebinarFormProps) {
   const [formData, setFormData] = useState({
@@ -102,23 +102,14 @@ export default function WebinarForm({ isOpen, onClose }: WebinarFormProps) {
                 ✅ 웨비나 사전 인사이트 공유
               </div>
             </div>
-            <div style={{ display: 'flex', gap: '0.75rem', width: '100%' }}>
-              <button
-                onClick={handleClose}
-                className="success-button secondary-button"
-                style={{ flex: 1, padding: '1rem', fontSize: '0.9375rem', fontWeight: '600', borderRadius: '8px', border: '2px solid #e5e7eb', background: '#ffffff', color: '#374151', cursor: 'pointer', transition: 'all 0.2s ease', minHeight: '52px' }}
-              >
-                닫기
-              </button>
-              <a
-                href={OPEN_CHAT_LINK}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="success-button primary-button"
-                style={{ flex: 2, padding: '1rem', fontSize: '0.9375rem', fontWeight: '700', borderRadius: '8px', border: 'none', background: 'linear-gradient(135deg, #5BC500 0%, #4a9f00 100%)', color: '#ffffff', cursor: 'pointer', transition: 'all 0.2s ease', minHeight: '52px', boxShadow: '0 4px 12px rgba(91, 197, 0, 0.4)', textDecoration: 'none', display: 'flex', alignItems: 'center', justifyContent: 'center' }}
-              >
-                오픈채팅방 합류하기
+            <div style={{ width: '100%', background: '#fff', border: '1px solid #e0e0e0', borderRadius: '10px', padding: '1rem 1.25rem', textAlign: 'center' }}>
+              <p style={{ fontSize: '0.8125rem', color: '#777', marginBottom: '0.5rem' }}>오픈채팅방 링크</p>
+              <a href={OPEN_CHAT_LINK} target="_blank" rel="noopener noreferrer" style={{ fontSize: '0.9375rem', color: '#5BC500', fontWeight: '600', wordBreak: 'break-all' }}>
+                {OPEN_CHAT_LINK}
               </a>
+              <p style={{ fontSize: '0.8125rem', color: '#555', marginTop: '0.5rem' }}>
+                입장 비밀번호: <strong style={{ color: '#1a1a1a' }}>0210</strong>
+              </p>
             </div>
           </div>
         </div>
