@@ -389,9 +389,13 @@ html, body {
   .desktop-title {
     display: none;
   }
-  
+
   .mobile-title {
     display: inline;
+  }
+
+  .desktop-br {
+    display: none;
   }
 }
 
