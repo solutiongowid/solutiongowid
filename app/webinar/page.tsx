@@ -44,7 +44,7 @@ export default function WebinarPage() {
                 매출 구간별 실행 플랜
               </p>
               <div style={{ marginBottom: '2.5rem', maxWidth: '600px', marginLeft: 'auto', marginRight: 'auto' }}>
-                <Image src="/webinar-banner-1.png" alt="웨비나 배너" width={600} height={400} style={{ width: '100%', height: 'auto', borderRadius: '1rem' }} />
+                <Image src="/webinar-banner-v2.png" alt="웨비나 배너" width={600} height={400} style={{ width: '100%', height: 'auto', borderRadius: '1rem' }} />
               </div>
             </div>
           </div>
