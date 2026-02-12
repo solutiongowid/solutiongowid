@@ -34,6 +34,13 @@ export async function POST(request: NextRequest) {
       );
     }
 
+    // Zapier Webhook 호출 (이메일 + 알림톡 발송용)
+    fetch('https://hooks.zapier.com/hooks/catch/10485854/ueggnwr/', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ companyName, name, email, phone, revenueRange }),
+    }).catch((err) => console.error('Zapier webhook error:', err));
+
     return NextResponse.json({
       success: true,
       message: '웨비나 신청이 완료되었습니다.',
