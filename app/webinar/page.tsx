@@ -54,18 +54,20 @@ export default function WebinarPage() {
         <section className="report-section" style={{ background: '#ffffff' }}>
           <div className="report-container">
             <div style={{ maxWidth: '640px', margin: '0 auto', textAlign: 'center' }}>
-              {/* 상단 텍스트 */}
-              <p style={{ fontSize: '1.125rem', color: '#555', marginBottom: '1rem', lineHeight: '1.8' }}>
-                리포트에서 공식은 확인하셨습니다.
-              </p>
-              <div style={{ background: '#f5f5f5', borderRadius: '1.25rem 1.25rem 1.25rem 0.25rem', padding: '1rem 1.25rem', marginBottom: '2rem', textAlign: 'center' }}>
-                <p style={{ fontSize: '0.8125rem', color: '#999', marginBottom: '0.375rem', lineHeight: '1.5' }}>
+              {/* 리포트 안내 */}
+              <div style={{ background: '#f0fbe6', borderRadius: '1.25rem 1.25rem 1.25rem 0.25rem', padding: '1.25rem 1.5rem', marginBottom: '2rem', textAlign: 'center', border: '1px solid rgba(91, 197, 0, 0.2)' }}>
+                <p style={{ fontSize: '0.9375rem', color: '#555', marginBottom: '0.5rem', lineHeight: '1.5', fontWeight: '500' }}>
                   💡 혹시 아직 리포트를 확인하지 못하셨다면?
                 </p>
-                <a href="https://www.solutiongowid.com/commerce/2026-commerce-report-v2" target="_blank" rel="noopener noreferrer" style={{ fontSize: '0.8125rem', color: '#5BC500', textDecoration: 'underline', fontWeight: '500' }}>
-                  2026 벤치마크 리포트 다운하기
+                <a href="https://www.solutiongowid.com/commerce/2026-commerce-report-v2" target="_blank" rel="noopener noreferrer" style={{ fontSize: '0.9375rem', color: '#5BC500', textDecoration: 'underline', fontWeight: '700' }}>
+                  2026 벤치마크 리포트 다운하기 →
                 </a>
               </div>
+
+              {/* 상단 텍스트 */}
+              <p style={{ fontSize: '1.125rem', color: '#555', marginBottom: '2rem', lineHeight: '1.8' }}>
+                리포트에서 공식은 확인하셨습니다.
+              </p>
 
               {/* 핵심 지표 카드 */}
               <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1rem', marginBottom: '1.25rem' }}>
