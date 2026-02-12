@@ -46,9 +46,6 @@ export default function WebinarPage() {
               <div style={{ marginBottom: '2.5rem', maxWidth: '600px', marginLeft: 'auto', marginRight: 'auto' }}>
                 <Image src="/webinar-banner-1.png" alt="웨비나 배너" width={600} height={400} style={{ width: '100%', height: 'auto', borderRadius: '1rem' }} />
               </div>
-              <button onClick={openModal} className="report-button-primary" style={{ alignSelf: 'center' }}>
-                웨비나 신청하기
-              </button>
             </div>
           </div>
         </header>
@@ -61,12 +58,14 @@ export default function WebinarPage() {
               <p style={{ fontSize: '1.125rem', color: '#555', marginBottom: '1rem', lineHeight: '1.8' }}>
                 리포트에서 공식은 확인하셨습니다.
               </p>
-              <p style={{ fontSize: '0.8125rem', color: '#999', marginBottom: '2rem', lineHeight: '1.6' }}>
-                💡 혹시 아직 리포트를 확인하지 못하셨다면?{' '}
-                <a href="https://www.solutiongowid.com/commerce/2026-commerce-report-v2" target="_blank" rel="noopener noreferrer" style={{ color: '#5BC500', textDecoration: 'underline', fontWeight: '500' }}>
+              <div style={{ background: '#f5f5f5', borderRadius: '1.25rem 1.25rem 1.25rem 0.25rem', padding: '1rem 1.25rem', marginBottom: '2rem', textAlign: 'center' }}>
+                <p style={{ fontSize: '0.8125rem', color: '#999', marginBottom: '0.375rem', lineHeight: '1.5' }}>
+                  💡 혹시 아직 리포트를 확인하지 못하셨다면?
+                </p>
+                <a href="https://www.solutiongowid.com/commerce/2026-commerce-report-v2" target="_blank" rel="noopener noreferrer" style={{ fontSize: '0.8125rem', color: '#5BC500', textDecoration: 'underline', fontWeight: '500' }}>
                   2026 벤치마크 리포트 다운하기
                 </a>
-              </p>
+              </div>
 
               {/* 핵심 지표 카드 */}
               <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1rem', marginBottom: '1.25rem' }}>
@@ -184,6 +183,15 @@ export default function WebinarPage() {
                 </div>
               </div>
             </div>
+          </div>
+        </section>
+
+        {/* 중간 CTA */}
+        <section className="report-section" style={{ background: '#ffffff', paddingTop: '0', paddingBottom: '2rem' }}>
+          <div className="report-container" style={{ textAlign: 'center' }}>
+            <button onClick={openModal} className="report-button-primary">
+              웨비나 신청하기
+            </button>
           </div>
         </section>
 
