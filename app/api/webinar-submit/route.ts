@@ -4,9 +4,9 @@ import { supabase } from '@/app/lib/supabase';
 export async function POST(request: NextRequest) {
   try {
     const body = await request.json();
-    const { companyName, name, email, phone, revenueRange } = body;
+    const { companyName, name, email, phone } = body;
 
-    if (!companyName || !name || !email || !phone || !revenueRange) {
+    if (!companyName || !name || !email || !phone) {
       return NextResponse.json(
         { error: '모든 필드를 입력해주세요.' },
         { status: 400 }
@@ -21,7 +21,6 @@ export async function POST(request: NextRequest) {
           name,
           email,
           phone,
-          revenue_range: revenueRange,
         },
       ])
       .select();
@@ -38,7 +37,7 @@ export async function POST(request: NextRequest) {
     fetch('https://hooks.zapier.com/hooks/catch/10485854/ueggnwr/', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ companyName, name, email, phone, revenueRange }),
+      body: JSON.stringify({ companyName, name, email, phone }),
     }).catch((err) => console.error('Zapier webhook error:', err));
 
     return NextResponse.json({

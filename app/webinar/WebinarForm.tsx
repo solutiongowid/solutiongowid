@@ -15,7 +15,6 @@ export default function WebinarForm({ isOpen, onClose }: WebinarFormProps) {
     name: '',
     email: '',
     phone: '',
-    revenueRange: '',
     agreeMarketing: false,
   });
 
@@ -23,7 +22,7 @@ export default function WebinarForm({ isOpen, onClose }: WebinarFormProps) {
   const [submitError, setSubmitError] = useState('');
   const [isSuccess, setIsSuccess] = useState(false);
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value, type } = e.target;
     const checked = (e.target as HTMLInputElement).checked;
     setFormData(prev => ({
@@ -43,7 +42,6 @@ export default function WebinarForm({ isOpen, onClose }: WebinarFormProps) {
     if (!formData.email.trim()) { setSubmitError('이메일을 입력해주세요.'); return; }
     if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email)) { setSubmitError('올바른 이메일 형식을 입력해주세요.'); return; }
     if (!formData.phone.trim()) { setSubmitError('연락처를 입력해주세요.'); return; }
-    if (!formData.revenueRange) { setSubmitError('매출 구간을 선택해주세요.'); return; }
     if (!formData.agreeMarketing) { setSubmitError('개인정보 수집 및 마케팅 활용 동의가 필요합니다.'); return; }
 
     setIsSubmitting(true);
@@ -63,7 +61,7 @@ export default function WebinarForm({ isOpen, onClose }: WebinarFormProps) {
       if (!response.ok) throw new Error(data.error || '제출에 실패했습니다.');
 
       setIsSuccess(true);
-      setFormData({ companyName: '', name: '', email: '', phone: '', revenueRange: '', agreeMarketing: false });
+      setFormData({ companyName: '', name: '', email: '', phone: '', agreeMarketing: false });
     } catch (error) {
       console.error('Error submitting form:', error);
       setSubmitError(error instanceof Error ? error.message : '제출 중 오류가 발생했습니다.');
@@ -144,16 +142,6 @@ export default function WebinarForm({ isOpen, onClose }: WebinarFormProps) {
           <div className="form-group">
             <label htmlFor="phone" className="form-label">연락처 <span className="required">*</span></label>
             <input type="tel" id="phone" name="phone" value={formData.phone} onChange={handleChange} className="form-input" placeholder="010-1234-5678" required />
-          </div>
-          <div className="form-group">
-            <label htmlFor="revenueRange" className="form-label">연 매출 구간 <span className="required">*</span></label>
-            <select id="revenueRange" name="revenueRange" value={formData.revenueRange} onChange={handleChange} className="form-input" required style={{ WebkitAppearance: 'none', appearance: 'none', height: '46px', background: '#fff url("data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' width=\'12\' height=\'8\' viewBox=\'0 0 12 8\'%3E%3Cpath d=\'M1 1l5 5 5-5\' stroke=\'%23999\' stroke-width=\'1.5\' fill=\'none\'/%3E%3C/svg%3E") no-repeat right 1rem center', fontSize: '1rem' }}>
-              <option value="">선택해주세요</option>
-              <option value="10억 미만">10억 미만</option>
-              <option value="10~30억">10~30억</option>
-              <option value="30~100억">30~100억</option>
-              <option value="100억 이상">100억 이상</option>
-            </select>
           </div>
           <div className="form-group-checkbox">
             <label className="checkbox-label">
