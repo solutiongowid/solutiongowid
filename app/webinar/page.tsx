@@ -39,10 +39,13 @@ export default function WebinarPage() {
                   성장한 18%가<br />가장 먼저 한 것
                 </strong>
               </h1>
-              <p className="report-subtitle" style={{ textAlign: 'center', marginBottom: '2.5rem', maxWidth: '600px', marginLeft: 'auto', marginRight: 'auto' }}>
+              <p className="report-subtitle" style={{ textAlign: 'center', marginBottom: '2rem', maxWidth: '600px', marginLeft: 'auto', marginRight: 'auto' }}>
                 392개 커머스 데이터 ×<br className="desktop-br" /> 우리 회사 한도로 만드는,<br />
                 매출 구간별 실행 플랜
               </p>
+              <div style={{ marginBottom: '2.5rem', maxWidth: '600px', marginLeft: 'auto', marginRight: 'auto' }}>
+                <Image src="/webinar-banner-1.png" alt="웨비나 배너" width={600} height={400} style={{ width: '100%', height: 'auto', borderRadius: '1rem' }} />
+              </div>
               <button onClick={openModal} className="report-button-primary" style={{ alignSelf: 'center' }}>
                 웨비나 신청하기
               </button>
