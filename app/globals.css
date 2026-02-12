@@ -1033,6 +1033,9 @@ html, body {
   font-size: 1rem;
   transition: all 0.2s ease;
   font-family: inherit;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  background-color: #fff;
 }
 
 .form-input:focus {

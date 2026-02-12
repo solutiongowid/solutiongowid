@@ -156,7 +156,7 @@ export default function WebinarForm({ isOpen, onClose }: WebinarFormProps) {
           </div>
           <div className="form-group">
             <label htmlFor="revenueRange" className="form-label">연 매출 구간 <span className="required">*</span></label>
-            <select id="revenueRange" name="revenueRange" value={formData.revenueRange} onChange={handleChange} className="form-input" required style={{ appearance: 'auto' }}>
+            <select id="revenueRange" name="revenueRange" value={formData.revenueRange} onChange={handleChange} className="form-input" required style={{ WebkitAppearance: 'none', appearance: 'none', height: '46px', background: '#fff url("data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' width=\'12\' height=\'8\' viewBox=\'0 0 12 8\'%3E%3Cpath d=\'M1 1l5 5 5-5\' stroke=\'%23999\' stroke-width=\'1.5\' fill=\'none\'/%3E%3C/svg%3E") no-repeat right 1rem center', fontSize: '1rem' }}>
               <option value="">선택해주세요</option>
               <option value="10억 미만">10억 미만</option>
               <option value="10~30억">10~30억</option>
