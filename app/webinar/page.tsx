@@ -54,7 +54,7 @@ export default function WebinarPage() {
         {/* 도입부 섹션 */}
         <section className="report-section" style={{ background: '#ffffff' }}>
           <div className="report-container">
-            <div style={{ maxWidth: '720px', margin: '0 auto' }}>
+            <div style={{ maxWidth: '720px', margin: '0 auto', textAlign: 'center' }}>
               <div style={{ fontSize: '1.25rem', lineHeight: '2', color: '#333', fontWeight: '400' }}>
                 <p style={{ marginBottom: '1.5rem' }}>
                   리포트에서 공식은 확인하셨습니다.
@@ -91,7 +91,7 @@ export default function WebinarPage() {
                   <h3 style={{ fontSize: '1.125rem', fontWeight: '700', color: '#1a1a1a' }}>매출 구간별, 성장한 기업이<br />가장 먼저 한 것</h3>
                 </div>
                 <p style={{ fontSize: '0.9375rem', lineHeight: '1.7', color: '#555' }}>
-                  10억 미만 / 10~30억 / 30~100억 / 100억+<br /><br />
+                  <span style={{ whiteSpace: 'nowrap' }}>10억 미만</span> / <span style={{ whiteSpace: 'nowrap' }}>10~30억</span> / <span style={{ whiteSpace: 'nowrap' }}>30~100억</span> / <span style={{ whiteSpace: 'nowrap' }}>100억+</span><br /><br />
                   같은 구간에서 성장한 기업과 쇠퇴한 기업의 첫 번째 의사결정이 달랐습니다. 리포트에 담지 못한 구간별 실행 데이터를 공개합니다.
                 </p>
               </div>
@@ -171,15 +171,18 @@ export default function WebinarPage() {
             <div style={{ textAlign: 'center' }}>
               <h2 className="report-h2" style={{ textAlign: 'center', marginBottom: '1rem' }}>392개 기업을 분석한 팀이,<br />이번엔 우리 회사를 봅니다.</h2>
               <p style={{ fontSize: '1.0625rem', color: '#777', marginBottom: '2.5rem' }}>3,500개+ 기업이 고위드와 함께 성장하고 있습니다</p>
-              {/* 고객 로고 플레이스홀더 */}
-              <div style={{ display: 'flex', justifyContent: 'center', gap: '2rem', flexWrap: 'wrap', opacity: 0.4, marginBottom: '1rem' }}>
-                {['Partner A', 'Partner B', 'Partner C', 'Partner D', 'Partner E'].map((name) => (
-                  <div key={name} style={{ width: '120px', height: '48px', background: '#f0f0f0', borderRadius: '8px', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '0.75rem', color: '#999' }}>
-                    {name}
-                  </div>
+              <div style={{ display: 'flex', justifyContent: 'center', gap: '2.5rem', flexWrap: 'wrap', alignItems: 'center', opacity: 0.7 }}>
+                {[
+                  { src: '/logo-dasique.png', alt: 'dasique' },
+                  { src: '/logo-anua v2.png', alt: 'anua' },
+                  { src: '/logo-elleven.png', alt: 'elleven' },
+                  { src: '/logo-athome.png', alt: 'athome' },
+                  { src: '/logo-egnis v2.png', alt: 'egnis' },
+                  { src: '/logo-mynormal.png', alt: 'mynormal' },
+                ].map((logo) => (
+                  <Image key={logo.alt} src={logo.src} alt={logo.alt} width={120} height={40} style={{ objectFit: 'contain', height: '40px', width: 'auto' }} />
                 ))}
               </div>
-              <p style={{ fontSize: '0.75rem', color: '#bbb' }}>* 실제 고객 로고로 교체 필요</p>
             </div>
           </div>
         </section>
