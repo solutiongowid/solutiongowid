@@ -84,25 +84,25 @@ export default function WebinarForm({ isOpen, onClose }: WebinarFormProps) {
       <div className="modal-overlay" onClick={handleClose}>
         <div className="modal-content success-modal" onClick={(e) => e.stopPropagation()}>
           <button className="modal-close" onClick={handleClose} aria-label="닫기">✕</button>
-          <div style={{ padding: '3rem 2.5rem', display: 'flex', flexDirection: 'column', alignItems: 'center', textAlign: 'center' }}>
-            <div style={{ fontSize: '3rem', marginBottom: '1rem' }}>🎉</div>
-            <h2 className="modal-title" style={{ marginBottom: '0.75rem' }}>웨비나 신청 완료!</h2>
-            <p className="modal-description" style={{ fontSize: '1rem', color: '#6b7280', marginBottom: '1.5rem', lineHeight: '1.6' }}>
+          <div style={{ padding: '1.75rem 1.5rem', display: 'flex', flexDirection: 'column', alignItems: 'center', textAlign: 'center' }}>
+            <div style={{ fontSize: '2.5rem', marginBottom: '0.75rem' }}>🎉</div>
+            <h2 className="modal-title" style={{ marginBottom: '0.5rem', fontSize: '1.375rem' }}>웨비나 신청 완료!</h2>
+            <p className="modal-description" style={{ fontSize: '0.9375rem', color: '#6b7280', marginBottom: '1.25rem', lineHeight: '1.6' }}>
               2월 26일(목) 웨비나에서 뵙겠습니다.<br />
               맞춤 시나리오 준비를 위해<br />
               <strong style={{ color: '#1a1a1a' }}>오픈채팅방에 합류해주세요.</strong>
             </p>
-            <div style={{ background: '#f0fbe6', borderRadius: '12px', padding: '1.25rem', width: '100%', maxWidth: '360px', marginBottom: '2rem' }}>
-              <p style={{ fontSize: '0.875rem', color: '#333', marginBottom: '0.5rem', lineHeight: '1.5' }}>
+            <div style={{ background: '#f0fbe6', borderRadius: '12px', padding: '1rem', width: '100%', marginBottom: '1.25rem' }}>
+              <p style={{ fontSize: '0.8125rem', color: '#333', marginBottom: '0.375rem', lineHeight: '1.5' }}>
                 오픈채팅방에서 아래 준비가 진행됩니다
               </p>
-              <div style={{ fontSize: '0.8125rem', color: '#555', textAlign: 'left', lineHeight: '1.8' }}>
+              <div style={{ fontSize: '0.8125rem', color: '#555', textAlign: 'left', lineHeight: '1.7' }}>
                 ✅ 고위드 카드 신청 (한도 산출)<br />
                 ✅ 한도 기반 맞춤 시나리오 준비<br />
                 ✅ 웨비나 사전 인사이트 공유
               </div>
             </div>
-            <div style={{ display: 'flex', gap: '0.75rem', width: '100%', maxWidth: '360px' }}>
+            <div style={{ display: 'flex', gap: '0.75rem', width: '100%' }}>
               <button
                 onClick={handleClose}
                 className="success-button secondary-button"
