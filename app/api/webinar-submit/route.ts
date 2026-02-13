@@ -33,12 +33,16 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    // Zapier Webhook 호출 (이메일 + 알림톡 발송용)
-    fetch('https://hooks.zapier.com/hooks/catch/10485854/ueggnwr/', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ companyName, name, email, phone }),
-    }).catch((err) => console.error('Zapier webhook error:', err));
+    // Zapier Webhook 호출 (슬랙 알림 + 알림톡 + 스티비 발송용)
+    try {
+      await fetch('https://hooks.zapier.com/hooks/catch/10485854/ueggnwr/', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ companyName, name, email, phone }),
+      });
+    } catch (err) {
+      console.error('Zapier webhook error:', err);
+    }
 
     return NextResponse.json({
       success: true,
