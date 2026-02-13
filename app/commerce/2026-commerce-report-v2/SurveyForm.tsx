@@ -5,9 +5,10 @@ import { useState, FormEvent } from 'react';
 interface SurveyFormProps {
   isOpen: boolean;
   onClose: () => void;
+  utmParams?: { utm_source: string; utm_medium: string; utm_campaign: string };
 }
 
-export default function SurveyForm({ isOpen, onClose }: SurveyFormProps) {
+export default function SurveyForm({ isOpen, onClose, utmParams }: SurveyFormProps) {
   const [formData, setFormData] = useState({
     companyName: '',
     name: '',
@@ -81,6 +82,7 @@ export default function SurveyForm({ isOpen, onClose }: SurveyFormProps) {
         body: JSON.stringify({
           ...formData,
           timestamp: formattedTimestamp,
+          ...utmParams,
         }),
       });
 

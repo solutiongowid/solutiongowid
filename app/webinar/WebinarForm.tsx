@@ -5,11 +5,12 @@ import { useState, FormEvent } from 'react';
 interface WebinarFormProps {
   isOpen: boolean;
   onClose: () => void;
+  utmParams?: { utm_source: string; utm_medium: string; utm_campaign: string };
 }
 
 const OPEN_CHAT_LINK = 'https://open.kakao.com/o/gc91S5fi';
 
-export default function WebinarForm({ isOpen, onClose }: WebinarFormProps) {
+export default function WebinarForm({ isOpen, onClose, utmParams }: WebinarFormProps) {
   const [formData, setFormData] = useState({
     companyName: '',
     name: '',
@@ -54,7 +55,7 @@ export default function WebinarForm({ isOpen, onClose }: WebinarFormProps) {
       const response = await fetch('/api/webinar-submit', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ ...formData, timestamp: formattedTimestamp }),
+        body: JSON.stringify({ ...formData, timestamp: formattedTimestamp, ...utmParams }),
       });
 
       const data = await response.json();

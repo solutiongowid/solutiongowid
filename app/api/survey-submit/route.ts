@@ -5,7 +5,7 @@ export async function POST(request: NextRequest) {
   try {
     const body = await request.json();
     
-    const { companyName, name, position, email, phone, timestamp } = body;
+    const { companyName, name, position, email, phone, timestamp, utm_source, utm_medium, utm_campaign } = body;
 
     // 필수 필드 검증
     if (!companyName || !name || !position || !email || !phone) {
@@ -25,6 +25,9 @@ export async function POST(request: NextRequest) {
           position,
           email,
           phone,
+          utm_source: utm_source || null,
+          utm_medium: utm_medium || null,
+          utm_campaign: utm_campaign || null,
         },
       ]);
 

@@ -1,11 +1,21 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Image from 'next/image';
 import WebinarForm from './WebinarForm';
 
 export default function WebinarPage() {
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [utmParams, setUtmParams] = useState({ utm_source: '', utm_medium: '', utm_campaign: '' });
+
+  useEffect(() => {
+    const params = new URLSearchParams(window.location.search);
+    setUtmParams({
+      utm_source: params.get('utm_source') || '',
+      utm_medium: params.get('utm_medium') || '',
+      utm_campaign: params.get('utm_campaign') || '',
+    });
+  }, []);
 
   const openModal = () => setIsModalOpen(true);
   const closeModal = () => setIsModalOpen(false);
@@ -254,7 +264,7 @@ export default function WebinarPage() {
       </div>
 
       {/* 웨비나 신청 모달 */}
-      <WebinarForm isOpen={isModalOpen} onClose={closeModal} />
+      <WebinarForm isOpen={isModalOpen} onClose={closeModal} utmParams={utmParams} />
     </>
   );
 }

@@ -1,12 +1,22 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Image from 'next/image';
 import ReportPreviewCarousel from '../2026-commerce-report/ReportPreviewCarousel';
 import SurveyForm from './SurveyForm';
 
 export default function CommerceReportV2Page() {
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [utmParams, setUtmParams] = useState({ utm_source: '', utm_medium: '', utm_campaign: '' });
+
+  useEffect(() => {
+    const params = new URLSearchParams(window.location.search);
+    setUtmParams({
+      utm_source: params.get('utm_source') || '',
+      utm_medium: params.get('utm_medium') || '',
+      utm_campaign: params.get('utm_campaign') || '',
+    });
+  }, []);
 
   const openModal = () => setIsModalOpen(true);
   const closeModal = () => setIsModalOpen(false);
@@ -193,7 +203,7 @@ export default function CommerceReportV2Page() {
       </div>
 
       {/* 설문 폼 모달 */}
-      <SurveyForm isOpen={isModalOpen} onClose={closeModal} />
+      <SurveyForm isOpen={isModalOpen} onClose={closeModal} utmParams={utmParams} />
     </>
   );
 }
