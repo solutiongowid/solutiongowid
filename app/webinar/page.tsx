@@ -30,8 +30,8 @@ export default function WebinarPage() {
               <a href="https://gowid.com" className="report-brand" target="_blank" rel="noopener noreferrer">
                 <Image src="/Group 626579.png" alt="GOWID" width={84} height={28} priority />
               </a>
-              <button onClick={openModal} className="report-nav-button">
-                웨비나 신청하기
+              <button disabled className="report-nav-button" style={{ background: '#d1d5db', color: '#9ca3af', cursor: 'not-allowed', border: 'none' }}>
+                2/26 커머스 웨비나 종료
               </button>
             </div>
           </div>
@@ -194,8 +194,8 @@ export default function WebinarPage() {
                   </div>
                 </div>
               </div>
-              <button onClick={openModal} className="report-button-primary" style={{ marginTop: '2.5rem' }}>
-                웨비나 신청하기
+              <button disabled className="report-button-primary" style={{ marginTop: '2.5rem', background: '#d1d5db', color: '#9ca3af', cursor: 'not-allowed', border: 'none' }}>
+                2/26 커머스 웨비나 종료
               </button>
             </div>
           </div>
@@ -235,8 +235,8 @@ export default function WebinarPage() {
               <h3 className="report-h3">
                 <strong>2월 26일,<br className="desktop-br" /> 내 한도로 만드는<br />실행 플랜을 확인하세요.</strong>
               </h3>
-              <button onClick={openModal} className="report-button-cta">
-                웨비나 신청하기
+              <button disabled className="report-button-cta" style={{ background: '#d1d5db', color: '#9ca3af', cursor: 'not-allowed', border: 'none' }}>
+                2/26 커머스 웨비나 종료
               </button>
             </div>
           </div>
