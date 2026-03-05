@@ -44,7 +44,7 @@ export default function CosmeticGrowthWebinarPage() {
                 </strong>
               </h1>
               <p className="report-subtitle" style={{ textAlign: 'center', marginBottom: '2.5rem', maxWidth: '600px', marginLeft: 'auto', marginRight: 'auto', color: '#b0b0b0' }}>
-                1~3월, 해봤으니 감이 왔다.<br className="desktop-br" />
+                1~3월, 해봤으니 감이 왔다.<br />
                 26년 전략을 해부하고,<br />
                 진짜 되는 곳에 집중하자
               </p>
@@ -67,20 +67,23 @@ export default function CosmeticGrowthWebinarPage() {
           <div className="report-container">
             <div style={{ maxWidth: '720px', margin: '0 auto', textAlign: 'center' }}>
               <h2 className="report-h2" style={{ color: '#fff', textAlign: 'center', marginBottom: '1.5rem' }}>행사 소개</h2>
-              <h2 style={{ fontSize: '1.375rem', fontWeight: '800', color: '#5CDB5C', lineHeight: '1.45', marginBottom: '2.5rem', wordBreak: 'keep-all' }}>
+              <h2 style={{ fontSize: '1.2rem', fontWeight: '800', color: '#5CDB5C', lineHeight: '1.45', marginBottom: '2.5rem', whiteSpace: 'nowrap' }}>
                 &ldquo;매출은 올랐는데, 왜 남는 게 없을까요?&rdquo;
               </h2>
               <p style={{ fontSize: '1.0625rem', color: '#fff', lineHeight: '1.9', marginBottom: '1.5rem' }}>
-                광고 최적화, 멀티 채널 입점, 신제품 사이클 가속 —<br />
-                공식대로 했는데 체감 수익이 줄어든 코스메틱 브랜드가 늘고 있습니다.
+                광고 최적화, 멀티 채널 입점, 신제품 사이클 가속 -<br />
+                공식대로 했는데 체감 수익이 줄어든<br />
+                코스메틱 브랜드가 늘고 있습니다.
               </p>
               <p style={{ fontSize: '1.0625rem', color: '#fff', lineHeight: '1.9', marginBottom: '1.5rem' }}>
-                광고비가 매출보다 빠르게 증가하고, 히트 SKU에 프로모션이 몰리며 마진이 눌리고,<br />
-                채널 확장 후 오히려 현금이 빠듯해지는 구조.
+                광고비가 매출보다 빠르게 증가하고, 히트 SKU에<br />
+                프로모션이 몰리며 마진이 눌리고,<br />
+                채널 확장 후 오히려 현금이 빠듯해진 구조.
               </p>
               <p style={{ fontSize: '1.0625rem', color: '#fff', lineHeight: '1.9' }}>
                 고위드와 인덴트코퍼레이션과 함께<br />
-                &lsquo;성장처럼 보이는 구조적 왜곡&rsquo;을 짚고, 26년에 진짜 되는 전략에 집중하세요.
+                &lsquo;성장처럼 보이는 구조적 왜곡&rsquo;을 짚고,<br />
+                26년에 진짜 되는 전략에 집중하세요.
               </p>
             </div>
           </div>
@@ -106,7 +109,7 @@ export default function CosmeticGrowthWebinarPage() {
                     <div style={{ flexShrink: 0, width: '1.5rem', height: '1.5rem', background: '#5CDB5C', borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
                       <svg viewBox="0 0 14 14" fill="none" width="14" height="14"><path d="M3 7L6 10L11 4" stroke="#111" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" /></svg>
                     </div>
-                    <p style={{ fontSize: '1.2rem', lineHeight: '1.6', color: '#fff', margin: 0 }}>{text}</p>
+                    <p style={{ fontSize: 'clamp(0.85rem, 2.5vw, 1.2rem)', lineHeight: '1.6', color: '#fff', margin: 0 }}>{text}</p>
                   </div>
                 ))}
               </div>
@@ -123,7 +126,7 @@ export default function CosmeticGrowthWebinarPage() {
           <div className="report-container">
             <div style={{ maxWidth: '900px', margin: '0 auto' }}>
               <h2 className="report-h2" style={{ textAlign: 'center', marginBottom: '2rem', color: '#fff' }}>발표 기업 소개</h2>
-              <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1.5rem' }}>
+              <div style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem' }}>
                 <div style={{ background: '#1a1a1a', borderRadius: '0.75rem', padding: '2rem 1.5rem' }}>
                   <div style={{ marginBottom: '0.75rem' }}>
                     <Image src="/Group 626579.png" alt="GOWID" width={84} height={28} />
@@ -153,12 +156,6 @@ export default function CosmeticGrowthWebinarPage() {
 
               {/* 타임테이블 */}
               <div style={{ marginBottom: '3rem' }}>
-                {/* 헤더 */}
-                <div style={{ display: 'grid', gridTemplateColumns: '140px 1fr 160px', gap: '1rem', padding: '1rem 0', borderBottom: '1px solid #333' }}>
-                  <div style={{ fontSize: '0.875rem', color: '#888' }}>시간</div>
-                  <div style={{ fontSize: '0.875rem', color: '#888' }}>세션</div>
-                  <div style={{ fontSize: '0.875rem', color: '#888' }}>연사</div>
-                </div>
                 {[
                   { time: '16:00 ~ 16:05', title: '오프닝', speaker: '연사 전원' },
                   {
@@ -177,38 +174,33 @@ export default function CosmeticGrowthWebinarPage() {
                   },
                   { time: '17:00 ~ 17:10', title: '실무 Q&A 및 패널토크', speaker: '연사 전원' },
                 ].map((item, i) => (
-                  <div key={i} style={{ display: 'grid', gridTemplateColumns: '140px 1fr 160px', gap: '1rem', padding: '1.25rem 0', borderBottom: '1px solid #2a2a2a', alignItems: item.details ? 'start' : 'center' }}>
-                    <div style={{ fontSize: '0.9375rem', fontWeight: '600', color: '#fff' }}>{item.time}</div>
-                    <div>
-                      {item.session && <div style={{ fontSize: '0.875rem', fontWeight: '700', color: '#5CDB5C', marginBottom: '0.25rem' }}>{item.session}</div>}
-                      <div style={{ fontSize: '0.9375rem', color: '#fff', marginBottom: item.details ? '0.75rem' : '0' }}>{item.title}</div>
-                      {item.details && (
-                        <ul style={{ listStyle: 'none', padding: 0, margin: 0 }}>
-                          {item.details.map((d, j) => (
-                            <li key={j} style={{ fontSize: '0.8125rem', lineHeight: '1.6', color: '#999', paddingLeft: '0.875rem', position: 'relative', marginBottom: '0.25rem' }}>
-                              <span style={{ position: 'absolute', left: 0, top: '0.5rem', width: '0.3rem', height: '0.3rem', background: '#5CDB5C', borderRadius: '50%', display: 'block' }} />
-                              {d}
-                            </li>
-                          ))}
-                          {item.highlight && (
-                            <li style={{ fontSize: '0.8125rem', lineHeight: '1.6', color: '#999', paddingLeft: '0.875rem', position: 'relative' }}>
-                              <span style={{ position: 'absolute', left: 0, top: '0.5rem', width: '0.3rem', height: '0.3rem', background: '#5CDB5C', borderRadius: '50%', display: 'block' }} />
-                              {item.highlight}
-                            </li>
-                          )}
-                        </ul>
-                      )}
+                  <div key={i} style={{ padding: '1.25rem 0', borderBottom: '1px solid #2a2a2a' }}>
+                    <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: item.details ? '0.5rem' : '0' }}>
+                      <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
+                        <span style={{ fontSize: '0.75rem', color: '#888', whiteSpace: 'nowrap' }}>{item.time}</span>
+                        {item.session && <span style={{ fontSize: '0.75rem', fontWeight: '700', color: '#5CDB5C' }}>{item.session}</span>}
+                      </div>
+                      <span style={{ fontSize: '0.75rem', color: '#999', whiteSpace: 'nowrap' }}>
+                        {item.speaker || (<><span style={{ color: '#5CDB5C', fontWeight: '600' }}>{item.speakerName}</span> · {item.speakerCompany}</>)}
+                      </span>
                     </div>
-                    <div>
-                      {item.speaker ? (
-                        <div style={{ fontSize: '0.9375rem', color: '#999' }}>{item.speaker}</div>
-                      ) : (
-                        <>
-                          <div style={{ fontSize: '0.9375rem', fontWeight: '600', color: '#5CDB5C' }}>{item.speakerName}</div>
-                          <div style={{ fontSize: '0.875rem', color: '#999' }}>{item.speakerCompany}</div>
-                        </>
-                      )}
-                    </div>
+                    <div style={{ fontSize: '0.875rem', fontWeight: '600', color: '#fff', marginBottom: item.details ? '0.5rem' : '0' }}>{item.title}</div>
+                    {item.details && (
+                      <ul style={{ listStyle: 'none', padding: 0, margin: 0 }}>
+                        {item.details.map((d, j) => (
+                          <li key={j} style={{ fontSize: '0.75rem', lineHeight: '1.6', color: '#999', paddingLeft: '0.75rem', position: 'relative', marginBottom: '0.2rem' }}>
+                            <span style={{ position: 'absolute', left: 0, top: '0.45rem', width: '0.25rem', height: '0.25rem', background: '#5CDB5C', borderRadius: '50%', display: 'block' }} />
+                            {d}
+                          </li>
+                        ))}
+                        {item.highlight && (
+                          <li style={{ fontSize: '0.75rem', lineHeight: '1.6', color: '#999', paddingLeft: '0.75rem', position: 'relative' }}>
+                            <span style={{ position: 'absolute', left: 0, top: '0.45rem', width: '0.25rem', height: '0.25rem', background: '#5CDB5C', borderRadius: '50%', display: 'block' }} />
+                            {item.highlight}
+                          </li>
+                        )}
+                      </ul>
+                    )}
                   </div>
                 ))}
               </div>
@@ -225,7 +217,7 @@ export default function CosmeticGrowthWebinarPage() {
                 {[
                   { icon: '📄', title: '커머스 벤치마크\n리포트 2026', desc: 'PDF 무료 제공' },
                   { icon: '💳', title: '고위드 법인카드\n한도 사전 조회', desc: '1:1 자금 운영 상담권' },
-                  { icon: '🔍', title: '마케팅 전략 진단\n1:1 무료 상담권', desc: '인덴트코퍼레이션 제공' },
+                  { icon: '🔍', title: '마케팅 전략 진단\n무료 상담권', desc: '인덴트 제공' },
                   { icon: '📥', title: '웨비나 발표 자료\nPDF 제공', desc: '당일 참석자 대상' },
                 ].map((b, i) => (
                   <div key={i} style={{ background: '#222', border: '1px solid #2a2a2a', borderRadius: '0.75rem', padding: '1.5rem 1.25rem', textAlign: 'center' }}>
@@ -280,7 +272,7 @@ export default function CosmeticGrowthWebinarPage() {
           <div className="report-container">
             <div className="report-cta-content">
               <p style={{ fontSize: '1rem', color: '#888', margin: '0 0 0.5rem 0' }}>
-                수익 구조 × 마케팅 전략,<br className="desktop-br" /> 실전 데이터로 답을 드립니다.
+                수익 구조 × 마케팅 전략,<br /> 실전 데이터로 답을 드립니다.
               </p>
               <h3 className="report-h3" style={{ color: '#fff' }}>
                 <strong>성장을 원하는 커머스라면,<br /> 이번 웨비나를 놓치지마세요.</strong>
@@ -295,7 +287,7 @@ export default function CosmeticGrowthWebinarPage() {
         {/* 유의사항 */}
         <section style={{ background: '#111111', padding: '3rem 0', borderTop: '1px solid #2a2a2a' }}>
           <div className="report-container">
-            <div style={{ maxWidth: '640px', margin: '0 auto', textAlign: 'center' }}>
+            <div style={{ maxWidth: '640px', margin: '0 auto', textAlign: 'left' }}>
               <p style={{ fontSize: '0.875rem', fontWeight: '600', color: '#666', marginBottom: '1rem' }}>유의사항</p>
               {[
                 '본 행사는 온라인(Zoom)에서 진행되며, 참가 확정자분들께 접속 링크를 안내드립니다.',
