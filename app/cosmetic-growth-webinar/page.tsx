@@ -87,7 +87,7 @@ export default function CosmeticGrowthWebinarPage() {
         </section>
 
         {/* 이런 분들께 추천합니다 */}
-        <section className="report-section" style={{ background: '#151f15' }}>
+        <section className="report-section" style={{ background: '#111111' }}>
           <div className="report-container">
             <div style={{ maxWidth: '800px', margin: '0 auto', textAlign: 'center' }}>
               <h2 className="report-h2" style={{ textAlign: 'center', marginBottom: '1rem', color: '#fff', wordBreak: 'keep-all' }}>이런 분들께 추천합니다</h2>
