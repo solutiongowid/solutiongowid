@@ -119,9 +119,9 @@ export default function CosmeticGrowthWebinarPage() {
         </section>
 
         {/* 발표 기업 소개 */}
-        <section className="report-section" style={{ background: '#151f15' }}>
+        <section className="report-section" style={{ background: '#111111' }}>
           <div className="report-container">
-            <div style={{ maxWidth: '800px', margin: '0 auto' }}>
+            <div style={{ maxWidth: '900px', margin: '0 auto' }}>
               <h2 className="report-h2" style={{ textAlign: 'center', marginBottom: '2rem', color: '#fff' }}>발표 기업 소개</h2>
               <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1.5rem' }}>
                 <div style={{ background: '#1a1a1a', borderRadius: '0.75rem', padding: '2rem 1.5rem' }}>
