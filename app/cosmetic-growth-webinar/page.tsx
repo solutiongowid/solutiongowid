@@ -177,7 +177,7 @@ export default function CosmeticGrowthWebinarPage() {
                   <div key={i} style={{ padding: '1.25rem 0', borderBottom: '1px solid #2a2a2a' }}>
                     <div style={{ fontSize: '0.75rem', color: '#888', marginBottom: '0.25rem' }}>{item.time}</div>
                     {item.session && (
-                      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '0.25rem' }}>
+                      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '0.625rem' }}>
                         <span style={{ fontSize: '0.75rem', fontWeight: '700', color: '#5CDB5C' }}>{item.session}</span>
                         <span style={{ fontSize: '0.75rem', color: '#999' }}><span style={{ color: '#5CDB5C', fontWeight: '600' }}>{item.speakerName}</span> · {item.speakerCompany}</span>
                       </div>
