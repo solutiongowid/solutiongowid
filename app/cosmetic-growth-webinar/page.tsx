@@ -86,51 +86,12 @@ export default function CosmeticGrowthWebinarPage() {
           </div>
         </section>
 
-        {/* 이 웨비나에서 확인하실 것 (= report-section-recommendations 패턴) */}
+        {/* 이런 분들께 추천합니다 */}
         <section className="report-section" style={{ background: '#111111' }}>
           <div className="report-container">
-            <h2 className="report-h2" style={{ textAlign: 'center', marginBottom: '3rem', color: '#fff' }}>이 웨비나에서 확인하실 것</h2>
-            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '1.5rem', maxWidth: '1000px', margin: '0 auto' }}>
-              {[
-                {
-                  num: '1',
-                  title: <>매출은 올랐는데,<br />왜 남는 게 없는가?</>,
-                  desc: '광고비가 매출보다 빠르게 증가하는 구간 진단. 히트 SKU에 프로모션이 몰리며 마진이 눌리는 구조. 채널 확장 후 현금이 빠듯해진 실제 사례를 데이터로 점검합니다.',
-                },
-                {
-                  num: '2',
-                  title: <>SKU·채널·현금 —<br />숫자로 보는 진짜 수익</>,
-                  desc: '올리브영 프로모션 후 남는 돈, 쿠팡 로켓그로스의 실제 마진. 히트 상품이 사실은 적자인 경우를 공헌이익으로 재산출하고, 현금 흐름 재설계 프레임워크를 제시합니다.',
-                },
-                {
-                  num: '3',
-                  title: <>마케팅 전략이<br />수익 구조를 결정한다</>,
-                  desc: 'ROAS가 높아도 이익이 줄어드는 구간은 어디인가. 어떤 전략이 구조적으로 건강한지. 26년에 집중해야 할 마케팅 포트폴리오를 제시합니다.',
-                },
-              ].map((card) => (
-                <div key={card.num} style={{ background: '#1a1a1a', borderRadius: '1rem', padding: '1.5rem', border: '1px solid #2a2a2a' }}>
-                  <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', marginBottom: '1rem' }}>
-                    <div style={{ flexShrink: 0, width: '2rem', height: '2rem', background: '#5CDB5C', color: '#111', borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '1rem', fontWeight: '700' }}>
-                      {card.num}
-                    </div>
-                    <h3 style={{ fontSize: '1.0625rem', fontWeight: '700', color: '#fff', lineHeight: '1.5' }}>{card.title}</h3>
-                  </div>
-                  <p style={{ fontSize: '0.875rem', lineHeight: '1.7', color: '#999' }}>{card.desc}</p>
-                </div>
-              ))}
-            </div>
-          </div>
-        </section>
-
-        {/* 이런 분들께 추천합니다 (= report-section-feature 패턴) */}
-        <section className="report-section" style={{ background: '#151f15' }}>
-          <div className="report-container">
-            <div style={{ maxWidth: '800px', margin: '0 auto', textAlign: 'center' }}>
-              <h2 className="report-h2" style={{ textAlign: 'center', marginBottom: '1rem', color: '#fff', wordBreak: 'keep-all' }}>이런 분들께 추천합니다</h2>
-              <p style={{ fontSize: '1rem', color: '#888', marginBottom: '2.5rem', lineHeight: '1.6' }}>
-                아래에 해당하신다면, 이 웨비나가 답이 됩니다.
-              </p>
-              <div style={{ display: 'flex', flexDirection: 'column', gap: '0.75rem', maxWidth: '600px', margin: '0 auto' }}>
+            <div style={{ maxWidth: '720px', margin: '0 auto', textAlign: 'center' }}>
+              <p style={{ fontSize: '0.875rem', fontWeight: '600', color: '#5CDB5C', letterSpacing: '1px', marginBottom: '0.75rem' }}>이런 분들께 추천합니다</p>
+              <div style={{ display: 'flex', flexDirection: 'column', gap: '0.75rem', textAlign: 'left' }}>
                 {[
                   <>매출은 성장하는데 <strong style={{ color: '#fff' }}>실제 이익이 줄어드는 느낌</strong>을 받고 있는 코스메틱 브랜드 대표</>,
                   <>올리브영·쿠팡·자사몰 등 <strong style={{ color: '#fff' }}>멀티 채널 운영 중</strong> 채널별 실제 수익성을 점검하고 싶은 경영진</>,
@@ -138,18 +99,14 @@ export default function CosmeticGrowthWebinarPage() {
                   <>광고비 선집행·선매입으로 <strong style={{ color: '#fff' }}>현금 흐름이 빠듯해진</strong> 재무·운영 담당자</>,
                   <>26년 마케팅 포트폴리오와 수익 구조를 <strong style={{ color: '#fff' }}>동시에 재설계</strong>하고 싶은 코스메틱 브랜드 실무진</>,
                 ].map((text, i) => (
-                  <div key={i} style={{ display: 'flex', alignItems: 'flex-start', gap: '0.875rem', background: 'rgba(92, 219, 92, 0.06)', border: '1px solid rgba(92, 219, 92, 0.15)', borderRadius: '0.75rem', padding: '1rem 1.25rem', textAlign: 'left' }}>
+                  <div key={i} style={{ display: 'flex', alignItems: 'flex-start', gap: '0.875rem', padding: '0.5rem 0' }}>
                     <div style={{ flexShrink: 0, width: '1.5rem', height: '1.5rem', background: '#5CDB5C', borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', marginTop: '0.125rem' }}>
                       <svg viewBox="0 0 14 14" fill="none" width="14" height="14"><path d="M3 7L6 10L11 4" stroke="#111" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" /></svg>
                     </div>
-                    <p style={{ fontSize: '0.9375rem', lineHeight: '1.6', color: '#d0d0d0', margin: 0 }}>{text}</p>
+                    <p style={{ fontSize: '1.0625rem', lineHeight: '1.6', color: '#d0d0d0', margin: 0 }}>{text}</p>
                   </div>
                 ))}
               </div>
-
-              <button onClick={scrollToApply} className="report-button-primary" style={{ marginTop: '2.5rem', background: '#5CDB5C', color: '#111', boxShadow: '0 4px 20px rgba(92, 219, 92, 0.3)' }}>
-                무료 참가 신청하기
-              </button>
             </div>
           </div>
         </section>
