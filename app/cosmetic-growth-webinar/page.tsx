@@ -160,25 +160,28 @@ export default function CosmeticGrowthWebinarPage() {
               </div>
 
               {/* 세션 카드 */}
-              <h3 className="report-h2" style={{ color: '#fff', fontSize: '1.625rem', marginBottom: '1.5rem' }}>세션 상세</h3>
+              <h3 className="report-h2" style={{ color: '#fff', textAlign: 'center', marginBottom: '2rem' }}>세션 상세</h3>
               {[
                 {
                   num: '01', title: '매출은 올랐는데, 왜 남는 게 없는가?',
-                  speaker: '문미성 리드 · 고위드 고객전략팀',
+                  speaker: '문미성 리드 / GOWID 고객전략팀',
+                  quote: '광고 최적화 완료, 여기저기 입점, 신제품 사이클 가속 — 공식대로 했는데 체감 수익이 줄어든 사례를 짚습니다.',
                   points: ['광고비가 매출보다 빠르게 증가하는 구간 진단', '히트 SKU에 프로모션이 몰리며 마진이 눌리는 구조', '채널 확장 후 오히려 현금이 빠듯해진 실제 사례'],
                   highlight: "'성장처럼 보이는 구조적 왜곡'을 커머스 기업의 실제 데이터로 점검",
                 },
                 {
-                  num: '02', title: 'SKU·채널·현금 숫자로 보는 진짜 수익',
-                  speaker: '문미성 리드 · 고위드 고객전략팀',
+                  num: '02', title: 'SKU·채널·현금 — 숫자로 보는 진짜 수익',
+                  speaker: '문미성 리드 / GOWID 고객전략팀',
+                  quote: '채널·SKU별 비용을 분리해 실제 공헌이익을 재산출하고, 흑자인데 현금이 없는 구조를 짚습니다.',
                   points: ['올리브영 프로모션 후 남는 돈, 쿠팡 로켓그로스의 실제 마진', '히트 상품이 사실은 적자인 경우 — 공헌이익 재산출', '선생산·선매입, 광고비 선집행, 채널별 정산 시차가 겹치는 현금 압박 구간'],
                   highlight: '수익과 현금 흐름을 함께 재설계하는 프레임워크 제시',
                 },
                 {
                   num: '03', title: "잘되는 코스메틱 기업의 '판관비'에 숨은 디테일",
-                  speaker: '조효식 팀장 · 인덴트코퍼레이션 마케팅팀',
-                  points: ['신제품 런칭 중심 전략, UGC·인플루언서 확산, 프로모션 반복, 히트 SKU 의존 — 각 패턴 분석', 'ROAS가 높아도 이익이 줄어드는 구간은 어디인가', '어떤 전략이 구조적으로 건강한지'],
-                  highlight: '26년에 집중해야 할 마케팅 포트폴리오 제시',
+                  speaker: '조효식 팀장 / 인덴트코퍼레이션 마케팅팀',
+                  quote: '잘되는 코스메틱 브랜드는 어떻게 운영하는지 알려드립니다.',
+                  points: ['K뷰티 = 인플루언서 마케팅, 하지만 구체적인 방법론은 모두 다르다.', '성장세가 높은 곳들이 비용을 배분하는 방식은?', '스몰브랜드의 숨은 과제, 채용문제의 해결책은 AI 에이전트'],
+                  highlight: '',
                 },
               ].map((s, i) => (
                 <div key={i} style={{ background: '#222', borderRadius: '0.75rem', padding: '1.5rem', marginBottom: '1rem' }}>
@@ -187,6 +190,9 @@ export default function CosmeticGrowthWebinarPage() {
                   </span>
                   <h4 style={{ fontSize: '1.125rem', fontWeight: '700', color: '#fff', marginBottom: '0.375rem', lineHeight: '1.4' }}>{s.title}</h4>
                   <p style={{ fontSize: '0.875rem', color: '#5CDB5C', marginBottom: '1rem' }}>{s.speaker}</p>
+                  <div style={{ background: '#2a2a2a', borderRadius: '0.5rem', padding: '1rem 1.25rem', marginBottom: '1rem' }}>
+                    <p style={{ fontSize: '0.9375rem', lineHeight: '1.6', color: '#999', margin: 0, fontStyle: 'italic' }}>{s.quote}</p>
+                  </div>
                   <ul style={{ listStyle: 'none', padding: 0, margin: 0 }}>
                     {s.points.map((point, j) => (
                       <li key={j} style={{ fontSize: '0.9375rem', lineHeight: '1.6', color: '#b0b0b0', paddingLeft: '1rem', position: 'relative', marginBottom: '0.5rem' }}>
@@ -194,10 +200,12 @@ export default function CosmeticGrowthWebinarPage() {
                         {point}
                       </li>
                     ))}
-                    <li style={{ fontSize: '0.9375rem', lineHeight: '1.6', color: '#fff', fontWeight: '600', paddingLeft: '1rem', position: 'relative' }}>
-                      <span style={{ position: 'absolute', left: 0, top: '0.6rem', width: '0.375rem', height: '0.375rem', background: '#5CDB5C', borderRadius: '50%', display: 'block' }} />
-                      {s.highlight}
-                    </li>
+                    {s.highlight && (
+                      <li style={{ fontSize: '0.9375rem', lineHeight: '1.6', color: '#fff', fontWeight: '600', paddingLeft: '1rem', position: 'relative' }}>
+                        <span style={{ position: 'absolute', left: 0, top: '0.6rem', width: '0.375rem', height: '0.375rem', background: '#5CDB5C', borderRadius: '50%', display: 'block' }} />
+                        {s.highlight}
+                      </li>
+                    )}
                   </ul>
                 </div>
               ))}
