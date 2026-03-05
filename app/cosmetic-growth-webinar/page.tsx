@@ -66,17 +66,17 @@ export default function CosmeticGrowthWebinarPage() {
               <h2 style={{ fontSize: '2rem', fontWeight: '800', color: '#5CDB5C', lineHeight: '1.45', marginBottom: '2.5rem', wordBreak: 'keep-all' }}>
                 매출은 올랐는데, 왜 남는 게 없을까요?
               </h2>
-              <p style={{ fontSize: '1.0625rem', color: '#b0b0b0', lineHeight: '1.9', marginBottom: '1.5rem' }}>
+              <p style={{ fontSize: '1.0625rem', color: '#fff', lineHeight: '1.9', marginBottom: '1.5rem' }}>
                 광고 최적화, 멀티 채널 입점, 신제품 사이클 가속 —<br />
-                <strong style={{ color: '#fff' }}>공식대로 했는데 체감 수익이 줄어든 코스메틱 브랜드가 늘고 있습니다.</strong>
+                공식대로 했는데 체감 수익이 줄어든 코스메틱 브랜드가 늘고 있습니다.
               </p>
-              <p style={{ fontSize: '1.0625rem', color: '#b0b0b0', lineHeight: '1.9', marginBottom: '1.5rem' }}>
+              <p style={{ fontSize: '1.0625rem', color: '#fff', lineHeight: '1.9', marginBottom: '1.5rem' }}>
                 광고비가 매출보다 빠르게 증가하고, 히트 SKU에 프로모션이 몰리며 마진이 눌리고,<br />
                 채널 확장 후 오히려 현금이 빠듯해지는 구조.
               </p>
-              <p style={{ fontSize: '1.0625rem', color: '#b0b0b0', lineHeight: '1.9' }}>
+              <p style={{ fontSize: '1.0625rem', color: '#fff', lineHeight: '1.9' }}>
                 고위드와 인덴트코퍼레이션과 함께<br />
-                <strong style={{ color: '#fff' }}>&lsquo;성장처럼 보이는 구조적 왜곡&rsquo;을 짚고, 26년에 진짜 되는 전략에 집중하세요.</strong>
+                &lsquo;성장처럼 보이는 구조적 왜곡&rsquo;을 짚고, 26년에 진짜 되는 전략에 집중하세요.
               </p>
             </div>
           </div>
