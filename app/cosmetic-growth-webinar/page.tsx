@@ -112,7 +112,7 @@ export default function CosmeticGrowthWebinarPage() {
               </div>
 
               <button onClick={scrollToApply} className="report-button-primary" style={{ marginTop: '2.5rem', background: '#5CDB5C', color: '#111', boxShadow: '0 4px 20px rgba(92, 219, 92, 0.3)' }}>
-                무료 참가 신청하기
+                무료 웨비나 신청하기
               </button>
             </div>
           </div>
