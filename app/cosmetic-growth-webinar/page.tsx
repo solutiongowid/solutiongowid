@@ -32,7 +32,7 @@ export default function CosmeticGrowthWebinarPage() {
         </nav>
 
         {/* 히어로 섹션 - 썸네일 */}
-        <header className="report-header" style={{ background: '#111111', padding: '8rem 0 0' }}>
+        <header className="report-header" style={{ background: '#111111', padding: '8rem 0 4rem' }}>
           <div className="report-container">
             <div style={{ maxWidth: '800px', margin: '0 auto', textAlign: 'center' }}>
               <div style={{ marginBottom: '1.5rem' }}>
