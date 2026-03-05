@@ -32,32 +32,20 @@ export default function CosmeticGrowthWebinarPage() {
         </nav>
 
         {/* 히어로 섹션 - 썸네일 */}
-        <header className="report-header" style={{ background: '#1a1a1a', padding: '60px 0 0' }}>
+        <header className="report-header" style={{ background: '#111111', padding: '6rem 0 0' }}>
           <div className="report-container">
-            <div style={{ maxWidth: '1200px', margin: '0 auto' }}>
+            <div style={{ maxWidth: '600px', margin: '0 auto' }}>
               <Image
                 src="/cosmetic-webinar-thumbnail.png"
                 alt="고속 성장 코스메틱 브랜드의 성공 포뮬러 - GoWid x 인덴트코퍼레이션 웨비나"
                 width={1200}
                 height={630}
                 priority
-                style={{ width: '100%', height: 'auto', display: 'block', borderRadius: '0' }}
+                style={{ width: '100%', height: 'auto', display: 'block', borderRadius: '1rem' }}
               />
             </div>
           </div>
         </header>
-
-        {/* CTA 1 */}
-        <section className="report-section" style={{ background: '#111111', textAlign: 'center', padding: '3rem 0' }}>
-          <div className="report-container">
-            <button onClick={scrollToApply} className="report-button-primary" style={{ background: '#5CDB5C', color: '#111', boxShadow: '0 4px 20px rgba(92, 219, 92, 0.3)' }}>
-              무료 참가 신청하기
-            </button>
-            <p style={{ marginTop: '0.75rem', fontSize: '0.875rem', color: '#888' }}>
-              2026. 3. 19(목) 오후 4시 · 온라인(Zoom) · 무료
-            </p>
-          </div>
-        </section>
 
         {/* 도입부 - Pain Point */}
         <section className="report-section" style={{ background: '#1a1a1a', padding: '5rem 0' }}>
