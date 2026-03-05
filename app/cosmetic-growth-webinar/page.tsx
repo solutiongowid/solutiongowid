@@ -118,6 +118,29 @@ export default function CosmeticGrowthWebinarPage() {
           </div>
         </section>
 
+        {/* 발표 기업 소개 */}
+        <section className="report-section" style={{ background: '#111111' }}>
+          <div className="report-container">
+            <div style={{ maxWidth: '800px', margin: '0 auto' }}>
+              <h2 className="report-h2" style={{ textAlign: 'center', marginBottom: '2rem', color: '#fff' }}>발표 기업 소개</h2>
+              <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1.5rem' }}>
+                <div style={{ background: '#1a1a1a', borderRadius: '0.75rem', padding: '2rem 1.5rem' }}>
+                  <p style={{ fontSize: '1.375rem', fontWeight: '800', color: '#5CDB5C', marginBottom: '0.75rem' }}>GoWid</p>
+                  <p style={{ fontSize: '0.9375rem', lineHeight: '1.7', color: '#b0b0b0' }}>
+                    커머스 기업 전용 법인카드·자금 운영 솔루션을 제공하는 핀테크 기업. 387개 커머스 기업의 실제 재무 데이터를 분석하며, 성장하면서도 돈이 남는 구조를 만들 수 있도록 돕습니다.
+                  </p>
+                </div>
+                <div style={{ background: '#1a1a1a', borderRadius: '0.75rem', padding: '2rem 1.5rem' }}>
+                  <p style={{ fontSize: '1.375rem', fontWeight: '800', color: '#fff', marginBottom: '0.75rem' }}>indent</p>
+                  <p style={{ fontSize: '0.9375rem', lineHeight: '1.7', color: '#b0b0b0' }}>
+                    B2B 세일즈 자동화 플랫폼 &lsquo;리캐치&rsquo;를 운영하는 마케팅 테크 기업. 다수의 코스메틱 브랜드와 협업하며 축적한 데이터 기반 마케팅 전략 인사이트를 공유합니다.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
         {/* 프로그램 & 세션 상세 */}
         <section className="report-section" style={{ background: '#1a1a1a' }}>
           <div className="report-container">
@@ -258,29 +281,6 @@ export default function CosmeticGrowthWebinarPage() {
                     <p style={{ fontSize: '0.875rem', color: '#888', margin: 0 }}>{b.desc}</p>
                   </div>
                 ))}
-              </div>
-            </div>
-          </div>
-        </section>
-
-        {/* 주최 기업 소개 */}
-        <section className="report-section" style={{ background: '#111111' }}>
-          <div className="report-container">
-            <div style={{ maxWidth: '800px', margin: '0 auto' }}>
-              <h2 className="report-h2" style={{ textAlign: 'center', marginBottom: '2rem', color: '#fff' }}>주최 기업</h2>
-              <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1.5rem' }}>
-                <div style={{ background: '#1a1a1a', borderRadius: '0.75rem', padding: '2rem 1.5rem' }}>
-                  <p style={{ fontSize: '1.375rem', fontWeight: '800', color: '#5CDB5C', marginBottom: '0.75rem' }}>GoWid</p>
-                  <p style={{ fontSize: '0.9375rem', lineHeight: '1.7', color: '#b0b0b0' }}>
-                    커머스 기업 전용 법인카드·자금 운영 솔루션을 제공하는 핀테크 기업. 387개 커머스 기업의 실제 재무 데이터를 분석하며, 성장하면서도 돈이 남는 구조를 만들 수 있도록 돕습니다.
-                  </p>
-                </div>
-                <div style={{ background: '#1a1a1a', borderRadius: '0.75rem', padding: '2rem 1.5rem' }}>
-                  <p style={{ fontSize: '1.375rem', fontWeight: '800', color: '#fff', marginBottom: '0.75rem' }}>indent</p>
-                  <p style={{ fontSize: '0.9375rem', lineHeight: '1.7', color: '#b0b0b0' }}>
-                    B2B 세일즈 자동화 플랫폼 &lsquo;리캐치&rsquo;를 운영하는 마케팅 테크 기업. 다수의 코스메틱 브랜드와 협업하며 축적한 데이터 기반 마케팅 전략 인사이트를 공유합니다.
-                  </p>
-                </div>
               </div>
             </div>
           </div>
