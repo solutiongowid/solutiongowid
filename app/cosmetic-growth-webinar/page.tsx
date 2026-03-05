@@ -68,7 +68,7 @@ export default function CosmeticGrowthWebinarPage() {
             <div style={{ maxWidth: '720px', margin: '0 auto', textAlign: 'center' }}>
               <h2 className="report-h2" style={{ color: '#fff', textAlign: 'center', marginBottom: '1.5rem' }}>행사 소개</h2>
               <h2 style={{ fontSize: '2rem', fontWeight: '800', color: '#5CDB5C', lineHeight: '1.45', marginBottom: '2.5rem', wordBreak: 'keep-all' }}>
-                매출은 올랐는데, 왜 남는 게 없을까요?
+                &ldquo;매출은 올랐는데, 왜 남는 게 없을까요?&rdquo;
               </h2>
               <p style={{ fontSize: '1.0625rem', color: '#fff', lineHeight: '1.9', marginBottom: '1.5rem' }}>
                 광고 최적화, 멀티 채널 입점, 신제품 사이클 가속 —<br />
