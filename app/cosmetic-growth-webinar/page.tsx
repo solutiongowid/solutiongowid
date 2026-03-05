@@ -133,12 +133,11 @@ export default function CosmeticGrowthWebinarPage() {
                   <div style={{ fontSize: '0.875rem', color: '#888' }}>연사</div>
                 </div>
                 {[
-                  { time: '16:00 – 16:05', title: '오프닝', speaker: '전체' },
-                  { time: '16:05 – 16:20', session: 'Session 01', title: '매출은 올랐는데, 왜 남는 게 없는가?', speakerName: '문미성 리드', speakerCompany: 'GoWid' },
-                  { time: '16:20 – 16:40', session: 'Session 02', title: 'SKU·채널·현금 — 숫자로 보는 진짜 수익의 디테일', speakerName: '문미성 리드', speakerCompany: 'GoWid' },
-                  { time: '16:40 – 17:00', session: 'Session 03', title: '마케팅 전략이 수익 구조를 결정한다', speakerName: '조효식 팀장', speakerCompany: '인덴트코퍼레이션' },
-                  { time: '17:00 – 17:15', session: 'Session 04', title: '오래 가는 코스메틱 브랜드는 무엇이 다른가', speakerName: '조효식 팀장', speakerCompany: '인덴트코퍼레이션' },
-                  { time: '17:15 – 17:40', session: 'Q&A', title: '실무 Q&A 및 클로징', speaker: '연사 전원' },
+                  { time: '16:00 ~ 16:05', title: '오프닝', speaker: '연사 전원' },
+                  { time: '16:05 ~ 16:20', session: 'Session 01', title: '매출은 올랐는데, 왜 남는 게 없는가?', speakerName: '문미성 리드', speakerCompany: '고위드' },
+                  { time: '16:20 ~ 16:40', session: 'Session 02', title: 'SKU·채널·현금 숫자로 보는 진짜 수익', speakerName: '문미성 리드', speakerCompany: '고위드' },
+                  { time: '16:40 ~ 17:00', session: 'Session 03', title: "잘되는 코스메틱 기업의 '판관비'에 숨은 디테일", speakerName: '조효식 팀장', speakerCompany: '인덴트코퍼레이션' },
+                  { time: '17:00 ~ 17:10', title: '실무 Q&A 및 패널토크', speaker: '연사 전원' },
                 ].map((item, i) => (
                   <div key={i} style={{ display: 'grid', gridTemplateColumns: '140px 1fr 160px', gap: '1rem', padding: '1.25rem 0', borderBottom: '1px solid #2a2a2a', alignItems: 'center' }}>
                     <div style={{ fontSize: '0.9375rem', fontWeight: '600', color: '#fff' }}>{item.time}</div>
@@ -165,27 +164,21 @@ export default function CosmeticGrowthWebinarPage() {
               {[
                 {
                   num: '01', title: '매출은 올랐는데, 왜 남는 게 없는가?',
-                  speaker: '문미성 리드 · GoWid 고객전략팀',
+                  speaker: '문미성 리드 · 고위드 고객전략팀',
                   points: ['광고비가 매출보다 빠르게 증가하는 구간 진단', '히트 SKU에 프로모션이 몰리며 마진이 눌리는 구조', '채널 확장 후 오히려 현금이 빠듯해진 실제 사례'],
                   highlight: "'성장처럼 보이는 구조적 왜곡'을 커머스 기업의 실제 데이터로 점검",
                 },
                 {
-                  num: '02', title: 'SKU·채널·현금 — 숫자로 보는 진짜 수익의 디테일',
-                  speaker: '문미성 리드 · GoWid 고객전략팀',
+                  num: '02', title: 'SKU·채널·현금 숫자로 보는 진짜 수익',
+                  speaker: '문미성 리드 · 고위드 고객전략팀',
                   points: ['올리브영 프로모션 후 남는 돈, 쿠팡 로켓그로스의 실제 마진', '히트 상품이 사실은 적자인 경우 — 공헌이익 재산출', '선생산·선매입, 광고비 선집행, 채널별 정산 시차가 겹치는 현금 압박 구간'],
                   highlight: '수익과 현금 흐름을 함께 재설계하는 프레임워크 제시',
                 },
                 {
-                  num: '03', title: '마케팅 전략이 수익 구조를 결정한다',
+                  num: '03', title: "잘되는 코스메틱 기업의 '판관비'에 숨은 디테일",
                   speaker: '조효식 팀장 · 인덴트코퍼레이션 마케팅팀',
                   points: ['신제품 런칭 중심 전략, UGC·인플루언서 확산, 프로모션 반복, 히트 SKU 의존 — 각 패턴 분석', 'ROAS가 높아도 이익이 줄어드는 구간은 어디인가', '어떤 전략이 구조적으로 건강한지'],
                   highlight: '26년에 집중해야 할 마케팅 포트폴리오 제시',
-                },
-                {
-                  num: '04', title: '오래 가는 코스메틱 브랜드는 무엇이 다른가',
-                  speaker: '조효식 팀장 · 인덴트코퍼레이션 마케팅팀',
-                  points: ['단기 매출 vs 장기 브랜드 — 전략의 결정적 차이', '코스메틱 브랜드 대표가 지금 점검해야 할 체크리스트'],
-                  highlight: '26년 하반기를 준비하는 실행 가이드',
                 },
               ].map((s, i) => (
                 <div key={i} style={{ background: '#222', borderRadius: '0.75rem', padding: '1.5rem', marginBottom: '1rem' }}>
