@@ -87,11 +87,14 @@ export default function CosmeticGrowthWebinarPage() {
         </section>
 
         {/* 이런 분들께 추천합니다 */}
-        <section className="report-section" style={{ background: '#111111' }}>
+        <section className="report-section" style={{ background: '#151f15' }}>
           <div className="report-container">
-            <div style={{ maxWidth: '720px', margin: '0 auto', textAlign: 'center' }}>
-              <p style={{ fontSize: '0.875rem', fontWeight: '600', color: '#5CDB5C', letterSpacing: '1px', marginBottom: '0.75rem' }}>이런 분들께 추천합니다</p>
-              <div style={{ display: 'flex', flexDirection: 'column', gap: '0.75rem', textAlign: 'left' }}>
+            <div style={{ maxWidth: '800px', margin: '0 auto', textAlign: 'center' }}>
+              <h2 className="report-h2" style={{ textAlign: 'center', marginBottom: '1rem', color: '#fff', wordBreak: 'keep-all' }}>이런 분들께 추천합니다</h2>
+              <p style={{ fontSize: '1rem', color: '#888', marginBottom: '2.5rem', lineHeight: '1.6' }}>
+                아래에 해당하신다면, 이 웨비나가 답이 됩니다.
+              </p>
+              <div style={{ display: 'flex', flexDirection: 'column', gap: '0.75rem', maxWidth: '600px', margin: '0 auto' }}>
                 {[
                   <>매출은 성장하는데 <strong style={{ color: '#fff' }}>실제 이익이 줄어드는 느낌</strong>을 받고 있는 코스메틱 브랜드 대표</>,
                   <>올리브영·쿠팡·자사몰 등 <strong style={{ color: '#fff' }}>멀티 채널 운영 중</strong> 채널별 실제 수익성을 점검하고 싶은 경영진</>,
@@ -99,14 +102,18 @@ export default function CosmeticGrowthWebinarPage() {
                   <>광고비 선집행·선매입으로 <strong style={{ color: '#fff' }}>현금 흐름이 빠듯해진</strong> 재무·운영 담당자</>,
                   <>26년 마케팅 포트폴리오와 수익 구조를 <strong style={{ color: '#fff' }}>동시에 재설계</strong>하고 싶은 코스메틱 브랜드 실무진</>,
                 ].map((text, i) => (
-                  <div key={i} style={{ display: 'flex', alignItems: 'flex-start', gap: '0.875rem', padding: '0.5rem 0' }}>
+                  <div key={i} style={{ display: 'flex', alignItems: 'flex-start', gap: '0.875rem', background: 'rgba(92, 219, 92, 0.06)', border: '1px solid rgba(92, 219, 92, 0.15)', borderRadius: '0.75rem', padding: '1rem 1.25rem', textAlign: 'left' }}>
                     <div style={{ flexShrink: 0, width: '1.5rem', height: '1.5rem', background: '#5CDB5C', borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', marginTop: '0.125rem' }}>
                       <svg viewBox="0 0 14 14" fill="none" width="14" height="14"><path d="M3 7L6 10L11 4" stroke="#111" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" /></svg>
                     </div>
-                    <p style={{ fontSize: '1.0625rem', lineHeight: '1.6', color: '#d0d0d0', margin: 0 }}>{text}</p>
+                    <p style={{ fontSize: '0.9375rem', lineHeight: '1.6', color: '#d0d0d0', margin: 0 }}>{text}</p>
                   </div>
                 ))}
               </div>
+
+              <button onClick={scrollToApply} className="report-button-primary" style={{ marginTop: '2.5rem', background: '#5CDB5C', color: '#111', boxShadow: '0 4px 20px rgba(92, 219, 92, 0.3)' }}>
+                무료 참가 신청하기
+              </button>
             </div>
           </div>
         </section>
