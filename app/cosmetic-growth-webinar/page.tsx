@@ -5,14 +5,14 @@ import Image from 'next/image';
 
 export default function CosmeticGrowthWebinarPage() {
   const [openFaq, setOpenFaq] = useState<number | null>(0);
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   const toggleFaq = (index: number) => {
     setOpenFaq(openFaq === index ? null : index);
   };
 
-  const scrollToApply = () => {
-    document.getElementById('apply')?.scrollIntoView({ behavior: 'smooth' });
-  };
+  const openModal = () => setIsModalOpen(true);
+  const closeModal = () => setIsModalOpen(false);
 
   return (
     <>
@@ -24,8 +24,8 @@ export default function CosmeticGrowthWebinarPage() {
               <a href="https://gowid.com" className="report-brand" target="_blank" rel="noopener noreferrer">
                 <Image src="/Group 626579.png" alt="GOWID" width={84} height={28} priority />
               </a>
-              <button className="report-nav-button" onClick={scrollToApply} style={{ background: '#5CDB5C', color: '#111' }}>
-                무료 신청하기
+              <button className="report-nav-button" onClick={openModal} style={{ background: '#5CDB5C', color: '#111' }}>
+                무료 웨비나 신청하기
               </button>
             </div>
           </div>
@@ -96,22 +96,22 @@ export default function CosmeticGrowthWebinarPage() {
               </p>
               <div style={{ display: 'flex', flexDirection: 'column', gap: '0.75rem', maxWidth: '600px', margin: '0 auto' }}>
                 {[
-                  <>매출은 성장하는데 <strong style={{ color: '#fff' }}>실제 이익이 줄어드는 느낌</strong>을<br />받고 있는 코스메틱 브랜드 대표</>,
-                  <>올리브영·쿠팡·자사몰 등 <strong style={{ color: '#fff' }}>멀티 채널 운영 중</strong><br />채널별 실제 수익성을 점검하고 싶은 경영진</>,
-                  <><strong style={{ color: '#fff' }}>히트 상품 의존, 프로모션 반복</strong> 패턴에서 벗어나<br />지속 가능한 성장 전략을 찾는 마케팅 리더</>,
-                  <>광고비 선집행·선매입으로 <strong style={{ color: '#fff' }}>현금 흐름이 빠듯해진</strong><br />재무·운영 담당자</>,
-                  <>26년 마케팅 포트폴리오와 수익 구조를<br /><strong style={{ color: '#fff' }}>동시에 재설계</strong>하고 싶은 코스메틱 브랜드 실무진</>,
+                  <>매출은 성장하는데 <strong>실제 이익이 줄어드는 느낌</strong>을<br />받고 있는 코스메틱 브랜드 대표</>,
+                  <>올리브영·쿠팡·자사몰 등 <strong>멀티 채널 운영 중</strong><br />채널별 실제 수익성을 점검하고 싶은 경영진</>,
+                  <><strong>히트 상품 의존, 프로모션 반복</strong> 패턴에서 벗어나<br />지속 가능한 성장 전략을 찾는 마케팅 리더</>,
+                  <>광고비 선집행·선매입으로 <strong>현금 흐름이 빠듯해진</strong><br />재무·운영 담당자</>,
+                  <>26년 마케팅 포트폴리오와 수익 구조를<br /><strong>동시에 재설계</strong>하고 싶은 코스메틱 브랜드 실무진</>,
                 ].map((text, i) => (
                   <div key={i} style={{ display: 'flex', alignItems: 'center', gap: '1.25rem', background: 'rgba(92, 219, 92, 0.06)', border: '1px solid rgba(92, 219, 92, 0.15)', borderRadius: '0.75rem', padding: '1rem 1.25rem', textAlign: 'left' }}>
                     <div style={{ flexShrink: 0, width: '1.5rem', height: '1.5rem', background: '#5CDB5C', borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
                       <svg viewBox="0 0 14 14" fill="none" width="14" height="14"><path d="M3 7L6 10L11 4" stroke="#111" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" /></svg>
                     </div>
-                    <p style={{ fontSize: '1.2rem', lineHeight: '1.6', color: '#d0d0d0', margin: 0 }}>{text}</p>
+                    <p style={{ fontSize: '1.2rem', lineHeight: '1.6', color: '#fff', margin: 0 }}>{text}</p>
                   </div>
                 ))}
               </div>
 
-              <button onClick={scrollToApply} className="report-button-primary" style={{ marginTop: '2.5rem', background: '#5CDB5C', color: '#111', boxShadow: '0 4px 20px rgba(92, 219, 92, 0.3)' }}>
+              <button onClick={openModal} className="report-button-primary" style={{ marginTop: '2.5rem', background: '#5CDB5C', color: '#111', boxShadow: '0 4px 20px rgba(92, 219, 92, 0.3)' }}>
                 무료 웨비나 신청하기
               </button>
             </div>
@@ -314,26 +314,19 @@ export default function CosmeticGrowthWebinarPage() {
           </div>
         </section>
 
-        {/* 최종 CTA + 신청 폼 (= report-section-cta 패턴) */}
-        <section className="report-section" id="apply" style={{ background: '#111111', textAlign: 'center' }}>
+        {/* 최종 CTA (= report-section-cta 패턴) */}
+        <section className="report-section report-section-cta" style={{ background: '#111111', textAlign: 'center' }}>
           <div className="report-container">
-            <div style={{ maxWidth: '640px', margin: '0 auto' }}>
+            <div className="report-cta-content">
               <p style={{ fontSize: '1rem', color: '#888', margin: '0 0 0.5rem 0' }}>
                 수익 구조 × 마케팅 전략,<br className="desktop-br" /> 실전 데이터로 답을 드립니다.
               </p>
-              <h3 className="report-h3" style={{ color: '#fff', marginBottom: '2rem' }}>
+              <h3 className="report-h3" style={{ color: '#fff' }}>
                 <strong>3월 19일,<br className="desktop-br" /> 지금 무료로 신청하세요.</strong>
               </h3>
-              <p style={{ fontSize: '0.875rem', color: '#888', marginBottom: '2rem' }}>
-                참가자 모집은 조기 마감될 수 있습니다.
-              </p>
-              <div style={{ background: '#fff', borderRadius: '0.75rem', overflow: 'hidden', minHeight: '700px' }}>
-                <iframe
-                  src="https://growth.recatch.cc/workflows/yrpgficjik"
-                  style={{ width: '100%', minHeight: '700px', border: 'none' }}
-                  title="웨비나 신청 폼"
-                />
-              </div>
+              <button onClick={openModal} className="report-button-cta" style={{ background: '#5CDB5C', color: '#111', boxShadow: '0 4px 20px rgba(92, 219, 92, 0.3)' }}>
+                무료 웨비나 신청하기
+              </button>
             </div>
           </div>
         </section>
@@ -380,6 +373,26 @@ export default function CosmeticGrowthWebinarPage() {
           </div>
         </footer>
       </div>
+
+      {/* 리캐치 폼 모달 */}
+      {isModalOpen && (
+        <div className="modal-overlay" onClick={closeModal}>
+          <div className="modal-content" onClick={(e) => e.stopPropagation()} style={{ maxWidth: '560px', padding: 0 }}>
+            <button className="modal-close" onClick={closeModal} aria-label="닫기">✕</button>
+            <div style={{ padding: '1.5rem 1.5rem 0' }}>
+              <h2 className="modal-title">무료 웨비나 신청</h2>
+              <p className="modal-description">3월 19일(목) 오후 4시 | 고속 성장 코스메틱 브랜드의 성공 포뮬러</p>
+            </div>
+            <div style={{ padding: '1rem 0 0', minHeight: '500px' }}>
+              <iframe
+                src="https://growth.recatch.cc/workflows/yrpgficjik"
+                style={{ width: '100%', minHeight: '500px', border: 'none' }}
+                title="웨비나 신청 폼"
+              />
+            </div>
+          </div>
+        </div>
+      )}
     </>
   );
 }
