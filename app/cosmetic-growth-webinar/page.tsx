@@ -207,6 +207,7 @@ export default function CosmeticGrowthWebinarPage() {
                     </div>
                   </div>
                 ))}
+              </div>
             </div>
           </div>
         </section>
