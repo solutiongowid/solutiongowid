@@ -165,7 +165,7 @@ export default function CosmeticGrowthWebinarPage() {
                   },
                   {
                     time: '16:20 ~ 16:40', session: 'Session 02', title: 'SKU·채널·현금 숫자로 보는 진짜 수익', speakerName: '문미성 리드', speakerCompany: '고위드',
-                    details: ['올리브영 프로모션 후 남는 돈, 쿠팡 로켓그로스의 실제 마진', '히트 상품이 사실은 적자인 경우 — 공헌이익 재산출', '선생산·선매입, 광고비 선집행, 채널별 정산 시차가 겹치는 현금 압박 구간'],
+                    details: ['올리브영 프로모션 후 남는 돈, 쿠팡 로켓그로스 실제 마진', '히트 상품이 사실은 적자인 경우 — 공헌이익 재산출', '선매입·광고비 선집행, 채널별 정산 시차가 겹치는 현금 압박'],
                     highlight: '수익과 현금 흐름을 함께 재설계하는 프레임워크 제시',
                   },
                   {
@@ -175,32 +175,27 @@ export default function CosmeticGrowthWebinarPage() {
                   { time: '17:00 ~ 17:10', title: '실무 Q&A 및 패널토크', speaker: '연사 전원' },
                 ].map((item, i) => (
                   <div key={i} style={{ padding: '1.25rem 0', borderBottom: '1px solid #2a2a2a' }}>
-                    <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: item.details ? '0.5rem' : '0' }}>
-                      <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
-                        <span style={{ fontSize: '0.75rem', color: '#888', whiteSpace: 'nowrap' }}>{item.time}</span>
-                        {item.session && <span style={{ fontSize: '0.75rem', fontWeight: '700', color: '#5CDB5C' }}>{item.session}</span>}
-                      </div>
-                      <span style={{ fontSize: '0.75rem', color: '#999', whiteSpace: 'nowrap' }}>
-                        {item.speaker || (<><span style={{ color: '#5CDB5C', fontWeight: '600' }}>{item.speakerName}</span> · {item.speakerCompany}</>)}
-                      </span>
-                    </div>
-                    <div style={{ fontSize: '0.875rem', fontWeight: '600', color: '#fff', marginBottom: item.details ? '0.5rem' : '0' }}>{item.title}</div>
+                    <div style={{ fontSize: '0.75rem', color: '#888', marginBottom: '0.25rem' }}>{item.time}</div>
+                    {item.session && <div style={{ fontSize: '0.75rem', fontWeight: '700', color: '#5CDB5C', marginBottom: '0.25rem' }}>{item.session}</div>}
+                    <div style={{ fontSize: '0.875rem', fontWeight: '600', color: '#fff', marginBottom: item.details ? '0.75rem' : '0' }}>{item.title}</div>
                     {item.details && (
                       <ul style={{ listStyle: 'none', padding: 0, margin: 0 }}>
                         {item.details.map((d, j) => (
-                          <li key={j} style={{ fontSize: '0.75rem', lineHeight: '1.6', color: '#999', paddingLeft: '0.75rem', position: 'relative', marginBottom: '0.2rem' }}>
-                            <span style={{ position: 'absolute', left: 0, top: '0.45rem', width: '0.25rem', height: '0.25rem', background: '#5CDB5C', borderRadius: '50%', display: 'block' }} />
+                          <li key={j} style={{ fontSize: '0.7rem', lineHeight: '1.6', color: '#999', paddingLeft: '0.75rem', position: 'relative', marginBottom: '0.2rem' }}>
+                            <span style={{ position: 'absolute', left: 0, top: '0.4rem', width: '0.25rem', height: '0.25rem', background: '#5CDB5C', borderRadius: '50%', display: 'block' }} />
                             {d}
                           </li>
                         ))}
                         {item.highlight && (
-                          <li style={{ fontSize: '0.75rem', lineHeight: '1.6', color: '#999', paddingLeft: '0.75rem', position: 'relative' }}>
-                            <span style={{ position: 'absolute', left: 0, top: '0.45rem', width: '0.25rem', height: '0.25rem', background: '#5CDB5C', borderRadius: '50%', display: 'block' }} />
+                          <li style={{ fontSize: '0.7rem', lineHeight: '1.6', color: '#999', paddingLeft: '0.75rem', position: 'relative' }}>
+                            <span style={{ position: 'absolute', left: 0, top: '0.4rem', width: '0.25rem', height: '0.25rem', background: '#5CDB5C', borderRadius: '50%', display: 'block' }} />
                             {item.highlight}
                           </li>
                         )}
                       </ul>
                     )}
+                    {!item.details && item.speaker && <div style={{ fontSize: '0.75rem', color: '#999', marginTop: '0.125rem' }}>{item.speaker}</div>}
+                    {item.speakerName && <div style={{ fontSize: '0.75rem', color: '#999', marginTop: '0.5rem' }}><span style={{ color: '#5CDB5C', fontWeight: '600' }}>{item.speakerName}</span> · {item.speakerCompany}</div>}
                   </div>
                 ))}
               </div>
