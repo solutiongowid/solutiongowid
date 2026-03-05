@@ -66,7 +66,7 @@ export default function CosmeticGrowthWebinarPage() {
         <section className="report-section" style={{ background: '#1a1a1a', padding: '5rem 0' }}>
           <div className="report-container">
             <div style={{ maxWidth: '720px', margin: '0 auto', textAlign: 'center' }}>
-              <p style={{ fontSize: '0.875rem', fontWeight: '600', color: '#5CDB5C', letterSpacing: '1px', marginBottom: '0.75rem' }}>행사 소개</p>
+              <h2 className="report-h2" style={{ color: '#fff', textAlign: 'center', marginBottom: '1.5rem' }}>행사 소개</h2>
               <h2 style={{ fontSize: '2rem', fontWeight: '800', color: '#5CDB5C', lineHeight: '1.45', marginBottom: '2.5rem', wordBreak: 'keep-all' }}>
                 매출은 올랐는데, 왜 남는 게 없을까요?
               </h2>
