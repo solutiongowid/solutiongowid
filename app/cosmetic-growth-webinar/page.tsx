@@ -60,46 +60,23 @@ export default function CosmeticGrowthWebinarPage() {
         </section>
 
         {/* 도입부 - Pain Point */}
-        <section className="report-section" style={{ background: '#1a1a1a' }}>
+        <section className="report-section" style={{ background: '#1a1a1a', padding: '5rem 0' }}>
           <div className="report-container">
-            <div style={{ maxWidth: '640px', margin: '0 auto', textAlign: 'center' }}>
-              <p style={{ fontSize: '0.875rem', fontWeight: '600', color: '#5CDB5C', letterSpacing: '1px', marginBottom: '0.75rem' }}>PROBLEM</p>
-              <h2 className="report-h2" style={{ color: '#fff', textAlign: 'center', marginBottom: '1.5rem' }}>
-                매출은 올랐는데,<br /><span style={{ color: '#5CDB5C' }}>왜 남는 게 없을까요?</span>
+            <div style={{ maxWidth: '720px', margin: '0 auto', textAlign: 'center' }}>
+              <h2 style={{ fontSize: '2rem', fontWeight: '800', color: '#5CDB5C', lineHeight: '1.45', marginBottom: '2.5rem', wordBreak: 'keep-all' }}>
+                매출은 올랐는데, 왜 남는 게 없을까요?
               </h2>
-              <p style={{ fontSize: '1.0625rem', color: '#b0b0b0', lineHeight: '1.75', marginBottom: '2.5rem' }}>
-                광고 최적화, 멀티 채널 입점, 신제품 사이클 가속 —<br className="desktop-br" />
-                공식대로 했는데 체감 수익이 줄어든 코스메틱 브랜드가 늘고 있습니다.
+              <p style={{ fontSize: '1.0625rem', color: '#b0b0b0', lineHeight: '1.9', marginBottom: '1.5rem' }}>
+                광고 최적화, 멀티 채널 입점, 신제품 사이클 가속 —<br />
+                <strong style={{ color: '#fff' }}>공식대로 했는데 체감 수익이 줄어든 코스메틱 브랜드가 늘고 있습니다.</strong>
               </p>
-
-              {/* 구분선 */}
-              <div style={{ width: '40px', height: '2px', background: '#333', margin: '0 auto 2.5rem' }} />
-
-              <div style={{ textAlign: 'left' }}>
-                <div style={{ background: '#222', borderLeft: '3px solid #5CDB5C', borderRadius: '0 0.75rem 0.75rem 0', padding: '1.25rem 1.5rem', marginBottom: '0.875rem' }}>
-                  <p style={{ fontSize: '1rem', lineHeight: '1.6', color: '#d0d0d0', margin: 0 }}>
-                    <strong style={{ color: '#fff' }}>광고비가 매출보다 빠르게 증가</strong>하고 있는데, 줄이면 매출이 빠질까 걱정입니다.
-                  </p>
-                </div>
-                <div style={{ background: '#222', borderLeft: '3px solid #5CDB5C', borderRadius: '0 0.75rem 0.75rem 0', padding: '1.25rem 1.5rem', marginBottom: '0.875rem' }}>
-                  <p style={{ fontSize: '1rem', lineHeight: '1.6', color: '#d0d0d0', margin: 0 }}>
-                    <strong style={{ color: '#fff' }}>히트 SKU에 프로모션이 몰리며 마진이 눌리고</strong>, 정작 수익에 기여하는 상품이 뭔지 모호합니다.
-                  </p>
-                </div>
-                <div style={{ background: '#222', borderLeft: '3px solid #5CDB5C', borderRadius: '0 0.75rem 0.75rem 0', padding: '1.25rem 1.5rem' }}>
-                  <p style={{ fontSize: '1rem', lineHeight: '1.6', color: '#d0d0d0', margin: 0 }}>
-                    <strong style={{ color: '#fff' }}>채널 확장 후 오히려 현금이 빠듯해지는 구조</strong> — 흑자인데 통장 잔고는 늘 빠듯합니다.
-                  </p>
-                </div>
-              </div>
-
-              {/* 구분선 */}
-              <div style={{ width: '40px', height: '2px', background: '#333', margin: '2.5rem auto' }} />
-
-              <p style={{ fontSize: '1.0625rem', color: '#b0b0b0', lineHeight: '1.8' }}>
-                고위드와 인덴트코퍼레이션이<br />
-                <strong style={{ color: '#5CDB5C', fontSize: '1.125rem' }}>수익 구조 × 마케팅 전략</strong> 양쪽에서<br />
-                실전 데이터를 기반으로 답을 드립니다.
+              <p style={{ fontSize: '1.0625rem', color: '#b0b0b0', lineHeight: '1.9', marginBottom: '1.5rem' }}>
+                광고비가 매출보다 빠르게 증가하고, 히트 SKU에 프로모션이 몰리며 마진이 눌리고,<br />
+                채널 확장 후 오히려 현금이 빠듯해지는 구조.
+              </p>
+              <p style={{ fontSize: '1.0625rem', color: '#b0b0b0', lineHeight: '1.9' }}>
+                고위드와 인덴트코퍼레이션과 함께<br />
+                <strong style={{ color: '#fff' }}>&lsquo;성장처럼 보이는 구조적 왜곡&rsquo;을 짚고, 26년에 진짜 되는 전략에 집중하세요.</strong>
               </p>
             </div>
           </div>
