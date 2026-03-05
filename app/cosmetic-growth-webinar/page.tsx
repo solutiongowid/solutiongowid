@@ -96,17 +96,17 @@ export default function CosmeticGrowthWebinarPage() {
               </p>
               <div style={{ display: 'flex', flexDirection: 'column', gap: '0.75rem', maxWidth: '600px', margin: '0 auto' }}>
                 {[
-                  <>매출은 성장하는데 <strong style={{ color: '#fff' }}>실제 이익이 줄어드는 느낌</strong>을 받고 있는 코스메틱 브랜드 대표</>,
-                  <>올리브영·쿠팡·자사몰 등 <strong style={{ color: '#fff' }}>멀티 채널 운영 중</strong> 채널별 실제 수익성을 점검하고 싶은 경영진</>,
-                  <><strong style={{ color: '#fff' }}>히트 상품 의존, 프로모션 반복</strong> 패턴에서 벗어나 지속 가능한 성장 전략을 찾는 마케팅 리더</>,
-                  <>광고비 선집행·선매입으로 <strong style={{ color: '#fff' }}>현금 흐름이 빠듯해진</strong> 재무·운영 담당자</>,
-                  <>26년 마케팅 포트폴리오와 수익 구조를 <strong style={{ color: '#fff' }}>동시에 재설계</strong>하고 싶은 코스메틱 브랜드 실무진</>,
+                  <>매출은 성장하는데 <strong style={{ color: '#fff' }}>실제 이익이 줄어드는 느낌</strong>을<br />받고 있는 코스메틱 브랜드 대표</>,
+                  <>올리브영·쿠팡·자사몰 등 <strong style={{ color: '#fff' }}>멀티 채널 운영 중</strong><br />채널별 실제 수익성을 점검하고 싶은 경영진</>,
+                  <><strong style={{ color: '#fff' }}>히트 상품 의존, 프로모션 반복</strong> 패턴에서 벗어나<br />지속 가능한 성장 전략을 찾는 마케팅 리더</>,
+                  <>광고비 선집행·선매입으로 <strong style={{ color: '#fff' }}>현금 흐름이 빠듯해진</strong><br />재무·운영 담당자</>,
+                  <>26년 마케팅 포트폴리오와 수익 구조를<br /><strong style={{ color: '#fff' }}>동시에 재설계</strong>하고 싶은 코스메틱 브랜드 실무진</>,
                 ].map((text, i) => (
                   <div key={i} style={{ display: 'flex', alignItems: 'flex-start', gap: '0.875rem', background: 'rgba(92, 219, 92, 0.06)', border: '1px solid rgba(92, 219, 92, 0.15)', borderRadius: '0.75rem', padding: '1rem 1.25rem', textAlign: 'left' }}>
-                    <div style={{ flexShrink: 0, width: '1.5rem', height: '1.5rem', background: '#5CDB5C', borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', marginTop: '0.125rem' }}>
+                    <div style={{ flexShrink: 0, width: '1.5rem', height: '1.5rem', background: '#5CDB5C', borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', marginTop: '0.25rem' }}>
                       <svg viewBox="0 0 14 14" fill="none" width="14" height="14"><path d="M3 7L6 10L11 4" stroke="#111" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" /></svg>
                     </div>
-                    <p style={{ fontSize: '0.9375rem', lineHeight: '1.6', color: '#d0d0d0', margin: 0 }}>{text}</p>
+                    <p style={{ fontSize: '1.2rem', lineHeight: '1.6', color: '#d0d0d0', margin: 0 }}>{text}</p>
                   </div>
                 ))}
               </div>
