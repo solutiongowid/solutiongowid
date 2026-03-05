@@ -102,8 +102,8 @@ export default function CosmeticGrowthWebinarPage() {
                   <>광고비 선집행·선매입으로 <strong style={{ color: '#fff' }}>현금 흐름이 빠듯해진</strong><br />재무·운영 담당자</>,
                   <>26년 마케팅 포트폴리오와 수익 구조를<br /><strong style={{ color: '#fff' }}>동시에 재설계</strong>하고 싶은 코스메틱 브랜드 실무진</>,
                 ].map((text, i) => (
-                  <div key={i} style={{ display: 'flex', alignItems: 'flex-start', gap: '0.875rem', background: 'rgba(92, 219, 92, 0.06)', border: '1px solid rgba(92, 219, 92, 0.15)', borderRadius: '0.75rem', padding: '1rem 1.25rem', textAlign: 'left' }}>
-                    <div style={{ flexShrink: 0, width: '1.5rem', height: '1.5rem', background: '#5CDB5C', borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', marginTop: '0.25rem' }}>
+                  <div key={i} style={{ display: 'flex', alignItems: 'center', gap: '1.25rem', background: 'rgba(92, 219, 92, 0.06)', border: '1px solid rgba(92, 219, 92, 0.15)', borderRadius: '0.75rem', padding: '1rem 1.25rem', textAlign: 'left' }}>
+                    <div style={{ flexShrink: 0, width: '1.5rem', height: '1.5rem', background: '#5CDB5C', borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
                       <svg viewBox="0 0 14 14" fill="none" width="14" height="14"><path d="M3 7L6 10L11 4" stroke="#111" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" /></svg>
                     </div>
                     <p style={{ fontSize: '1.2rem', lineHeight: '1.6', color: '#d0d0d0', margin: 0 }}>{text}</p>
