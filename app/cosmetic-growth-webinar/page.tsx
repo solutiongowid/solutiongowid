@@ -119,19 +119,23 @@ export default function CosmeticGrowthWebinarPage() {
         </section>
 
         {/* 발표 기업 소개 */}
-        <section className="report-section" style={{ background: '#111111' }}>
+        <section className="report-section" style={{ background: '#151f15' }}>
           <div className="report-container">
             <div style={{ maxWidth: '800px', margin: '0 auto' }}>
               <h2 className="report-h2" style={{ textAlign: 'center', marginBottom: '2rem', color: '#fff' }}>발표 기업 소개</h2>
               <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1.5rem' }}>
                 <div style={{ background: '#1a1a1a', borderRadius: '0.75rem', padding: '2rem 1.5rem' }}>
-                  <p style={{ fontSize: '1.375rem', fontWeight: '800', color: '#5CDB5C', marginBottom: '0.75rem' }}>GoWid</p>
+                  <div style={{ marginBottom: '0.75rem' }}>
+                    <Image src="/Group 626579.png" alt="GOWID" width={84} height={28} />
+                  </div>
                   <p style={{ fontSize: '0.9375rem', lineHeight: '1.7', color: '#b0b0b0' }}>
                     커머스 기업 전용 법인카드·자금 운영 솔루션을 제공하는 핀테크 기업. 387개 커머스 기업의 실제 재무 데이터를 분석하며, 성장하면서도 돈이 남는 구조를 만들 수 있도록 돕습니다.
                   </p>
                 </div>
                 <div style={{ background: '#1a1a1a', borderRadius: '0.75rem', padding: '2rem 1.5rem' }}>
-                  <p style={{ fontSize: '1.375rem', fontWeight: '800', color: '#fff', marginBottom: '0.75rem' }}>indent</p>
+                  <div style={{ marginBottom: '0.75rem' }}>
+                    <Image src="/indent-logo.png" alt="indent" width={100} height={28} style={{ objectFit: 'contain' }} />
+                  </div>
                   <p style={{ fontSize: '0.9375rem', lineHeight: '1.7', color: '#b0b0b0' }}>
                     B2B 세일즈 자동화 플랫폼 &lsquo;리캐치&rsquo;를 운영하는 마케팅 테크 기업. 다수의 코스메틱 브랜드와 협업하며 축적한 데이터 기반 마케팅 전략 인사이트를 공유합니다.
                   </p>
