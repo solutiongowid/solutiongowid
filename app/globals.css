@@ -1199,3 +1199,30 @@ html, body {
   }
 }
 
+
+/* 코스메틱 웨비나 - 발표 기업 소개 반응형 */
+.cosmetic-company-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+}
+
+/* 코스메틱 웨비나 - 타임테이블 PC/모바일 토글 */
+.cosmetic-timetable-pc {
+  display: block;
+}
+.cosmetic-timetable-mobile {
+  display: none;
+}
+
+@media (max-width: 768px) {
+  .cosmetic-company-grid {
+    grid-template-columns: 1fr;
+  }
+  .cosmetic-timetable-pc {
+    display: none;
+  }
+  .cosmetic-timetable-mobile {
+    display: block;
+  }
+}
