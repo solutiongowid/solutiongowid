@@ -32,17 +32,32 @@ export default function CosmeticGrowthWebinarPage() {
         </nav>
 
         {/* 히어로 섹션 - 썸네일 */}
-        <header className="report-header" style={{ background: '#111111', padding: '6rem 0 0' }}>
+        <header className="report-header" style={{ background: '#111111', padding: '8rem 0 0' }}>
           <div className="report-container">
-            <div style={{ maxWidth: '600px', margin: '0 auto' }}>
-              <Image
-                src="/cosmetic-webinar-thumbnail.png"
-                alt="고속 성장 코스메틱 브랜드의 성공 포뮬러 - GoWid x 인덴트코퍼레이션 웨비나"
-                width={1200}
-                height={630}
-                priority
-                style={{ width: '100%', height: 'auto', display: 'block', borderRadius: '1rem' }}
-              />
+            <div style={{ maxWidth: '800px', margin: '0 auto', textAlign: 'center' }}>
+              <div style={{ marginBottom: '1.5rem' }}>
+                <span className="badge" style={{ fontSize: '0.875rem', padding: '0.5rem 1.25rem', background: 'rgba(92, 219, 92, 0.1)', color: '#5CDB5C' }}>3월 19일 (목) 오후 4시 | 온라인 웨비나</span>
+              </div>
+              <h1 className="report-h1" style={{ textAlign: 'center', marginBottom: '1.5rem', color: '#fff' }}>
+                <strong>
+                  고속 성장 코스메틱<br />브랜드의 성공 포뮬러
+                </strong>
+              </h1>
+              <p className="report-subtitle" style={{ textAlign: 'center', marginBottom: '2.5rem', maxWidth: '600px', marginLeft: 'auto', marginRight: 'auto', color: '#b0b0b0' }}>
+                세 달 해봤으니 감이 왔다.<br className="desktop-br" />
+                26년 전략을 해부하고,<br />
+                진짜 되는 곳에 집중하자
+              </p>
+              <div style={{ maxWidth: '600px', margin: '0 auto' }}>
+                <Image
+                  src="/cosmetic-webinar-thumbnail.png"
+                  alt="고속 성장 코스메틱 브랜드의 성공 포뮬러 - GoWid x 인덴트코퍼레이션 웨비나"
+                  width={1200}
+                  height={630}
+                  priority
+                  style={{ width: '100%', height: 'auto', display: 'block', borderRadius: '1rem' }}
+                />
+              </div>
             </div>
           </div>
         </header>
