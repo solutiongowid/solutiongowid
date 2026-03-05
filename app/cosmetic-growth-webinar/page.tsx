@@ -126,20 +126,35 @@ export default function CosmeticGrowthWebinarPage() {
 
               {/* 타임테이블 */}
               <div style={{ marginBottom: '3rem' }}>
+                {/* 헤더 */}
+                <div style={{ display: 'grid', gridTemplateColumns: '140px 1fr 160px', gap: '1rem', padding: '1rem 0', borderBottom: '1px solid #333' }}>
+                  <div style={{ fontSize: '0.875rem', color: '#888' }}>시간</div>
+                  <div style={{ fontSize: '0.875rem', color: '#888' }}>세션</div>
+                  <div style={{ fontSize: '0.875rem', color: '#888' }}>연사</div>
+                </div>
                 {[
-                  { time: '16:00 – 16:05', title: '오프닝' },
-                  { time: '16:05 – 16:20', session: 'Session 01', title: '매출은 올랐는데, 왜 남는 게 없는가?', speaker: '문미성 리드 · GoWid' },
-                  { time: '16:20 – 16:40', session: 'Session 02', title: 'SKU·채널·현금 — 숫자로 보는 진짜 수익의 디테일', speaker: '문미성 리드 · GoWid' },
-                  { time: '16:40 – 17:00', session: 'Session 03', title: '마케팅 전략이 수익 구조를 결정한다', speaker: '조효식 팀장 · 인덴트코퍼레이션' },
-                  { time: '17:00 – 17:15', session: 'Session 04', title: '오래 가는 코스메틱 브랜드는 무엇이 다른가', speaker: '조효식 팀장 · 인덴트코퍼레이션' },
-                  { time: '17:15 – 17:40', title: '실무 Q&A 및 클로징' },
+                  { time: '16:00 – 16:05', title: '오프닝', speaker: '전체' },
+                  { time: '16:05 – 16:20', session: 'Session 01', title: '매출은 올랐는데, 왜 남는 게 없는가?', speakerName: '문미성 리드', speakerCompany: 'GoWid' },
+                  { time: '16:20 – 16:40', session: 'Session 02', title: 'SKU·채널·현금 — 숫자로 보는 진짜 수익의 디테일', speakerName: '문미성 리드', speakerCompany: 'GoWid' },
+                  { time: '16:40 – 17:00', session: 'Session 03', title: '마케팅 전략이 수익 구조를 결정한다', speakerName: '조효식 팀장', speakerCompany: '인덴트코퍼레이션' },
+                  { time: '17:00 – 17:15', session: 'Session 04', title: '오래 가는 코스메틱 브랜드는 무엇이 다른가', speakerName: '조효식 팀장', speakerCompany: '인덴트코퍼레이션' },
+                  { time: '17:15 – 17:40', session: 'Q&A', title: '실무 Q&A 및 클로징', speaker: '연사 전원' },
                 ].map((item, i) => (
-                  <div key={i} style={{ display: 'flex', gap: '1.25rem', padding: '1.5rem 0', borderBottom: i < 5 ? '1px solid #2a2a2a' : 'none', alignItems: 'flex-start' }}>
-                    <div style={{ flexShrink: 0, width: '130px', fontSize: '0.875rem', fontWeight: '600', color: '#5CDB5C', paddingTop: '0.125rem' }}>{item.time}</div>
+                  <div key={i} style={{ display: 'grid', gridTemplateColumns: '140px 1fr 160px', gap: '1rem', padding: '1.25rem 0', borderBottom: '1px solid #2a2a2a', alignItems: 'center' }}>
+                    <div style={{ fontSize: '0.9375rem', fontWeight: '600', color: '#fff' }}>{item.time}</div>
                     <div>
-                      {item.session && <div style={{ fontSize: '0.8125rem', fontWeight: '600', color: '#888', marginBottom: '0.25rem' }}>{item.session}</div>}
-                      <div style={{ fontSize: '1.0625rem', fontWeight: '700', color: '#fff', marginBottom: '0.25rem' }}>{item.title}</div>
-                      {item.speaker && <div style={{ fontSize: '0.875rem', color: '#888' }}>{item.speaker}</div>}
+                      {item.session && <div style={{ fontSize: '0.875rem', fontWeight: '700', color: '#5CDB5C', marginBottom: '0.25rem' }}>{item.session}</div>}
+                      <div style={{ fontSize: '0.9375rem', color: '#fff' }}>{item.title}</div>
+                    </div>
+                    <div>
+                      {item.speaker ? (
+                        <div style={{ fontSize: '0.9375rem', color: '#999' }}>{item.speaker}</div>
+                      ) : (
+                        <>
+                          <div style={{ fontSize: '0.9375rem', fontWeight: '600', color: '#5CDB5C' }}>{item.speakerName}</div>
+                          <div style={{ fontSize: '0.875rem', color: '#999' }}>{item.speakerCompany}</div>
+                        </>
+                      )}
                     </div>
                   </div>
                 ))}
