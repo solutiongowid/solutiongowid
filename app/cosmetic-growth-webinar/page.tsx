@@ -252,7 +252,7 @@ export default function CosmeticGrowthWebinarPage() {
                   { icon: '🔍', title: '마케팅 전략 진단\n1:1 무료 상담권', desc: '인덴트코퍼레이션 제공' },
                   { icon: '📥', title: '웨비나 발표 자료\nPDF 제공', desc: '당일 참석자 대상' },
                 ].map((b, i) => (
-                  <div key={i} style={{ background: '#222', border: '1px solid #2a2a2a', borderRadius: '0.75rem', padding: '1.5rem 1.25rem' }}>
+                  <div key={i} style={{ background: '#222', border: '1px solid #2a2a2a', borderRadius: '0.75rem', padding: '1.5rem 1.25rem', textAlign: 'center' }}>
                     <div style={{ fontSize: '1.75rem', marginBottom: '0.75rem' }}>{b.icon}</div>
                     <h4 style={{ fontSize: '1rem', fontWeight: '700', color: '#fff', marginBottom: '0.375rem', lineHeight: '1.4', whiteSpace: 'pre-line' }}>{b.title}</h4>
                     <p style={{ fontSize: '0.875rem', color: '#888', margin: 0 }}>{b.desc}</p>
