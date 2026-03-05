@@ -176,7 +176,12 @@ export default function CosmeticGrowthWebinarPage() {
                 ].map((item, i) => (
                   <div key={i} style={{ padding: '1.25rem 0', borderBottom: '1px solid #2a2a2a' }}>
                     <div style={{ fontSize: '0.75rem', color: '#888', marginBottom: '0.25rem' }}>{item.time}</div>
-                    {item.session && <div style={{ fontSize: '0.75rem', fontWeight: '700', color: '#5CDB5C', marginBottom: '0.25rem' }}>{item.session}</div>}
+                    {item.session && (
+                      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '0.25rem' }}>
+                        <span style={{ fontSize: '0.75rem', fontWeight: '700', color: '#5CDB5C' }}>{item.session}</span>
+                        <span style={{ fontSize: '0.75rem', color: '#999' }}><span style={{ color: '#5CDB5C', fontWeight: '600' }}>{item.speakerName}</span> · {item.speakerCompany}</span>
+                      </div>
+                    )}
                     <div style={{ fontSize: '0.875rem', fontWeight: '600', color: '#fff', marginBottom: item.details ? '0.75rem' : '0' }}>{item.title}</div>
                     {item.details && (
                       <ul style={{ listStyle: 'none', padding: 0, margin: 0 }}>
@@ -195,7 +200,6 @@ export default function CosmeticGrowthWebinarPage() {
                       </ul>
                     )}
                     {!item.details && item.speaker && <div style={{ fontSize: '0.75rem', color: '#999', marginTop: '0.125rem' }}>{item.speaker}</div>}
-                    {item.speakerName && <div style={{ fontSize: '0.75rem', color: '#999', marginTop: '0.5rem' }}><span style={{ color: '#5CDB5C', fontWeight: '600' }}>{item.speakerName}</span> · {item.speakerCompany}</div>}
                   </div>
                 ))}
               </div>
