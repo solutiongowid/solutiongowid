@@ -191,7 +191,7 @@ export default function CosmeticGrowthWebinarPage() {
                             </li>
                           ))}
                           {item.highlight && (
-                            <li style={{ fontSize: '0.8125rem', lineHeight: '1.6', color: '#fff', fontWeight: '600', paddingLeft: '0.875rem', position: 'relative' }}>
+                            <li style={{ fontSize: '0.8125rem', lineHeight: '1.6', color: '#999', paddingLeft: '0.875rem', position: 'relative' }}>
                               <span style={{ position: 'absolute', left: 0, top: '0.5rem', width: '0.3rem', height: '0.3rem', background: '#5CDB5C', borderRadius: '50%', display: 'block' }} />
                               {item.highlight}
                             </li>
