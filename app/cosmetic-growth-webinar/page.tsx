@@ -330,7 +330,7 @@ export default function CosmeticGrowthWebinarPage() {
                 수익 구조 × 마케팅 전략,<br className="desktop-br" /> 실전 데이터로 답을 드립니다.
               </p>
               <h3 className="report-h3" style={{ color: '#fff' }}>
-                <strong>3월 19일,<br className="desktop-br" /> 지금 무료로 신청하세요.</strong>
+                <strong>성장을 원하는 커머스라면,<br /> 이번 웨비나를 놓치지마세요.</strong>
               </h3>
               <button onClick={openModal} className="report-button-cta" style={{ background: '#5CDB5C', color: '#111', boxShadow: '0 4px 20px rgba(92, 219, 92, 0.3)' }}>
                 무료 웨비나 신청하기
@@ -342,7 +342,7 @@ export default function CosmeticGrowthWebinarPage() {
         {/* 유의사항 */}
         <section style={{ background: '#111111', padding: '3rem 0', borderTop: '1px solid #2a2a2a' }}>
           <div className="report-container">
-            <div style={{ maxWidth: '640px', margin: '0 auto' }}>
+            <div style={{ maxWidth: '640px', margin: '0 auto', textAlign: 'center' }}>
               <p style={{ fontSize: '0.875rem', fontWeight: '600', color: '#666', marginBottom: '1rem' }}>유의사항</p>
               {[
                 '본 행사는 온라인(Zoom)에서 진행되며, 참가 확정자분들께 접속 링크를 안내드립니다.',
@@ -352,8 +352,8 @@ export default function CosmeticGrowthWebinarPage() {
                 '실시간 Q&A 시간에 자유롭게 질문하고 연사의 답변을 받으실 수 있습니다.',
                 '참석자 혜택은 광고성 정보 수신 및 제3자 제공 동의를 한 당일 참석자에게 제공합니다.',
               ].map((notice, i) => (
-                <p key={i} style={{ fontSize: '0.8125rem', lineHeight: '1.6', color: '#555', paddingLeft: '0.75rem', position: 'relative', marginBottom: '0.375rem' }}>
-                  <span style={{ position: 'absolute', left: 0 }}>·</span>
+                <p key={i} style={{ fontSize: '0.8125rem', lineHeight: '1.6', color: '#555', marginBottom: '0.375rem' }}>
+                  <span>· </span>
                   {notice}
                 </p>
               ))}
