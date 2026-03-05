@@ -44,7 +44,7 @@ export default function CosmeticGrowthWebinarPage() {
                 </strong>
               </h1>
               <p className="report-subtitle" style={{ textAlign: 'center', marginBottom: '2.5rem', maxWidth: '600px', marginLeft: 'auto', marginRight: 'auto', color: '#b0b0b0' }}>
-                세 달 해봤으니 감이 왔다.<br className="desktop-br" />
+                1~3월, 해봤으니 감이 왔다.<br className="desktop-br" />
                 26년 전략을 해부하고,<br />
                 진짜 되는 곳에 집중하자
               </p>
