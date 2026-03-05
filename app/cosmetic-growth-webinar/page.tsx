@@ -157,16 +157,43 @@ export default function CosmeticGrowthWebinarPage() {
                 </div>
                 {[
                   { time: '16:00 ~ 16:05', title: '오프닝', speaker: '연사 전원' },
-                  { time: '16:05 ~ 16:20', session: 'Session 01', title: '매출은 올랐는데, 왜 남는 게 없는가?', speakerName: '문미성 리드', speakerCompany: '고위드' },
-                  { time: '16:20 ~ 16:40', session: 'Session 02', title: 'SKU·채널·현금 숫자로 보는 진짜 수익', speakerName: '문미성 리드', speakerCompany: '고위드' },
-                  { time: '16:40 ~ 17:00', session: 'Session 03', title: "잘되는 코스메틱 기업의 '판관비'에 숨은 디테일", speakerName: '조효식 팀장', speakerCompany: '인덴트코퍼레이션' },
+                  {
+                    time: '16:05 ~ 16:20', session: 'Session 01', title: '매출은 올랐는데, 왜 남는 게 없는가?', speakerName: '문미성 리드', speakerCompany: '고위드',
+                    details: ['광고비가 매출보다 빠르게 증가하는 구간 진단', '히트 SKU에 프로모션이 몰리며 마진이 눌리는 구조', '채널 확장 후 오히려 현금이 빠듯해진 실제 사례'],
+                    highlight: "'성장처럼 보이는 구조적 왜곡'을 커머스 기업의 실제 데이터로 점검",
+                  },
+                  {
+                    time: '16:20 ~ 16:40', session: 'Session 02', title: 'SKU·채널·현금 숫자로 보는 진짜 수익', speakerName: '문미성 리드', speakerCompany: '고위드',
+                    details: ['올리브영 프로모션 후 남는 돈, 쿠팡 로켓그로스의 실제 마진', '히트 상품이 사실은 적자인 경우 — 공헌이익 재산출', '선생산·선매입, 광고비 선집행, 채널별 정산 시차가 겹치는 현금 압박 구간'],
+                    highlight: '수익과 현금 흐름을 함께 재설계하는 프레임워크 제시',
+                  },
+                  {
+                    time: '16:40 ~ 17:00', session: 'Session 03', title: "잘되는 코스메틱 기업의 '판관비'에 숨은 디테일", speakerName: '조효식 팀장', speakerCompany: '인덴트코퍼레이션',
+                    details: ['K뷰티 = 인플루언서 마케팅, 하지만 구체적인 방법론은 모두 다르다.', '성장세가 높은 곳들이 비용을 배분하는 방식은?', '스몰브랜드의 숨은 과제, 채용문제의 해결책은 AI 에이전트'],
+                  },
                   { time: '17:00 ~ 17:10', title: '실무 Q&A 및 패널토크', speaker: '연사 전원' },
                 ].map((item, i) => (
-                  <div key={i} style={{ display: 'grid', gridTemplateColumns: '140px 1fr 160px', gap: '1rem', padding: '1.25rem 0', borderBottom: '1px solid #2a2a2a', alignItems: 'center' }}>
+                  <div key={i} style={{ display: 'grid', gridTemplateColumns: '140px 1fr 160px', gap: '1rem', padding: '1.25rem 0', borderBottom: '1px solid #2a2a2a', alignItems: item.details ? 'start' : 'center' }}>
                     <div style={{ fontSize: '0.9375rem', fontWeight: '600', color: '#fff' }}>{item.time}</div>
                     <div>
                       {item.session && <div style={{ fontSize: '0.875rem', fontWeight: '700', color: '#5CDB5C', marginBottom: '0.25rem' }}>{item.session}</div>}
-                      <div style={{ fontSize: '0.9375rem', color: '#fff' }}>{item.title}</div>
+                      <div style={{ fontSize: '0.9375rem', color: '#fff', marginBottom: item.details ? '0.75rem' : '0' }}>{item.title}</div>
+                      {item.details && (
+                        <ul style={{ listStyle: 'none', padding: 0, margin: 0 }}>
+                          {item.details.map((d, j) => (
+                            <li key={j} style={{ fontSize: '0.8125rem', lineHeight: '1.6', color: '#999', paddingLeft: '0.875rem', position: 'relative', marginBottom: '0.25rem' }}>
+                              <span style={{ position: 'absolute', left: 0, top: '0.5rem', width: '0.3rem', height: '0.3rem', background: '#5CDB5C', borderRadius: '50%', display: 'block' }} />
+                              {d}
+                            </li>
+                          ))}
+                          {item.highlight && (
+                            <li style={{ fontSize: '0.8125rem', lineHeight: '1.6', color: '#fff', fontWeight: '600', paddingLeft: '0.875rem', position: 'relative' }}>
+                              <span style={{ position: 'absolute', left: 0, top: '0.5rem', width: '0.3rem', height: '0.3rem', background: '#5CDB5C', borderRadius: '50%', display: 'block' }} />
+                              {item.highlight}
+                            </li>
+                          )}
+                        </ul>
+                      )}
                     </div>
                     <div>
                       {item.speaker ? (
@@ -180,91 +207,12 @@ export default function CosmeticGrowthWebinarPage() {
                     </div>
                   </div>
                 ))}
-              </div>
-
-              {/* 세션 카드 */}
-              <h3 className="report-h2" style={{ color: '#fff', textAlign: 'center', marginBottom: '2rem' }}>세션 상세</h3>
-              {[
-                {
-                  num: '01', title: '매출은 올랐는데, 왜 남는 게 없는가?',
-                  speaker: '문미성 리드 / GOWID 고객전략팀',
-                  quote: '광고 최적화 완료, 여기저기 입점, 신제품 사이클 가속 — 공식대로 했는데 체감 수익이 줄어든 사례를 짚습니다.',
-                  points: ['광고비가 매출보다 빠르게 증가하는 구간 진단', '히트 SKU에 프로모션이 몰리며 마진이 눌리는 구조', '채널 확장 후 오히려 현금이 빠듯해진 실제 사례'],
-                  highlight: "'성장처럼 보이는 구조적 왜곡'을 커머스 기업의 실제 데이터로 점검",
-                },
-                {
-                  num: '02', title: 'SKU·채널·현금 — 숫자로 보는 진짜 수익',
-                  speaker: '문미성 리드 / GOWID 고객전략팀',
-                  quote: '채널·SKU별 비용을 분리해 실제 공헌이익을 재산출하고, 흑자인데 현금이 없는 구조를 짚습니다.',
-                  points: ['올리브영 프로모션 후 남는 돈, 쿠팡 로켓그로스의 실제 마진', '히트 상품이 사실은 적자인 경우 — 공헌이익 재산출', '선생산·선매입, 광고비 선집행, 채널별 정산 시차가 겹치는 현금 압박 구간'],
-                  highlight: '수익과 현금 흐름을 함께 재설계하는 프레임워크 제시',
-                },
-                {
-                  num: '03', title: "잘되는 코스메틱 기업의 '판관비'에 숨은 디테일",
-                  speaker: '조효식 팀장 / 인덴트코퍼레이션 마케팅팀',
-                  quote: '잘되는 코스메틱 브랜드는 어떻게 운영하는지 알려드립니다.',
-                  points: ['K뷰티 = 인플루언서 마케팅, 하지만 구체적인 방법론은 모두 다르다.', '성장세가 높은 곳들이 비용을 배분하는 방식은?', '스몰브랜드의 숨은 과제, 채용문제의 해결책은 AI 에이전트'],
-                  highlight: '',
-                },
-              ].map((s, i) => (
-                <div key={i} style={{ background: '#222', borderRadius: '0.75rem', padding: '1.5rem', marginBottom: '1rem' }}>
-                  <span style={{ display: 'inline-block', fontSize: '0.75rem', fontWeight: '700', color: '#111', background: '#5CDB5C', padding: '0.25rem 0.75rem', borderRadius: '1.25rem', marginBottom: '0.75rem' }}>
-                    SESSION {s.num}
-                  </span>
-                  <h4 style={{ fontSize: '1.125rem', fontWeight: '700', color: '#fff', marginBottom: '0.375rem', lineHeight: '1.4' }}>{s.title}</h4>
-                  <p style={{ fontSize: '0.875rem', color: '#5CDB5C', marginBottom: '1rem' }}>{s.speaker}</p>
-                  <div style={{ background: '#2a2a2a', borderRadius: '0.5rem', padding: '1rem 1.25rem', marginBottom: '1rem' }}>
-                    <p style={{ fontSize: '0.9375rem', lineHeight: '1.6', color: '#999', margin: 0, fontStyle: 'italic' }}>{s.quote}</p>
-                  </div>
-                  <ul style={{ listStyle: 'none', padding: 0, margin: 0 }}>
-                    {s.points.map((point, j) => (
-                      <li key={j} style={{ fontSize: '0.9375rem', lineHeight: '1.6', color: '#b0b0b0', paddingLeft: '1rem', position: 'relative', marginBottom: '0.5rem' }}>
-                        <span style={{ position: 'absolute', left: 0, top: '0.6rem', width: '0.375rem', height: '0.375rem', background: '#5CDB5C', borderRadius: '50%', display: 'block' }} />
-                        {point}
-                      </li>
-                    ))}
-                    {s.highlight && (
-                      <li style={{ fontSize: '0.9375rem', lineHeight: '1.6', color: '#fff', fontWeight: '600', paddingLeft: '1rem', position: 'relative' }}>
-                        <span style={{ position: 'absolute', left: 0, top: '0.6rem', width: '0.375rem', height: '0.375rem', background: '#5CDB5C', borderRadius: '50%', display: 'block' }} />
-                        {s.highlight}
-                      </li>
-                    )}
-                  </ul>
-                </div>
-              ))}
-            </div>
-          </div>
-        </section>
-
-        {/* 연사 소개 (= 신뢰 섹션 패턴) */}
-        <section className="report-section" style={{ background: '#111111' }}>
-          <div className="report-container">
-            <div style={{ textAlign: 'center' }}>
-              <h2 className="report-h2" style={{ textAlign: 'center', marginBottom: '1rem', color: '#fff', fontSize: '1.625rem' }}>
-                수익 구조 × 마케팅 전략,<br />양쪽에서 답을 드립니다.
-              </h2>
-              <p style={{ fontSize: '1rem', color: '#888', marginBottom: '2.5rem' }}>고위드 & 인덴트코퍼레이션 연사진</p>
-              <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1.5rem', maxWidth: '500px', margin: '0 auto' }}>
-                {[
-                  { name: '문미성', role: '리드 · 고객전략팀', company: 'GoWid', initial: '문' },
-                  { name: '조효식', role: '팀장 · 마케팅팀', company: '인덴트코퍼레이션', initial: '조' },
-                ].map((s, i) => (
-                  <div key={i} style={{ background: '#1a1a1a', borderRadius: '0.75rem', padding: '2rem 1.5rem', textAlign: 'center' }}>
-                    <div style={{ width: '5rem', height: '5rem', borderRadius: '50%', background: '#222', margin: '0 auto 1rem', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '2rem', color: '#5CDB5C', fontWeight: '800' }}>
-                      {s.initial}
-                    </div>
-                    <h3 style={{ fontSize: '1.125rem', fontWeight: '700', color: '#fff', marginBottom: '0.25rem' }}>{s.name}</h3>
-                    <p style={{ fontSize: '0.875rem', color: '#888', marginBottom: '0.25rem' }}>{s.role}</p>
-                    <p style={{ fontSize: '0.875rem', fontWeight: '600', color: '#5CDB5C' }}>{s.company}</p>
-                  </div>
-                ))}
-              </div>
             </div>
           </div>
         </section>
 
         {/* 참석자 혜택 */}
-        <section className="report-section" style={{ background: '#1a1a1a' }}>
+        <section className="report-section" style={{ background: '#111111' }}>
           <div className="report-container">
             <div style={{ maxWidth: '800px', margin: '0 auto' }}>
               <h2 className="report-h2" style={{ textAlign: 'center', marginBottom: '2rem', color: '#fff' }}>참석자 혜택</h2>
