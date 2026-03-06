@@ -2,6 +2,7 @@
 
 import { useState } from 'react';
 import Image from 'next/image';
+import Script from 'next/script';
 
 export default function CosmeticGrowthWebinarPage() {
   const [openFaq, setOpenFaq] = useState<number | null>(0);
@@ -16,6 +17,22 @@ export default function CosmeticGrowthWebinarPage() {
 
   return (
     <>
+      <Script
+        id="recatch-embed-script"
+        strategy="afterInteractive"
+        dangerouslySetInnerHTML={{
+          __html: `
+            (function (r, e, c, a, t, ch) {
+              var h=r.getElementsByTagName(e)[0],i=r.createElement(c);
+              i.async=true;
+              i.defer=true;
+              i.id='recatch-embed-script';
+              i.src='https://cdn.recatch.cc/recatch-embed.iife.js?t='+a[0]+'&b='+a[1]+'&c='+t+'&tr=true&th='+ch+'&mode=sdk';
+              h.prepend(i);
+            })(document,'head','script',['growth','yrpgficjik'],'recatch-form','light');
+          `,
+        }}
+      />
       <div className="report-page" style={{ background: '#111111', color: '#ffffff' }}>
         {/* 네비게이션 */}
         <nav className="report-nav" style={{ background: 'rgba(17, 17, 17, 0.95)', borderBottom: '1px solid rgba(255,255,255,0.08)' }}>
@@ -400,8 +417,6 @@ export default function CosmeticGrowthWebinarPage() {
                 src="https://growth.recatch.cc/workflows/yrpgficjik"
                 style={{ width: '100%', minHeight: '500px', border: 'none' }}
                 title="웨비나 신청 폼"
-                allow="forms"
-                sandbox="allow-scripts allow-same-origin allow-forms allow-popups allow-top-navigation"
               />
             </div>
           </div>
