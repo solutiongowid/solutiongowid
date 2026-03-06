@@ -43,7 +43,7 @@ export default function CosmeticGrowthWebinarPage() {
                   고속 성장 코스메틱<br />브랜드의 성공 포뮬러
                 </strong>
               </h1>
-              <p className="report-subtitle" style={{ textAlign: 'center', marginBottom: '2.5rem', maxWidth: '600px', marginLeft: 'auto', marginRight: 'auto', color: '#b0b0b0', fontStyle: 'italic' }}>
+              <p className="report-subtitle" style={{ textAlign: 'center', marginBottom: '2.5rem', maxWidth: '600px', marginLeft: 'auto', marginRight: 'auto', color: '#b0b0b0', fontStyle: 'italic', whiteSpace: 'nowrap' }}>
                 1~3월, 해봤으니 감이 왔다. 26년 전략을 해부하고, 진짜 되는 곳에 집중하자
               </p>
               <div style={{ maxWidth: '600px', margin: '0 auto' }}>
@@ -65,7 +65,7 @@ export default function CosmeticGrowthWebinarPage() {
           <div className="report-container">
             <div style={{ maxWidth: '720px', margin: '0 auto', textAlign: 'center' }}>
               <h2 className="report-h2" style={{ color: '#fff', textAlign: 'center', marginBottom: '1.5rem' }}>행사 소개</h2>
-              <h2 style={{ fontSize: '1.4rem', fontWeight: '800', color: '#5CDB5C', lineHeight: '1.45', marginBottom: '2.5rem', whiteSpace: 'nowrap' }}>
+              <h2 style={{ fontSize: '1.75rem', fontWeight: '800', color: '#5CDB5C', lineHeight: '1.45', marginBottom: '2.5rem', whiteSpace: 'nowrap' }}>
                 &ldquo;매출은 올랐는데, 왜 남는 게 없을까요?&rdquo;
               </h2>
               <p style={{ fontSize: '1.0625rem', color: '#fff', lineHeight: '1.9', marginBottom: '1.5rem' }}>
@@ -156,9 +156,9 @@ export default function CosmeticGrowthWebinarPage() {
               <div className="cosmetic-timetable-pc" style={{ marginBottom: '3rem' }}>
                 {/* 헤더 */}
                 <div style={{ display: 'grid', gridTemplateColumns: '140px 1fr 160px', gap: '1rem', padding: '1rem 0', borderBottom: '1px solid #333' }}>
-                  <div style={{ fontSize: '0.9375rem', color: '#888' }}>시간</div>
-                  <div style={{ fontSize: '0.9375rem', color: '#888' }}>세션</div>
-                  <div style={{ fontSize: '0.9375rem', color: '#888' }}>연사</div>
+                  <div style={{ fontSize: '1rem', color: '#888' }}>시간</div>
+                  <div style={{ fontSize: '1rem', color: '#888' }}>세션</div>
+                  <div style={{ fontSize: '1rem', color: '#888' }}>연사</div>
                 </div>
                 {[
                   { time: '16:00 ~ 16:05', title: '오프닝', speaker: '연사 전원' },
@@ -179,20 +179,20 @@ export default function CosmeticGrowthWebinarPage() {
                   { time: '17:00 ~ 17:10', title: '실무 Q&A 및 패널토크', speaker: '연사 전원' },
                 ].map((item, i) => (
                   <div key={i} style={{ display: 'grid', gridTemplateColumns: '140px 1fr 160px', gap: '1rem', padding: '1.25rem 0', borderBottom: '1px solid #2a2a2a', alignItems: item.details ? 'start' : 'center' }}>
-                    <div style={{ fontSize: '1rem', fontWeight: '600', color: '#fff' }}>{item.time}</div>
+                    <div style={{ fontSize: '1.0625rem', fontWeight: '600', color: '#fff' }}>{item.time}</div>
                     <div>
-                      {item.session && <div style={{ fontSize: '0.9375rem', fontWeight: '700', color: '#5CDB5C', marginBottom: '0.25rem' }}>{item.session}</div>}
-                      <div style={{ fontSize: '1rem', color: '#fff', marginBottom: item.details ? '0.75rem' : '0' }}>{item.title}</div>
+                      {item.session && <div style={{ fontSize: '1rem', fontWeight: '700', color: '#5CDB5C', marginBottom: '0.25rem' }}>{item.session}</div>}
+                      <div style={{ fontSize: '1.0625rem', color: '#fff', marginBottom: item.details ? '0.75rem' : '0' }}>{item.title}</div>
                       {item.details && (
                         <ul style={{ listStyle: 'none', padding: 0, margin: 0 }}>
                           {item.details.map((d, j) => (
-                            <li key={j} style={{ fontSize: '0.875rem', lineHeight: '1.6', color: '#999', paddingLeft: '0.875rem', position: 'relative', marginBottom: '0.25rem' }}>
+                            <li key={j} style={{ fontSize: '0.9375rem', lineHeight: '1.6', color: '#999', paddingLeft: '0.875rem', position: 'relative', marginBottom: '0.25rem' }}>
                               <span style={{ position: 'absolute', left: 0, top: '0.5rem', width: '0.3rem', height: '0.3rem', background: '#5CDB5C', borderRadius: '50%', display: 'block' }} />
                               {d}
                             </li>
                           ))}
                           {item.highlight && (
-                            <li style={{ fontSize: '0.875rem', lineHeight: '1.6', color: '#999', paddingLeft: '0.875rem', position: 'relative' }}>
+                            <li style={{ fontSize: '0.9375rem', lineHeight: '1.6', color: '#999', paddingLeft: '0.875rem', position: 'relative' }}>
                               <span style={{ position: 'absolute', left: 0, top: '0.5rem', width: '0.3rem', height: '0.3rem', background: '#5CDB5C', borderRadius: '50%', display: 'block' }} />
                               {item.highlight}
                             </li>
@@ -202,11 +202,11 @@ export default function CosmeticGrowthWebinarPage() {
                     </div>
                     <div>
                       {item.speaker ? (
-                        <div style={{ fontSize: '1rem', color: '#999' }}>{item.speaker}</div>
+                        <div style={{ fontSize: '1.0625rem', color: '#999' }}>{item.speaker}</div>
                       ) : (
                         <>
-                          <div style={{ fontSize: '1rem', fontWeight: '600', color: '#5CDB5C' }}>{item.speakerName}</div>
-                          <div style={{ fontSize: '0.9375rem', color: '#999' }}>{item.speakerCompany}</div>
+                          <div style={{ fontSize: '1.0625rem', fontWeight: '600', color: '#5CDB5C' }}>{item.speakerName}</div>
+                          <div style={{ fontSize: '1rem', color: '#999' }}>{item.speakerCompany}</div>
                         </>
                       )}
                     </div>
@@ -235,31 +235,31 @@ export default function CosmeticGrowthWebinarPage() {
                   { time: '17:00 ~ 17:10', title: '실무 Q&A 및 패널토크', speaker: '연사 전원' },
                 ].map((item, i) => (
                   <div key={i} style={{ padding: '1.25rem 0', borderBottom: '1px solid #2a2a2a' }}>
-                    <div style={{ fontSize: '0.75rem', color: '#888', marginBottom: '0.25rem' }}>{item.time}</div>
+                    <div style={{ fontSize: '0.8125rem', color: '#888', marginBottom: '0.25rem' }}>{item.time}</div>
                     {item.session && (
                       <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '0.625rem' }}>
-                        <span style={{ fontSize: '0.75rem', fontWeight: '700', color: '#5CDB5C' }}>{item.session}</span>
-                        <span style={{ fontSize: '0.75rem', color: '#999' }}><span style={{ color: '#5CDB5C', fontWeight: '600' }}>{item.speakerName}</span> · {item.speakerCompany}</span>
+                        <span style={{ fontSize: '0.8125rem', fontWeight: '700', color: '#5CDB5C' }}>{item.session}</span>
+                        <span style={{ fontSize: '0.8125rem', color: '#999' }}><span style={{ color: '#5CDB5C', fontWeight: '600' }}>{item.speakerName}</span> · {item.speakerCompany}</span>
                       </div>
                     )}
-                    <div style={{ fontSize: '0.875rem', fontWeight: '600', color: '#fff', marginBottom: item.details ? '0.75rem' : '0' }}>{item.title}</div>
+                    <div style={{ fontSize: '0.9375rem', fontWeight: '600', color: '#fff', marginBottom: item.details ? '0.75rem' : '0' }}>{item.title}</div>
                     {item.details && (
                       <ul style={{ listStyle: 'none', padding: 0, margin: 0 }}>
                         {item.details.map((d, j) => (
-                          <li key={j} style={{ fontSize: '0.8125rem', lineHeight: '1.6', color: '#999', paddingLeft: '0.75rem', position: 'relative', marginBottom: '0.2rem' }}>
+                          <li key={j} style={{ fontSize: '0.875rem', lineHeight: '1.6', color: '#999', paddingLeft: '0.75rem', position: 'relative', marginBottom: '0.2rem' }}>
                             <span style={{ position: 'absolute', left: 0, top: '0.4rem', width: '0.25rem', height: '0.25rem', background: '#5CDB5C', borderRadius: '50%', display: 'block' }} />
                             {d}
                           </li>
                         ))}
                         {item.highlight && (
-                          <li style={{ fontSize: '0.8125rem', lineHeight: '1.6', color: '#999', paddingLeft: '0.75rem', position: 'relative' }}>
+                          <li style={{ fontSize: '0.875rem', lineHeight: '1.6', color: '#999', paddingLeft: '0.75rem', position: 'relative' }}>
                             <span style={{ position: 'absolute', left: 0, top: '0.4rem', width: '0.25rem', height: '0.25rem', background: '#5CDB5C', borderRadius: '50%', display: 'block' }} />
                             {item.highlight}
                           </li>
                         )}
                       </ul>
                     )}
-                    {!item.details && item.speaker && <div style={{ fontSize: '0.75rem', color: '#999', marginTop: '0.125rem' }}>{item.speaker}</div>}
+                    {!item.details && item.speaker && <div style={{ fontSize: '0.8125rem', color: '#999', marginTop: '0.125rem' }}>{item.speaker}</div>}
                   </div>
                 ))}
               </div>
@@ -400,6 +400,8 @@ export default function CosmeticGrowthWebinarPage() {
                 src="https://growth.recatch.cc/workflows/yrpgficjik"
                 style={{ width: '100%', minHeight: '500px', border: 'none' }}
                 title="웨비나 신청 폼"
+                allow="forms"
+                sandbox="allow-scripts allow-same-origin allow-forms allow-popups allow-top-navigation"
               />
             </div>
           </div>
