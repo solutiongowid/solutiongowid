@@ -61,7 +61,7 @@ export default function CosmeticGrowthWebinarPage() {
                 </strong>
               </h1>
               <p className="report-subtitle" style={{ textAlign: 'center', marginBottom: '2.5rem', color: '#b0b0b0', fontStyle: 'italic', whiteSpace: 'nowrap' }}>
-                1~3월, 해봤으니 감이 왔다. 26년 전략을 해부하고, 진짜 되는 곳에 집중하자
+                1~3월, 해봤으니 감이 왔다.<br className="mobile-only-br" /> 26년 전략을 해부하고, 진짜 되는 곳에 집중하자
               </p>
               <div style={{ maxWidth: '600px', margin: '0 auto' }}>
                 <Image
@@ -82,8 +82,8 @@ export default function CosmeticGrowthWebinarPage() {
           <div className="report-container">
             <div style={{ maxWidth: '720px', margin: '0 auto', textAlign: 'center' }}>
               <h2 className="report-h2" style={{ color: '#fff', textAlign: 'center', marginBottom: '1.5rem' }}>행사 소개</h2>
-              <h2 style={{ fontSize: '1.75rem', fontWeight: '800', color: '#5CDB5C', lineHeight: '1.45', marginBottom: '2.5rem', whiteSpace: 'nowrap' }}>
-                &ldquo;매출은 올랐는데, 왜 남는 게 없을까요?&rdquo;
+              <h2 style={{ fontSize: '1.75rem', fontWeight: '800', color: '#5CDB5C', lineHeight: '1.45', marginBottom: '2.5rem' }}>
+                &ldquo;매출은 올랐는데,<br className="mobile-only-br" /> 왜 남는 게 없을까요?&rdquo;
               </h2>
               <p style={{ fontSize: '1.0625rem', color: '#fff', lineHeight: '1.9', marginBottom: '1.5rem' }}>
                 광고 최적화, 멀티 채널 입점, 신제품 사이클 가속 -<br />
@@ -155,7 +155,7 @@ export default function CosmeticGrowthWebinarPage() {
                     <Image src="/indent-logo.png" alt="indent" width={100} height={28} style={{ objectFit: 'contain' }} />
                   </div>
                   <p style={{ fontSize: '0.9375rem', lineHeight: '1.7', color: '#b0b0b0' }}>
-                    B2B 세일즈 자동화 플랫폼 &lsquo;리캐치&rsquo;를 운영하는 마케팅 테크 기업. 다수의 코스메틱 브랜드와 협업하며 축적한 데이터 기반 마케팅 전략 인사이트를 공유합니다.
+                    스프레이&amp;제리와콩나무 운영사, 인덴트코퍼레이션은 AI Agent와 UGC를 기반으로 이커머스 브랜드들의 글로벌 전환(Global Transformation)을 돕고 있습니다. 국내를 대표하는 K뷰티 기업을 비롯하여 600개 이상의 브랜드를 컨설팅하고 실제 마케팅 비용을 효율화하며 쌓은 인사이트를 공유드립니다.
                   </p>
                 </div>
               </div>
