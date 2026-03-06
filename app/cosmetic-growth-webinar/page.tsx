@@ -43,7 +43,7 @@ export default function CosmeticGrowthWebinarPage() {
                   고속 성장 코스메틱<br />브랜드의 성공 포뮬러
                 </strong>
               </h1>
-              <p className="report-subtitle" style={{ textAlign: 'center', marginBottom: '2.5rem', maxWidth: '600px', marginLeft: 'auto', marginRight: 'auto', color: '#b0b0b0', fontStyle: 'italic', whiteSpace: 'nowrap' }}>
+              <p className="report-subtitle" style={{ textAlign: 'center', marginBottom: '2.5rem', color: '#b0b0b0', fontStyle: 'italic', whiteSpace: 'nowrap' }}>
                 1~3월, 해봤으니 감이 왔다. 26년 전략을 해부하고, 진짜 되는 곳에 집중하자
               </p>
               <div style={{ maxWidth: '600px', margin: '0 auto' }}>
