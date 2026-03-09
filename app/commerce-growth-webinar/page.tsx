@@ -181,11 +181,11 @@ export default function CommerceGrowthWebinarPage() {
               </p>
               <div style={{ display: 'flex', flexDirection: 'column', gap: '0.75rem', maxWidth: '600px', margin: '0 auto' }}>
                 {[
-                  <>매출은 성장하는데 <strong>체감 수익이 줄어드는 느낌</strong>을<br />받고 있는 커머스 기업 대표</>,
-                  <>2개 이상 채널을 운영하며 <strong>채널별 실제 수익성을 점검</strong>하고<br />싶은 경영진</>,
-                  <>물동량은 늘었는데 <strong>물류 비용이 매출보다 빠르게 증가</strong>하는<br />운영 담당자</>,
-                  <>광고비 선집행·선매입으로 <strong>현금 흐름이 빠듯해진</strong><br />재무 담당자</>,
-                  <>하반기 성장을 위해 <strong>운영 구조와 현금 구조를 동시에 점검</strong>하고<br />싶은 실무진</>,
+                  <>매출은 성장하는데 <strong>체감 수익이 줄어드는 느낌</strong>을<br className="mobile-only-br" /> 받고 있는 커머스 기업 대표</>,
+                  <>2개 이상 채널을 운영하며 <strong>채널별 실제 수익성을</strong><br className="mobile-only-br" /> <strong>점검</strong>하고 싶은 경영진</>,
+                  <>물동량은 늘었는데 <strong>물류 비용이 매출보다 빠르게</strong><br className="mobile-only-br" /> <strong>증가</strong>하는 운영 담당자</>,
+                  <>광고비 선집행·선매입으로 <strong>현금 흐름이 빠듯해진</strong><br className="mobile-only-br" /> 재무 담당자</>,
+                  <>하반기 성장을 위해 <strong>운영 구조와 현금 구조를</strong><br className="mobile-only-br" /> <strong>동시에 점검</strong>하고 싶은 실무진</>,
                 ].map((text, i) => (
                   <div key={i} style={{ display: 'flex', alignItems: 'center', gap: '1.25rem', background: accentLight, border: `1px solid ${accentBorder}`, borderRadius: '0.75rem', padding: '1rem 1.25rem', textAlign: 'left' }}>
                     <div style={{ flexShrink: 0, width: '1.5rem', height: '1.5rem', background: accentColor, borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
