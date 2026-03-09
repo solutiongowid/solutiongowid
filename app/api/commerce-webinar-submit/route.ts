@@ -72,6 +72,7 @@ export async function POST(request: NextRequest) {
           position,
           question,
           serviceInterest,
+          timestamp,
           webinar: 'commerce-growth-webinar-2026-03-24',
         }),
       });
