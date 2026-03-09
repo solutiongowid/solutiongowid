@@ -39,7 +39,7 @@ export async function POST(request: NextRequest) {
           email,
           phone,
           question: question || null,
-          service_interest: serviceInterest || null,
+          service_interest: Array.isArray(serviceInterest) ? serviceInterest.join(', ') : serviceInterest || null,
           agree_privacy: agreePrivacy,
           submitted_at: timestamp || new Date().toISOString(),
           utm_source: utm_source || null,

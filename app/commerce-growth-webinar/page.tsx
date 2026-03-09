@@ -25,7 +25,7 @@ export default function CommerceGrowthWebinarPage() {
     email: '',
     phone: '',
     question: '',
-    serviceInterest: '',
+    serviceInterest: [] as string[],
     agreePrivacy: false,
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -81,7 +81,7 @@ export default function CommerceGrowthWebinarPage() {
       if (!response.ok) throw new Error(data.error || '제출에 실패했습니다.');
 
       setIsSuccess(true);
-      setFormData({ name: '', companyName: '', department: '', position: '', email: '', phone: '', question: '', serviceInterest: '', agreePrivacy: false });
+      setFormData({ name: '', companyName: '', department: '', position: '', email: '', phone: '', question: '', serviceInterest: [] as string[], agreePrivacy: false });
     } catch (error) {
       setSubmitError(error instanceof Error ? error.message : '제출 중 오류가 발생했습니다.');
     } finally {
@@ -558,11 +558,17 @@ export default function CommerceGrowthWebinarPage() {
                       {['고위드', '파스토'].map((service) => (
                         <label key={service} style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', cursor: 'pointer', fontSize: '0.9375rem', color: '#333' }}>
                           <input
-                            type="radio"
-                            name="serviceInterest"
+                            type="checkbox"
                             value={service}
-                            checked={formData.serviceInterest === service}
-                            onChange={handleChange}
+                            checked={formData.serviceInterest.includes(service)}
+                            onChange={(e) => {
+                              setFormData(prev => ({
+                                ...prev,
+                                serviceInterest: e.target.checked
+                                  ? [...prev.serviceInterest, service]
+                                  : prev.serviceInterest.filter(s => s !== service),
+                              }));
+                            }}
                             style={{ accentColor }}
                           />
                           {service}
