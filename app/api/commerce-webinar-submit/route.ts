@@ -18,6 +18,7 @@ export async function POST(request: NextRequest) {
       utm_source,
       utm_medium,
       utm_campaign,
+      utm_content,
     } = body;
 
     if (!name || !companyName || !department || !position || !email || !phone || !agreePrivacy) {
@@ -44,6 +45,7 @@ export async function POST(request: NextRequest) {
           utm_source: utm_source || null,
           utm_medium: utm_medium || null,
           utm_campaign: utm_campaign || null,
+          utm_content: utm_content || null,
         },
       ])
       .select();

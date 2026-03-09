@@ -6,7 +6,7 @@ import Image from 'next/image';
 export default function CommerceGrowthWebinarPage() {
   const [openFaq, setOpenFaq] = useState<number | null>(0);
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [utmParams, setUtmParams] = useState({ utm_source: '', utm_medium: '', utm_campaign: '' });
+  const [utmParams, setUtmParams] = useState({ utm_source: '', utm_medium: '', utm_campaign: '', utm_content: '' });
 
   useEffect(() => {
     const params = new URLSearchParams(window.location.search);
@@ -14,6 +14,7 @@ export default function CommerceGrowthWebinarPage() {
       utm_source: params.get('utm_source') || '',
       utm_medium: params.get('utm_medium') || '',
       utm_campaign: params.get('utm_campaign') || '',
+      utm_content: params.get('utm_content') || '',
     });
   }, []);
   const [formData, setFormData] = useState({
