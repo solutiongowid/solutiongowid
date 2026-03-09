@@ -124,6 +124,9 @@ export default function CommerceGrowthWebinarPage() {
               <p className="report-subtitle" style={{ textAlign: 'center', marginBottom: '2.5rem', color: '#666', fontStyle: 'italic' }}>
                 운영 구조를 해부하고,<br className="mobile-only-br" /> 현금 흐름을 재설계하다
               </p>
+              <p style={{ fontSize: '0.9375rem', color: accentColor, marginBottom: '1.5rem', fontWeight: '600' }}>
+                본 웨비나는 핵심 커머스 기업을 대상으로 소수 정예로 진행됩니다.
+              </p>
               <div style={{ maxWidth: '600px', margin: '0 auto' }}>
                 <Image
                   src="/commerce-webinar-thumbnail.png"
@@ -146,9 +149,6 @@ export default function CommerceGrowthWebinarPage() {
               <h2 style={{ fontSize: '1.75rem', fontWeight: '800', color: accentColor, lineHeight: '1.45', marginBottom: '2.5rem' }}>
                 &ldquo;매출이 늘어도<br className="mobile-only-br" /> 현금은 줄어들 수 있습니다.&rdquo;
               </h2>
-              <p style={{ fontSize: '1.0625rem', color: '#0B8059', lineHeight: '1.9', marginBottom: '1.5rem', fontWeight: '600' }}>
-                본 웨비나는 핵심 커머스 기업을 대상으로 소수 정예로 진행됩니다.
-              </p>
               <p style={{ fontSize: '1.0625rem', color: '#333', lineHeight: '1.9', marginBottom: '1.5rem' }}>
                 문제는 &lsquo;성장&rsquo;이 아니라 &lsquo;구조&rsquo;입니다.
               </p>
