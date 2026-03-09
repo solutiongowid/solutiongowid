@@ -211,7 +211,7 @@ export default function CommerceGrowthWebinarPage() {
               <div className="cosmetic-company-grid">
                 <div style={{ background: '#f7faf7', borderRadius: '0.75rem', padding: '2rem 1.5rem', border: `1px solid ${accentBorder}` }}>
                   <div style={{ marginBottom: '0.75rem' }}>
-                    <Image src="/gowid-logo.svg" alt="GOWID" width={84} height={28} />
+                    <Image src="/gowid-logotype.png" alt="GOWID" width={84} height={28} style={{ objectFit: 'contain' }} />
                   </div>
                   <p style={{ fontSize: '0.9375rem', lineHeight: '1.7', color: '#555' }}>
                     커머스 기업 전용 법인카드·자금 운영 솔루션을 제공하는 핀테크 기업입니다. 387개 커머스 기업의 실제 재무 데이터를 분석하며, 채널별 수익 구조 진단부터 현금흐름 재설계까지 — 커머스 기업이 &lsquo;성장하면서도 돈이 남는 구조&rsquo;를 만들 수 있도록 돕습니다.
