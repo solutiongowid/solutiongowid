@@ -381,7 +381,7 @@ export default function CommerceGrowthWebinarPage() {
                 {[
                   { icon: '📄', title: '커머스 벤치마크\n리포트 2026', desc: 'PDF 무료 제공' },
                   { icon: '💳', title: '고위드 법인카드\n한도 사전 조회', desc: '1:1 자금 운영 상담권' },
-                  { icon: '📦', title: '파스토 물류 구조 진단\n무료 상담권', desc: '1:1 무료 상담' },
+                  { icon: '📦', title: '파스토 물류 구조\n진단 무료 상담권', desc: '1:1 무료 상담' },
                   { icon: '📥', title: '웨비나 발표 자료\nPDF 제공', desc: '당일 참석자 대상' },
                 ].map((b, i) => (
                   <div key={i} style={{ background: '#fff', border: `1px solid ${accentBorder}`, borderRadius: '0.75rem', padding: '1.5rem 1.25rem', textAlign: 'center' }}>
