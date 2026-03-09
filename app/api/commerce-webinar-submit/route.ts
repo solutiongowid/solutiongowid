@@ -73,6 +73,10 @@ export async function POST(request: NextRequest) {
           question,
           serviceInterest,
           timestamp,
+          utm_source: utm_source || '',
+          utm_medium: utm_medium || '',
+          utm_campaign: utm_campaign || '',
+          utm_content: utm_content || '',
           webinar: 'commerce-growth-webinar-2026-03-24',
         }),
       });
