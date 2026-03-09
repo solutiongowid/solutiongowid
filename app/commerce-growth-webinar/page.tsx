@@ -1,42 +1,99 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect, FormEvent } from 'react';
 import Image from 'next/image';
-import Script from 'next/script';
 
 export default function CommerceGrowthWebinarPage() {
   const [openFaq, setOpenFaq] = useState<number | null>(0);
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [utmParams, setUtmParams] = useState({ utm_source: '', utm_medium: '', utm_campaign: '' });
+
+  useEffect(() => {
+    const params = new URLSearchParams(window.location.search);
+    setUtmParams({
+      utm_source: params.get('utm_source') || '',
+      utm_medium: params.get('utm_medium') || '',
+      utm_campaign: params.get('utm_campaign') || '',
+    });
+  }, []);
+  const [formData, setFormData] = useState({
+    name: '',
+    companyName: '',
+    department: '',
+    position: '',
+    email: '',
+    phone: '',
+    question: '',
+    serviceInterest: '',
+    agreePrivacy: false,
+  });
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitError, setSubmitError] = useState('');
+  const [isSuccess, setIsSuccess] = useState(false);
 
   const toggleFaq = (index: number) => {
     setOpenFaq(openFaq === index ? null : index);
   };
 
   const openModal = () => setIsModalOpen(true);
-  const closeModal = () => setIsModalOpen(false);
+  const closeModal = () => {
+    setIsModalOpen(false);
+    setIsSuccess(false);
+    setSubmitError('');
+  };
 
-  const accentColor = '#2E7D32';
-  const accentLight = 'rgba(46, 125, 50, 0.08)';
-  const accentBorder = 'rgba(46, 125, 50, 0.18)';
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    const { name, value, type } = e.target;
+    const checked = (e.target as HTMLInputElement).checked;
+    setFormData(prev => ({
+      ...prev,
+      [name]: type === 'checkbox' ? checked : value,
+    }));
+  };
+
+  const handleSubmit = async (e: FormEvent) => {
+    e.preventDefault();
+    if (isSubmitting) return;
+    setSubmitError('');
+
+    if (!formData.name.trim()) { setSubmitError('이름을 입력해주세요.'); return; }
+    if (!formData.companyName.trim()) { setSubmitError('회사명을 입력해주세요.'); return; }
+    if (!formData.department.trim()) { setSubmitError('부서를 입력해주세요.'); return; }
+    if (!formData.position.trim()) { setSubmitError('직급을 입력해주세요.'); return; }
+    if (!formData.email.trim()) { setSubmitError('회사 이메일을 입력해주세요.'); return; }
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email)) { setSubmitError('올바른 이메일 형식을 입력해주세요.'); return; }
+    if (!formData.phone.trim()) { setSubmitError('전화번호를 입력해주세요.'); return; }
+    if (!formData.agreePrivacy) { setSubmitError('개인정보 처리방침 및 마케팅 수신 동의가 필요합니다.'); return; }
+
+    setIsSubmitting(true);
+    try {
+      const now = new Date();
+      const kstTime = new Date(now.getTime() + (9 * 60 * 60 * 1000));
+      const formattedTimestamp = kstTime.toISOString().replace('T', ' ').substring(0, 19) + ' (KST)';
+
+      const response = await fetch('/api/commerce-webinar-submit', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ ...formData, timestamp: formattedTimestamp, ...utmParams }),
+      });
+      const data = await response.json();
+      if (!response.ok) throw new Error(data.error || '제출에 실패했습니다.');
+
+      setIsSuccess(true);
+      setFormData({ name: '', companyName: '', department: '', position: '', email: '', phone: '', question: '', serviceInterest: '', agreePrivacy: false });
+    } catch (error) {
+      setSubmitError(error instanceof Error ? error.message : '제출 중 오류가 발생했습니다.');
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
+
+  const accentColor = '#0B8059';
+  const accentLight = 'rgba(11, 128, 89, 0.08)';
+  const accentBorder = 'rgba(11, 128, 89, 0.18)';
 
   return (
     <>
-      <Script
-        id="recatch-embed-script"
-        strategy="afterInteractive"
-        dangerouslySetInnerHTML={{
-          __html: `
-            (function (r, e, c, a, t, ch) {
-              var h=r.getElementsByTagName(e)[0],i=r.createElement(c);
-              i.async=true;
-              i.defer=true;
-              i.id='recatch-embed-script';
-              i.src='https://cdn.recatch.cc/recatch-embed.iife.js?t='+a[0]+'&b='+a[1]+'&c='+t+'&tr=true&th='+ch+'&mode=sdk';
-              h.prepend(i);
-            })(document,'head','script',['growth','yrpgficjik'],'recatch-form','light');
-          `,
-        }}
-      />
       <div className="report-page" style={{ background: '#ffffff', color: '#222' }}>
         {/* 네비게이션 */}
         <nav className="report-nav" style={{ background: 'rgba(255, 255, 255, 0.97)', borderBottom: '1px solid #e8e8e8' }}>
@@ -135,7 +192,7 @@ export default function CommerceGrowthWebinarPage() {
                 ))}
               </div>
 
-              <button onClick={openModal} className="report-button-primary" style={{ marginTop: '2.5rem', background: accentColor, color: '#fff', boxShadow: '0 4px 20px rgba(46, 125, 50, 0.25)' }}>
+              <button onClick={openModal} className="report-button-primary" style={{ marginTop: '2.5rem', background: accentColor, color: '#fff', boxShadow: '0 4px 20px rgba(11, 128, 89, 0.25)' }}>
                 무료 웨비나 신청하기
               </button>
             </div>
@@ -184,18 +241,54 @@ export default function CommerceGrowthWebinarPage() {
                 </div>
                 {[
                   { time: '16:00 ~ 16:05', title: '오프닝', speaker: '연사 전원' },
-                  { time: '16:05 ~ 16:15', session: 'Session 01', title: '우리는 진짜 성장하고 있는가?', speakerName: '문미성 리드', speakerCompany: '고위드' },
-                  { time: '16:15 ~ 16:25', session: 'Session 02', title: "채널별 '진짜' 공헌이익 분해", speakerName: '문미성 리드', speakerCompany: '고위드' },
-                  { time: '16:25 ~ 16:45', session: 'Session 03', title: '성장 구간에서 드러나는 세 가지 구조적 신호', speakerName: '김영근 본부장', speakerCompany: '파스토' },
-                  { time: '16:45 ~ 17:00', session: 'Session 04', title: '구조를 바로 세운 다음: 현금 흐름 최적화', speakerName: '문미성 리드', speakerCompany: '고위드' },
-                  { time: '17:00 ~ 17:15', session: 'Session 05', title: '성장을 가속하는 기업은 무엇이 다른가', speakerName: '김영근 본부장', speakerCompany: '파스토' },
+                  {
+                    time: '16:05 ~ 16:15', session: 'Session 01', title: '우리는 진짜 성장하고 있는가?', speakerName: '문미성 리드', speakerCompany: '고위드',
+                    details: ['매출 증가 vs 체감 수익의 괴리', '채널 확장 이후 현금 감소 사례', '프로모션·정산 구조가 만드는 착시'],
+                    highlight: '매출이 늘수록 리스크도 함께 커지고 있지는 않은가?',
+                  },
+                  {
+                    time: '16:15 ~ 16:25', session: 'Session 02', title: "채널별 '진짜' 공헌이익 분해", speakerName: '문미성 리드', speakerCompany: '고위드',
+                    details: ['채널·공급처별 매출 구조 분해', '광고비, PG, 물류, 반품, 프로모션 완전 분해', '정산 주기 차이에 따른 현금 왜곡'],
+                    highlight: '흑자 채널과 현금 창출 채널은 다를 수 있다',
+                  },
+                  {
+                    time: '16:25 ~ 16:45', session: 'Session 03', title: '성장 구간에서 드러나는 세 가지 구조적 신호', speakerName: '김영근 본부장', speakerCompany: '파스토',
+                    details: ['물동량 증가 속도 대비 비용 통제 가능성', '피크 시즌에도 SLA 안정성 유지 여부', '재고 정확도가 수익 지표로 관리되는지 여부'],
+                    highlight: '구조가 준비되지 않은 상태에서 매출을 올리면 비용 곡선이 더 가파르게 상승한다',
+                  },
+                  {
+                    time: '16:45 ~ 17:00', session: 'Session 04', title: '구조를 바로 세운 다음: 현금 흐름 최적화', speakerName: '문미성 리드', speakerCompany: '고위드',
+                    details: ['채널별 정산 주기 지도화', '매입·광고 선집행 구조 해부', '재고 회전일수와 현금 묶임 관계'],
+                    highlight: '손익계산서는 흑자인데 통장은 적자인 기업이 생기는 이유',
+                  },
+                  {
+                    time: '17:00 ~ 17:15', session: 'Session 05', title: '성장을 가속하는 기업은 무엇이 다른가', speakerName: '김영근 본부장', speakerCompany: '파스토',
+                    details: ['운영 데이터 기반 의사결정 체계', '재고 회전과 배송 안정성의 전략적 관리', '구조를 설계한 기업 vs 감으로 확장한 기업의 차이'],
+                    highlight: '하반기 성장을 위한 구조 점검 체크리스트 제시',
+                  },
                   { time: '17:15 ~ 17:30', title: '실무 Q&A 및 패널토크', speaker: '연사 전원' },
                 ].map((item, i) => (
-                  <div key={i} style={{ display: 'grid', gridTemplateColumns: '140px 1fr 160px', gap: '1rem', padding: '1.25rem 0', borderBottom: '1px solid #e0e0e0', alignItems: 'center' }}>
+                  <div key={i} style={{ display: 'grid', gridTemplateColumns: '140px 1fr 160px', gap: '1rem', padding: '1.25rem 0', borderBottom: '1px solid #e0e0e0', alignItems: item.details ? 'start' : 'center' }}>
                     <div style={{ fontSize: '1.0625rem', fontWeight: '600', color: '#222' }}>{item.time}</div>
                     <div>
                       {item.session && <div style={{ fontSize: '1rem', fontWeight: '700', color: accentColor, marginBottom: '0.25rem' }}>{item.session}</div>}
-                      <div style={{ fontSize: '1.0625rem', color: '#222' }}>{item.title}</div>
+                      <div style={{ fontSize: '1.0625rem', color: '#222', marginBottom: item.details ? '0.75rem' : '0' }}>{item.title}</div>
+                      {item.details && (
+                        <ul style={{ listStyle: 'none', padding: 0, margin: 0 }}>
+                          {item.details.map((d, j) => (
+                            <li key={j} style={{ fontSize: '0.9375rem', lineHeight: '1.6', color: '#777', paddingLeft: '0.875rem', position: 'relative', marginBottom: '0.25rem' }}>
+                              <span style={{ position: 'absolute', left: 0, top: '0.5rem', width: '0.3rem', height: '0.3rem', background: accentColor, borderRadius: '50%', display: 'block' }} />
+                              {d}
+                            </li>
+                          ))}
+                          {item.highlight && (
+                            <li style={{ fontSize: '0.9375rem', lineHeight: '1.6', color: '#444', paddingLeft: '0.875rem', position: 'relative', fontWeight: '600' }}>
+                              <span style={{ position: 'absolute', left: 0, top: '0.5rem', width: '0.3rem', height: '0.3rem', background: accentColor, borderRadius: '50%', display: 'block' }} />
+                              {item.highlight}
+                            </li>
+                          )}
+                        </ul>
+                      )}
                     </div>
                     <div>
                       {item.speaker ? (
@@ -215,11 +308,31 @@ export default function CommerceGrowthWebinarPage() {
               <div className="cosmetic-timetable-mobile" style={{ marginBottom: '3rem' }}>
                 {[
                   { time: '16:00 ~ 16:05', title: '오프닝', speaker: '연사 전원' },
-                  { time: '16:05 ~ 16:15', session: 'Session 01', title: '우리는 진짜 성장하고 있는가?', speakerName: '문미성 리드', speakerCompany: '고위드' },
-                  { time: '16:15 ~ 16:25', session: 'Session 02', title: "채널별 '진짜' 공헌이익 분해", speakerName: '문미성 리드', speakerCompany: '고위드' },
-                  { time: '16:25 ~ 16:45', session: 'Session 03', title: '성장 구간에서 드러나는 세 가지 구조적 신호', speakerName: '김영근 본부장', speakerCompany: '파스토' },
-                  { time: '16:45 ~ 17:00', session: 'Session 04', title: '구조를 바로 세운 다음: 현금 흐름 최적화', speakerName: '문미성 리드', speakerCompany: '고위드' },
-                  { time: '17:00 ~ 17:15', session: 'Session 05', title: '성장을 가속하는 기업은 무엇이 다른가', speakerName: '김영근 본부장', speakerCompany: '파스토' },
+                  {
+                    time: '16:05 ~ 16:15', session: 'Session 01', title: '우리는 진짜 성장하고 있는가?', speakerName: '문미성 리드', speakerCompany: '고위드',
+                    details: ['매출 증가 vs 체감 수익의 괴리', '채널 확장 이후 현금 감소 사례', '프로모션·정산 구조가 만드는 착시'],
+                    highlight: '매출이 늘수록 리스크도 함께 커지고 있지는 않은가?',
+                  },
+                  {
+                    time: '16:15 ~ 16:25', session: 'Session 02', title: "채널별 '진짜' 공헌이익 분해", speakerName: '문미성 리드', speakerCompany: '고위드',
+                    details: ['채널·공급처별 매출 구조 분해', '광고비, PG, 물류, 반품, 프로모션 완전 분해', '정산 주기 차이에 따른 현금 왜곡'],
+                    highlight: '흑자 채널과 현금 창출 채널은 다를 수 있다',
+                  },
+                  {
+                    time: '16:25 ~ 16:45', session: 'Session 03', title: '성장 구간에서 드러나는 세 가지 구조적 신호', speakerName: '김영근 본부장', speakerCompany: '파스토',
+                    details: ['물동량 증가 속도 대비 비용 통제 가능성', '피크 시즌에도 SLA 안정성 유지 여부', '재고 정확도가 수익 지표로 관리되는지 여부'],
+                    highlight: '구조가 준비되지 않은 상태에서 매출을 올리면 비용 곡선이 더 가파르게 상승한다',
+                  },
+                  {
+                    time: '16:45 ~ 17:00', session: 'Session 04', title: '구조를 바로 세운 다음: 현금 흐름 최적화', speakerName: '문미성 리드', speakerCompany: '고위드',
+                    details: ['채널별 정산 주기 지도화', '매입·광고 선집행 구조 해부', '재고 회전일수와 현금 묶임 관계'],
+                    highlight: '손익계산서는 흑자인데 통장은 적자인 기업이 생기는 이유',
+                  },
+                  {
+                    time: '17:00 ~ 17:15', session: 'Session 05', title: '성장을 가속하는 기업은 무엇이 다른가', speakerName: '김영근 본부장', speakerCompany: '파스토',
+                    details: ['운영 데이터 기반 의사결정 체계', '재고 회전과 배송 안정성의 전략적 관리', '구조를 설계한 기업 vs 감으로 확장한 기업의 차이'],
+                    highlight: '하반기 성장을 위한 구조 점검 체크리스트 제시',
+                  },
                   { time: '17:15 ~ 17:30', title: '실무 Q&A 및 패널토크', speaker: '연사 전원' },
                 ].map((item, i) => (
                   <div key={i} style={{ padding: '1.25rem 0', borderBottom: '1px solid #e0e0e0' }}>
@@ -230,111 +343,27 @@ export default function CommerceGrowthWebinarPage() {
                         <span style={{ fontSize: '0.8125rem', color: '#888' }}><span style={{ color: accentColor, fontWeight: '600' }}>{item.speakerName}</span> · {item.speakerCompany}</span>
                       </div>
                     )}
-                    <div style={{ fontSize: '0.9375rem', fontWeight: '600', color: '#222' }}>{item.title}</div>
-                    {!item.session && item.speaker && <div style={{ fontSize: '0.8125rem', color: '#888', marginTop: '0.125rem' }}>{item.speaker}</div>}
+                    <div style={{ fontSize: '0.9375rem', fontWeight: '600', color: '#222', marginBottom: item.details ? '0.75rem' : '0' }}>{item.title}</div>
+                    {item.details && (
+                      <ul style={{ listStyle: 'none', padding: 0, margin: 0 }}>
+                        {item.details.map((d, j) => (
+                          <li key={j} style={{ fontSize: '0.875rem', lineHeight: '1.6', color: '#777', paddingLeft: '0.75rem', position: 'relative', marginBottom: '0.2rem' }}>
+                            <span style={{ position: 'absolute', left: 0, top: '0.4rem', width: '0.25rem', height: '0.25rem', background: accentColor, borderRadius: '50%', display: 'block' }} />
+                            {d}
+                          </li>
+                        ))}
+                        {item.highlight && (
+                          <li style={{ fontSize: '0.875rem', lineHeight: '1.6', color: '#444', paddingLeft: '0.75rem', position: 'relative', fontWeight: '600' }}>
+                            <span style={{ position: 'absolute', left: 0, top: '0.4rem', width: '0.25rem', height: '0.25rem', background: accentColor, borderRadius: '50%', display: 'block' }} />
+                            {item.highlight}
+                          </li>
+                        )}
+                      </ul>
+                    )}
+                    {!item.details && item.speaker && <div style={{ fontSize: '0.8125rem', color: '#888', marginTop: '0.125rem' }}>{item.speaker}</div>}
                   </div>
                 ))}
               </div>
-            </div>
-          </div>
-        </section>
-
-        {/* 연사 및 세션 안내 */}
-        <section className="report-section" style={{ background: '#ffffff' }}>
-          <div className="report-container">
-            <div style={{ maxWidth: '800px', margin: '0 auto' }}>
-              <h2 className="report-h2" style={{ textAlign: 'center', marginBottom: '3rem', color: '#111' }}>연사 및 세션 안내</h2>
-
-              {[
-                {
-                  session: 'Session 01',
-                  title: '우리는 진짜 성장하고 있는가?',
-                  speaker: '문미성',
-                  role: '리드 / Gowid 고객전략팀',
-                  summary: '매출 증가와 체감 수익 사이의 괴리, 채널 확장 후 현금 잔고가 줄어든 사례, 광고 효율은 개선됐으나 실제 수익성이 하락한 사례 등 다채널 기업들의 실제 데이터를 통해 \'성장처럼 보이는 구조적 왜곡\'을 점검합니다.',
-                  details: [
-                    '매출 증가 vs 체감 수익의 괴리',
-                    '채널 확장 이후 현금 감소 사례',
-                    '프로모션·정산 구조가 만드는 착시',
-                  ],
-                  highlight: '매출이 늘수록 리스크도 함께 커지고 있지는 않은가?',
-                },
-                {
-                  session: 'Session 02',
-                  title: "채널별 '진짜' 공헌이익 분해",
-                  speaker: '문미성',
-                  role: '리드 / Gowid 고객전략팀',
-                  summary: '채널·공급처별 매출과 광고비, PG·물류·수수료 등을 분리해 실제 공헌이익을 재산출합니다. 프로모션과 정산 구조가 만드는 착시, 규모가 커질수록 손실이 확대되는 채널 구조 등을 점검합니다.',
-                  details: [
-                    '채널·공급처별 매출 구조 분해',
-                    '광고비, PG, 물류, 반품, 프로모션 완전 분해',
-                    '정산 주기 차이에 따른 현금 왜곡',
-                  ],
-                  highlight: '흑자 채널과 현금 창출 채널은 다를 수 있다',
-                },
-                {
-                  session: 'Session 03',
-                  title: '성장 구간에서 드러나는 세 가지 구조적 신호',
-                  speaker: '김영근',
-                  role: '본부장 / 파스토 경영지원본부',
-                  summary: '물동량 증가 시 총비용의 증가 속도를 설명할 수 있는지, 피크 시즌에도 배송 안정성이 유지되는지, 재고 정확도가 수익 지표로 관리되고 있는지를 구조 관점에서 점검합니다.',
-                  details: [
-                    '물동량 증가 속도 대비 비용 통제 가능성',
-                    '피크 시즌에도 SLA 안정성 유지 여부',
-                    '재고 정확도가 수익 지표로 관리되는지 여부',
-                  ],
-                  highlight: '구조가 준비되지 않은 상태에서 매출을 올리면 비용 곡선이 더 가파르게 상승한다',
-                },
-                {
-                  session: 'Session 04',
-                  title: '구조를 바로 세운 다음: 현금 흐름 최적화',
-                  speaker: '문미성',
-                  role: '리드 / Gowid 고객전략팀',
-                  summary: '다채널 정산 주기 차이, 매입·매출 타이밍 미스매치, 재고 회전과 현금 묶임, 카드 기반 신용 구조 활용 전략 등을 통해 흑자 구조와 현금 흐름 구조의 차이를 설명합니다.',
-                  details: [
-                    '채널별 정산 주기 지도화',
-                    '매입·광고 선집행 구조 해부',
-                    '재고 회전일수와 현금 묶임 관계',
-                  ],
-                  highlight: '손익계산서는 흑자인데 통장은 적자인 기업이 생기는 이유',
-                },
-                {
-                  session: 'Session 05',
-                  title: '성장을 가속하는 기업은 무엇이 다른가',
-                  speaker: '김영근',
-                  role: '본부장 / 파스토 경영지원본부',
-                  summary: '성장은 매출 확대가 아니라 구조의 적합성에서 결정된다는 점을 강조합니다. 구조를 설계한 기업과 감으로 확장한 기업의 차이, 하반기 성장을 위한 구조 점검 체크리스트를 제시합니다.',
-                  details: [
-                    '운영 데이터 기반 의사결정 체계',
-                    '재고 회전과 배송 안정성의 전략적 관리',
-                    '구조를 설계한 기업 vs 감으로 확장한 기업의 차이',
-                  ],
-                  highlight: '하반기 성장을 위한 구조 점검 체크리스트 제시',
-                },
-              ].map((s, i) => (
-                <div key={i} style={{ marginBottom: '2.5rem', padding: '2rem', background: '#f7faf7', borderRadius: '0.75rem', border: `1px solid ${accentBorder}` }}>
-                  <div style={{ fontSize: '0.875rem', fontWeight: '700', color: accentColor, marginBottom: '0.5rem' }}>{s.session}</div>
-                  <h3 style={{ fontSize: '1.25rem', fontWeight: '800', color: '#111', marginBottom: '0.75rem' }}>{s.title}</h3>
-                  <p style={{ fontSize: '0.9375rem', fontWeight: '600', color: accentColor, marginBottom: '1rem' }}>
-                    {s.speaker} <span style={{ fontWeight: '400', color: '#888' }}>{s.role}</span>
-                  </p>
-                  <p style={{ fontSize: '0.9375rem', lineHeight: '1.7', color: '#555', marginBottom: '1.25rem', background: '#fff', padding: '1rem', borderRadius: '0.5rem', borderLeft: `3px solid ${accentColor}` }}>
-                    {s.summary}
-                  </p>
-                  <ul style={{ listStyle: 'none', padding: 0, margin: 0 }}>
-                    {s.details.map((d, j) => (
-                      <li key={j} style={{ fontSize: '0.9375rem', lineHeight: '1.6', color: '#444', paddingLeft: '0.875rem', position: 'relative', marginBottom: '0.375rem' }}>
-                        <span style={{ position: 'absolute', left: 0, top: '0.55rem', width: '0.3rem', height: '0.3rem', background: accentColor, borderRadius: '50%', display: 'block' }} />
-                        {d}
-                      </li>
-                    ))}
-                    <li style={{ fontSize: '0.9375rem', lineHeight: '1.6', color: '#222', paddingLeft: '0.875rem', position: 'relative', marginTop: '0.5rem', fontWeight: '700' }}>
-                      <span style={{ position: 'absolute', left: 0, top: '0.55rem', width: '0.3rem', height: '0.3rem', background: accentColor, borderRadius: '50%', display: 'block' }} />
-                      {s.highlight}
-                    </li>
-                  </ul>
-                </div>
-              ))}
             </div>
           </div>
         </section>
@@ -408,7 +437,7 @@ export default function CommerceGrowthWebinarPage() {
               <h3 className="report-h3" style={{ color: '#111' }}>
                 <strong>성장을 원하는 커머스라면,<br /> 이번 웨비나를 놓치지마세요.</strong>
               </h3>
-              <button onClick={openModal} className="report-button-cta" style={{ background: accentColor, color: '#fff', boxShadow: '0 4px 20px rgba(46, 125, 50, 0.25)' }}>
+              <button onClick={openModal} className="report-button-cta" style={{ background: accentColor, color: '#fff', boxShadow: '0 4px 20px rgba(11, 128, 89, 0.25)' }}>
                 무료 웨비나 신청하기
               </button>
             </div>
@@ -458,22 +487,106 @@ export default function CommerceGrowthWebinarPage() {
         </footer>
       </div>
 
-      {/* 리캐치 폼 모달 */}
+      {/* 웨비나 신청 폼 모달 */}
       {isModalOpen && (
         <div className="modal-overlay" onClick={closeModal}>
           <div className="modal-content" onClick={(e) => e.stopPropagation()} style={{ maxWidth: '560px', padding: 0 }}>
             <button className="modal-close" onClick={closeModal} aria-label="닫기">✕</button>
-            <div style={{ padding: '1.5rem 1.5rem 0' }}>
-              <h2 className="modal-title">무료 웨비나 신청</h2>
-              <p className="modal-description">3월 24일(화) 오후 4시 | 다채널 커머스, 성장의 착시를 걷어내다</p>
-            </div>
-            <div style={{ padding: '1rem 0 0', minHeight: '500px' }}>
-              <iframe
-                src="https://growth.recatch.cc/workflows/yrpgficjik"
-                style={{ width: '100%', minHeight: '500px', border: 'none' }}
-                title="웨비나 신청 폼"
-              />
-            </div>
+
+            {isSuccess ? (
+              <div style={{ padding: '3rem 2.5rem', display: 'flex', flexDirection: 'column', alignItems: 'center', textAlign: 'center' }}>
+                <h2 className="modal-title" style={{ marginBottom: '1.5rem' }}>신청이 완료되었습니다!</h2>
+                <p className="modal-description" style={{ fontSize: '1.125rem', color: '#6b7280', marginBottom: '2rem', lineHeight: '1.6' }}>
+                  웨비나 안내를 이메일로 보내드리겠습니다.<br />감사합니다.
+                </p>
+                <button onClick={closeModal} style={{ padding: '0.875rem 2rem', fontSize: '1rem', fontWeight: '600', borderRadius: '8px', border: 'none', background: accentColor, color: '#fff', cursor: 'pointer' }}>
+                  닫기
+                </button>
+              </div>
+            ) : (
+              <>
+                <div className="modal-header">
+                  <h2 className="modal-title">무료 웨비나 신청</h2>
+                  <p className="modal-description">3월 24일(화) 오후 4시 | 다채널 커머스, 성장의 착시를 걷어내다</p>
+                </div>
+
+                <form onSubmit={handleSubmit} className="modal-form">
+                  {submitError && <div className="form-error">{submitError}</div>}
+
+                  <div className="form-group">
+                    <label htmlFor="name" className="form-label">이름 <span className="required">*</span></label>
+                    <input type="text" id="name" name="name" value={formData.name} onChange={handleChange} className="form-input" placeholder="홍길동" required />
+                  </div>
+
+                  <div className="form-group">
+                    <label htmlFor="companyName" className="form-label">회사명 <span className="required">*</span></label>
+                    <input type="text" id="companyName" name="companyName" value={formData.companyName} onChange={handleChange} className="form-input" placeholder="회사명을 입력해주세요" required />
+                  </div>
+
+                  <div className="form-group">
+                    <label htmlFor="department" className="form-label">부서 <span className="required">*</span></label>
+                    <input type="text" id="department" name="department" value={formData.department} onChange={handleChange} className="form-input" placeholder="마케팅팀, 경영기획팀 등" required />
+                  </div>
+
+                  <div className="form-group">
+                    <label htmlFor="position" className="form-label">직급 <span className="required">*</span></label>
+                    <input type="text" id="position" name="position" value={formData.position} onChange={handleChange} className="form-input" placeholder="대표, 팀장, 매니저 등" required />
+                  </div>
+
+                  <div className="form-group">
+                    <label htmlFor="email" className="form-label">회사 이메일 <span className="required">*</span></label>
+                    <input type="email" id="email" name="email" value={formData.email} onChange={handleChange} className="form-input" placeholder="contact@company.com" required />
+                  </div>
+
+                  <div className="form-group">
+                    <label htmlFor="phone" className="form-label">전화번호 <span className="required">*</span></label>
+                    <input type="tel" id="phone" name="phone" value={formData.phone} onChange={handleChange} className="form-input" placeholder="010-1234-5678" required />
+                  </div>
+
+                  <div className="form-group">
+                    <label htmlFor="question" className="form-label">궁금하신 점을 편하게 남겨주세요!</label>
+                    <textarea id="question" name="question" value={formData.question} onChange={handleChange} className="form-input" placeholder="자유롭게 작성해주세요" rows={3} style={{ resize: 'vertical', fontFamily: 'inherit' }} />
+                  </div>
+
+                  <div className="form-group">
+                    <label className="form-label">웨비나 이전 서비스 안내를 받아보고 싶어요</label>
+                    <div style={{ display: 'flex', gap: '0.75rem', marginTop: '0.5rem' }}>
+                      {['고위드', '파스토'].map((service) => (
+                        <label key={service} style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', cursor: 'pointer', fontSize: '0.9375rem', color: '#333' }}>
+                          <input
+                            type="radio"
+                            name="serviceInterest"
+                            value={service}
+                            checked={formData.serviceInterest === service}
+                            onChange={handleChange}
+                            style={{ accentColor }}
+                          />
+                          {service}
+                        </label>
+                      ))}
+                    </div>
+                  </div>
+
+                  <div className="form-group-checkbox" style={{ marginTop: '0.5rem' }}>
+                    <label className="checkbox-label">
+                      <input type="checkbox" name="agreePrivacy" checked={formData.agreePrivacy} onChange={handleChange} className="checkbox-input" required />
+                      <span className="checkbox-text">
+                        개인정보 처리방침 및 마케팅 수신에 동의합니다 (필수)
+                      </span>
+                    </label>
+                    <p style={{ fontSize: '0.75rem', color: '#999', lineHeight: '1.5', marginTop: '0.5rem', paddingLeft: '1.625rem' }}>
+                      금번 수집하는 개인정보는 웨비나 콘텐츠 준비 및 안내 용도로 사용됩니다. [개인정보보호법] 제15조 법규에 의거하여 고위드, 파스토 2개 사는 이벤트 참여자분들의 개인정보 수집 및 활용에 대한 동의를 받고 있습니다.
+                    </p>
+                  </div>
+
+                  <div style={{ position: 'relative', zIndex: 10, pointerEvents: isSubmitting ? 'none' : 'auto' }}>
+                    <button type="submit" disabled={isSubmitting} className="form-submit-button">
+                      {isSubmitting ? '제출 중...' : '웨비나 신청하기'}
+                    </button>
+                  </div>
+                </form>
+              </>
+            )}
           </div>
         </div>
       )}
