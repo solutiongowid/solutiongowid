@@ -58,7 +58,7 @@ export async function POST(request: NextRequest) {
 
     // Zapier Webhook 호출 (슬랙 알림용)
     try {
-      await fetch('https://hooks.zapier.com/hooks/catch/10485854/ueggnwr/', {
+      await fetch('https://hooks.zapier.com/hooks/catch/10485854/uxmyyc2/', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
