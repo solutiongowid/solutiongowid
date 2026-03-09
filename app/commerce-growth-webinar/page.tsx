@@ -126,7 +126,7 @@ export default function CommerceGrowthWebinarPage() {
                 운영 구조를 해부하고,<br className="mobile-only-br" /> 현금 흐름을 재설계하다
               </p>
               <p style={{ fontSize: '0.9375rem', color: accentColor, marginBottom: '1.5rem', fontWeight: '600' }}>
-                본 웨비나는 핵심 커머스 기업을 대상으로 소수 정예로 진행됩니다.
+                본 웨비나는 핵심 커머스 기업을 대상으로<br className="mobile-only-br" /> 소수 정예로 진행됩니다.
               </p>
               <div style={{ maxWidth: '600px', margin: '0 auto' }}>
                 <Image
