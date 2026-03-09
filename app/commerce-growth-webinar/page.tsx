@@ -43,7 +43,7 @@ export default function CommerceGrowthWebinarPage() {
           <div className="report-container">
             <div className="report-nav-content">
               <a href="https://gowid.com" className="report-brand" target="_blank" rel="noopener noreferrer">
-                <Image src="/gowid-logo.svg" alt="GOWID" width={84} height={28} priority />
+                <Image src="/gowid-logotype.png" alt="GOWID" width={84} height={28} priority style={{ objectFit: 'contain' }} />
               </a>
               <button className="report-nav-button" onClick={openModal} style={{ background: accentColor, color: '#fff' }}>
                 무료 웨비나 신청하기
