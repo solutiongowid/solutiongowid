@@ -119,7 +119,7 @@ export default function CorporateCardWebinarPage() {
               </div>
               <h1 className="report-h1" style={{ textAlign: 'center', marginBottom: '1.5rem', color: '#111' }}>
                 <strong>
-                  2026 법인카드 —<br />여기까지 왔습니다 : 커머스편
+                  2026 법인카드 —<br />여기까지 왔습니다<br />: 커머스편
                 </strong>
               </h1>
               <p className="report-subtitle" style={{ textAlign: 'center', marginBottom: '2.5rem', color: '#666', fontStyle: 'italic' }}>
@@ -139,27 +139,6 @@ export default function CorporateCardWebinarPage() {
           </div>
         </header>
 
-        {/* 행사 개요 */}
-        <section className="report-section" style={{ background: '#ffffff', padding: '4rem 0' }}>
-          <div className="report-container">
-            <div style={{ maxWidth: '600px', margin: '0 auto' }}>
-              <h2 className="report-h2" style={{ textAlign: 'center', marginBottom: '2rem', color: '#111' }}>행사 개요</h2>
-              <div style={{ display: 'grid', gridTemplateColumns: '100px 1fr', gap: '0', border: `1px solid ${accentBorder}`, borderRadius: '0.75rem', overflow: 'hidden' }}>
-                {[
-                  { label: '일시', value: '4/8(수) 15:00' },
-                  { label: '소요', value: '약 40분 (30분 발표 + 10분 Q&A)' },
-                  { label: '참가비', value: '무료' },
-                  { label: '연사', value: '문미성 리드 · 고위드' },
-                ].map((row, i) => (
-                  <div key={i} style={{ display: 'contents' }}>
-                    <div style={{ padding: '1rem 1.25rem', fontSize: '0.9375rem', fontWeight: '600', color: accentColor, background: accentLight, borderBottom: i < 3 ? `1px solid ${accentBorder}` : 'none' }}>{row.label}</div>
-                    <div style={{ padding: '1rem 1.25rem', fontSize: '0.9375rem', color: '#333', borderBottom: i < 3 ? '1px solid #e0e0e0' : 'none' }}>{row.value}</div>
-                  </div>
-                ))}
-              </div>
-            </div>
-          </div>
-        </section>
 
         {/* 행사 소개 */}
         <section className="report-section" style={{ background: '#f7faf7', padding: '5rem 0' }}>
@@ -195,22 +174,22 @@ export default function CorporateCardWebinarPage() {
           <div className="report-container">
             <div style={{ maxWidth: '720px', margin: '0 auto', textAlign: 'center' }}>
               <h2 className="report-h2" style={{ color: '#111', textAlign: 'center', marginBottom: '2rem' }}>예고편을 살짝 드리자면 —</h2>
-              <div style={{ display: 'flex', flexDirection: 'column', gap: '0.75rem', maxWidth: '640px', margin: '0 auto', textAlign: 'left' }}>
+              <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem', maxWidth: '640px', margin: '0 auto', textAlign: 'left' }}>
                 {[
-                  '같은 매출 규모인데 법인카드 한도가 3배 차이 나는 이유,',
-                  '광고비 결제일을 하루 바꿨을 뿐인데 현금 흐름이 달라진 사례,',
-                  '매달 정산에 이틀 쓰는 회사와 2시간 쓰는 회사의 차이,',
-                  '그리고 비슷한 커머스 기업들이 돈을 실제로 어디에 쓰고 있는지.',
+                  '같은 매출 규모인데 법인카드 한도가 3배 차이 나는 이유',
+                  '광고비 결제일을 하루 바꿨을 뿐인데 현금 흐름이 달라진 사례',
+                  '매달 정산에 이틀 쓰는 회사와 2시간 쓰는 회사의 차이',
+                  '비슷한 커머스 기업들이 돈을 실제로 어디에 쓰고 있는지',
                 ].map((text, i) => (
-                  <div key={i} style={{ display: 'flex', alignItems: 'center', gap: '1rem', background: accentLight, border: `1px solid ${accentBorder}`, borderRadius: '0.75rem', padding: '1rem 1.25rem' }}>
-                    <div style={{ flexShrink: 0, width: '0.4rem', height: '0.4rem', background: accentColor, borderRadius: '50%' }} />
-                    <p style={{ fontSize: 'clamp(0.85rem, 2.5vw, 1.0625rem)', lineHeight: '1.7', color: '#333', margin: 0 }}>{text}</p>
+                  <div key={i} style={{ display: 'flex', alignItems: 'center', gap: '1rem', padding: '1rem 1.25rem', background: accentLight, border: `1px solid ${accentBorder}`, borderRadius: '0.75rem' }}>
+                    <div style={{ flexShrink: 0, width: '1.5rem', height: '1.5rem', background: accentColor, borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                      <svg viewBox="0 0 14 14" fill="none" width="14" height="14"><path d="M3 7L6 10L11 4" stroke="#fff" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" /></svg>
+                    </div>
+                    <p style={{ fontSize: 'clamp(0.85rem, 2.5vw, 1.1rem)', lineHeight: '1.6', color: '#222', margin: 0 }}>{text}</p>
                   </div>
                 ))}
               </div>
-              <p style={{ fontSize: '1.0625rem', color: accentColor, fontWeight: '700', marginTop: '2rem' }}>
-                40분 안에 다룹니다.
-              </p>
+              <p style={{ fontSize: '1.0625rem', color: '#333', marginTop: '2rem', fontWeight: '600' }}>40분 안에 다룹니다.</p>
             </div>
           </div>
         </section>
@@ -433,11 +412,8 @@ export default function CorporateCardWebinarPage() {
         <section className="report-section report-section-cta" style={{ background: '#f0f7f0', textAlign: 'center' }}>
           <div className="report-container">
             <div className="report-cta-content">
-              <p style={{ fontSize: '1rem', color: '#888', margin: '0 0 0.5rem 0' }}>
-                바꿀 타이밍인지,<br /> 40분이면 답이 나옵니다.
-              </p>
               <h3 className="report-h3" style={{ color: '#111' }}>
-                <strong>무료 웨비나 신청하기</strong>
+                <strong>법인카드, 바꿀 타이밍인지,<br />40분 투자로 답을 알아가세요.</strong>
               </h3>
               <button onClick={openModal} className="report-button-cta" style={{ background: accentColor, color: '#fff', boxShadow: '0 4px 20px rgba(11, 128, 89, 0.25)' }}>
                 무료 웨비나 신청하기
@@ -472,7 +448,7 @@ export default function CorporateCardWebinarPage() {
         <footer className="report-footer" style={{ background: '#f7faf7', borderTop: '1px solid #e0e0e0' }}>
           <div className="report-container">
             <div className="report-footer-content">
-              <div style={{ color: '#888' }}>GoWid &copy; 2026</div>
+              <div style={{ color: '#888' }}>gowid &copy; 2026</div>
               <div className="report-footer-divider" style={{ color: '#ccc' }}>|</div>
               <div>
                 <a
