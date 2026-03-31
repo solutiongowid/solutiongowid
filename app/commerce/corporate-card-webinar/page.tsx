@@ -89,9 +89,9 @@ export default function CorporateCardWebinarPage() {
     }
   };
 
-  const accentColor = '#0B8059';
-  const accentLight = 'rgba(11, 128, 89, 0.08)';
-  const accentBorder = 'rgba(11, 128, 89, 0.18)';
+  const accentColor = '#E07C3A';
+  const accentLight = 'rgba(224, 124, 58, 0.08)';
+  const accentBorder = 'rgba(224, 124, 58, 0.18)';
 
   return (
     <>
@@ -111,7 +111,7 @@ export default function CorporateCardWebinarPage() {
         </nav>
 
         {/* 히어로 섹션 */}
-        <header className="report-header" style={{ background: 'linear-gradient(180deg, #f0f7f0 0%, #ffffff 100%)', padding: '8rem 0 5rem' }}>
+        <header className="report-header" style={{ background: 'linear-gradient(180deg, #fdf5ef 0%, #ffffff 100%)', padding: '8rem 0 5rem' }}>
           <div className="report-container">
             <div style={{ maxWidth: '800px', margin: '0 auto', textAlign: 'center' }}>
               <div style={{ marginBottom: '1.5rem' }}>
@@ -141,7 +141,7 @@ export default function CorporateCardWebinarPage() {
 
 
         {/* 행사 소개 */}
-        <section className="report-section" style={{ background: '#f7faf7', padding: '5rem 0' }}>
+        <section className="report-section" style={{ background: '#fef8f3', padding: '5rem 0' }}>
           <div className="report-container">
             <div style={{ maxWidth: '720px', margin: '0 auto', textAlign: 'center' }}>
               <h2 className="report-h2" style={{ color: '#111', textAlign: 'center', marginBottom: '1.5rem' }}>행사 소개</h2>
@@ -195,7 +195,7 @@ export default function CorporateCardWebinarPage() {
         </section>
 
         {/* 이런 분들께 추천합니다 */}
-        <section className="report-section" style={{ background: '#f7faf7' }}>
+        <section className="report-section" style={{ background: '#fef8f3' }}>
           <div className="report-container">
             <div style={{ maxWidth: '800px', margin: '0 auto', textAlign: 'center' }}>
               <h2 className="report-h2" style={{ textAlign: 'center', marginBottom: '1rem', color: '#111', wordBreak: 'keep-all' }}>이런 분들께 추천합니다</h2>
@@ -219,7 +219,7 @@ export default function CorporateCardWebinarPage() {
                 ))}
               </div>
 
-              <button onClick={openModal} className="report-button-primary" style={{ marginTop: '2.5rem', background: accentColor, color: '#fff', boxShadow: '0 4px 20px rgba(11, 128, 89, 0.25)' }}>
+              <button onClick={openModal} className="report-button-primary" style={{ marginTop: '2.5rem', background: accentColor, color: '#fff', boxShadow: '0 4px 20px rgba(224, 124, 58, 0.25)' }}>
                 무료 웨비나 신청하기
               </button>
             </div>
@@ -349,7 +349,7 @@ export default function CorporateCardWebinarPage() {
         </section>
 
         {/* 참석자 혜택 */}
-        <section className="report-section" style={{ background: '#f7faf7' }}>
+        <section className="report-section" style={{ background: '#fef8f3' }}>
           <div className="report-container">
             <div style={{ maxWidth: '800px', margin: '0 auto' }}>
               <h2 className="report-h2" style={{ textAlign: 'center', marginBottom: '2rem', color: '#111' }}>참석자 혜택</h2>
@@ -409,13 +409,13 @@ export default function CorporateCardWebinarPage() {
         </section>
 
         {/* 최종 CTA */}
-        <section className="report-section report-section-cta" style={{ background: '#f0f7f0', textAlign: 'center' }}>
+        <section className="report-section report-section-cta" style={{ background: '#fdf5ef', textAlign: 'center' }}>
           <div className="report-container">
             <div className="report-cta-content">
               <h3 className="report-h3" style={{ color: '#111' }}>
                 <strong>법인카드, 바꿀 타이밍인지,<br />40분 투자로 답을 알아가세요.</strong>
               </h3>
-              <button onClick={openModal} className="report-button-cta" style={{ background: accentColor, color: '#fff', boxShadow: '0 4px 20px rgba(11, 128, 89, 0.25)' }}>
+              <button onClick={openModal} className="report-button-cta" style={{ background: accentColor, color: '#fff', boxShadow: '0 4px 20px rgba(224, 124, 58, 0.25)' }}>
                 무료 웨비나 신청하기
               </button>
             </div>
@@ -445,7 +445,7 @@ export default function CorporateCardWebinarPage() {
         </section>
 
         {/* 푸터 */}
-        <footer className="report-footer" style={{ background: '#f7faf7', borderTop: '1px solid #e0e0e0' }}>
+        <footer className="report-footer" style={{ background: '#fef8f3', borderTop: '1px solid #e0e0e0' }}>
           <div className="report-container">
             <div className="report-footer-content">
               <div style={{ color: '#888' }}>gowid &copy; 2026</div>
