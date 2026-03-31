@@ -446,7 +446,7 @@ export default function CorporateCardWebinarPage() {
         <footer className="report-footer" style={{ background: '#f5f7fc', borderTop: '1px solid #e0e0e0' }}>
           <div className="report-container">
             <div className="report-footer-content">
-              <div style={{ color: '#888' }}>GoWid &copy; 2026</div>
+              <div style={{ color: '#888' }}>gowid @ 2026</div>
               <div className="report-footer-divider" style={{ color: '#ccc' }}>|</div>
               <div>
                 <a
