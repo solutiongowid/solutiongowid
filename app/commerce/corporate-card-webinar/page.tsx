@@ -204,11 +204,11 @@ export default function CorporateCardWebinarPage() {
               </p>
               <div style={{ display: 'flex', flexDirection: 'column', gap: '0.75rem', maxWidth: '600px', margin: '0 auto' }}>
                 {[
-                  <>광고비·매입 규모는 늘었는데 <strong>법인카드 한도는 그대로</strong>인<br className="mobile-only-br" /> 커머스 대표</>,
-                  <>카드사에 <strong>한도 증액을 요청했다가 거절</strong>당한 경험이 있는<br className="mobile-only-br" /> 재무 담당자</>,
-                  <>경비 정산·증빙 관리에 <strong>매달 반복적으로 시간을 쓰는</strong><br className="mobile-only-br" /> 운영팀</>,
-                  <>쿠팡·네이버 정산 시차와 광고비 선집행이 겹쳐<br className="mobile-only-br" /> <strong>현금이 빡빡해진</strong> 경영진</>,
-                  <>법인카드를 바꿀 생각은 있는데<br className="mobile-only-br" /> <strong>&ldquo;지금 굳이?&rdquo;로 미뤄온</strong> 대표</>,
+                  <>광고비·매입 규모는 늘었는데 <strong>법인카드 한도는 그대로</strong>인 커머스 대표</>,
+                  <>카드사에 <strong>한도 증액을 요청했다가 거절</strong>당한 경험이 있는 재무 담당자</>,
+                  <>경비 정산·증빙 관리에 <strong>매달 반복적으로 시간을 쓰는</strong> 운영팀</>,
+                  <>쿠팡·네이버 정산 시차와 광고비 선집행이 겹쳐 <strong>현금이 빡빡해진</strong> 경영진</>,
+                  <>법인카드를 바꿀 생각은 있는데 <strong>&ldquo;지금 굳이?&rdquo;로 미뤄온</strong> 대표</>,
                 ].map((text, i) => (
                   <div key={i} style={{ display: 'flex', alignItems: 'center', gap: '1.25rem', background: accentLight, border: `1px solid ${accentBorder}`, borderRadius: '0.75rem', padding: '1rem 1.25rem', textAlign: 'left' }}>
                     <div style={{ flexShrink: 0, width: '1.5rem', height: '1.5rem', background: accentColor, borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
