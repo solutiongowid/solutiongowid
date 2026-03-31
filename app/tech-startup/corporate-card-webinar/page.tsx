@@ -126,7 +126,7 @@ export default function CorporateCardWebinarPage() {
               </p>
               <div style={{ maxWidth: '600px', margin: '0 auto' }}>
                 <Image
-                  src="/corporate-card-webinar-thumbnail.png"
+                  src="/tech-startup-webinar-thumbnail.png"
                   alt="2026 법인카드 — 여기까지 왔습니다 : 테크·스타트업편 - GoWid 웨비나"
                   width={1200}
                   height={630}
