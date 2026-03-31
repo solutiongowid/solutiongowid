@@ -527,30 +527,7 @@ export default function CorporateCardWebinarPage() {
                     <textarea id="question" name="question" value={formData.question} onChange={handleChange} className="form-input" placeholder="자유롭게 작성해주세요" rows={3} style={{ resize: 'vertical', fontFamily: 'inherit' }} />
                   </div>
 
-                  <div className="form-group">
-                    <label className="form-label">웨비나 이전 서비스 안내를 받아보고 싶어요</label>
-                    <div style={{ display: 'flex', gap: '0.75rem', marginTop: '0.5rem' }}>
-                      {['고위드'].map((service) => (
-                        <label key={service} style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', cursor: 'pointer', fontSize: '0.9375rem', color: '#333' }}>
-                          <input
-                            type="checkbox"
-                            value={service}
-                            checked={formData.serviceInterest.includes(service)}
-                            onChange={(e) => {
-                              setFormData(prev => ({
-                                ...prev,
-                                serviceInterest: e.target.checked
-                                  ? [...prev.serviceInterest, service]
-                                  : prev.serviceInterest.filter(s => s !== service),
-                              }));
-                            }}
-                            style={{ accentColor }}
-                          />
-                          {service}
-                        </label>
-                      ))}
-                    </div>
-                  </div>
+
 
                   <div className="form-group-checkbox" style={{ marginTop: '0.5rem' }}>
                     <label className="checkbox-label">
