@@ -75,7 +75,7 @@ export default function CorporateCardWebinarPage() {
       const response = await fetch('/api/corporate-card-webinar-submit', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ ...formData, webinar_type: 'tech', timestamp: formattedTimestamp, ...utmParams }),
+        body: JSON.stringify({ ...formData, webinar_type: 'tech-startup', timestamp: formattedTimestamp, ...utmParams }),
       });
       const data = await response.json();
       if (!response.ok) throw new Error(data.error || '제출에 실패했습니다.');
