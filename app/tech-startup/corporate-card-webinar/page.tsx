@@ -203,7 +203,7 @@ export default function CorporateCardWebinarPage() {
               <div style={{ display: 'flex', flexDirection: 'column', gap: '0.75rem', maxWidth: '600px', margin: '0 auto' }}>
                 {[
                   <>팀이 커지면서 <strong>법인카드 관리가 슬슬 번거로워진</strong><br className="mobile-only-br" /> 스타트업 대표</>,
-                  <>AWS·Figma·Slack 등 <strong>SaaS 구독료가 매달 늘어나는데</strong><br /> 최적화를 못 하고 있는 CFO·재무 담당자</>,
+                  <>AWS·Figma·Slack 등 <strong>SaaS 구독료가 매달 늘어나는데</strong> 최적화를 못 하고 있는 CFO·재무 담당자</>,
                   <>해외 결제가 잦은데 <strong>수수료·환율 구조를 한 번도</strong><br className="mobile-only-br" /> <strong>비교해보지 않은</strong> 운영팀</>,
                   <>투자 유치 후 <strong>런웨이 관리와 비용 통제</strong>를<br className="mobile-only-br" /> 동시에 잡아야 하는 경영진</>,
                   <>법인카드를 바꿀 생각은 있는데<br className="mobile-only-br" /> <strong>&ldquo;더 중요한 일이 있어서&rdquo;로 미뤄온</strong> 대표</>,
