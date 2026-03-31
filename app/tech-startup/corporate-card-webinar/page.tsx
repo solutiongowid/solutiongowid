@@ -25,7 +25,6 @@ export default function CorporateCardWebinarPage() {
     email: '',
     phone: '',
     question: '',
-    serviceInterest: [] as string[],
     agreePrivacy: false,
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -81,7 +80,7 @@ export default function CorporateCardWebinarPage() {
       if (!response.ok) throw new Error(data.error || '제출에 실패했습니다.');
 
       setIsSuccess(true);
-      setFormData({ name: '', companyName: '', department: '', position: '', email: '', phone: '', question: '', serviceInterest: [] as string[], agreePrivacy: false });
+      setFormData({ name: '', companyName: '', department: '', position: '', email: '', phone: '', question: '', agreePrivacy: false });
     } catch (error) {
       setSubmitError(error instanceof Error ? error.message : '제출 중 오류가 발생했습니다.');
     } finally {
