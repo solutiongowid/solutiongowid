@@ -139,25 +139,6 @@ export default function CorporateCardWebinarPage() {
           </div>
         </header>
 
-        {/* 행사 개요 */}
-        <section className="report-section" style={{ background: '#ffffff', padding: '4rem 0' }}>
-          <div className="report-container">
-            <div style={{ maxWidth: '640px', margin: '0 auto' }}>
-              <h2 className="report-h2" style={{ textAlign: 'center', marginBottom: '2rem', color: '#111' }}>행사 개요</h2>
-              <div style={{ display: 'grid', gridTemplateColumns: '120px 1fr', gap: '0.75rem 1.5rem', fontSize: '1.0625rem', lineHeight: '1.8' }}>
-                <div style={{ fontWeight: '600', color: '#888' }}>일시</div>
-                <div style={{ color: '#222' }}>4월 9일 (목) 오후 3시</div>
-                <div style={{ fontWeight: '600', color: '#888' }}>소요</div>
-                <div style={{ color: '#222' }}>약 40분 (30분 발표 + 10분 Q&A)</div>
-                <div style={{ fontWeight: '600', color: '#888' }}>참가비</div>
-                <div style={{ color: '#222' }}>무료</div>
-                <div style={{ fontWeight: '600', color: '#888' }}>연사</div>
-                <div style={{ color: '#222' }}>문미성 리드 · 고위드</div>
-              </div>
-            </div>
-          </div>
-        </section>
-
         {/* 행사 소개 */}
         <section className="report-section" style={{ background: '#f7faf7', padding: '5rem 0' }}>
           <div className="report-container">
@@ -222,7 +203,7 @@ export default function CorporateCardWebinarPage() {
               <div style={{ display: 'flex', flexDirection: 'column', gap: '0.75rem', maxWidth: '600px', margin: '0 auto' }}>
                 {[
                   <>팀이 커지면서 <strong>법인카드 관리가 슬슬 번거로워진</strong><br className="mobile-only-br" /> 스타트업 대표</>,
-                  <>AWS·Figma·Slack 등 <strong>SaaS 구독료가 매달 늘어나는데</strong><br className="mobile-only-br" /> 최적화를 못 하고 있는 CFO·재무 담당자</>,
+                  <>AWS·Figma·Slack 등 <strong>SaaS 구독료가 매달 늘어나는데</strong><br /> 최적화를 못 하고 있는 CFO·재무 담당자</>,
                   <>해외 결제가 잦은데 <strong>수수료·환율 구조를 한 번도</strong><br className="mobile-only-br" /> <strong>비교해보지 않은</strong> 운영팀</>,
                   <>투자 유치 후 <strong>런웨이 관리와 비용 통제</strong>를<br className="mobile-only-br" /> 동시에 잡아야 하는 경영진</>,
                   <>법인카드를 바꿀 생각은 있는데<br className="mobile-only-br" /> <strong>&ldquo;더 중요한 일이 있어서&rdquo;로 미뤄온</strong> 대표</>,
@@ -429,11 +410,8 @@ export default function CorporateCardWebinarPage() {
         <section className="report-section report-section-cta" style={{ background: '#f0f7f0', textAlign: 'center' }}>
           <div className="report-container">
             <div className="report-cta-content">
-              <p style={{ fontSize: '1rem', color: '#888', margin: '0 0 0.5rem 0' }}>
-                바꿀 타이밍인지,<br /> 40분이면 답이 나옵니다.
-              </p>
               <h3 className="report-h3" style={{ color: '#111' }}>
-                <strong>법인카드, 지금 확인해보세요.</strong>
+                <strong>법인카드, 바꿀 타이밍인지,<br />40분 투자로 답을 알아가세요.</strong>
               </h3>
               <button onClick={openModal} className="report-button-cta" style={{ background: accentColor, color: '#fff', boxShadow: '0 4px 20px rgba(11, 128, 89, 0.25)' }}>
                 무료 웨비나 신청하기
