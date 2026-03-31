@@ -536,7 +536,7 @@ export default function CorporateCardWebinarPage() {
                   </div>
 
                   <div style={{ position: 'relative', zIndex: 10, pointerEvents: isSubmitting ? 'none' : 'auto' }}>
-                    <button type="submit" disabled={isSubmitting} className="form-submit-button">
+                    <button type="submit" disabled={isSubmitting} className="form-submit-button" style={{ background: `linear-gradient(135deg, ${accentColor} 0%, #1248b8 100%)` }}>
                       {isSubmitting ? '제출 중...' : '웨비나 신청하기'}
                     </button>
                   </div>
