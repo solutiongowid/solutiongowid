@@ -119,13 +119,10 @@ export default function CorporateCardWebinarPage() {
               </div>
               <h1 className="report-h1" style={{ textAlign: 'center', marginBottom: '1.5rem', color: '#111' }}>
                 <strong>
-                  2026 법인카드 —<br />여기까지 왔습니다
+                  2026 법인카드 —<br />여기까지 왔습니다<br />테크·스타트업편
                 </strong>
               </h1>
               <p className="report-subtitle" style={{ textAlign: 'center', marginBottom: '2.5rem', color: '#666', fontStyle: 'italic' }}>
-                테크·스타트업편
-              </p>
-              <p style={{ fontSize: '0.9375rem', color: accentColor, marginBottom: '1.5rem', fontWeight: '600' }}>
                 바꿀 타이밍, 바꿀 조건,<br className="mobile-only-br" /> 바꾸기 전 체크리스트까지
               </p>
               <div style={{ maxWidth: '600px', margin: '0 auto' }}>
