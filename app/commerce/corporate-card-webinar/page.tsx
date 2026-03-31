@@ -75,7 +75,7 @@ export default function CorporateCardWebinarPage() {
       const response = await fetch('/api/corporate-card-webinar-submit', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ ...formData, webinar_type: 'tech', timestamp: formattedTimestamp, ...utmParams }),
+        body: JSON.stringify({ ...formData, timestamp: formattedTimestamp, ...utmParams }),
       });
       const data = await response.json();
       if (!response.ok) throw new Error(data.error || '제출에 실패했습니다.');
@@ -89,9 +89,9 @@ export default function CorporateCardWebinarPage() {
     }
   };
 
-  const accentColor = '#1a56db';
-  const accentLight = 'rgba(26, 86, 219, 0.06)';
-  const accentBorder = 'rgba(26, 86, 219, 0.15)';
+  const accentColor = '#0B8059';
+  const accentLight = 'rgba(11, 128, 89, 0.08)';
+  const accentBorder = 'rgba(11, 128, 89, 0.18)';
 
   return (
     <>
@@ -111,15 +111,15 @@ export default function CorporateCardWebinarPage() {
         </nav>
 
         {/* 히어로 섹션 */}
-        <header className="report-header" style={{ background: 'linear-gradient(180deg, #eef2fb 0%, #ffffff 100%)', padding: '8rem 0 5rem' }}>
+        <header className="report-header" style={{ background: 'linear-gradient(180deg, #f0f7f0 0%, #ffffff 100%)', padding: '8rem 0 5rem' }}>
           <div className="report-container">
             <div style={{ maxWidth: '800px', margin: '0 auto', textAlign: 'center' }}>
               <div style={{ marginBottom: '1.5rem' }}>
-                <span className="badge" style={{ fontSize: '0.875rem', padding: '0.5rem 1.25rem', background: accentLight, color: accentColor, border: `1px solid ${accentBorder}` }}>4월 9일 (목) 오후 3시 | 온라인 웨비나</span>
+                <span className="badge" style={{ fontSize: '0.875rem', padding: '0.5rem 1.25rem', background: accentLight, color: accentColor, border: `1px solid ${accentBorder}` }}>4월 8일 (수) 오후 3시 | 온라인 웨비나</span>
               </div>
               <h1 className="report-h1" style={{ textAlign: 'center', marginBottom: '1.5rem', color: '#111' }}>
                 <strong>
-                  2026 법인카드 —<br />여기까지 왔습니다<br />: 테크·스타트업편
+                  2026 법인카드 —<br />여기까지 왔습니다 : 커머스편
                 </strong>
               </h1>
               <p className="report-subtitle" style={{ textAlign: 'center', marginBottom: '2.5rem', color: '#666', fontStyle: 'italic' }}>
@@ -128,7 +128,7 @@ export default function CorporateCardWebinarPage() {
               <div style={{ maxWidth: '600px', margin: '0 auto' }}>
                 <Image
                   src="/corporate-card-webinar-thumbnail.png"
-                  alt="2026 법인카드 — 여기까지 왔습니다 : 테크·스타트업편 - GoWid 웨비나"
+                  alt="2026 법인카드 — 여기까지 왔습니다 : 커머스편 - GoWid 웨비나"
                   width={1200}
                   height={630}
                   priority
@@ -139,8 +139,30 @@ export default function CorporateCardWebinarPage() {
           </div>
         </header>
 
+        {/* 행사 개요 */}
+        <section className="report-section" style={{ background: '#ffffff', padding: '4rem 0' }}>
+          <div className="report-container">
+            <div style={{ maxWidth: '600px', margin: '0 auto' }}>
+              <h2 className="report-h2" style={{ textAlign: 'center', marginBottom: '2rem', color: '#111' }}>행사 개요</h2>
+              <div style={{ display: 'grid', gridTemplateColumns: '100px 1fr', gap: '0', border: `1px solid ${accentBorder}`, borderRadius: '0.75rem', overflow: 'hidden' }}>
+                {[
+                  { label: '일시', value: '4/8(수) 15:00' },
+                  { label: '소요', value: '약 40분 (30분 발표 + 10분 Q&A)' },
+                  { label: '참가비', value: '무료' },
+                  { label: '연사', value: '문미성 리드 · 고위드' },
+                ].map((row, i) => (
+                  <div key={i} style={{ display: 'contents' }}>
+                    <div style={{ padding: '1rem 1.25rem', fontSize: '0.9375rem', fontWeight: '600', color: accentColor, background: accentLight, borderBottom: i < 3 ? `1px solid ${accentBorder}` : 'none' }}>{row.label}</div>
+                    <div style={{ padding: '1rem 1.25rem', fontSize: '0.9375rem', color: '#333', borderBottom: i < 3 ? '1px solid #e0e0e0' : 'none' }}>{row.value}</div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+        </section>
+
         {/* 행사 소개 */}
-        <section className="report-section" style={{ background: '#f5f7fc', padding: '5rem 0' }}>
+        <section className="report-section" style={{ background: '#f7faf7', padding: '5rem 0' }}>
           <div className="report-container">
             <div style={{ maxWidth: '720px', margin: '0 auto', textAlign: 'center' }}>
               <h2 className="report-h2" style={{ color: '#111', textAlign: 'center', marginBottom: '1.5rem' }}>행사 소개</h2>
@@ -148,52 +170,53 @@ export default function CorporateCardWebinarPage() {
                 &ldquo;진작 확인할걸.&rdquo;
               </h2>
               <p style={{ fontSize: '1.0625rem', color: '#333', lineHeight: '1.9', marginBottom: '1.5rem' }}>
-                법인카드를 바꾸기로 결정한 대표들한테<br className="mobile-only-br" /> 나중에 물어보면,
-              </p>
-              <p style={{ fontSize: '1.0625rem', color: '#333', lineHeight: '1.9', marginBottom: '1.5rem' }}>
+                법인카드를 바꾸기로 결정한 커머스 대표들한테<br className="mobile-only-br" /> 나중에 물어보면,<br />
                 대부분 똑같은 말을 합니다. <strong>진작 확인할걸.</strong>
               </p>
               <p style={{ fontSize: '1.0625rem', color: '#333', lineHeight: '1.9', marginBottom: '1.5rem' }}>
-                더 바빴던 것도 아니고,<br />
-                더 여유가 생겨서 한 것도 아닙니다.<br />
-                한번 봐야겠다 싶었을 때, 그냥 확인했을 뿐입니다.
+                빠른 사람들이었던 게 아닙니다.<br />
+                정보가 더 많았던 것도 아닙니다.<br />
+                <strong>한번 봐야겠다 싶었을 때, 그냥 확인했을 뿐입니다.</strong>
+              </p>
+              <p style={{ fontSize: '1.0625rem', color: '#333', lineHeight: '1.9', marginBottom: '1.5rem' }}>
+                광고비·매입 규모, 정산 시차, 현금 공백 구간 —<br />
+                어떤 조건에서 바꾸는 게 맞고,<br />
+                어떤 조건에서는 지금 그대로여도 되는지.
               </p>
               <p style={{ fontSize: '1.0625rem', color: '#333', lineHeight: '1.9' }}>
-                SaaS 구독, 해외 결제, 팀 규모 —<br />
-                어떤 조건에서 바꾸는 게 맞고,<br className="mobile-only-br" /> 어떤 조건에서는 지금 그대로여도 되는지.<br />
-                <strong>스타트업 데이터 기반으로 그 기준을 40분 안에 다룹니다.</strong>
+                <strong>커머스 데이터 기반으로 그 기준을 40분 안에 다룹니다.</strong>
               </p>
             </div>
           </div>
         </section>
 
         {/* 예고편 */}
-        <section className="report-section" style={{ background: '#ffffff' }}>
+        <section className="report-section" style={{ background: '#ffffff', padding: '5rem 0' }}>
           <div className="report-container">
             <div style={{ maxWidth: '720px', margin: '0 auto', textAlign: 'center' }}>
-              <h2 className="report-h2" style={{ textAlign: 'center', marginBottom: '2rem', color: '#111' }}>예고편을 살짝 드리자면 —</h2>
-              <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem', maxWidth: '640px', margin: '0 auto', textAlign: 'left' }}>
+              <h2 className="report-h2" style={{ color: '#111', textAlign: 'center', marginBottom: '2rem' }}>예고편을 살짝 드리자면 —</h2>
+              <div style={{ display: 'flex', flexDirection: 'column', gap: '0.75rem', maxWidth: '640px', margin: '0 auto', textAlign: 'left' }}>
                 {[
-                  '같은 시리즈인데 법인카드 한도가 3배 차이 나는 이유',
-                  'SaaS 구독료 20개를 관리하는 회사와 방치하는 회사의 연간 차이',
-                  '해외 결제 수수료를 한 번도 비교 안 해본 회사가 얼마나 되는지',
-                  '비슷한 규모의 스타트업들이 실제로 돈을 어디에 쓰고 있는지',
+                  '같은 매출 규모인데 법인카드 한도가 3배 차이 나는 이유,',
+                  '광고비 결제일을 하루 바꿨을 뿐인데 현금 흐름이 달라진 사례,',
+                  '매달 정산에 이틀 쓰는 회사와 2시간 쓰는 회사의 차이,',
+                  '그리고 비슷한 커머스 기업들이 돈을 실제로 어디에 쓰고 있는지.',
                 ].map((text, i) => (
-                  <div key={i} style={{ display: 'flex', alignItems: 'center', gap: '1rem', padding: '1rem 1.25rem', background: accentLight, border: `1px solid ${accentBorder}`, borderRadius: '0.75rem' }}>
-                    <div style={{ flexShrink: 0, width: '1.5rem', height: '1.5rem', background: accentColor, borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-                      <svg viewBox="0 0 14 14" fill="none" width="14" height="14"><path d="M3 7L6 10L11 4" stroke="#fff" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" /></svg>
-                    </div>
-                    <p style={{ fontSize: 'clamp(0.85rem, 2.5vw, 1.1rem)', lineHeight: '1.6', color: '#222', margin: 0 }}>{text}</p>
+                  <div key={i} style={{ display: 'flex', alignItems: 'center', gap: '1rem', background: accentLight, border: `1px solid ${accentBorder}`, borderRadius: '0.75rem', padding: '1rem 1.25rem' }}>
+                    <div style={{ flexShrink: 0, width: '0.4rem', height: '0.4rem', background: accentColor, borderRadius: '50%' }} />
+                    <p style={{ fontSize: 'clamp(0.85rem, 2.5vw, 1.0625rem)', lineHeight: '1.7', color: '#333', margin: 0 }}>{text}</p>
                   </div>
                 ))}
               </div>
-              <p style={{ fontSize: '1.0625rem', color: '#333', marginTop: '2rem', fontWeight: '600' }}>40분 안에 다룹니다.</p>
+              <p style={{ fontSize: '1.0625rem', color: accentColor, fontWeight: '700', marginTop: '2rem' }}>
+                40분 안에 다룹니다.
+              </p>
             </div>
           </div>
         </section>
 
         {/* 이런 분들께 추천합니다 */}
-        <section className="report-section" style={{ background: '#f5f7fc' }}>
+        <section className="report-section" style={{ background: '#f7faf7' }}>
           <div className="report-container">
             <div style={{ maxWidth: '800px', margin: '0 auto', textAlign: 'center' }}>
               <h2 className="report-h2" style={{ textAlign: 'center', marginBottom: '1rem', color: '#111', wordBreak: 'keep-all' }}>이런 분들께 추천합니다</h2>
@@ -202,11 +225,11 @@ export default function CorporateCardWebinarPage() {
               </p>
               <div style={{ display: 'flex', flexDirection: 'column', gap: '0.75rem', maxWidth: '600px', margin: '0 auto' }}>
                 {[
-                  <>팀이 커지면서 <strong>법인카드 관리가 슬슬 번거로워진</strong><br className="mobile-only-br" /> 스타트업 대표</>,
-                  <>AWS·Figma·Slack 등 <strong>SaaS 구독료가 매달 늘어나는데</strong> 최적화를 못 하고 있는 CFO·재무 담당자</>,
-                  <>해외 결제가 잦은데 <strong>수수료·환율 구조를 한 번도</strong><br className="mobile-only-br" /> <strong>비교해보지 않은</strong> 운영팀</>,
-                  <>투자 유치 후 <strong>런웨이 관리와 비용 통제</strong>를<br className="mobile-only-br" /> 동시에 잡아야 하는 경영진</>,
-                  <>법인카드를 바꿀 생각은 있는데<br className="mobile-only-br" /> <strong>&ldquo;더 중요한 일이 있어서&rdquo;로 미뤄온</strong> 대표</>,
+                  <>광고비·매입 규모는 늘었는데 <strong>법인카드 한도는 그대로</strong>인<br className="mobile-only-br" /> 커머스 대표</>,
+                  <>카드사에 <strong>한도 증액을 요청했다가 거절</strong>당한 경험이 있는<br className="mobile-only-br" /> 재무 담당자</>,
+                  <>경비 정산·증빙 관리에 <strong>매달 반복적으로 시간을 쓰는</strong><br className="mobile-only-br" /> 운영팀</>,
+                  <>쿠팡·네이버 정산 시차와 광고비 선집행이 겹쳐<br className="mobile-only-br" /> <strong>현금이 빡빡해진</strong> 경영진</>,
+                  <>법인카드를 바꿀 생각은 있는데<br className="mobile-only-br" /> <strong>&ldquo;지금 굳이?&rdquo;로 미뤄온</strong> 대표</>,
                 ].map((text, i) => (
                   <div key={i} style={{ display: 'flex', alignItems: 'center', gap: '1.25rem', background: accentLight, border: `1px solid ${accentBorder}`, borderRadius: '0.75rem', padding: '1rem 1.25rem', textAlign: 'left' }}>
                     <div style={{ flexShrink: 0, width: '1.5rem', height: '1.5rem', background: accentColor, borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
@@ -217,7 +240,7 @@ export default function CorporateCardWebinarPage() {
                 ))}
               </div>
 
-              <button onClick={openModal} className="report-button-primary" style={{ marginTop: '2.5rem', background: accentColor, color: '#fff', boxShadow: '0 4px 20px rgba(26, 86, 219, 0.25)' }}>
+              <button onClick={openModal} className="report-button-primary" style={{ marginTop: '2.5rem', background: accentColor, color: '#fff', boxShadow: '0 4px 20px rgba(11, 128, 89, 0.25)' }}>
                 무료 웨비나 신청하기
               </button>
             </div>
@@ -241,13 +264,13 @@ export default function CorporateCardWebinarPage() {
                   { time: '00:00 ~ 00:03', title: '오프닝', speaker: '문미성 리드 · 고위드' },
                   {
                     time: '00:03 ~ 00:12', session: 'Session 01', title: '2026 법인카드, 여기까지 왔습니다', speakerName: '문미성 리드', speakerCompany: '고위드',
-                    details: ['같은 시리즈 A인데 한도가 3배 차이 나는 두 회사 — 뭐가 다른가', '한도 산정, 해외 결제, 실시간 관리 — 3년 사이 시장이 벌려놓은 격차', '시리즈 A~C 기업들이 실제로 카드를 옮기고 있는 이유'],
+                    details: ['같은 매출 30억인데 한도가 3배 차이 나는 두 회사 — 뭐가 다른가', '한도 구조, 정산 주기, 비용 관리 도구 — 3년 사이 시장이 벌려놓은 격차', '커머스 387개사 데이터로 본 법인카드 이용 트렌드'],
                     highlight: '대부분은 "몰랐다"가 아니라 "확인을 안 했을 뿐"',
                   },
                   {
                     time: '00:12 ~ 00:22', session: 'Session 02', title: '안 바꾸는 동안, 빠지고 있는 돈', speakerName: '문미성 리드', speakerCompany: '고위드',
-                    details: ['SaaS 구독 20개, 해외 결제 수수료 — 연 단위로 환산하면 얼마인가', '카드별 경비 정산·증빙 취합에 매달 쓰는 시간의 원가', '한도 부족 → 대표 개인카드 선결제 → 정산 꼬임: 반복되는 패턴'],
-                    highlight: '비슷한 규모의 스타트업들은 돈을 실제로 어디에 쓰고 있는가',
+                    details: ['광고비 결제일 하루 차이로 현금 흐름이 달라진 실제 사례', '쿠팡·네이버 정산 시차와 카드 결제일이 어긋날 때 생기는 현금 공백', '매달 정산에 이틀 쓰는 회사 vs 2시간 쓰는 회사 — 연간 원가 환산'],
+                    highlight: '비슷한 규모의 커머스 기업들은 돈을 실제로 어디에 쓰고 있는가',
                   },
                   {
                     time: '00:22 ~ 00:30', session: 'Session 03', title: '전환 타이밍 자가 진단: 체크리스트', speakerName: '문미성 리드', speakerCompany: '고위드',
@@ -298,13 +321,13 @@ export default function CorporateCardWebinarPage() {
                   { time: '00:00 ~ 00:03', title: '오프닝', speaker: '문미성 리드 · 고위드' },
                   {
                     time: '00:03 ~ 00:12', session: 'Session 01', title: '2026 법인카드, 여기까지 왔습니다', speakerName: '문미성 리드', speakerCompany: '고위드',
-                    details: ['같은 시리즈 A인데 한도가 3배 차이 나는 두 회사 — 뭐가 다른가', '한도 산정, 해외 결제, 실시간 관리 — 3년 사이 시장이 벌려놓은 격차', '시리즈 A~C 기업들이 실제로 카드를 옮기고 있는 이유'],
+                    details: ['같은 매출 30억인데 한도가 3배 차이 나는 두 회사 — 뭐가 다른가', '한도 구조, 정산 주기, 비용 관리 도구 — 3년 사이 시장이 벌려놓은 격차', '커머스 387개사 데이터로 본 법인카드 이용 트렌드'],
                     highlight: '대부분은 "몰랐다"가 아니라 "확인을 안 했을 뿐"',
                   },
                   {
                     time: '00:12 ~ 00:22', session: 'Session 02', title: '안 바꾸는 동안, 빠지고 있는 돈', speakerName: '문미성 리드', speakerCompany: '고위드',
-                    details: ['SaaS 구독 20개, 해외 결제 수수료 — 연 단위로 환산하면 얼마인가', '카드별 경비 정산·증빙 취합에 매달 쓰는 시간의 원가', '한도 부족 → 대표 개인카드 선결제 → 정산 꼬임: 반복되는 패턴'],
-                    highlight: '비슷한 규모의 스타트업들은 돈을 실제로 어디에 쓰고 있는가',
+                    details: ['광고비 결제일 하루 차이로 현금 흐름이 달라진 실제 사례', '쿠팡·네이버 정산 시차와 카드 결제일이 어긋날 때 생기는 현금 공백', '매달 정산에 이틀 쓰는 회사 vs 2시간 쓰는 회사 — 연간 원가 환산'],
+                    highlight: '비슷한 규모의 커머스 기업들은 돈을 실제로 어디에 쓰고 있는가',
                   },
                   {
                     time: '00:22 ~ 00:30', session: 'Session 03', title: '전환 타이밍 자가 진단: 체크리스트', speakerName: '문미성 리드', speakerCompany: '고위드',
@@ -347,16 +370,16 @@ export default function CorporateCardWebinarPage() {
         </section>
 
         {/* 참석자 혜택 */}
-        <section className="report-section" style={{ background: '#f5f7fc' }}>
+        <section className="report-section" style={{ background: '#f7faf7' }}>
           <div className="report-container">
             <div style={{ maxWidth: '800px', margin: '0 auto' }}>
               <h2 className="report-h2" style={{ textAlign: 'center', marginBottom: '2rem', color: '#111' }}>참석자 혜택</h2>
               <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1rem' }}>
                 {[
-                  { icon: '📄', title: '스타트업 비용 관리\n가이드 2026', desc: 'PDF 무료 제공' },
-                  { icon: '💳', title: '고위드 법인카드\n한도 사전 조회', desc: '신청 즉시 확인 가능' },
-                  { icon: '🔍', title: '1:1 자금 운영\n상담권', desc: '고위드 제공' },
-                  { icon: '📥', title: '웨비나 발표 자료\nPDF', desc: '당일 참석자 대상' },
+                  { icon: '\u{1F4C4}', title: '커머스 벤치마크\n리포트 2026', desc: 'PDF 무료 제공' },
+                  { icon: '\u{1F4B3}', title: '고위드 법인카드\n한도 사전 조회', desc: '신청 즉시 확인 가능' },
+                  { icon: '\u{1F50D}', title: '1:1 자금 운영\n상담권', desc: '고위드 제공' },
+                  { icon: '\u{1F4E5}', title: '웨비나 발표 자료\nPDF 제공', desc: '당일 참석자 대상' },
                 ].map((b, i) => (
                   <div key={i} style={{ background: '#fff', border: `1px solid ${accentBorder}`, borderRadius: '0.75rem', padding: '1.5rem 1.25rem', textAlign: 'center' }}>
                     <div style={{ fontSize: '1.75rem', marginBottom: '0.75rem' }}>{b.icon}</div>
@@ -378,7 +401,7 @@ export default function CorporateCardWebinarPage() {
                 { q: '웨비나는 어디서 진행되나요?', a: 'Zoom 온라인으로 진행됩니다. 신청 완료 시 이메일로 참여 링크가 발송됩니다.' },
                 { q: '참여 비용이 있나요?', a: '완전 무료입니다.' },
                 { q: '참석하지 못하면 녹화본을 받을 수 있나요?', a: '네, 신청하신 분들께 웨비나 종료 후 녹화본을 이메일로 발송해 드립니다.' },
-                { q: '어떤 규모의 스타트업에 적합한가요?', a: '시드~시리즈 C까지, 법인카드를 사용 중인 스타트업이라면 규모 불문하고 해당됩니다. 특히 팀 규모가 10명 이상으로 넘어가면서 비용 관리 복잡도가 올라간 시점의 기업에 가장 실용적입니다.' },
+                { q: '어떤 업종에 적합한 웨비나인가요?', a: '커머스 기업을 중심으로 구성했지만, 광고비 선집행·재고 매입 등 현금 흐름 이슈가 있는 기업이라면 업종 불문하고 도움이 됩니다.' },
                 { q: '고위드 제품 소개 웨비나인가요?', a: '법인카드 시장 변화와 전환 타이밍 판단 기준을 다루는 세션입니다. 제품 설명은 필요한 맥락에서만 최소한으로 언급됩니다.' },
                 { q: '사전 질문은 어떻게 활용되나요?', a: '신청 시 남겨주신 질문을 분석하여 웨비나 인트로에서 주요 관심사를 먼저 다루고, Q&A 시간에 집중 답변해 드립니다.' },
               ].map((faq, i) => (
@@ -407,13 +430,16 @@ export default function CorporateCardWebinarPage() {
         </section>
 
         {/* 최종 CTA */}
-        <section className="report-section report-section-cta" style={{ background: '#eef2fb', textAlign: 'center' }}>
+        <section className="report-section report-section-cta" style={{ background: '#f0f7f0', textAlign: 'center' }}>
           <div className="report-container">
             <div className="report-cta-content">
+              <p style={{ fontSize: '1rem', color: '#888', margin: '0 0 0.5rem 0' }}>
+                바꿀 타이밍인지,<br /> 40분이면 답이 나옵니다.
+              </p>
               <h3 className="report-h3" style={{ color: '#111' }}>
-                <strong>법인카드, 바꿀 타이밍인지,<br />40분 투자로 답을 알아가세요.</strong>
+                <strong>무료 웨비나 신청하기</strong>
               </h3>
-              <button onClick={openModal} className="report-button-cta" style={{ background: accentColor, color: '#fff', boxShadow: '0 4px 20px rgba(26, 86, 219, 0.25)' }}>
+              <button onClick={openModal} className="report-button-cta" style={{ background: accentColor, color: '#fff', boxShadow: '0 4px 20px rgba(11, 128, 89, 0.25)' }}>
                 무료 웨비나 신청하기
               </button>
             </div>
@@ -443,10 +469,10 @@ export default function CorporateCardWebinarPage() {
         </section>
 
         {/* 푸터 */}
-        <footer className="report-footer" style={{ background: '#f5f7fc', borderTop: '1px solid #e0e0e0' }}>
+        <footer className="report-footer" style={{ background: '#f7faf7', borderTop: '1px solid #e0e0e0' }}>
           <div className="report-container">
             <div className="report-footer-content">
-              <div style={{ color: '#888' }}>gowid @ 2026</div>
+              <div style={{ color: '#888' }}>GoWid &copy; 2026</div>
               <div className="report-footer-divider" style={{ color: '#ccc' }}>|</div>
               <div>
                 <a
@@ -484,7 +510,7 @@ export default function CorporateCardWebinarPage() {
               <>
                 <div className="modal-header">
                   <h2 className="modal-title">무료 웨비나 신청</h2>
-                  <p className="modal-description">4월 9일(목) 오후 3시 | 2026 법인카드 — 여기까지 왔습니다 : 테크·스타트업편</p>
+                  <p className="modal-description">4월 8일(수) 오후 3시 | 2026 법인카드 — 여기까지 왔습니다 : 커머스편</p>
                 </div>
 
                 <form onSubmit={handleSubmit} className="modal-form">
@@ -523,6 +549,31 @@ export default function CorporateCardWebinarPage() {
                   <div className="form-group">
                     <label htmlFor="question" className="form-label">궁금하신 점을 편하게 남겨주세요!</label>
                     <textarea id="question" name="question" value={formData.question} onChange={handleChange} className="form-input" placeholder="자유롭게 작성해주세요" rows={3} style={{ resize: 'vertical', fontFamily: 'inherit' }} />
+                  </div>
+
+                  <div className="form-group">
+                    <label className="form-label">웨비나 이전 서비스 안내를 받아보고 싶어요</label>
+                    <div style={{ display: 'flex', gap: '0.75rem', marginTop: '0.5rem' }}>
+                      {['고위드'].map((service) => (
+                        <label key={service} style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', cursor: 'pointer', fontSize: '0.9375rem', color: '#333' }}>
+                          <input
+                            type="checkbox"
+                            value={service}
+                            checked={formData.serviceInterest.includes(service)}
+                            onChange={(e) => {
+                              setFormData(prev => ({
+                                ...prev,
+                                serviceInterest: e.target.checked
+                                  ? [...prev.serviceInterest, service]
+                                  : prev.serviceInterest.filter(s => s !== service),
+                              }));
+                            }}
+                            style={{ accentColor }}
+                          />
+                          {service}
+                        </label>
+                      ))}
+                    </div>
                   </div>
 
                   <div className="form-group-checkbox" style={{ marginTop: '0.5rem' }}>

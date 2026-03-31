@@ -19,6 +19,7 @@ export async function POST(request: NextRequest) {
       utm_medium,
       utm_campaign,
       utm_content,
+      webinar_type,
     } = body;
 
     if (!name || !companyName || !department || !position || !email || !phone || !agreePrivacy) {
@@ -32,6 +33,7 @@ export async function POST(request: NextRequest) {
       .from('corporate_card_webinar')
       .insert([
         {
+          webinar_type: webinar_type || 'commerce',
           name,
           company_name: companyName,
           department,
@@ -46,7 +48,6 @@ export async function POST(request: NextRequest) {
           utm_medium: utm_medium || null,
           utm_campaign: utm_campaign || null,
           utm_content: utm_content || null,
-          webinar_type: 'tech',
         },
       ])
       .select();
@@ -78,7 +79,7 @@ export async function POST(request: NextRequest) {
           utm_medium: utm_medium || '',
           utm_campaign: utm_campaign || '',
           utm_content: utm_content || '',
-          webinar: 'corporate-card-webinar-tech-startup',
+          webinar: `corporate-card-webinar-${webinar_type || 'commerce'}`,
         }),
       });
     } catch (err) {
