@@ -83,6 +83,23 @@ export async function POST(request: NextRequest) {
       console.error('Zapier webhook error:', err);
     }
 
+    // Zapier Webhook 호출 (Zoom 링크 메일 발송 + 구글 캘린더 등록용)
+    try {
+      await fetch('https://hooks.zapier.com/hooks/catch/10485854/unlpond/', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          name,
+          email,
+          companyName,
+          phone,
+          webinar: `corporate-card-webinar-${webinar_type || 'commerce'}`,
+        }),
+      });
+    } catch (err) {
+      console.error('Zapier zoom/calendar webhook error:', err);
+    }
+
     return NextResponse.json({
       success: true,
       message: '웨비나 신청이 완료되었습니다.',
