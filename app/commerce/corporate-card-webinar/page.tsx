@@ -144,10 +144,7 @@ export default function CorporateCardWebinarPage() {
         <section className="report-section" style={{ background: '#fef8f3', padding: '5rem 0' }}>
           <div className="report-container">
             <div style={{ maxWidth: '720px', margin: '0 auto', textAlign: 'center' }}>
-              <h2 className="report-h2" style={{ color: '#111', textAlign: 'center', marginBottom: '1.5rem' }}>진작 확인할걸</h2>
-              <h2 style={{ fontSize: '1.75rem', fontWeight: '800', color: accentColor, lineHeight: '1.45', marginBottom: '2.5rem' }}>
-                &ldquo;진작 확인할걸.&rdquo;
-              </h2>
+              <h2 className="report-h2" style={{ color: '#111', textAlign: 'center', marginBottom: '1.5rem' }}>진작 확인할 걸</h2>
               <p style={{ fontSize: '1.0625rem', color: '#333', lineHeight: '1.9', marginBottom: '1.5rem' }}>
                 법인카드를 바꾸기로 결정한 커머스 대표들한테<br className="mobile-only-br" /> 나중에 물어보면,<br />
                 대부분 똑같은 말을 합니다. <strong>진작 확인할걸.</strong>
