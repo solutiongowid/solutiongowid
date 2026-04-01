@@ -214,7 +214,7 @@ export default function CorporateCardWebinarPage() {
                     <div style={{ flexShrink: 0, width: '1.5rem', height: '1.5rem', background: accentColor, borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
                       <svg viewBox="0 0 14 14" fill="none" width="14" height="14"><path d="M3 7L6 10L11 4" stroke="#fff" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" /></svg>
                     </div>
-                    <p style={{ fontSize: 'clamp(0.85rem, 2.5vw, 1.2rem)', lineHeight: '1.6', color: '#222', margin: 0 }}>{text}</p>
+                    <p style={{ fontSize: 'clamp(0.8rem, 1.8vw, 0.95rem)', lineHeight: '1.6', color: '#222', margin: 0 }}>{text}</p>
                   </div>
                 ))}
               </div>
