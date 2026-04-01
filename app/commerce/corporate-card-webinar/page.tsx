@@ -173,7 +173,7 @@ export default function CorporateCardWebinarPage() {
         <section className="report-section" style={{ background: '#ffffff', padding: '5rem 0' }}>
           <div className="report-container">
             <div style={{ maxWidth: '720px', margin: '0 auto', textAlign: 'center' }}>
-              <h2 className="report-h2" style={{ color: '#111', textAlign: 'center', marginBottom: '2rem' }}>예고편을 살짝 드리자면 —</h2>
+              <h2 className="report-h2" style={{ color: '#111', textAlign: 'center', marginBottom: '2rem' }}>이런 이야기를 나눌거예요</h2>
               <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem', maxWidth: '640px', margin: '0 auto', textAlign: 'left' }}>
                 {[
                   '같은 매출 규모인데 법인카드 한도가 3배 차이 나는 이유',
