@@ -234,10 +234,9 @@ export default function CorporateCardWebinarPage() {
 
               {/* 타임테이블 - PC */}
               <div className="cosmetic-timetable-pc" style={{ marginBottom: '3rem' }}>
-                <div style={{ display: 'grid', gridTemplateColumns: '140px 1fr 160px', gap: '1rem', padding: '1rem 0', borderBottom: `1px solid ${accentBorder}` }}>
+                <div style={{ display: 'grid', gridTemplateColumns: '140px 1fr', gap: '1rem', padding: '1rem 0', borderBottom: `1px solid ${accentBorder}` }}>
                   <div style={{ fontSize: '1rem', color: '#888' }}>시간</div>
                   <div style={{ fontSize: '1rem', color: '#888' }}>세션</div>
-                  <div style={{ fontSize: '1rem', color: '#888' }}>연사</div>
                 </div>
                 {[
                   { time: '00:00 ~ 00:03', title: '오프닝', speaker: '문미성 리드 · 고위드' },
@@ -258,7 +257,7 @@ export default function CorporateCardWebinarPage() {
                   },
                   { time: '00:30 ~ 00:40', title: '실무 Q&A', speaker: '문미성 리드 · 고위드' },
                 ].map((item, i) => (
-                  <div key={i} style={{ display: 'grid', gridTemplateColumns: '140px 1fr 160px', gap: '1rem', padding: '1.25rem 0', borderBottom: '1px solid #e0e0e0', alignItems: item.details ? 'start' : 'center' }}>
+                  <div key={i} style={{ display: 'grid', gridTemplateColumns: '140px 1fr', gap: '1rem', padding: '1.25rem 0', borderBottom: '1px solid #e0e0e0', alignItems: item.details ? 'start' : 'center' }}>
                     <div style={{ fontSize: '1.0625rem', fontWeight: '600', color: '#222' }}>{item.time}</div>
                     <div>
                       {item.session && <div style={{ fontSize: '1rem', fontWeight: '700', color: accentColor, marginBottom: '0.25rem' }}>{item.session}</div>}
@@ -278,16 +277,6 @@ export default function CorporateCardWebinarPage() {
                             </li>
                           )}
                         </ul>
-                      )}
-                    </div>
-                    <div>
-                      {item.speaker ? (
-                        <div style={{ fontSize: '1.0625rem', color: '#888' }}>{item.speaker}</div>
-                      ) : (
-                        <>
-                          <div style={{ fontSize: '1.0625rem', fontWeight: '600', color: accentColor }}>{item.speakerName}</div>
-                          <div style={{ fontSize: '1rem', color: '#888' }}>{item.speakerCompany}</div>
-                        </>
                       )}
                     </div>
                   </div>
@@ -318,9 +307,8 @@ export default function CorporateCardWebinarPage() {
                   <div key={i} style={{ padding: '1.25rem 0', borderBottom: '1px solid #e0e0e0' }}>
                     <div style={{ fontSize: '0.8125rem', color: '#888', marginBottom: '0.25rem' }}>{item.time}</div>
                     {item.session && (
-                      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '0.625rem' }}>
+                      <div style={{ marginBottom: '0.625rem' }}>
                         <span style={{ fontSize: '0.8125rem', fontWeight: '700', color: accentColor }}>{item.session}</span>
-                        <span style={{ fontSize: '0.8125rem', color: '#888' }}><span style={{ color: accentColor, fontWeight: '600' }}>{item.speakerName}</span> · {item.speakerCompany}</span>
                       </div>
                     )}
                     <div style={{ fontSize: '0.9375rem', fontWeight: '600', color: '#222', marginBottom: item.details ? '0.75rem' : '0' }}>{item.title}</div>
@@ -340,7 +328,6 @@ export default function CorporateCardWebinarPage() {
                         )}
                       </ul>
                     )}
-                    {!item.details && item.speaker && <div style={{ fontSize: '0.8125rem', color: '#888', marginTop: '0.125rem' }}>{item.speaker}</div>}
                   </div>
                 ))}
               </div>
@@ -381,8 +368,7 @@ export default function CorporateCardWebinarPage() {
                 { q: '참여 비용이 있나요?', a: '완전 무료입니다.' },
                 { q: '참석하지 못하면 녹화본을 받을 수 있나요?', a: '네, 신청하신 분들께 웨비나 종료 후 녹화본을 이메일로 발송해 드립니다.' },
                 { q: '어떤 업종에 적합한 웨비나인가요?', a: '커머스 기업을 중심으로 구성했지만, 광고비 선집행·재고 매입 등 현금 흐름 이슈가 있는 기업이라면 업종 불문하고 도움이 됩니다.' },
-                { q: '고위드 제품 소개 웨비나인가요?', a: '법인카드 시장 변화와 전환 타이밍 판단 기준을 다루는 세션입니다. 제품 설명은 필요한 맥락에서만 최소한으로 언급됩니다.' },
-                { q: '사전 질문은 어떻게 활용되나요?', a: '신청 시 남겨주신 질문을 분석하여 웨비나 인트로에서 주요 관심사를 먼저 다루고, Q&A 시간에 집중 답변해 드립니다.' },
+{ q: '사전 질문은 어떻게 활용되나요?', a: '신청 시 남겨주신 질문을 분석하여 웨비나 인트로에서 주요 관심사를 먼저 다루고, Q&A 시간에 집중 답변해 드립니다.' },
               ].map((faq, i) => (
                 <div key={i} style={{ borderBottom: '1px solid #e0e0e0' }}>
                   <button
