@@ -144,7 +144,7 @@ export default function CorporateCardWebinarPage() {
         <section className="report-section" style={{ background: '#fef8f3', padding: '5rem 0' }}>
           <div className="report-container">
             <div style={{ maxWidth: '720px', margin: '0 auto', textAlign: 'center' }}>
-              <h2 className="report-h2" style={{ color: '#111', textAlign: 'center', marginBottom: '1.5rem' }}>행사 소개</h2>
+              <h2 className="report-h2" style={{ color: '#111', textAlign: 'center', marginBottom: '1.5rem' }}>진작 확인할걸</h2>
               <h2 style={{ fontSize: '1.75rem', fontWeight: '800', color: accentColor, lineHeight: '1.45', marginBottom: '2.5rem' }}>
                 &ldquo;진작 확인할걸.&rdquo;
               </h2>
