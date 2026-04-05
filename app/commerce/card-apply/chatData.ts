@@ -67,6 +67,6 @@ export const CHATBOT_RESPONSES: Record<string, ChatResponse> = {
   howto_other: { text: "신청은 3분이면 끝나요. 카드 수령까지 약 일주일.\n\n기존 카드 해지 안 해도 되고, 추가로 발급받는 거라 리스크도 없어요.", options: END_OPTIONS },
   howto_internal: { text: "내부 공유용 비교 자료를 정리해서 설명드릴 수 있어요.\n설득에 필요한 숫자를 맞춰드릴게요.", options: END_OPTIONS },
 
-  cta_apply: { text: "담당자가 직접 연락드려요.\n\n예상 한도, 페이백, 같은 업종 사례까지 정리해서 가져갈게요.", options: [], isFinal: true, finalType: "apply", link: "https://gowid.com/card-apply-lead" },
+  cta_apply: { text: "담당자가 직접 연락드려요.\n\n예상 한도, 페이백, 같은 업종 사례까지 정리해서 가져갈게요.", options: [], isFinal: true, finalType: "apply", link: "https://www.solutiongowid.com/commerce/card-apply/?utm_source=facebook&utm_medium=paid-display&utm_campaign=commerce-apply-lead-04" },
   cta_later: { text: "네, 편하실 때 다시 찾아주세요.\n궁금한 게 생기면 언제든 돌아오시면 돼요.", options: [], isFinal: true, finalType: "soft_close" },
 };
