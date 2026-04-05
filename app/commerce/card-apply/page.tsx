@@ -1,6 +1,7 @@
 'use client';
 
 import { useState, useEffect, useRef, useCallback } from 'react';
+import Image from 'next/image';
 import { INTRO_MESSAGES, INTRO_OPTIONS, MORE_OPTIONS, CHATBOT_RESPONSES } from './chatData';
 import type { Option } from './chatData';
 import { trackEvent, buildCtaUrl } from './tracking';
@@ -137,14 +138,16 @@ export default function CardApplyPage() {
               width: 40,
               height: 40,
               borderRadius: 20,
-              background: '#0A0A0A',
+              background: '#fff',
+              border: '1px solid #E8E8E8',
               display: 'flex',
               alignItems: 'center',
               justifyContent: 'center',
               flexShrink: 0,
+              overflow: 'hidden',
             }}
           >
-            <span style={{ color: '#fff', fontSize: 12, fontWeight: 800 }}>GW</span>
+            <Image src="/gowid-logo.png" alt="고위드" width={28} height={28} style={{ objectFit: 'contain' }} />
           </div>
           <div>
             <div style={{ fontSize: 16, fontWeight: 700, color: '#1a1a1a' }}>고위드</div>
