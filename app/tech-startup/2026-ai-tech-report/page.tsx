@@ -54,8 +54,8 @@ export default function TechStartupReportPage() {
             <div className="report-header-text-wrapper">
               <h1 className="report-h1">
                 <strong>
-                  <span className="desktop-title">AI·머신러닝 벤치마크 리포트 2026</span>
-                  <span className="mobile-title">AI·머신러닝 벤치마크<br/>리포트 2026</span>
+                  <span className="desktop-title">AI·머신러닝<br/>벤치마크 리포트 2026</span>
+                  <span className="mobile-title">AI·머신러닝<br/>벤치마크 리포트 2026</span>
                 </strong>
               </h1>
               <div className="report-subtitle">
@@ -71,7 +71,7 @@ export default function TechStartupReportPage() {
             </div>
             <div className="report-header-image-wrapper">
               <Image
-                src="/image 50.png"
+                src="/villagebaby_thumb_blog_02 1.png"
                 alt="AI·머신러닝 벤치마크 리포트 2026"
                 width={600}
                 height={450}

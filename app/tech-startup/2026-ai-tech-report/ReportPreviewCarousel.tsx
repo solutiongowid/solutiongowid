@@ -4,10 +4,9 @@ import { useState, useEffect, useRef } from 'react';
 import Image from 'next/image';
 
 const previewImages = [
-  { src: '/ex page 1.jpg', alt: '리포트 표지' },
-  { src: '/ex page 2.jpg', alt: '리포트 소개' },
-  { src: '/ex page 3.jpg', alt: '분석 개요' },
-  { src: '/ex page 4.jpg', alt: '기준 톡파 이후' },
+  { src: '/image 33.png', alt: 'AI·머신러닝 기업 성장 vs 쇠퇴' },
+  { src: '/image 34.png', alt: '지출 배분 비교' },
+  { src: '/image 35.png', alt: '현금 런웨이 분석' },
 ];
 
 export default function ReportPreviewCarousel() {
