@@ -6,7 +6,7 @@ import { INTRO_MESSAGES, INTRO_OPTIONS, MORE_OPTIONS, CHATBOT_RESPONSES } from '
 import type { Option } from './chatData';
 import { trackEvent, buildCtaUrl } from './tracking';
 
-const CTA_URL = 'https://www.solutiongowid.com/commerce/card-apply/?utm_source=facebook&utm_medium=paid-display&utm_campaign=commerce-apply-lead-04';
+const CTA_URL = 'https://gowid.com/card-apply-lead/?utm_source=facebook&utm_medium=paid-display&utm_campaign=commerce-apply-lead-04';
 
 type Message = { type: 'bot' | 'user'; text: string };
 
