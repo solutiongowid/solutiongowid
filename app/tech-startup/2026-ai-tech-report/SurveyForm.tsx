@@ -114,7 +114,7 @@ export default function SurveyForm({ isOpen, onClose, utmParams }: SurveyFormPro
   };
 
   const handleDownload = () => {
-    window.open('https://drive.google.com/file/d/1qBB-4jR19NY-VVTd3BZ7PWsKFV7Ill6_/view?usp=sharing', '_blank');
+    window.open('https://drive.google.com/file/d/1nrI1m6-oiUtw3DhuN7k2rs8NKAanE34Q/view?usp=sharing', '_blank');
   };
 
   const handleClose = () => {
