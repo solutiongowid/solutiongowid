@@ -59,7 +59,6 @@ export default function TechStartupReportPage() {
                 </strong>
               </h1>
               <div className="report-subtitle">
-                혁신의숲 X 고위드,<br/>
                 695개 테크 스타트업의 지출 데이터에서 답을 찾다
               </div>
               <button
