@@ -57,7 +57,7 @@ export async function POST(request: NextRequest) {
     if (supabaseError) {
       console.error('Supabase error:', supabaseError);
       return NextResponse.json(
-        { error: '데이터 저장 중 오류가 발생했습니다.' },
+        { error: supabaseError.message },
         { status: 500 }
       );
     }
