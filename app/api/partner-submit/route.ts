@@ -18,6 +18,9 @@ export async function POST(request: NextRequest) {
       otherCooperation,
       howFound,
       otherHowFound,
+      utm_source,
+      utm_medium,
+      utm_campaign,
     } = body;
 
     if (!companyName || !position || !name || !phone || !email) {
@@ -43,6 +46,9 @@ export async function POST(request: NextRequest) {
           other_cooperation: otherCooperation || null,
           how_found: howFound || null,
           other_how_found: otherHowFound || null,
+          utm_source: utm_source || null,
+          utm_medium: utm_medium || null,
+          utm_campaign: utm_campaign || null,
         },
       ]);
 

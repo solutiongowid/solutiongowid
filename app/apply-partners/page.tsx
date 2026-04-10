@@ -1,6 +1,8 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+import { useSearchParams } from 'next/navigation';
+import { Suspense } from 'react';
 
 type PartnerType = 'b2b' | 'vc' | 'ac' | 'finance' | '';
 
@@ -95,8 +97,10 @@ function TextField({
   );
 }
 
-export default function ApplyPartnersPage() {
+function ApplyPartnersForm() {
+  const searchParams = useSearchParams();
   const [page, setPage] = useState(0);
+  const [utmParams, setUtmParams] = useState({ utm_source: '', utm_medium: '', utm_campaign: '' });
   const [data, setData] = useState<FormData>({
     companyName: '',
     position: '',
@@ -114,6 +118,14 @@ export default function ApplyPartnersPage() {
   const [errors, setErrors] = useState<Record<string, string>>({});
   const [submitting, setSubmitting] = useState(false);
   const [submitError, setSubmitError] = useState('');
+
+  useEffect(() => {
+    setUtmParams({
+      utm_source: searchParams.get('utm_source') || '',
+      utm_medium: searchParams.get('utm_medium') || '',
+      utm_campaign: searchParams.get('utm_campaign') || '',
+    });
+  }, [searchParams]);
 
   function update<K extends keyof FormData>(field: K, value: FormData[K]) {
     setData(d => ({ ...d, [field]: value }));
@@ -169,7 +181,7 @@ export default function ApplyPartnersPage() {
       const res = await fetch('/api/partner-submit', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(data),
+        body: JSON.stringify({ ...data, ...utmParams }),
       });
       if (res.ok) {
         setPage(6);
@@ -184,6 +196,7 @@ export default function ApplyPartnersPage() {
   }
 
   const coopOpts = data.partnerType ? COOP_OPTIONS[data.partnerType] : [];
+
 
   return (
     <div
@@ -623,5 +636,13 @@ export default function ApplyPartnersPage() {
         </div>
       </div>
     </div>
+  );
+}
+
+export default function ApplyPartnersPage() {
+  return (
+    <Suspense>
+      <ApplyPartnersForm />
+    </Suspense>
   );
 }
