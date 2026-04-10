@@ -100,7 +100,7 @@ function TextField({
 function ApplyPartnersForm() {
   const searchParams = useSearchParams();
   const [page, setPage] = useState(0);
-  const [utmParams, setUtmParams] = useState({ utm_source: '', utm_medium: '', utm_campaign: '' });
+  const [utmParams, setUtmParams] = useState({ utm_source: '', utm_medium: '', utm_campaign: '', utm_content: '' });
   const [data, setData] = useState<FormData>({
     companyName: '',
     position: '',
@@ -124,6 +124,7 @@ function ApplyPartnersForm() {
       utm_source: searchParams.get('utm_source') || '',
       utm_medium: searchParams.get('utm_medium') || '',
       utm_campaign: searchParams.get('utm_campaign') || '',
+      utm_content: searchParams.get('utm_content') || '',
     });
   }, [searchParams]);
 
