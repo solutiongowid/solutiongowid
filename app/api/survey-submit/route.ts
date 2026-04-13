@@ -35,28 +35,6 @@ export async function POST(request: NextRequest) {
       console.error('Supabase error:', supabaseError);
     }
 
-    // leads 테이블에도 저장
-    const { error: leadsError } = await supabase
-      .from('leads')
-      .insert([
-        {
-          company_name: companyName,
-          contact_name: name,
-          job_title: position,
-          email,
-          phone_number: phone,
-          lead_source: utm_source || null,
-          lead_source_detail: utm_medium || null,
-          campaign_detail: utm_campaign || null,
-          funnel_stage: 'new',
-          is_converted: false,
-        },
-      ]);
-
-    if (leadsError) {
-      console.error('Supabase leads error:', leadsError);
-    }
-
     // Google Sheets Apps Script Web App URL
     const GOOGLE_SCRIPT_URL = process.env.GOOGLE_SCRIPT_SURVEY_URL || '';
 
