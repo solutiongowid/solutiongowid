@@ -445,8 +445,8 @@ export default function MonthlyReportPage() {
   const [openEmail, setOpenEmail] = useState<Email | null>(null);
 
   return (
-    <div style={{ minHeight: "100vh", background: "#f9fafb", padding: "3rem 1.5rem" }}>
-      <div style={{ maxWidth: "1100px", margin: "0 auto" }}>
+    <div style={{ position: "fixed", inset: 0, overflowY: "auto", overflowX: "hidden", background: "#f9fafb", WebkitOverflowScrolling: "touch" }}>
+      <div style={{ maxWidth: "1100px", margin: "0 auto", padding: "3rem 1.5rem" }}>
         <header style={{ marginBottom: "3rem" }}>
           <div style={{ color: "#5BC500", fontSize: "0.875rem", fontWeight: 600, letterSpacing: "0.05em", marginBottom: "0.5rem" }}>
             MONTHLY REPORT
