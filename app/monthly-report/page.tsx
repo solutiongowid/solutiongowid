@@ -8,28 +8,42 @@ type Email = {
   subject: string;
   openRate: number;
   clickRate: number;
-  leads: number | string;
-  sequence: string;
-  sequenceType: string;
+  leads: number;
+  body: string;
+};
+
+type Sequence = {
+  name: string;
+  type: string;
+  sentAt: string;
+  openRate: number;
+  clickRate: number;
+  leads: number;
   target: string;
   cta: string;
-  body: string;
+  emails: Email[];
   isBest?: boolean;
 };
 
-const emails: Email[] = [
+const sequences: Sequence[] = [
   {
-    id: "2602-1",
-    sentDate: "2026-02",
-    subject: "내일 보내드릴 메일",
-    openRate: 42.8,
-    clickRate: 3.8,
-    leads: "시퀀스 3건",
-    sequence: "2602 메타 커머스 리포트",
-    sequenceType: "인바운드 유입자 자동 시퀀스",
+    name: "2602 메타 커머스 리포트",
+    type: "인바운드 자동 시퀀스",
+    sentAt: "2026-02",
+    openRate: 38.4,
+    clickRate: 4.1,
+    leads: 3,
     target: "메타 광고 커머스 리포트 리드폼 제출자",
     cta: "도입신청서",
-    body: `안녕하세요, $%corpname%$ 담당자님
+    emails: [
+      {
+        id: "2602-1",
+        sentDate: "2026-02",
+        subject: "내일 보내드릴 메일",
+        openRate: 42.8,
+        clickRate: 3.8,
+        leads: 3,
+        body: `안녕하세요, $%corpname%$ 담당자님
 고위드에서 고객 전략팀을 리드하는 문미성이라고 합니다.
 
 지난 3년간 고위드에서
@@ -57,19 +71,15 @@ const emails: Email[] = [
 
 감사합니다.
 고위드 문미성 드림`,
-  },
-  {
-    id: "2602-2",
-    sentDate: "2026-02",
-    subject: "[벤치마크 리포트] 387개의 커머스 재무 분석",
-    openRate: 34.0,
-    clickRate: 4.4,
-    leads: "시퀀스 3건",
-    sequence: "2602 메타 커머스 리포트",
-    sequenceType: "인바운드 유입자 자동 시퀀스",
-    target: "메타 광고 커머스 리포트 리드폼 제출자",
-    cta: "도입신청서",
-    body: `안녕하세요 $%corpname%$ 담당자님. 고위드 문미성입니다.
+      },
+      {
+        id: "2602-2",
+        sentDate: "2026-02",
+        subject: "[벤치마크 리포트] 387개의 커머스 재무 분석",
+        openRate: 34.0,
+        clickRate: 4.4,
+        leads: 3,
+        body: `안녕하세요 $%corpname%$ 담당자님. 고위드 문미성입니다.
 고위드 대표 김항기님이 말 그대로 '매일' 하는 이야기가 있습니다.
 
 "고객의 삶을 실질적으로 풍요롭게 함으로써 사랑 받자"
@@ -101,19 +111,27 @@ V 쇠퇴 기업의 패턴은 결국 ㅇㅇ 부족부터 시작
 월요일에도 한 번 연락 드릴게요.
 감사합니다 담당자님.
 문미성 드림`,
+      },
+    ],
   },
   {
-    id: "2603-platform-1",
-    sentDate: "2026-03-03",
-    subject: "패션 커머스의 이상한 공통점을 발견했습니다",
-    openRate: 21.5,
-    clickRate: 1.3,
-    leads: "시퀀스 8건",
-    sequence: "2603 플랫폼 커머스 아웃바운드",
-    sequenceType: "아웃바운드 시퀀스 (2원고)",
+    name: "2603 플랫폼 아웃바운드",
+    type: "아웃바운드 시퀀스 (2원고)",
+    sentAt: "03-03 ~ 03-04",
+    openRate: 23.6,
+    clickRate: 1.9,
+    leads: 8,
     target: "무신사·올리브영·오늘의집 입점 브랜드",
     cta: "도입신청서",
-    body: `안녕하세요, $%corpname%$ $%name%$ 대표님
+    emails: [
+      {
+        id: "2603-p1",
+        sentDate: "2026-03-03",
+        subject: "패션 커머스의 이상한 공통점을 발견했습니다",
+        openRate: 21.5,
+        clickRate: 1.3,
+        leads: 8,
+        body: `안녕하세요, $%corpname%$ $%name%$ 대표님
 고위드에서 고객 전략팀을 리드하는 문미성이라고 합니다.
 
 지난 3년간 디에프코퍼레이션, 포터리, 해브해드, 딥다이브, 아모멘토 등
@@ -142,19 +160,15 @@ $%corpname%$ 사께 도움이 되고자 만들었습니다.
 
 감사합니다
 고위드 문미성 드림`,
-  },
-  {
-    id: "2603-platform-2",
-    sentDate: "2026-03-04",
-    subject: "약속드린 387개 커머스 벤치마크 리포트 보내드립니다",
-    openRate: 25.6,
-    clickRate: 2.5,
-    leads: "시퀀스 8건",
-    sequence: "2603 플랫폼 커머스 아웃바운드",
-    sequenceType: "아웃바운드 시퀀스 (2원고)",
-    target: "무신사·올리브영·오늘의집 입점 브랜드",
-    cta: "도입신청서",
-    body: `안녕하세요 $%corpname%$ $%name%$ 대표님. 고위드 문미성입니다.
+      },
+      {
+        id: "2603-p2",
+        sentDate: "2026-03-04",
+        subject: "약속드린 387개 커머스 벤치마크 리포트 보내드립니다",
+        openRate: 25.6,
+        clickRate: 2.5,
+        leads: 8,
+        body: `안녕하세요 $%corpname%$ $%name%$ 대표님. 고위드 문미성입니다.
 말씀드린 리포트를 보내드립니다.
 
 387개 커머스 기업의 재무 데이터를 분석했습니다.
@@ -183,19 +197,27 @@ $%corpname%$에서 지금 어디쯤 서 있는지 진단하고, 앞으로를 설
 
 감사합니다.
 문미성 드림`,
+      },
+    ],
   },
   {
-    id: "2603-direct",
-    sentDate: "2026-03-10",
-    subject: "$%corpname%$의 매입비, 다음 달에 내도 됩니다",
+    name: "2603 도입신청 직행",
+    type: "아웃바운드 단건",
+    sentAt: "2026-03-10",
     openRate: 23.2,
     clickRate: 1.0,
     leads: 2,
-    sequence: "2603 도입신청 직행",
-    sequenceType: "아웃바운드 단건",
     target: "커머스 타겟 리스트",
     cta: "도입신청서 (한도 산출)",
-    body: `안녕하세요 $%corpname%$ 대표님.
+    emails: [
+      {
+        id: "2603-d",
+        sentDate: "2026-03-10",
+        subject: "$%corpname%$의 매입비, 다음 달에 내도 됩니다",
+        openRate: 23.2,
+        clickRate: 1.0,
+        leads: 2,
+        body: `안녕하세요 $%corpname%$ 대표님.
 고위드 문미성입니다.
 
 누군가 $%corpname%$의 생산비용을 거래처에 미리 내주고 돈은 다음 달에 받겠다고 하면 어떠세요?
@@ -231,19 +253,27 @@ B사가 사용한 것이 고위드 법인카드입니다.
 
 감사합니다.
 문미성 드림`,
+      },
+    ],
   },
   {
-    id: "2603-meeting",
-    sentDate: "2026-03-20",
-    subject: "대표님 문미성입니다",
+    name: "2603 미팅 요청",
+    type: "아웃바운드 단건",
+    sentAt: "2026-03-20",
     openRate: 26.6,
     clickRate: 1.7,
     leads: 5,
-    sequence: "2603 미팅 요청",
-    sequenceType: "아웃바운드 단건",
     target: "대표 타겟 리스트",
     cta: "도입신청서 + 30분 미팅 회신",
-    body: `$%name%$ 대표님, 안녕하세요.
+    emails: [
+      {
+        id: "2603-m",
+        sentDate: "2026-03-20",
+        subject: "대표님 문미성입니다",
+        openRate: 26.6,
+        clickRate: 1.7,
+        leads: 5,
+        body: `$%name%$ 대표님, 안녕하세요.
 고위드 고객전략팀 문미성입니다.
 $%corpname%$를 꼭 만나뵙고자 이렇게 메일을 보냅니다.
 
@@ -273,20 +303,28 @@ $%corpname%$에서 계획하고 계신 26년은 어떤지 너무 궁금하기도
 감사합니다.
 문미성 드림
 Lead | 고객전략 / moon@gowid.com | +82.10.2125.9069`,
+      },
+    ],
   },
   {
-    id: "2604-tips-1",
-    sentDate: "2026-04-09",
-    subject: "대표님, 고위드 문미성입니다",
-    openRate: 67.2,
-    clickRate: 7.9,
-    leads: 34,
-    sequence: "2604 팁스/혁신의숲",
-    sequenceType: "아웃바운드 시퀀스 (2원고)",
+    name: "2604 팁스/혁신의숲",
+    type: "아웃바운드 시퀀스 (2원고)",
+    sentAt: "04-09 ~ 04-10",
+    openRate: 37.6,
+    clickRate: 6.1,
+    leads: 35,
     target: "팁스·혁신의숲 등록 법인 대표 이메일",
     cta: "도입신청서 (한도 산출)",
     isBest: true,
-    body: `안녕하세요, $%name%$ 대표님
+    emails: [
+      {
+        id: "2604-t1",
+        sentDate: "2026-04-09",
+        subject: "대표님, 고위드 문미성입니다",
+        openRate: 67.2,
+        clickRate: 7.9,
+        leads: 34,
+        body: `안녕하세요, $%name%$ 대표님
 고위드 문미성입니다.
 
 최근 뵈었던 벤처캐피탈리스트로부터 $%corpname%$사가 큰 성장을 앞두고 계시다는 이야기를 듣고, 버선발로 마중나와보았습니다.
@@ -316,19 +354,15 @@ Lead | 고객전략 / moon@gowid.com | +82.10.2125.9069`,
 (주)고위드 | 서울시 강남구 도산대로 317, 14층
 
 *본 메일이 대표님이 아닌 분께 도착했다면, 대표님께 전달 부탁드립니다.`,
-  },
-  {
-    id: "2604-tips-2",
-    sentDate: "2026-04-10",
-    subject: "리마인드",
-    openRate: 7.9,
-    clickRate: 4.3,
-    leads: 1,
-    sequence: "2604 팁스/혁신의숲",
-    sequenceType: "아웃바운드 시퀀스 (2원고)",
-    target: "팁스·혁신의숲 등록 법인 대표 이메일 (1번 미회신)",
-    cta: "도입신청서 (한도 산출)",
-    body: `안녕하세요, $%name%$ 대표님
+      },
+      {
+        id: "2604-t2",
+        sentDate: "2026-04-10",
+        subject: "리마인드",
+        openRate: 7.9,
+        clickRate: 4.3,
+        leads: 1,
+        body: `안녕하세요, $%name%$ 대표님
 고위드 문미성입니다.
 
 어제 보내드린 메일에 회신을 받지 못하여 한 번 찾아왔습니다.
@@ -361,19 +395,27 @@ Lead | 고객전략 / moon@gowid.com | +82.10.2125.9069`,
 
 감사합니다
 문미성 드림`,
+      },
+    ],
   },
   {
-    id: "2604-signup",
-    sentDate: "2026-04-14",
-    subject: "지난 메일에 이어 연락드립니다",
+    name: "2604 팁스/혁신의숲 (회원가입링크)",
+    type: "아웃바운드 단건",
+    sentAt: "2026-04-14",
     openRate: 53.0,
     clickRate: 2.2,
-    leads: "가입 12 / 승인 4",
-    sequence: "2604 후속 회원가입 직행",
-    sequenceType: "아웃바운드 단건",
+    leads: 12,
     target: "팁스/혁신의숲 시퀀스 미전환자",
     cta: "회원가입 링크 (직행)",
-    body: `안녕하세요, $%name%$ 대표님
+    emails: [
+      {
+        id: "2604-s",
+        sentDate: "2026-04-14",
+        subject: "지난 메일에 이어 연락드립니다",
+        openRate: 53.0,
+        clickRate: 2.2,
+        leads: 12,
+        body: `안녕하세요, $%name%$ 대표님
 고위드 문미성입니다.
 
 얼마 전 보내드린 메일을 기억하실지 모르겠습니다.
@@ -429,20 +471,36 @@ BC카드 기준 최소 50일, 최대 53일 공여.
 
 문미성 Lead | 고객전략
 (주)고위드 | www.gowid.com`,
+      },
+    ],
   },
 ];
 
-const sequenceSummaries = [
-  { name: "2602 메타 커머스 리포트", type: "인바운드 자동 시퀀스", sentAt: "2026-02", openRate: 38.4, clickRate: 4.1, leads: 3 },
-  { name: "2603 플랫폼 아웃바운드", type: "아웃바운드 시퀀스 (2원고)", sentAt: "03-03 ~ 03-04", openRate: 23.6, clickRate: 1.9, leads: 8 },
-  { name: "2603 도입신청 직행", type: "아웃바운드 단건", sentAt: "2026-03-10", openRate: 23.2, clickRate: 1.0, leads: 2 },
-  { name: "2603 미팅 요청", type: "아웃바운드 단건", sentAt: "2026-03-20", openRate: 26.6, clickRate: 1.7, leads: 5 },
-  { name: "2604 팁스/혁신의숲", type: "아웃바운드 시퀀스 (2원고)", sentAt: "04-09 ~ 04-10", openRate: 37.6, clickRate: 6.1, leads: 35, isBest: true },
-  { name: "2604 후속 회원가입 직행", type: "아웃바운드 단건", sentAt: "2026-04-14", openRate: 53.0, clickRate: 2.2, leads: "가입 12 / 승인 4" },
-];
-
 export default function MonthlyReportPage() {
+  const [pickerSeq, setPickerSeq] = useState<Sequence | null>(null);
   const [openEmail, setOpenEmail] = useState<Email | null>(null);
+  const [openEmailSeq, setOpenEmailSeq] = useState<Sequence | null>(null);
+
+  const openSequence = (seq: Sequence) => {
+    if (seq.emails.length === 1) {
+      setOpenEmail(seq.emails[0]);
+      setOpenEmailSeq(seq);
+    } else {
+      setPickerSeq(seq);
+    }
+  };
+
+  const selectEmailFromPicker = (email: Email) => {
+    if (pickerSeq) setOpenEmailSeq(pickerSeq);
+    setOpenEmail(email);
+    setPickerSeq(null);
+  };
+
+  const closeAll = () => {
+    setOpenEmail(null);
+    setOpenEmailSeq(null);
+    setPickerSeq(null);
+  };
 
   return (
     <div style={{ position: "fixed", inset: 0, overflowY: "auto", overflowX: "hidden", background: "#f9fafb", WebkitOverflowScrolling: "touch" }}>
@@ -455,7 +513,7 @@ export default function MonthlyReportPage() {
             2026년 2~4월 아웃바운드 캠페인 성과
           </h1>
           <p style={{ color: "#6b7280", fontSize: "1rem", margin: 0 }}>
-            도입신청서 · 회원가입 리드를 만드는 이메일 캠페인 6건의 원고·성과·인사이트 종합
+            도입신청서 · 회원가입 리드를 만드는 이메일 캠페인 6건
           </p>
         </header>
 
@@ -466,7 +524,7 @@ export default function MonthlyReportPage() {
               { label: "총 캠페인", value: "6개" },
               { label: "총 원고", value: "9편" },
               { label: "도입신청 리드", value: "53건" },
-              { label: "회원가입 / 승인", value: "12 / 4" },
+              { label: "회원가입 리드", value: "12건" },
             ].map((m) => (
               <div key={m.label} style={{ background: "white", border: "1px solid #e5e7eb", borderRadius: "0.75rem", padding: "1.25rem" }}>
                 <div style={{ color: "#6b7280", fontSize: "0.875rem", marginBottom: "0.25rem" }}>{m.label}</div>
@@ -477,7 +535,10 @@ export default function MonthlyReportPage() {
         </section>
 
         <section style={{ marginBottom: "3rem" }}>
-          <h2 style={{ fontSize: "1.25rem", fontWeight: 700, color: "#111827", marginBottom: "1rem" }}>시퀀스별 요약</h2>
+          <h2 style={{ fontSize: "1.25rem", fontWeight: 700, color: "#111827", marginBottom: "0.5rem" }}>시퀀스별 요약</h2>
+          <p style={{ color: "#6b7280", fontSize: "0.875rem", marginBottom: "1rem" }}>
+            유형을 클릭하면 원고를 확인할 수 있습니다.
+          </p>
           <div style={{ background: "white", border: "1px solid #e5e7eb", borderRadius: "0.75rem", overflow: "hidden" }}>
             <div style={{ overflowX: "auto" }}>
               <table style={{ width: "100%", borderCollapse: "collapse", fontSize: "0.875rem" }}>
@@ -491,17 +552,45 @@ export default function MonthlyReportPage() {
                   </tr>
                 </thead>
                 <tbody>
-                  {sequenceSummaries.map((s) => (
+                  {sequences.map((s) => (
                     <tr key={s.name} style={{ background: s.isBest ? "#f0fdf0" : "white" }}>
                       <td style={{ padding: "0.75rem 1rem", borderBottom: "1px solid #f3f4f6", color: "#111827", fontWeight: 600 }}>
                         {s.name}
                         {s.isBest && <span style={{ marginLeft: "0.5rem", fontSize: "0.7rem", color: "#5BC500", fontWeight: 700 }}>BEST</span>}
                       </td>
-                      <td style={{ padding: "0.75rem 1rem", borderBottom: "1px solid #f3f4f6", color: "#6b7280" }}>{s.type}</td>
+                      <td style={{ padding: "0.5rem 1rem", borderBottom: "1px solid #f3f4f6" }}>
+                        <button
+                          onClick={() => openSequence(s)}
+                          style={{
+                            background: "#f0fdf0",
+                            color: "#5BC500",
+                            border: "1px solid #5BC500",
+                            borderRadius: "9999px",
+                            padding: "0.35rem 0.85rem",
+                            fontSize: "0.8rem",
+                            fontWeight: 600,
+                            cursor: "pointer",
+                            fontFamily: "inherit",
+                            transition: "all 0.15s",
+                          }}
+                          onMouseEnter={(ev) => {
+                            ev.currentTarget.style.background = "#5BC500";
+                            ev.currentTarget.style.color = "white";
+                          }}
+                          onMouseLeave={(ev) => {
+                            ev.currentTarget.style.background = "#f0fdf0";
+                            ev.currentTarget.style.color = "#5BC500";
+                          }}
+                        >
+                          {s.type} →
+                        </button>
+                      </td>
                       <td style={{ padding: "0.75rem 1rem", borderBottom: "1px solid #f3f4f6", color: "#6b7280" }}>{s.sentAt}</td>
                       <td style={{ padding: "0.75rem 1rem", borderBottom: "1px solid #f3f4f6", color: "#111827" }}>{s.openRate}%</td>
                       <td style={{ padding: "0.75rem 1rem", borderBottom: "1px solid #f3f4f6", color: "#111827" }}>{s.clickRate}%</td>
-                      <td style={{ padding: "0.75rem 1rem", borderBottom: "1px solid #f3f4f6", color: "#111827", fontWeight: 600 }}>{s.leads}</td>
+                      <td style={{ padding: "0.75rem 1rem", borderBottom: "1px solid #f3f4f6", color: "#111827", fontWeight: 600 }}>
+                        리드 {s.leads}건
+                      </td>
                     </tr>
                   ))}
                 </tbody>
@@ -510,148 +599,14 @@ export default function MonthlyReportPage() {
           </div>
         </section>
 
-        <section style={{ marginBottom: "3rem" }}>
-          <h2 style={{ fontSize: "1.25rem", fontWeight: 700, color: "#111827", marginBottom: "0.5rem" }}>원고별 상세</h2>
-          <p style={{ color: "#6b7280", fontSize: "0.875rem", marginBottom: "1rem" }}>
-            원고 카드를 클릭하면 전체 본문을 확인할 수 있습니다.
-          </p>
-          <div style={{ display: "grid", gap: "0.75rem" }}>
-            {emails.map((e) => (
-              <button
-                key={e.id}
-                onClick={() => setOpenEmail(e)}
-                style={{
-                  background: e.isBest ? "linear-gradient(135deg, #f0fdf0 0%, white 100%)" : "white",
-                  border: e.isBest ? "2px solid #5BC500" : "1px solid #e5e7eb",
-                  borderRadius: "0.75rem",
-                  padding: "1.25rem",
-                  textAlign: "left",
-                  cursor: "pointer",
-                  transition: "transform 0.1s, box-shadow 0.1s",
-                  width: "100%",
-                }}
-                onMouseEnter={(ev) => {
-                  ev.currentTarget.style.boxShadow = "0 4px 12px rgba(0,0,0,0.08)";
-                  ev.currentTarget.style.transform = "translateY(-1px)";
-                }}
-                onMouseLeave={(ev) => {
-                  ev.currentTarget.style.boxShadow = "none";
-                  ev.currentTarget.style.transform = "translateY(0)";
-                }}
-              >
-                <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", gap: "1rem", flexWrap: "wrap" }}>
-                  <div style={{ flex: "1 1 60%", minWidth: 0 }}>
-                    <div style={{ display: "flex", alignItems: "center", gap: "0.5rem", marginBottom: "0.25rem", flexWrap: "wrap" }}>
-                      <span style={{ fontSize: "0.75rem", color: "#6b7280", fontWeight: 500 }}>{e.sentDate}</span>
-                      <span style={{ fontSize: "0.75rem", color: "#5BC500", fontWeight: 600 }}>· {e.sequence}</span>
-                      {e.isBest && (
-                        <span style={{ background: "#5BC500", color: "white", fontSize: "0.65rem", fontWeight: 700, padding: "0.15rem 0.5rem", borderRadius: "999px" }}>
-                          BEST
-                        </span>
-                      )}
-                    </div>
-                    <h3 style={{ fontSize: "1.05rem", fontWeight: 700, color: "#111827", margin: "0 0 0.35rem" }}>{e.subject}</h3>
-                    <p style={{ fontSize: "0.8rem", color: "#6b7280", margin: "0 0 0.1rem" }}>
-                      대상: {e.target}
-                    </p>
-                    <p style={{ fontSize: "0.8rem", color: "#6b7280", margin: 0 }}>
-                      CTA: {e.cta}
-                    </p>
-                  </div>
-                  <div style={{ display: "flex", gap: "1.25rem", alignItems: "center" }}>
-                    <div style={{ textAlign: "center" }}>
-                      <div style={{ fontSize: "0.7rem", color: "#6b7280" }}>오픈</div>
-                      <div style={{ fontSize: "1.15rem", fontWeight: 700, color: "#111827" }}>{e.openRate}%</div>
-                    </div>
-                    <div style={{ textAlign: "center" }}>
-                      <div style={{ fontSize: "0.7rem", color: "#6b7280" }}>클릭</div>
-                      <div style={{ fontSize: "1.15rem", fontWeight: 700, color: "#111827" }}>{e.clickRate}%</div>
-                    </div>
-                    <div style={{ textAlign: "center" }}>
-                      <div style={{ fontSize: "0.7rem", color: "#6b7280" }}>리드</div>
-                      <div style={{ fontSize: "1.15rem", fontWeight: 700, color: "#5BC500" }}>{e.leads}</div>
-                    </div>
-                  </div>
-                </div>
-              </button>
-            ))}
-          </div>
-        </section>
-
-        <section style={{ marginBottom: "3rem" }}>
-          <h2 style={{ fontSize: "1.25rem", fontWeight: 700, color: "#111827", marginBottom: "1rem" }}>핵심 인사이트</h2>
-          <div style={{ display: "grid", gap: "1rem" }}>
-            {[
-              {
-                title: "대상 세그먼트 품질이 오픈율의 대부분을 결정한다",
-                body: "대표 직통 이메일 발송(4/9 팁스·혁신의숲) 67.2% > 리드폼 제출자(2602 메타 #1) 42.8% > 플랫폼 입점 브랜드 리스트(3월) 21~26%. 같은 문미성 Lead 명의, 유사한 톤의 원고라도 '누구에게 도달하는가'가 오픈율 차이의 대부분을 만든다.",
-              },
-              {
-                title: "'한도 산출' CTA가 전환 구조의 킬러",
-                body: "4/9 원고는 같은 한도 산출 CTA를 쓰면서도 단일 원고로 34건을 만들어냄. 같은 CTA라도 3/10 장문·수치 중심(513/929/1,763만원 표) 버전은 2건. 대상 품질 + 간결한 본문 + 명확한 CTA가 결합되어야 한다.",
-              },
-              {
-                title: "리마인드는 볼륨 작아도 고관심자를 회수한다",
-                body: "4/10 리마인드 오픈율 7.9%이나 오픈자의 54%가 클릭(클릭율 4.3%). 재오픈자는 결정 임박 상태 — 리마인드는 '전체 확산'이 아니라 '결정 임박자 회수' 용도로 계속 활용할 가치.",
-              },
-              {
-                title: "미팅 요청보다 한도 산출이 진입 장벽 낮음",
-                body: "3/20 미팅 요청(5건) vs 4/9 한도 산출(34건). 시간 약속이 필요한 CTA는 자체 필터가 되어 볼륨을 줄임. 초기 리드 생성 단계에서는 무신용조회·5분 한도 산출이 최적 경로.",
-              },
-              {
-                title: "회원가입 직행은 마찰 적지만 전환 품질 검증 필요",
-                body: "4/14 회원가입 직행은 도입신청 폼을 거치지 않아 12건 가입을 확보했지만 승인은 4건(33.3%). 폼 경유 리드 대비 의사결정 단계가 얕을 수 있음 — 후속 승인·활성화율 추적 필요.",
-              },
-              {
-                title: "플랫폼 아웃바운드는 양으로 보완",
-                body: "3월 플랫폼 시퀀스 오픈율 23.6%는 낮지만 3개 플랫폼 합산으로 8건 확보. 세그먼트 품질이 낮을 때는 발송 수 × 원고 품질로 볼륨을 만든다는 공식.",
-              },
-            ].map((ins) => (
-              <div key={ins.title} style={{ background: "white", border: "1px solid #e5e7eb", borderRadius: "0.75rem", padding: "1.25rem" }}>
-                <h3 style={{ fontSize: "1rem", fontWeight: 700, color: "#111827", margin: "0 0 0.5rem" }}>{ins.title}</h3>
-                <p style={{ fontSize: "0.875rem", color: "#4b5563", margin: 0, lineHeight: 1.6 }}>{ins.body}</p>
-              </div>
-            ))}
-          </div>
-        </section>
-
-        <section style={{ marginBottom: "3rem" }}>
-          <h2 style={{ fontSize: "1.25rem", fontWeight: 700, color: "#111827", marginBottom: "1rem" }}>개선 방향</h2>
-          <div style={{ background: "white", border: "1px solid #e5e7eb", borderRadius: "0.75rem", padding: "1.5rem" }}>
-            <ol style={{ margin: 0, paddingLeft: "1.25rem", color: "#374151", fontSize: "0.9rem", lineHeight: 1.8 }}>
-              <li style={{ marginBottom: "0.5rem" }}>
-                <strong>대상 확보에 리소스 집중.</strong> 팁스/혁신의숲처럼 대표 직통 이메일이 확보되는 소스(VC 포트폴리오, 액셀러레이터, 기사 DB)를 계속 발굴. 리스트 품질이 오픈율의 70%를 결정.
-              </li>
-              <li style={{ marginBottom: "0.5rem" }}>
-                <strong>3/10 직행 원고 개편.</strong> 장문·수치 중심에서 4/9처럼 "타이밍 + 사회적 증거(뤼튼·채널톡) + 3가지 가치 요약 + 한도 산출 CTA" 구조로 리라이트. A/B 테스트 권장.
-              </li>
-              <li style={{ marginBottom: "0.5rem" }}>
-                <strong>리마인드 2차·3차 실험.</strong> 오픈자 54% 클릭 패턴을 보면 리마인드 1회로 끝내지 말고 D+3, D+7 리마인드 추가 시 전환 곡선 추적해볼 여지.
-              </li>
-              <li style={{ marginBottom: "0.5rem" }}>
-                <strong>세그먼트별 원고 분기.</strong> 패션(무신사), 뷰티(올리브영), 리빙(오늘의집) 각각 레퍼런스 고객·현금흐름 사례를 다르게 써서 오픈율 5%p 이상 리프트 목표.
-              </li>
-              <li style={{ marginBottom: "0.5rem" }}>
-                <strong>회원가입 퍼널 추적.</strong> 4/14 회원가입 12건의 승인율 33% → 사용 전환율 → 실사용액까지 추적. 도입신청 경유 리드와 6개월 LTV 비교해 이 경로를 확대할지 판단.
-              </li>
-              <li style={{ marginBottom: "0.5rem" }}>
-                <strong>제목 실험.</strong> "대표님, 고위드 문미성입니다"(67.2%)와 "대표님 문미성입니다"(26.6%)의 차이는 대상 차이지만, 제목 어휘도 기여했을 가능성. 같은 대상 내에서 "대표님+실명" vs "요약형" 제목 A/B 테스트.
-              </li>
-              <li>
-                <strong>UTM 설계 정비.</strong> 현재 `utm_content`가 플랫폼+시점 혼재(`ohouse-commerce-outbound`가 3/3과 3/18 둘 다 쓰임). 원고별 고유 식별자 체계로 정리하면 원고 단위 전환 귀속이 가능해짐.
-              </li>
-            </ol>
-          </div>
-        </section>
-
         <footer style={{ textAlign: "center", color: "#9ca3af", fontSize: "0.75rem", paddingTop: "2rem", borderTop: "1px solid #e5e7eb" }}>
           © 고위드 · 내부 리포트 · 2026-04-16 작성
         </footer>
       </div>
 
-      {openEmail && (
+      {pickerSeq && (
         <div
-          onClick={() => setOpenEmail(null)}
+          onClick={closeAll}
           style={{
             position: "fixed",
             inset: 0,
@@ -668,6 +623,94 @@ export default function MonthlyReportPage() {
             style={{
               background: "white",
               borderRadius: "1rem",
+              maxWidth: "560px",
+              width: "100%",
+              maxHeight: "90vh",
+              overflowY: "auto",
+              padding: "2rem",
+            }}
+          >
+            <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", gap: "1rem", marginBottom: "1.5rem" }}>
+              <div>
+                <div style={{ fontSize: "0.75rem", color: "#5BC500", fontWeight: 600, marginBottom: "0.25rem" }}>
+                  {pickerSeq.name}
+                </div>
+                <h3 style={{ fontSize: "1.25rem", fontWeight: 700, color: "#111827", margin: 0 }}>
+                  원고를 선택하세요
+                </h3>
+                <p style={{ fontSize: "0.8rem", color: "#6b7280", margin: "0.5rem 0 0" }}>
+                  총 {pickerSeq.emails.length}개 원고
+                </p>
+              </div>
+              <button
+                onClick={closeAll}
+                style={{ background: "transparent", border: "none", fontSize: "1.5rem", cursor: "pointer", color: "#6b7280", padding: "0 0.5rem", lineHeight: 1 }}
+              >
+                ×
+              </button>
+            </div>
+            <div style={{ display: "grid", gap: "0.75rem" }}>
+              {pickerSeq.emails.map((em, i) => (
+                <button
+                  key={em.id}
+                  onClick={() => selectEmailFromPicker(em)}
+                  style={{
+                    background: "#f9fafb",
+                    border: "1px solid #e5e7eb",
+                    borderRadius: "0.75rem",
+                    padding: "1rem 1.25rem",
+                    textAlign: "left",
+                    cursor: "pointer",
+                    transition: "all 0.15s",
+                    width: "100%",
+                    fontFamily: "inherit",
+                  }}
+                  onMouseEnter={(ev) => {
+                    ev.currentTarget.style.background = "#f0fdf0";
+                    ev.currentTarget.style.borderColor = "#5BC500";
+                  }}
+                  onMouseLeave={(ev) => {
+                    ev.currentTarget.style.background = "#f9fafb";
+                    ev.currentTarget.style.borderColor = "#e5e7eb";
+                  }}
+                >
+                  <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", gap: "1rem" }}>
+                    <div>
+                      <div style={{ fontSize: "0.7rem", color: "#6b7280", marginBottom: "0.25rem" }}>
+                        원고 {i + 1} · {em.sentDate}
+                      </div>
+                      <div style={{ fontSize: "1rem", fontWeight: 700, color: "#111827" }}>
+                        {em.subject}
+                      </div>
+                    </div>
+                    <div style={{ color: "#5BC500", fontSize: "1.25rem" }}>→</div>
+                  </div>
+                </button>
+              ))}
+            </div>
+          </div>
+        </div>
+      )}
+
+      {openEmail && (
+        <div
+          onClick={closeAll}
+          style={{
+            position: "fixed",
+            inset: 0,
+            background: "rgba(0,0,0,0.5)",
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            padding: "1.5rem",
+            zIndex: 60,
+          }}
+        >
+          <div
+            onClick={(e) => e.stopPropagation()}
+            style={{
+              background: "white",
+              borderRadius: "1rem",
               maxWidth: "720px",
               width: "100%",
               maxHeight: "90vh",
@@ -675,45 +718,61 @@ export default function MonthlyReportPage() {
               padding: "2rem",
             }}
           >
-            <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", gap: "1rem", marginBottom: "1.25rem" }}>
+            <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", gap: "1rem", marginBottom: "1rem" }}>
               <div style={{ flex: 1 }}>
-                <div style={{ fontSize: "0.75rem", color: "#5BC500", fontWeight: 600, marginBottom: "0.35rem" }}>
-                  {openEmail.sentDate} · {openEmail.sequence}
-                </div>
+                {openEmailSeq && (
+                  <div style={{ fontSize: "0.75rem", color: "#5BC500", fontWeight: 600, marginBottom: "0.35rem" }}>
+                    {openEmailSeq.name}
+                  </div>
+                )}
                 <h3 style={{ fontSize: "1.35rem", fontWeight: 700, color: "#111827", margin: "0 0 0.5rem" }}>
                   {openEmail.subject}
                 </h3>
                 <div style={{ fontSize: "0.8rem", color: "#6b7280" }}>
-                  대상: {openEmail.target} · CTA: {openEmail.cta}
+                  발송일 {openEmail.sentDate}
                 </div>
               </div>
-              <button
-                onClick={() => setOpenEmail(null)}
-                style={{
-                  background: "transparent",
-                  border: "none",
-                  fontSize: "1.5rem",
-                  cursor: "pointer",
-                  color: "#6b7280",
-                  padding: "0 0.5rem",
-                  lineHeight: 1,
-                }}
-              >
-                ×
-              </button>
+              <div style={{ display: "flex", gap: "0.5rem" }}>
+                {openEmailSeq && openEmailSeq.emails.length > 1 && (
+                  <button
+                    onClick={() => {
+                      setPickerSeq(openEmailSeq);
+                      setOpenEmail(null);
+                    }}
+                    style={{
+                      background: "transparent",
+                      border: "1px solid #e5e7eb",
+                      borderRadius: "0.5rem",
+                      padding: "0.35rem 0.75rem",
+                      fontSize: "0.8rem",
+                      cursor: "pointer",
+                      color: "#6b7280",
+                      fontFamily: "inherit",
+                    }}
+                  >
+                    다른 원고
+                  </button>
+                )}
+                <button
+                  onClick={closeAll}
+                  style={{ background: "transparent", border: "none", fontSize: "1.5rem", cursor: "pointer", color: "#6b7280", padding: "0 0.5rem", lineHeight: 1 }}
+                >
+                  ×
+                </button>
+              </div>
             </div>
-            <div style={{ display: "flex", gap: "2rem", padding: "0.75rem 1rem", background: "#f9fafb", borderRadius: "0.5rem", marginBottom: "1.25rem" }}>
+            <div style={{ display: "flex", gap: "2rem", padding: "1rem 1.25rem", background: "#f9fafb", borderRadius: "0.5rem", marginBottom: "1.5rem" }}>
               <div>
                 <div style={{ fontSize: "0.7rem", color: "#6b7280" }}>오픈율</div>
-                <div style={{ fontSize: "1rem", fontWeight: 700, color: "#111827" }}>{openEmail.openRate}%</div>
+                <div style={{ fontSize: "1.05rem", fontWeight: 700, color: "#111827" }}>{openEmail.openRate}%</div>
               </div>
               <div>
                 <div style={{ fontSize: "0.7rem", color: "#6b7280" }}>클릭율</div>
-                <div style={{ fontSize: "1rem", fontWeight: 700, color: "#111827" }}>{openEmail.clickRate}%</div>
+                <div style={{ fontSize: "1.05rem", fontWeight: 700, color: "#111827" }}>{openEmail.clickRate}%</div>
               </div>
               <div>
                 <div style={{ fontSize: "0.7rem", color: "#6b7280" }}>리드</div>
-                <div style={{ fontSize: "1rem", fontWeight: 700, color: "#5BC500" }}>{openEmail.leads}</div>
+                <div style={{ fontSize: "1.05rem", fontWeight: 700, color: "#5BC500" }}>{openEmail.leads}건</div>
               </div>
             </div>
             <pre
