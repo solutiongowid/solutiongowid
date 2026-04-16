@@ -229,31 +229,30 @@ export default function CorporateCardWebinarPage() {
 
               {/* 타임테이블 - PC */}
               <div className="cosmetic-timetable-pc" style={{ marginBottom: '3rem' }}>
-                <div style={{ display: 'grid', gridTemplateColumns: '140px 1fr 160px', gap: '1rem', padding: '1rem 0', borderBottom: `1px solid ${accentBorder}` }}>
+                <div style={{ display: 'grid', gridTemplateColumns: '140px 1fr', gap: '1rem', padding: '1rem 0', borderBottom: `1px solid ${accentBorder}` }}>
                   <div style={{ fontSize: '1rem', color: '#888' }}>시간</div>
                   <div style={{ fontSize: '1rem', color: '#888' }}>세션</div>
-                  <div style={{ fontSize: '1rem', color: '#888' }}>연사</div>
                 </div>
                 {[
-                  { time: '00:00 ~ 00:03', title: '오프닝', speaker: '문미성 리드 · 고위드' },
+                  { time: '00:00 ~ 00:03', title: '오프닝' },
                   {
-                    time: '00:03 ~ 00:12', session: 'Session 01', title: '2026 법인카드, 여기까지 왔습니다', speakerName: '문미성 리드', speakerCompany: '고위드',
+                    time: '00:03 ~ 00:12', session: 'Session 01', title: '2026 법인카드, 여기까지 왔습니다',
                     details: ['같은 시리즈 A인데 한도가 3배 차이 나는 두 회사 — 뭐가 다른가', '한도 산정, 해외 결제, 실시간 관리 — 3년 사이 시장이 벌려놓은 격차', '시리즈 A~C 기업들이 실제로 카드를 옮기고 있는 이유'],
                     highlight: '대부분은 "몰랐다"가 아니라 "확인을 안 했을 뿐"',
                   },
                   {
-                    time: '00:12 ~ 00:22', session: 'Session 02', title: '안 바꾸는 동안, 빠지고 있는 돈', speakerName: '문미성 리드', speakerCompany: '고위드',
+                    time: '00:12 ~ 00:22', session: 'Session 02', title: '안 바꾸는 동안, 빠지고 있는 돈',
                     details: ['SaaS 구독 20개, 해외 결제 수수료 — 연 단위로 환산하면 얼마인가', '카드별 경비 정산·증빙 취합에 매달 쓰는 시간의 원가', '한도 부족 → 대표 개인카드 선결제 → 정산 꼬임: 반복되는 패턴'],
                     highlight: '비슷한 규모의 스타트업들은 돈을 실제로 어디에 쓰고 있는가',
                   },
                   {
-                    time: '00:22 ~ 00:30', session: 'Session 03', title: '전환 타이밍 자가 진단: 체크리스트', speakerName: '문미성 리드', speakerCompany: '고위드',
+                    time: '00:22 ~ 00:30', session: 'Session 03', title: '전환 타이밍 자가 진단: 체크리스트',
                     details: ['바꿔야 할 회사의 시그널 5가지', '아직 안 바꿔도 되는 회사의 조건 — 양면 제시', '체크리스트 실시간 자가 점검'],
                     highlight: '바꾸기로 했을 때, 뭐부터 하면 되는가 — 전환 3스텝',
                   },
-                  { time: '00:30 ~ 00:40', title: '실무 Q&A', speaker: '문미성 리드 · 고위드' },
+                  { time: '00:30 ~ 00:40', title: '실무 Q&A' },
                 ].map((item, i) => (
-                  <div key={i} style={{ display: 'grid', gridTemplateColumns: '140px 1fr 160px', gap: '1rem', padding: '1.25rem 0', borderBottom: '1px solid #e0e0e0', alignItems: item.details ? 'start' : 'center' }}>
+                  <div key={i} style={{ display: 'grid', gridTemplateColumns: '140px 1fr', gap: '1rem', padding: '1.25rem 0', borderBottom: '1px solid #e0e0e0', alignItems: item.details ? 'start' : 'center' }}>
                     <div style={{ fontSize: '1.0625rem', fontWeight: '600', color: '#222' }}>{item.time}</div>
                     <div>
                       {item.session && <div style={{ fontSize: '1rem', fontWeight: '700', color: accentColor, marginBottom: '0.25rem' }}>{item.session}</div>}
@@ -275,16 +274,6 @@ export default function CorporateCardWebinarPage() {
                         </ul>
                       )}
                     </div>
-                    <div>
-                      {item.speaker ? (
-                        <div style={{ fontSize: '1.0625rem', color: '#888' }}>{item.speaker}</div>
-                      ) : (
-                        <>
-                          <div style={{ fontSize: '1.0625rem', fontWeight: '600', color: accentColor }}>{item.speakerName}</div>
-                          <div style={{ fontSize: '1rem', color: '#888' }}>{item.speakerCompany}</div>
-                        </>
-                      )}
-                    </div>
                   </div>
                 ))}
               </div>
@@ -292,30 +281,29 @@ export default function CorporateCardWebinarPage() {
               {/* 타임테이블 - 모바일 */}
               <div className="cosmetic-timetable-mobile" style={{ marginBottom: '3rem' }}>
                 {[
-                  { time: '00:00 ~ 00:03', title: '오프닝', speaker: '문미성 리드 · 고위드' },
+                  { time: '00:00 ~ 00:03', title: '오프닝' },
                   {
-                    time: '00:03 ~ 00:12', session: 'Session 01', title: '2026 법인카드, 여기까지 왔습니다', speakerName: '문미성 리드', speakerCompany: '고위드',
+                    time: '00:03 ~ 00:12', session: 'Session 01', title: '2026 법인카드, 여기까지 왔습니다',
                     details: ['같은 시리즈 A인데 한도가 3배 차이 나는 두 회사 — 뭐가 다른가', '한도 산정, 해외 결제, 실시간 관리 — 3년 사이 시장이 벌려놓은 격차', '시리즈 A~C 기업들이 실제로 카드를 옮기고 있는 이유'],
                     highlight: '대부분은 "몰랐다"가 아니라 "확인을 안 했을 뿐"',
                   },
                   {
-                    time: '00:12 ~ 00:22', session: 'Session 02', title: '안 바꾸는 동안, 빠지고 있는 돈', speakerName: '문미성 리드', speakerCompany: '고위드',
+                    time: '00:12 ~ 00:22', session: 'Session 02', title: '안 바꾸는 동안, 빠지고 있는 돈',
                     details: ['SaaS 구독 20개, 해외 결제 수수료 — 연 단위로 환산하면 얼마인가', '카드별 경비 정산·증빙 취합에 매달 쓰는 시간의 원가', '한도 부족 → 대표 개인카드 선결제 → 정산 꼬임: 반복되는 패턴'],
                     highlight: '비슷한 규모의 스타트업들은 돈을 실제로 어디에 쓰고 있는가',
                   },
                   {
-                    time: '00:22 ~ 00:30', session: 'Session 03', title: '전환 타이밍 자가 진단: 체크리스트', speakerName: '문미성 리드', speakerCompany: '고위드',
+                    time: '00:22 ~ 00:30', session: 'Session 03', title: '전환 타이밍 자가 진단: 체크리스트',
                     details: ['바꿔야 할 회사의 시그널 5가지', '아직 안 바꿔도 되는 회사의 조건 — 양면 제시', '체크리스트 실시간 자가 점검'],
                     highlight: '바꾸기로 했을 때, 뭐부터 하면 되는가 — 전환 3스텝',
                   },
-                  { time: '00:30 ~ 00:40', title: '실무 Q&A', speaker: '문미성 리드 · 고위드' },
+                  { time: '00:30 ~ 00:40', title: '실무 Q&A' },
                 ].map((item, i) => (
                   <div key={i} style={{ padding: '1.25rem 0', borderBottom: '1px solid #e0e0e0' }}>
                     <div style={{ fontSize: '0.8125rem', color: '#888', marginBottom: '0.25rem' }}>{item.time}</div>
                     {item.session && (
-                      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '0.625rem' }}>
+                      <div style={{ marginBottom: '0.625rem' }}>
                         <span style={{ fontSize: '0.8125rem', fontWeight: '700', color: accentColor }}>{item.session}</span>
-                        <span style={{ fontSize: '0.8125rem', color: '#888' }}><span style={{ color: accentColor, fontWeight: '600' }}>{item.speakerName}</span> · {item.speakerCompany}</span>
                       </div>
                     )}
                     <div style={{ fontSize: '0.9375rem', fontWeight: '600', color: '#222', marginBottom: item.details ? '0.75rem' : '0' }}>{item.title}</div>
@@ -335,7 +323,6 @@ export default function CorporateCardWebinarPage() {
                         )}
                       </ul>
                     )}
-                    {!item.details && item.speaker && <div style={{ fontSize: '0.8125rem', color: '#888', marginTop: '0.125rem' }}>{item.speaker}</div>}
                   </div>
                 ))}
               </div>
@@ -350,7 +337,7 @@ export default function CorporateCardWebinarPage() {
               <h2 className="report-h2" style={{ textAlign: 'center', marginBottom: '2rem', color: '#111' }}>참석자 혜택</h2>
               <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1rem' }}>
                 {[
-                  { icon: '📄', title: '스타트업 비용 관리\n가이드 2026', desc: 'PDF 무료 제공' },
+                  { icon: '📄', title: '테크 벤치마크\n리포트 2026', desc: 'PDF 무료 제공' },
                   { icon: '💳', title: '고위드 법인카드\n한도 사전 조회', desc: '신청 즉시 확인 가능' },
                   { icon: '🔍', title: '1:1 자금 운영\n상담권', desc: '고위드 제공' },
                   { icon: '📥', title: '웨비나 발표 자료\nPDF', desc: '당일 참석자 대상' },
@@ -376,7 +363,6 @@ export default function CorporateCardWebinarPage() {
                 { q: '참여 비용이 있나요?', a: '완전 무료입니다.' },
                 { q: '참석하지 못하면 녹화본을 받을 수 있나요?', a: '네, 신청하신 분들께 웨비나 종료 후 녹화본을 이메일로 발송해 드립니다.' },
                 { q: '어떤 규모의 스타트업에 적합한가요?', a: '시드~시리즈 C까지, 법인카드를 사용 중인 스타트업이라면 규모 불문하고 해당됩니다. 특히 팀 규모가 10명 이상으로 넘어가면서 비용 관리 복잡도가 올라간 시점의 기업에 가장 실용적입니다.' },
-                { q: '고위드 제품 소개 웨비나인가요?', a: '법인카드 시장 변화와 전환 타이밍 판단 기준을 다루는 세션입니다. 제품 설명은 필요한 맥락에서만 최소한으로 언급됩니다.' },
                 { q: '사전 질문은 어떻게 활용되나요?', a: '신청 시 남겨주신 질문을 분석하여 웨비나 인트로에서 주요 관심사를 먼저 다루고, Q&A 시간에 집중 답변해 드립니다.' },
               ].map((faq, i) => (
                 <div key={i} style={{ borderBottom: '1px solid #e0e0e0' }}>
