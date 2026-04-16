@@ -114,7 +114,7 @@ export default function CorporateCardWebinarPage() {
           <div className="report-container">
             <div style={{ maxWidth: '800px', margin: '0 auto', textAlign: 'center' }}>
               <div style={{ marginBottom: '1.5rem' }}>
-                <span className="badge" style={{ fontSize: '0.875rem', padding: '0.5rem 1.25rem', background: accentLight, color: accentColor, border: `1px solid ${accentBorder}` }}>4월 9일 (목) 오후 3시 | 온라인 웨비나</span>
+                <span className="badge" style={{ fontSize: '0.875rem', padding: '0.5rem 1.25rem', background: accentLight, color: accentColor, border: `1px solid ${accentBorder}` }}>4월 23일 (목) 오후 3시 | 온라인 웨비나</span>
               </div>
               <h1 className="report-h1" style={{ textAlign: 'center', marginBottom: '1.5rem', color: '#111' }}>
                 <strong>
@@ -481,7 +481,7 @@ export default function CorporateCardWebinarPage() {
               <>
                 <div className="modal-header">
                   <h2 className="modal-title">무료 웨비나 신청</h2>
-                  <p className="modal-description">4월 9일(목) 오후 3시 | 2026 법인카드 — 여기까지 왔습니다 : 테크·스타트업편</p>
+                  <p className="modal-description">4월 23일(목) 오후 3시 | 2026 법인카드 — 여기까지 왔습니다 : 테크·스타트업편</p>
                 </div>
 
                 <form onSubmit={handleSubmit} className="modal-form">
