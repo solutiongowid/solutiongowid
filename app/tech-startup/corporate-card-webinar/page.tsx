@@ -155,13 +155,9 @@ export default function CorporateCardWebinarPage() {
                 더 여유가 생겨서 한 것도 아닙니다.<br />
                 한번 봐야겠다 싶었을 때, 그냥 확인했을 뿐입니다.
               </p>
-              <p style={{ fontSize: '1.0625rem', color: '#333', lineHeight: '1.9', marginBottom: '1.5rem' }}>
-                SaaS 구독, 해외 결제, 팀 규모 —<br />
-                어떤 조건에서 바꾸는 게 맞고,<br className="mobile-only-br" /> 어떤 조건에서는 지금 그대로여도 되는지.<br />
-                <strong>스타트업 데이터 기반으로 그 기준을 40분 안에 다룹니다.</strong>
-              </p>
               <p style={{ fontSize: '1.0625rem', color: '#333', lineHeight: '1.9' }}>
-                법인카드 외에도, 매달 빠져나가는 SaaS 구독료와 업무 장비 비용까지 —<br />
+                SaaS 구독, 해외 결제, 팀 규모 그리고 노트북 등 재고자산 관리까지 —<br />
+                어떤 조건에서 바꾸는 게 맞고,<br className="mobile-only-br" /> 어떤 조건에서는 지금 그대로여도 되는지.<br />
                 <strong>테크 스타트업이 놓치고 있는 지출을 한자리에서 짚어드립니다.</strong>
               </p>
             </div>
