@@ -171,7 +171,7 @@ export default function CorporateCardWebinarPage() {
               <h2 className="report-h2" style={{ textAlign: 'center', marginBottom: '2rem', color: '#111' }}>예고편을 살짝 드리자면 —</h2>
               <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem', maxWidth: '640px', margin: '0 auto', textAlign: 'left' }}>
                 {[
-                  '같은 시리즈인데 법인카드 한도가 3배 차이 나는 이유',
+                  '같은 시리즈A 기업인데 법인카드 한도가 3배 차이 나는 이유',
                   'SaaS 구독료 20개를 관리하는 회사와 방치하는 회사의 연간 차이',
                   '해외 결제 수수료를 한 번도 비교 안 해본 회사가 얼마나 되는지',
                   '비슷한 규모의 스타트업들이 실제로 돈을 어디에 쓰고 있는지',
