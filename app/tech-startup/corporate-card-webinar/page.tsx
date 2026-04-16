@@ -155,10 +155,14 @@ export default function CorporateCardWebinarPage() {
                 더 여유가 생겨서 한 것도 아닙니다.<br />
                 한번 봐야겠다 싶었을 때, 그냥 확인했을 뿐입니다.
               </p>
-              <p style={{ fontSize: '1.0625rem', color: '#333', lineHeight: '1.9' }}>
+              <p style={{ fontSize: '1.0625rem', color: '#333', lineHeight: '1.9', marginBottom: '1.5rem' }}>
                 SaaS 구독, 해외 결제, 팀 규모 —<br />
                 어떤 조건에서 바꾸는 게 맞고,<br className="mobile-only-br" /> 어떤 조건에서는 지금 그대로여도 되는지.<br />
                 <strong>스타트업 데이터 기반으로 그 기준을 40분 안에 다룹니다.</strong>
+              </p>
+              <p style={{ fontSize: '1.0625rem', color: '#333', lineHeight: '1.9' }}>
+                법인카드 외에도, 매달 빠져나가는 SaaS 구독료와 업무 장비 비용까지 —<br />
+                <strong>테크 스타트업이 놓치고 있는 지출을 한자리에서 짚어드립니다.</strong>
               </p>
             </div>
           </div>
@@ -175,6 +179,8 @@ export default function CorporateCardWebinarPage() {
                   'SaaS 구독료 20개를 관리하는 회사와 방치하는 회사의 연간 차이',
                   '해외 결제 수수료를 한 번도 비교 안 해본 회사가 얼마나 되는지',
                   '비슷한 규모의 스타트업들이 실제로 돈을 어디에 쓰고 있는지',
+                  'Google Workspace·MS 365, 결제처만 바꿔도 최대 35% 절감되는 구조',
+                  '노트북 200만원 일시불 vs. 월 구독 — 테크 스타트업에 맞는 선택 기준',
                 ].map((text, i) => (
                   <div key={i} style={{ display: 'flex', alignItems: 'center', gap: '1rem', padding: '1rem 1.25rem', background: accentLight, border: `1px solid ${accentBorder}`, borderRadius: '0.75rem' }}>
                     <div style={{ flexShrink: 0, width: '1.5rem', height: '1.5rem', background: accentColor, borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
@@ -204,6 +210,8 @@ export default function CorporateCardWebinarPage() {
                   <>해외 결제가 잦은데 <strong>수수료·환율 구조를 한 번도</strong><br className="mobile-only-br" /> <strong>비교해보지 않은</strong> 운영팀</>,
                   <>투자 유치 후 <strong>런웨이 관리와 비용 통제</strong>를<br className="mobile-only-br" /> 동시에 잡아야 하는 경영진</>,
                   <>법인카드를 바꿀 생각은 있는데<br className="mobile-only-br" /> <strong>&ldquo;더 중요한 일이 있어서&rdquo;로 미뤄온</strong> 대표</>,
+                  <>Google Workspace·MS 365 등 <strong>SaaS 구독료를 한 번도 최적화해본 적 없는</strong> 총무·운영팀</>,
+                  <>입사자 올 때마다 <strong>노트북 구매 비용이 부담스러운데</strong> 대안을 찾지 못한 재무 담당자</>,
                 ].map((text, i) => (
                   <div key={i} style={{ display: 'flex', alignItems: 'center', gap: '1.25rem', background: accentLight, border: `1px solid ${accentBorder}`, borderRadius: '0.75rem', padding: '1rem 1.25rem', textAlign: 'left' }}>
                     <div style={{ flexShrink: 0, width: '1.5rem', height: '1.5rem', background: accentColor, borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
@@ -250,7 +258,11 @@ export default function CorporateCardWebinarPage() {
                     details: ['바꿔야 할 회사의 시그널 5가지', '아직 안 바꿔도 되는 회사의 조건 — 양면 제시', '체크리스트 실시간 자가 점검'],
                     highlight: '바꾸기로 했을 때, 뭐부터 하면 되는가 — 전환 3스텝',
                   },
-                  { time: '00:30 ~ 00:40', title: '실무 Q&A' },
+                  {
+                    time: '00:30 ~ 00:38', session: 'Session 04', title: '테크 기업 IT 비용, 고위드가 아껴드립니다',
+                    details: ['Google Workspace·MS 365 — 결제처만 바꿔도 최대 35% 절감', '노트북 일시불 vs. 월 구독, 우리 회사에 맞는 방식 선택하기'],
+                  },
+                  { time: '00:38 ~ 00:40', title: '실무 Q&A' },
                 ].map((item, i) => (
                   <div key={i} style={{ display: 'grid', gridTemplateColumns: '140px 1fr', gap: '1rem', padding: '1.25rem 0', borderBottom: '1px solid #e0e0e0', alignItems: item.details ? 'start' : 'center' }}>
                     <div style={{ fontSize: '1.0625rem', fontWeight: '600', color: '#222' }}>{item.time}</div>
@@ -297,7 +309,11 @@ export default function CorporateCardWebinarPage() {
                     details: ['바꿔야 할 회사의 시그널 5가지', '아직 안 바꿔도 되는 회사의 조건 — 양면 제시', '체크리스트 실시간 자가 점검'],
                     highlight: '바꾸기로 했을 때, 뭐부터 하면 되는가 — 전환 3스텝',
                   },
-                  { time: '00:30 ~ 00:40', title: '실무 Q&A' },
+                  {
+                    time: '00:30 ~ 00:38', session: 'Session 04', title: '테크 기업 IT 비용, 고위드가 아껴드립니다',
+                    details: ['Google Workspace·MS 365 — 결제처만 바꿔도 최대 35% 절감', '노트북 일시불 vs. 월 구독, 우리 회사에 맞는 방식 선택하기'],
+                  },
+                  { time: '00:38 ~ 00:40', title: '실무 Q&A' },
                 ].map((item, i) => (
                   <div key={i} style={{ padding: '1.25rem 0', borderBottom: '1px solid #e0e0e0' }}>
                     <div style={{ fontSize: '0.8125rem', color: '#888', marginBottom: '0.25rem' }}>{item.time}</div>
