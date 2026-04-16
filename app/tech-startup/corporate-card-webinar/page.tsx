@@ -210,7 +210,6 @@ export default function CorporateCardWebinarPage() {
                   <>해외 결제가 잦은데 <strong>수수료·환율 구조를 한 번도</strong><br className="mobile-only-br" /> <strong>비교해보지 않은</strong> 운영팀</>,
                   <>투자 유치 후 <strong>런웨이 관리와 비용 통제</strong>를<br className="mobile-only-br" /> 동시에 잡아야 하는 경영진</>,
                   <>법인카드를 바꿀 생각은 있는데<br className="mobile-only-br" /> <strong>&ldquo;더 중요한 일이 있어서&rdquo;로 미뤄온</strong> 대표</>,
-                  <>Google Workspace·MS 365 등 <strong>SaaS 구독료를 한 번도 최적화해본 적 없는</strong> 총무·운영팀</>,
                   <>입사자 올 때마다 <strong>노트북 구매 비용이 부담스러운데</strong> 대안을 찾지 못한 재무 담당자</>,
                 ].map((text, i) => (
                   <div key={i} style={{ display: 'flex', alignItems: 'center', gap: '1.25rem', background: accentLight, border: `1px solid ${accentBorder}`, borderRadius: '0.75rem', padding: '1rem 1.25rem', textAlign: 'left' }}>
