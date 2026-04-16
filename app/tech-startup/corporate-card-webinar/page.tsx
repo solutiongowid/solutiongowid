@@ -258,10 +258,10 @@ export default function CorporateCardWebinarPage() {
                     highlight: '바꾸기로 했을 때, 뭐부터 하면 되는가 — 전환 3스텝',
                   },
                   {
-                    time: '00:30 ~ 00:38', session: 'Session 04', title: '테크 기업 IT 비용, 고위드가 아껴드립니다',
+                    time: '00:30 ~ 00:40', session: 'Session 04', title: '테크 기업 IT 비용, 고위드가 아껴드립니다',
                     details: ['Google Workspace·MS 365 — 결제처만 바꿔도 최대 35% 절감', '노트북 일시불 vs. 월 구독, 우리 회사에 맞는 방식 선택하기'],
                   },
-                  { time: '00:38 ~ 00:40', title: '실무 Q&A' },
+                  { time: '00:40 ~', title: '실무 Q&A' },
                 ].map((item, i) => (
                   <div key={i} style={{ display: 'grid', gridTemplateColumns: '140px 1fr', gap: '1rem', padding: '1.25rem 0', borderBottom: '1px solid #e0e0e0', alignItems: item.details ? 'start' : 'center' }}>
                     <div style={{ fontSize: '1.0625rem', fontWeight: '600', color: '#222' }}>{item.time}</div>
@@ -309,10 +309,10 @@ export default function CorporateCardWebinarPage() {
                     highlight: '바꾸기로 했을 때, 뭐부터 하면 되는가 — 전환 3스텝',
                   },
                   {
-                    time: '00:30 ~ 00:38', session: 'Session 04', title: '테크 기업 IT 비용, 고위드가 아껴드립니다',
+                    time: '00:30 ~ 00:40', session: 'Session 04', title: '테크 기업 IT 비용, 고위드가 아껴드립니다',
                     details: ['Google Workspace·MS 365 — 결제처만 바꿔도 최대 35% 절감', '노트북 일시불 vs. 월 구독, 우리 회사에 맞는 방식 선택하기'],
                   },
-                  { time: '00:38 ~ 00:40', title: '실무 Q&A' },
+                  { time: '00:40 ~', title: '실무 Q&A' },
                 ].map((item, i) => (
                   <div key={i} style={{ padding: '1.25rem 0', borderBottom: '1px solid #e0e0e0' }}>
                     <div style={{ fontSize: '0.8125rem', color: '#888', marginBottom: '0.25rem' }}>{item.time}</div>
