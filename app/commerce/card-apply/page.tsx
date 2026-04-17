@@ -8,7 +8,7 @@ import { trackEvent, buildCtaUrl } from './tracking';
 
 const CTA_URL = 'https://gowid.com/card-apply-lead/?utm_source=facebook&utm_medium=paid-display&utm_campaign=commerce-apply-lead-04';
 
-type Message = { type: 'bot' | 'user'; text: string };
+type Message = { type: 'bot' | 'user'; text: string; video?: string; textAfterVideo?: string };
 
 export default function CardApplyPage() {
   const [messages, setMessages] = useState<Message[]>([]);
@@ -57,7 +57,7 @@ export default function CardApplyPage() {
     setIsTyping(true);
     setShowOptions(false);
     setTimeout(() => {
-      setMessages((prev) => [...prev, { type: 'bot', text: data.text }]);
+      setMessages((prev) => [...prev, { type: 'bot', text: data.text, video: data.video, textAfterVideo: data.textAfterVideo }]);
       setIsTyping(false);
       if (data.isFinal) {
         setFinalState(data.finalType!);
@@ -211,6 +211,26 @@ export default function CardApplyPage() {
                 }}
               >
                 {msg.text}
+                {msg.video && (
+                  <video
+                    src={msg.video}
+                    autoPlay
+                    muted
+                    loop
+                    playsInline
+                    style={{
+                      display: 'block',
+                      width: '100%',
+                      aspectRatio: '1 / 1',
+                      objectFit: 'cover',
+                      borderRadius: 10,
+                      marginTop: 10,
+                    }}
+                  />
+                )}
+                {msg.textAfterVideo && (
+                  <div style={{ marginTop: 10 }}>{msg.textAfterVideo}</div>
+                )}
               </div>
             </div>
           ))}
