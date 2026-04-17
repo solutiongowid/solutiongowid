@@ -6,7 +6,7 @@ declare global {
 }
 
 export function getUtmParams() {
-  const params = new URLSearchParams(window.location.search);
+  const params = new URLSearchParams(typeof window !== 'undefined' ? window.location.search : '');
   return {
     utm_source: params.get("utm_source") || "",
     utm_medium: params.get("utm_medium") || "",
