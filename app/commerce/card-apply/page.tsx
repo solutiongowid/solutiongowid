@@ -175,14 +175,30 @@ export default function CardApplyPage() {
               style={{
                 display: 'flex',
                 justifyContent: msg.type === 'user' ? 'flex-end' : 'flex-start',
+                alignItems: 'flex-end',
+                gap: 8,
               }}
             >
+              {msg.type === 'bot' && (
+                <img
+                  src="/gowid-logo.png"
+                  alt="고위드"
+                  style={{
+                    width: 32,
+                    height: 32,
+                    borderRadius: '50%',
+                    border: '1px solid #E8E8E8',
+                    flexShrink: 0,
+                    objectFit: 'cover',
+                  }}
+                />
+              )}
               <div
                 style={{
-                  maxWidth: '85%',
+                  maxWidth: '75%',
                   padding: '12px 16px',
                   borderRadius: msg.type === 'user' ? '18px 18px 4px 18px' : '18px 18px 18px 4px',
-                  background: msg.type === 'user' ? '#0A0A0A' : '#fff',
+                  background: msg.type === 'user' ? '#5BC500' : '#fff',
                   color: msg.type === 'user' ? '#fff' : '#1a1a1a',
                   fontSize: 15,
                   lineHeight: 1.7,
@@ -196,7 +212,19 @@ export default function CardApplyPage() {
           ))}
 
           {isTyping && (
-            <div style={{ display: 'flex', justifyContent: 'flex-start' }}>
+            <div style={{ display: 'flex', justifyContent: 'flex-start', alignItems: 'flex-end', gap: 8 }}>
+              <img
+                src="/gowid-logo.png"
+                alt="고위드"
+                style={{
+                  width: 32,
+                  height: 32,
+                  borderRadius: '50%',
+                  border: '1px solid #E8E8E8',
+                  flexShrink: 0,
+                  objectFit: 'cover',
+                }}
+              />
               <div
                 style={{
                   padding: '12px 20px',
@@ -326,13 +354,16 @@ export default function CardApplyPage() {
           <div
             style={{
               padding: '10px 16px',
-              background: '#F2F2F2',
+              background: '#5BC500',
               borderRadius: 20,
               fontSize: 14,
-              color: '#BDBDBD',
+              color: '#FFFFFF',
+              fontWeight: 600,
+              textAlign: 'center',
+              cursor: 'pointer',
             }}
           >
-            메시지를 입력하세요
+            챗봇 말고 사람이랑 얘기하고싶어요
           </div>
         </div>
       </div>
