@@ -8,7 +8,7 @@ import { trackEvent, buildCtaUrl } from './tracking';
 
 const CTA_URL = 'https://gowid.com/card-apply-lead/?utm_source=facebook&utm_medium=paid-display&utm_campaign=commerce-apply-lead-04';
 
-type Message = { type: 'bot' | 'user'; text: string; video?: string; textAfterVideo?: string };
+type Message = { type: 'bot' | 'user'; text: string; video?: string; textAfterVideo?: string; inlineCtaUrl?: string };
 
 export default function CardApplyPage() {
   const [messages, setMessages] = useState<Message[]>([]);
@@ -59,10 +59,11 @@ export default function CardApplyPage() {
     setIsTyping(true);
     setShowOptions(false);
     setTimeout(() => {
-      setMessages((prev) => [...prev, { type: 'bot', text: data.text, video: data.video, textAfterVideo: data.textAfterVideo }]);
+      const inlineCtaUrl = data.isFinal && data.finalType === 'apply' ? CTA_URL : undefined;
+      setMessages((prev) => [...prev, { type: 'bot', text: data.text, video: data.video, textAfterVideo: data.textAfterVideo, inlineCtaUrl }]);
       setIsTyping(false);
       if (data.isFinal) {
-        setFinalState(data.finalType!);
+        if (data.finalType === 'soft_close') setFinalState('soft_close');
         trackEvent('conversation_end', { type: data.finalType! });
       } else if (data.options?.length > 0) {
         setTimeout(() => { setCurrentOptions(data.options); setShowOptions(true); }, 400);
@@ -233,6 +234,27 @@ export default function CardApplyPage() {
                 {msg.textAfterVideo && (
                   <div style={{ marginTop: 10 }}>{msg.textAfterVideo}</div>
                 )}
+                {msg.inlineCtaUrl && (
+                  <a
+                    href={buildCtaUrl(msg.inlineCtaUrl)}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    style={{
+                      display: 'block',
+                      marginTop: 14,
+                      padding: '12px 16px',
+                      background: '#5BC500',
+                      borderRadius: 12,
+                      textAlign: 'center',
+                      fontSize: 15,
+                      fontWeight: 700,
+                      color: '#fff',
+                      textDecoration: 'none',
+                    }}
+                  >
+                    연락처 남기기
+                  </a>
+                )}
               </div>
             </div>
           ))}
@@ -326,7 +348,7 @@ export default function CardApplyPage() {
             </div>
           )}
 
-          {finalState && (
+          {finalState === 'soft_close' && (
             <div
               className="animate-chat-fade-slide-in"
               style={{
@@ -336,40 +358,16 @@ export default function CardApplyPage() {
                 borderRadius: 16,
               }}
             >
-              {finalState === 'apply' ? (
-                <a
-                  href={buildCtaUrl(CTA_URL)}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  style={{
-                    display: 'block',
-                    padding: '14px 24px',
-                    background: '#fff',
-                    borderRadius: 10,
-                    textAlign: 'center',
-                    fontSize: 15,
-                    fontWeight: 700,
-                    color: '#1a1a1a',
-                    cursor: 'pointer',
-                    textDecoration: 'none',
-                    boxShadow: '0 0 20px rgba(91, 197, 0, 0.4)',
-                    border: '1.5px solid rgba(91, 197, 0, 0.2)',
-                  }}
-                >
-                  연락처 남기기 →
-                </a>
-              ) : (
-                <div
-                  style={{
-                    fontSize: 14,
-                    color: 'rgba(0,0,0,0.4)',
-                    textAlign: 'center',
-                    padding: '8px 0',
-                  }}
-                >
-                  언제든 돌아오세요
-                </div>
-              )}
+              <div
+                style={{
+                  fontSize: 14,
+                  color: 'rgba(0,0,0,0.4)',
+                  textAlign: 'center',
+                  padding: '8px 0',
+                }}
+              >
+                언제든 돌아오세요
+              </div>
             </div>
           )}
         </div>
