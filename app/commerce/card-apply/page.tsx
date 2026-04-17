@@ -25,7 +25,7 @@ export default function CardApplyPage() {
     INTRO_MESSAGES.forEach((msg, i) => {
       t += 300;
       timeouts.push(setTimeout(() => setIsTyping(true), t));
-      t += i === 0 ? 1200 : 900;
+      t += i === 0 ? 900 : 600;
       timeouts.push(setTimeout(() => {
         setMessages((prev) => [...prev, { type: 'bot', text: msg }]);
         setIsTyping(false);
