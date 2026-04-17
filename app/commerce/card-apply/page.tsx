@@ -180,18 +180,22 @@ export default function CardApplyPage() {
               }}
             >
               {msg.type === 'bot' && (
-                <img
-                  src="/gowid-logo.png"
-                  alt="고위드"
+                <div
                   style={{
-                    width: 32,
-                    height: 32,
-                    borderRadius: '50%',
+                    width: 40,
+                    height: 40,
+                    borderRadius: 20,
+                    background: '#fff',
                     border: '1px solid #E8E8E8',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
                     flexShrink: 0,
-                    objectFit: 'cover',
+                    overflow: 'hidden',
                   }}
-                />
+                >
+                  <img src="/gowid-logo.png" alt="고위드" style={{ width: 28, height: 28, objectFit: 'contain' }} />
+                </div>
               )}
               <div
                 style={{
@@ -213,18 +217,22 @@ export default function CardApplyPage() {
 
           {isTyping && (
             <div style={{ display: 'flex', justifyContent: 'flex-start', alignItems: 'flex-end', gap: 8 }}>
-              <img
-                src="/gowid-logo.png"
-                alt="고위드"
+              <div
                 style={{
-                  width: 32,
-                  height: 32,
-                  borderRadius: '50%',
+                  width: 40,
+                  height: 40,
+                  borderRadius: 20,
+                  background: '#fff',
                   border: '1px solid #E8E8E8',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
                   flexShrink: 0,
-                  objectFit: 'cover',
+                  overflow: 'hidden',
                 }}
-              />
+              >
+                <img src="/gowid-logo.png" alt="고위드" style={{ width: 28, height: 28, objectFit: 'contain' }} />
+              </div>
               <div
                 style={{
                   padding: '12px 20px',
