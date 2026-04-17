@@ -388,7 +388,7 @@ export default function CardApplyPage() {
               setIsTyping(false);
               setShowOptions(false);
               setCurrentOptions([]);
-              handleOptionClick({ id: 'cta_apply', label: '챗봇 말고 사람이랑 얘기하고싶어요' });
+              handleOptionClick({ id: 'cta_apply', label: '챗봇 말고 사람이랑 얘기하고 싶어요' });
             }}
             style={{
               display: 'block',
@@ -405,7 +405,7 @@ export default function CardApplyPage() {
               fontFamily: 'inherit',
             }}
           >
-            챗봇 말고 사람이랑 얘기하고싶어요
+            챗봇 말고 사람이랑 얘기하고 싶어요
           </button>
         </div>
       </div>
