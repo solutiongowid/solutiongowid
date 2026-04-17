@@ -18,6 +18,7 @@ export default function CardApplyPage() {
   const [finalState, setFinalState] = useState<'apply' | 'soft_close' | null>(null);
   const scrollRef = useRef<HTMLDivElement>(null);
   const introPlayed = useRef(false);
+  const introTimeouts = useRef<ReturnType<typeof setTimeout>[]>([]);
 
   const playIntro = useCallback(() => {
     const timeouts: ReturnType<typeof setTimeout>[] = [];
@@ -44,6 +45,7 @@ export default function CardApplyPage() {
     if (introPlayed.current) return;
     introPlayed.current = true;
     const timeouts = playIntro();
+    introTimeouts.current = timeouts;
     return () => timeouts.forEach(clearTimeout);
   }, [playIntro]);
 
@@ -382,7 +384,14 @@ export default function CardApplyPage() {
           }}
         >
           <button
-            onClick={() => handleOptionClick({ id: 'cta_apply', label: '챗봇 말고 사람이랑 얘기하고싶어요' })}
+            onClick={() => {
+              introTimeouts.current.forEach(clearTimeout);
+              introTimeouts.current = [];
+              setIsTyping(false);
+              setShowOptions(false);
+              setCurrentOptions([]);
+              handleOptionClick({ id: 'cta_apply', label: '챗봇 말고 사람이랑 얘기하고싶어요' });
+            }}
             style={{
               display: 'block',
               width: '100%',
