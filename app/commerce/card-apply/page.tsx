@@ -302,7 +302,7 @@ export default function CardApplyPage() {
               style={{
                 marginTop: 8,
                 padding: 20,
-                background: '#0A0A0A',
+                background: '#fff',
                 borderRadius: 16,
               }}
             >
@@ -314,14 +314,16 @@ export default function CardApplyPage() {
                   style={{
                     display: 'block',
                     padding: '14px 24px',
-                    background: 'linear-gradient(135deg, #5BC500 0%, #4a9f00 100%)',
+                    background: '#fff',
                     borderRadius: 10,
                     textAlign: 'center',
                     fontSize: 15,
                     fontWeight: 700,
-                    color: '#fff',
+                    color: '#1a1a1a',
                     cursor: 'pointer',
                     textDecoration: 'none',
+                    boxShadow: '0 0 20px rgba(91, 197, 0, 0.4)',
+                    border: '1.5px solid rgba(91, 197, 0, 0.2)',
                   }}
                 >
                   연락처 남기기 →
@@ -330,7 +332,7 @@ export default function CardApplyPage() {
                 <div
                   style={{
                     fontSize: 14,
-                    color: 'rgba(255,255,255,0.6)',
+                    color: 'rgba(0,0,0,0.4)',
                     textAlign: 'center',
                     padding: '8px 0',
                   }}
@@ -351,8 +353,12 @@ export default function CardApplyPage() {
             flexShrink: 0,
           }}
         >
-          <div
+          <a
+            href={buildCtaUrl(CTA_URL)}
+            target="_blank"
+            rel="noopener noreferrer"
             style={{
+              display: 'block',
               padding: '10px 16px',
               background: '#5BC500',
               borderRadius: 20,
@@ -361,10 +367,11 @@ export default function CardApplyPage() {
               fontWeight: 600,
               textAlign: 'center',
               cursor: 'pointer',
+              textDecoration: 'none',
             }}
           >
             챗봇 말고 사람이랑 얘기하고싶어요
-          </div>
+          </a>
         </div>
       </div>
     </div>
