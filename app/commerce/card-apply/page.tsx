@@ -361,12 +361,11 @@ export default function CardApplyPage() {
             flexShrink: 0,
           }}
         >
-          <a
-            href={buildCtaUrl(CTA_URL)}
-            target="_blank"
-            rel="noopener noreferrer"
+          <button
+            onClick={() => handleOptionClick({ id: 'cta_apply', label: '챗봇 말고 사람이랑 얘기하고싶어요' })}
             style={{
               display: 'block',
+              width: '100%',
               padding: '10px 16px',
               background: '#5BC500',
               borderRadius: 20,
@@ -375,11 +374,12 @@ export default function CardApplyPage() {
               fontWeight: 600,
               textAlign: 'center',
               cursor: 'pointer',
-              textDecoration: 'none',
+              border: 'none',
+              fontFamily: 'inherit',
             }}
           >
             챗봇 말고 사람이랑 얘기하고싶어요
-          </a>
+          </button>
         </div>
       </div>
     </div>
