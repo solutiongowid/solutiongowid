@@ -62,9 +62,8 @@ export const CHATBOT_RESPONSES: Record<string, ChatResponse> = {
 
   limit_check: { text: "담보 없이, 데이터만으로 한도를 산출해요.\n\n온라인으로 간편하게 신청할 수 있고요.\n\n우리 기업 기준으로 예상 한도를 설명드려보고 싶은데요.", options: END_OPTIONS },
 
-  howto: { text: "혹시 — 기존 카드를 해지해야 한다고 생각하고 계세요?", options: [{ id: "howto_yes", label: "네, 그게 부담이에요" }, { id: "howto_other", label: "그건 아닌데, 다른 게 궁금해요" }] },
-  howto_yes: { text: "해지 안 하셔도 됩니다.\n\n추가로 발급받아서 먼저 써보시고, 괜찮으면 그때 옮기시면 돼요.\n\n신청은 3분이면 끝나요. 카드 수령까지 약 일주일이고요.", options: END_OPTIONS },
-  howto_other: { text: "신청은 3분이면 끝나요. 카드 수령까지 약 일주일.\n\n기존 카드 해지 안 해도 되고, 추가로 발급받는 거라 리스크도 없어요.", options: END_OPTIONS },
+  howto: { text: "발급 절차는\n\n1. 회원 가입 - 5분 소요\n2. 한도 심사 - 인증서 연동 10분 소요\n3. 카드 발급 - 신한 · 롯데 · BC 중 비대면 발급\n4. 실물 카드 배송 - 영업일 3~5일 이내\n\n카드 수령까지 약 일주일이면 끝나요.", options: [{ id: "howto_limit", label: "한도 얼마나 나오는지 조회해볼게요" }, { id: "howto_other", label: "그건 아닌데, 다른 게 궁금해요" }] },
+  howto_limit: { text: "담당자가 직접 연락드려요.\n\n예상 한도, 페이백, 같은 업종 사례까지 정리해서 가져갈게요.", options: [], isFinal: true, finalType: "apply", link: "https://gowid.com/card-apply-lead/?utm_source=facebook&utm_medium=paid-display&utm_campaign=commerce-apply-lead-04" },
   howto_internal: { text: "내부 공유용 비교 자료를 정리해서 설명드릴 수 있어요.\n설득에 필요한 숫자를 맞춰드릴게요.", options: END_OPTIONS },
 
   cta_apply: { text: "담당자가 직접 연락드려요.\n\n예상 한도, 페이백, 같은 업종 사례까지 정리해서 가져갈게요.", options: [], isFinal: true, finalType: "apply", link: "https://gowid.com/card-apply-lead/?utm_source=facebook&utm_medium=paid-display&utm_campaign=commerce-apply-lead-04" },

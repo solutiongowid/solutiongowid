@@ -71,7 +71,7 @@ export default function CardApplyPage() {
   const handleOptionClick = useCallback((option: Option) => {
     trackEvent('option_click', { option_id: option.id, option_label: option.label });
 
-    if (option.id === 'more') {
+    if (option.id === 'more' || option.id === 'howto_other') {
       setMessages((prev) => [...prev, { type: 'user', text: option.label }]);
       setShowOptions(false);
       setCurrentOptions([]);
@@ -271,7 +271,7 @@ export default function CardApplyPage() {
               }}
             >
               {currentOptions.map((opt) => {
-                const isCta = opt.id === 'cta_apply';
+                const isCta = opt.id === 'cta_apply' || opt.id === 'howto_limit';
                 const isBack = opt.id === 'back';
                 return (
                   <button
