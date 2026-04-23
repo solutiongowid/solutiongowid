@@ -741,7 +741,7 @@ export default function NaverPayPage() {
             </div>
           </div>
           <div className="fu d4">
-            <a href="https://gowid.com/apply" className="btn-hero">
+            <a href="https://www.gowid.com/card-apply-lead/?utm_source=naverpay&utm_medium=paid-display&utm_campaign=naver-pay-promotion-0423&utm_content=ads-card-promo-v1" className="btn-hero">
               고위드 카드 발급하러가기 <span className="arr">→</span>
             </a>
           </div>
@@ -1107,7 +1107,7 @@ export default function NaverPayPage() {
             지금 신청하면 다음 광고비 결제부터 바로 적용됩니다.
           </p>
           <div>
-            <a href="https://gowid.com/apply" className="btn-lg">
+            <a href="https://www.gowid.com/card-apply-lead/?utm_source=naverpay&utm_medium=paid-display&utm_campaign=naver-pay-promotion-0423&utm_content=ads-card-promo-v1" className="btn-lg">
               고위드카드 발급하러가기 <span>→</span>
             </a>
           </div>
@@ -1147,7 +1147,7 @@ export default function NaverPayPage() {
       {/* FLOATING CTA */}
       <div className={`floating${showFloat ? ' show' : ''}`}>
         <span className="fl-msg"><strong>성장 기회를 자금으로 놓치지 마세요</strong> — 5분 신청, 5일이면 사용 가능</span>
-        <a href="https://gowid.com/apply" className="fl-btn">고위드카드 발급하러가기 →</a>
+        <a href="https://www.gowid.com/card-apply-lead/?utm_source=naverpay&utm_medium=paid-display&utm_campaign=naver-pay-promotion-0423&utm_content=ads-card-promo-v1" className="fl-btn">고위드카드 발급하러가기 →</a>
       </div>
 
       {/* MODAL */}
@@ -1220,7 +1220,7 @@ export default function NaverPayPage() {
           </div>
           <div className="modal-note">※ 위 혜택은 고위드 법인카드 기준이며, 카드사 정책 변경에 따라 달라질 수 있습니다.</div>
           <a
-            href="https://gowid.com/apply"
+            href="https://www.gowid.com/card-apply-lead/?utm_source=naverpay&utm_medium=paid-display&utm_campaign=naver-pay-promotion-0423&utm_content=ads-card-promo-v1"
             style={{
               display: 'block',
               textAlign: 'center',
