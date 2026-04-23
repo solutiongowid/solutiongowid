@@ -3,6 +3,10 @@
 import { useState, useEffect } from 'react';
 
 const css = `
+html, body {
+  overflow: auto !important;
+  height: auto !important;
+}
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 html { scroll-behavior: smooth; }
 body {
