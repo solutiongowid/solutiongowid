@@ -1162,7 +1162,7 @@ export default function NaverPayPage() {
                 <td>연회비</td>
                 <td>10,000원<br /><span style={{ fontSize: '0.75rem', color: 'var(--text-light)' }}>신규 발급 시, 면제</span></td>
                 <td>—</td>
-                <td className="hl-col">—</td>
+                <td className="hl-col">5,000원<br /><span style={{ fontSize: '0.75rem', color: 'var(--text-light)' }}>최초 1회</span></td>
               </tr>
               <tr>
                 <td>결제대금일</td>
