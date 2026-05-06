@@ -4,9 +4,10 @@ import { useState, useEffect, useRef } from 'react';
 import Image from 'next/image';
 
 const previewImages = [
-  { src: '/image 33.png', alt: 'AI·머신러닝 기업 성장 vs 쇠퇴' },
-  { src: '/image 34.png', alt: '지출 배분 비교' },
-  { src: '/image 35.png', alt: '현금 런웨이 분석' },
+  { src: '/slide_06.png', alt: '이커머스 성장효율 벤치마크 - 슬라이드 6' },
+  { src: '/slide_07.png', alt: '이커머스 성장효율 벤치마크 - 슬라이드 7' },
+  { src: '/slide_09.png', alt: '이커머스 성장효율 벤치마크 - 슬라이드 9' },
+  { src: '/slide_19.png', alt: '이커머스 성장효율 벤치마크 - 슬라이드 19' },
 ];
 
 export default function ReportPreviewCarousel() {

@@ -65,7 +65,7 @@ export default function CommerceGowidFasstоPage() {
               </div>
               <div className="report-header-image-wrapper">
                 <Image
-                  src="/villagebaby_thumb_blog_02 1.png"
+                  src="/slide_01.png"
                   alt="이커머스 성장효율 벤치마크 리포트"
                   width={600}
                   height={450}
