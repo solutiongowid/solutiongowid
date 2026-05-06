@@ -171,7 +171,7 @@ export default function CommerceGowidFasstоPage() {
               <div className="report-feature-description">
                 <p>
                   <strong>파스토</strong>는 이커머스 전문 풀필먼트 서비스입니다.<br/>
-                  매출 대비 물류비를 단 1.4%로 만들어 드립니다.<br/>
+                  업계 평균 매출 대비 물류비 4.2%, 단 1.4%만 들도록 만들어 드립니다.<br/>
                   입고·출고·반품 전 과정을 최적화해 물류비를 줄이고 운영 속도를 높입니다.
                 </p>
                 <p>
