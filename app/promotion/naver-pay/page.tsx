@@ -647,7 +647,7 @@ const faqs = [
     ),
   },
   {
-    q: '네이버 광고 외에 다른 광고 플랫폼에도 쓸 수 있나요?',
+    q: '다른 광고 플랫폼에도 쓸 수 있나요?',
     a: (
       <>
         <span className="grn">네, 모든 광고 플랫폼에서 사용 가능합니다.</span> 메타(Facebook·Instagram), 구글, 카카오, 틱톡 등 어떤 광고 플랫폼에서도 동일하게 사용할 수 있습니다. 캐시백은 플랫폼 무관하게 전체 카드 사용액 기준으로 적립됩니다.
@@ -722,7 +722,7 @@ export default function NaverPayPage() {
           <div className="fu">
             <div className="partner-badge">
               <span className="badge-dot"></span>
-              GOWID × NAVER 파트너십
+              커머스 전문 법인카드
             </div>
           </div>
           <h1 className="fu d1">
@@ -741,7 +741,6 @@ export default function NaverPayPage() {
               </div>
               <div className="cm-num">•••• •••• •••• 4291</div>
               <div className="cm-holder">Corporate Card</div>
-              <div className="cm-badge">NAVER Pay 제휴</div>
             </div>
           </div>
           <div className="fu d4">
@@ -789,12 +788,12 @@ export default function NaverPayPage() {
           <div className="proof-review">
             <div className="review-card fu d1">
               <div className="review-star">★★★★★</div>
-              <p className="review-txt">&quot;네이버 광고비가 매달 한도에 막혔는데, 고위드 카드로 바꾸고 나서 아무 걱정 없이 예산 집행이 가능해졌습니다. 특히 월 한도 복원이 제일 편해요.&quot;</p>
+              <p className="review-txt">&quot;광고비가 매달 한도에 막혔는데, 고위드 카드로 바꾸고 나서 아무 걱정 없이 예산 집행이 가능해졌습니다. 특히 월 한도 복원이 제일 편해요.&quot;</p>
               <div className="review-author">미디어커머스 기업 CFO · 월 광고비 5,000만원</div>
             </div>
             <div className="review-card fu d2">
               <div className="review-star">★★★★★</div>
-              <p className="review-txt">&quot;발급 과정이 생각보다 빠르고 쉬웠어요. 카드 받고 바로 네이버 광고주센터에 등록했는데 5분도 안 걸렸습니다. 캐시백도 매달 꼬박꼬박 들어오고요.&quot;</p>
+              <p className="review-txt">&quot;발급 과정이 생각보다 빠르고 쉬웠어요. 카드 받고 바로 광고 플랫폼에 등록했는데 5분도 안 걸렸습니다. 캐시백도 매달 꼬박꼬박 들어오고요.&quot;</p>
               <div className="review-author">뷰티 D2C 브랜드 대표 · 월 광고비 2,000만원</div>
             </div>
           </div>
@@ -956,7 +955,7 @@ export default function NaverPayPage() {
                 <div className="sc-intro-ico">📊</div>
                 <div>
                   <h4>성장기 커머스 · 월 광고비 2,000만원</h4>
-                  <p>메타/구글/네이버 멀티채널 운영, 시즌마다 광고비 증액이 필요한 상황</p>
+                  <p>메타/구글/카카오 멀티채널 운영, 시즌마다 광고비 증액이 필요한 상황</p>
                 </div>
               </div>
               <div className="sc-compare">
@@ -1032,7 +1031,7 @@ export default function NaverPayPage() {
               { icon: '🔍', day: 'Step 3', title: '한도 심사', desc: '최근 60일 현금흐름 기반으로 자동 심사가 진행됩니다. 은행 담보 없이 빠르게 완료됩니다.', tag: '10분 이내', green: false },
               { icon: '💳', day: 'Step 4', title: '카드 발급', desc: '신한 · 롯데 · BC 중 원하는 카드사를 선택해 간편하게 신청합니다.', tag: '심사 완료 후 즉시', green: true },
               { icon: '📦', day: 'Step 5', title: '카드 수령', desc: '실물 카드가 배송됩니다. 고위드 앱에서 카드 번호를 먼저 확인할 수 있어, 도착 전에도 광고비 등록이 가능합니다.', tag: '발급 후 3~5영업일', green: true },
-              { icon: '🚀', day: 'Step 6', title: '네이버 광고에 바로 등록', desc: '네이버 광고주센터에 카드 번호를 등록하면 다음 광고비 결제부터 즉시 적용됩니다.', tag: '다음 광고비부터 바로 적용', green: true },
+              { icon: '🚀', day: 'Step 6', title: '광고 플랫폼에 바로 등록', desc: '광고 플랫폼에 카드 번호를 등록하면 다음 광고비 결제부터 즉시 적용됩니다.', tag: '다음 광고비부터 바로 적용', green: true },
             ].map((step, i) => (
               <div key={i} className={`tl-step fu${i > 0 ? ` d${Math.min(i, 4)}` : ''}`}>
                 <div className="tl-dot">{step.icon}</div>
@@ -1131,13 +1130,12 @@ export default function NaverPayPage() {
           <div className="foot-top">
             <div className="foot-logo">GOWID</div>
             <div className="foot-links">
-              <a href="#">개인정보처리방침</a>
-              <a href="#">이용약관</a>
-              <a href="#">고객센터</a>
+              <a href="https://gowid.com/support/private">개인정보처리방침</a>
+              <a href="https://gowid.com/support/terms">이용약관</a>
+              <a href="https://helpcenter.gowid.com/guide">고객센터</a>
             </div>
           </div>
           <p className="foot-note">
-            본 페이지는 고위드(주)와 네이버파이낸셜(주)의 파트너십 프로모션 안내 페이지입니다.<br />
             카드 혜택 및 한도는 심사 결과에 따라 다를 수 있으며, 자세한 사항은 각 카드사 약관을 확인하세요.<br />
             캐시백은 전월 실적 조건 충족 시 적용되며, 카드사별 조건이 상이할 수 있습니다.
           </p>
@@ -1163,7 +1161,7 @@ export default function NaverPayPage() {
           <div className="modal-hd">
             <div>
               <h2>카드사별 혜택 안내</h2>
-              <p>고위드 × 네이버페이 제휴 카드 혜택을 확인하세요</p>
+              <p>고위드 카드 혜택을 확인하세요</p>
             </div>
             <button className="modal-x" onClick={() => setModalOpen(false)}>✕</button>
           </div>
