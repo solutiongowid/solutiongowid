@@ -13,8 +13,10 @@ export default function SurveyForm({ isOpen, onClose, utmParams }: SurveyFormPro
     companyName: '',
     name: '',
     position: '',
+    department: '',
     email: '',
     phone: '',
+    annualRevenue: '',
     agreeMarketing: false,
   });
 
@@ -22,8 +24,10 @@ export default function SurveyForm({ isOpen, onClose, utmParams }: SurveyFormPro
   const [submitError, setSubmitError] = useState('');
   const [isSuccess, setIsSuccess] = useState(false);
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const { name, value, type, checked } = e.target;
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
+    const { name, value } = e.target;
+    const checked = (e.target as HTMLInputElement).checked;
+    const type = e.target.type;
     setFormData(prev => ({
       ...prev,
       [name]: type === 'checkbox' ? checked : value,
@@ -59,6 +63,10 @@ export default function SurveyForm({ isOpen, onClose, utmParams }: SurveyFormPro
     }
     if (!formData.phone.trim()) {
       setSubmitError('연락처를 입력해주세요.');
+      return;
+    }
+    if (!formData.annualRevenue) {
+      setSubmitError('연매출 구간을 선택해주세요.');
       return;
     }
     if (!formData.agreeMarketing) {
@@ -100,8 +108,10 @@ export default function SurveyForm({ isOpen, onClose, utmParams }: SurveyFormPro
         companyName: '',
         name: '',
         position: '',
+        department: '',
         email: '',
         phone: '',
+        annualRevenue: '',
         agreeMarketing: false,
       });
 
@@ -270,6 +280,21 @@ export default function SurveyForm({ isOpen, onClose, utmParams }: SurveyFormPro
         </div>
 
         <div className="form-group">
+          <label htmlFor="department" className="form-label">
+            부서
+          </label>
+          <input
+            type="text"
+            id="department"
+            name="department"
+            value={formData.department}
+            onChange={handleChange}
+            className="form-input"
+            placeholder="마케팅팀, 경영지원팀 등"
+          />
+        </div>
+
+        <div className="form-group">
           <label htmlFor="email" className="form-label">
             직장 이메일 주소 <span className="required">*</span>
           </label>
@@ -299,6 +324,26 @@ export default function SurveyForm({ isOpen, onClose, utmParams }: SurveyFormPro
             placeholder="010-1234-5678"
             required
           />
+        </div>
+
+        <div className="form-group">
+          <label htmlFor="annualRevenue" className="form-label">
+            연매출 <span className="required">*</span>
+          </label>
+          <select
+            id="annualRevenue"
+            name="annualRevenue"
+            value={formData.annualRevenue}
+            onChange={handleChange}
+            className="form-input"
+            required
+          >
+            <option value="">선택해주세요</option>
+            <option value="30억 미만">30억 미만</option>
+            <option value="30억 이상">30억 이상</option>
+            <option value="50억 이상">50억 이상</option>
+            <option value="100억 이상">100억 이상</option>
+          </select>
         </div>
 
         <div className="form-group-checkbox">
