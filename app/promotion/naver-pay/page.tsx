@@ -1190,7 +1190,7 @@ export default function NaverPayPage() {
                 <td>매월 15일</td>
                 <td><span className="cmp-grn">매월 23일</span></td>
                 <td className="hl-col">—</td>
-                <td className="hl-col">—</td>
+                <td className="hl-col"><span className="cmp-grn">매월 15일</span></td>
               </tr>
               <tr>
                 <td>한도 복원</td>
