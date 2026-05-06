@@ -65,6 +65,10 @@ export default function SurveyForm({ isOpen, onClose, utmParams }: SurveyFormPro
       setSubmitError('연락처를 입력해주세요.');
       return;
     }
+    if (!formData.department.trim()) {
+      setSubmitError('부서를 입력해주세요.');
+      return;
+    }
     if (!formData.annualRevenue) {
       setSubmitError('연매출 구간을 선택해주세요.');
       return;
@@ -281,7 +285,7 @@ export default function SurveyForm({ isOpen, onClose, utmParams }: SurveyFormPro
 
         <div className="form-group">
           <label htmlFor="department" className="form-label">
-            부서
+            부서 <span className="required">*</span>
           </label>
           <input
             type="text"
@@ -291,6 +295,7 @@ export default function SurveyForm({ isOpen, onClose, utmParams }: SurveyFormPro
             onChange={handleChange}
             className="form-input"
             placeholder="마케팅팀, 경영지원팀 등"
+            required
           />
         </div>
 
