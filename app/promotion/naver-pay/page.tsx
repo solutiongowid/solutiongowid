@@ -623,14 +623,6 @@ footer {
 
 const faqs = [
   {
-    q: '연회비가 있나요?',
-    a: (
-      <>
-        <span className="grn">연회비는 없습니다.</span> 고위드 카드는 발급 수수료 및 연회비 없이 사용할 수 있습니다. 캐시백 혜택 조건(전월 실적)만 충족하면 모든 혜택을 무료로 누릴 수 있습니다.
-      </>
-    ),
-  },
-  {
     q: '카드 한도는 얼마나 되나요?',
     a: (
       <>
@@ -655,10 +647,10 @@ const faqs = [
     ),
   },
   {
-    q: '심사는 얼마나 걸리나요? 서류가 많나요?',
+    q: '한도 승인과 카드 발급까지 얼마나 걸리나요?',
     a: (
       <>
-        통상 <strong>2~3영업일</strong> 내 심사가 완료됩니다. 필요 서류는 사업자등록증, 법인 기본 정보 정도로 간소합니다. 담당자가 연락해 추가로 필요한 정보를 안내해드립니다.
+        신규 신청의 경우, 온라인 접수 후 평균 <strong>4영업일 이내</strong>에 한도 산정과 발급 승인이 완료됩니다. 다만 실물 카드 수령까지는 배송 일정에 따라 3~5일 정도 추가로 소요될 수 있습니다. 이미 고위드 카드를 이용 중인 기업은, 데이터 연동이 즉시 확인되는 경우 <strong>당일 한도 상향 승인</strong>도 가능합니다.
       </>
     ),
   },
@@ -667,14 +659,6 @@ const faqs = [
     a: (
       <>
         캐시백은 전월 실적 조건 충족 시 <strong>매월 청구서 할인 방식</strong>으로 지급됩니다. 카드사(신한·롯데·BC)별로 조건이 상이하므로, 혜택 상세 보기 팝업에서 카드사별 조건을 확인해주세요.
-      </>
-    ),
-  },
-  {
-    q: '고위드 FUEL(페이바이카드)은 무엇인가요?',
-    a: (
-      <>
-        고위드 FUEL은 <strong>매입대금(원자재·공급사 결제)을 카드로 후불 처리</strong>하는 서비스입니다. 제조사·공급사에 직접 카드 결제가 어려울 때도 고위드가 중간에서 처리해드립니다. 최대 53일의 신용공여 기간을 확보할 수 있어, 현금흐름 개선에 효과적입니다.
       </>
     ),
   },
@@ -760,11 +744,11 @@ export default function NaverPayPage() {
           </div>
           <div className="stat-item fu d1">
             <div className="stat-n">최대 <em>2.3%</em></div>
-            <div className="stat-d">캐시백</div>
+            <div className="stat-d">캐시백<br /><span style={{ fontSize: '0.72rem', color: 'var(--text-light)' }}>광고비 특화카드 전용</span></div>
           </div>
           <div className="stat-item fu d2">
             <div className="stat-n"><em>매월</em> 복원</div>
-            <div className="stat-d">월 한도 자동 복원</div>
+            <div className="stat-d">월 한도 자동 복원<br /><span style={{ fontSize: '0.72rem', color: 'var(--text-light)' }}>BC카드 전용</span></div>
           </div>
           <div className="stat-item fu d3">
             <div className="stat-n"><em>3사</em> 제휴</div>
@@ -885,9 +869,9 @@ export default function NaverPayPage() {
             <div className="ben-card fu d2">
               <div className="ben-num">③</div>
               <div className="ben-icon">💰</div>
-              <h3>카드 사용액 0.5% ~ 최대 2.3% 캐시백</h3>
+              <h3>카드 사용액 0.5% ~ 최대 2.3% 캐시백 <span style={{ fontSize: '0.72rem', fontWeight: 400, color: 'var(--text-light)' }}>광고비 특화카드 전용</span></h3>
               <p>광고비·매입비 결제 시 사용액에 따라 캐시백이 적립됩니다. 쓸수록 돌아오는 혜택으로 실질 비용을 줄이세요.</p>
-              <div className="ben-val">0.5% ~ 최대 2.3%</div>
+              <div className="ben-val">0.5% ~ 최대 2.3%<br /><span style={{ fontSize: '0.72rem', fontWeight: 400, color: 'var(--text-light)' }}>광고비 특화카드 전용</span></div>
             </div>
             <div className="ben-card fu d3">
               <div className="ben-num">④</div>
@@ -1115,9 +1099,8 @@ export default function NaverPayPage() {
             </a>
           </div>
           <div className="trust-row">
-            <div className="trust-item"><span className="chk">✓</span> 연회비 없음</div>
             <div className="trust-item"><span className="chk">✓</span> 기존 카드 해지 불필요</div>
-            <div className="trust-item"><span className="chk">✓</span> 최대 2.3% 캐시백</div>
+            <div className="trust-item"><span className="chk">✓</span> 최대 2.3% 캐시백 <span style={{ fontSize: '0.72rem', color: 'var(--text-light)' }}>광고비 특화카드 전용</span></div>
             <div className="trust-item"><span className="chk">✓</span> 최대 87일 신용 공여</div>
             <div className="trust-item"><span className="chk">✓</span> ERP 자동 연동</div>
           </div>
@@ -1177,9 +1160,9 @@ export default function NaverPayPage() {
             <tbody>
               <tr>
                 <td>연회비</td>
-                <td>면제</td>
-                <td>면제</td>
-                <td className="hl-col">5,000원<br /><span style={{ fontSize: '0.75rem', color: 'var(--text-light)' }}>최초 1회</span></td>
+                <td>10,000원<br /><span style={{ fontSize: '0.75rem', color: 'var(--text-light)' }}>신규 발급 시, 면제</span></td>
+                <td>—</td>
+                <td className="hl-col">—</td>
               </tr>
               <tr>
                 <td>결제대금일</td>
@@ -1198,12 +1181,6 @@ export default function NaverPayPage() {
                 <td>0.45%</td>
                 <td>0.45%</td>
                 <td className="hl-col"><span className="cmp-grn">0.50%</span></td>
-              </tr>
-              <tr>
-                <td>해외 수수료</td>
-                <td><span className="cmp-grn">1.18%</span></td>
-                <td>1.2%</td>
-                <td className="hl-col">1.4%</td>
               </tr>
               <tr>
                 <td>라운지 혜택</td>
