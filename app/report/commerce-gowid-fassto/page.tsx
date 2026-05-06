@@ -57,7 +57,7 @@ export default function CommerceGowidFasstоPage() {
                 </h1>
                 <div className="report-subtitle">
                   파스토 x 고위드,<br/>
-                  1,065개 이커머스 기업의 2년간 비용 구조 분석
+                  약 1,000개 이커머스 기업의 2년간 비용 구조 분석
                 </div>
                 <button onClick={openModal} className="report-button-primary">
                   무료 다운로드
@@ -124,7 +124,7 @@ export default function CommerceGowidFasstоPage() {
                   "우리, 제대로 크고 있는 거 맞아?"
                 </p>
                 <p>
-                  고위드와 파스토는 1,065개 이커머스 기업의 2년간 결제·물류 데이터를 분석하여,<br className="desktop-br"/>
+                  고위드와 파스토는 약 1,000개 이커머스 기업의 2년간 결제·물류 데이터를 분석하여,<br className="desktop-br"/>
                   매출이 커질수록 비용 구조가 어떻게 변하는지,<br className="desktop-br"/>
                   어디서 무너지고, 어디서 돌파하는지를 숫자로 정리했습니다.
                 </p>
@@ -141,7 +141,7 @@ export default function CommerceGowidFasstоPage() {
               <div className="report-feature-description">
                 <p>
                   매출이 커져도 수익은 자동으로 따라오지 않습니다.<br/>
-                  1,065개사 · 2년 추적 — 답은 No였습니다.
+                  약 1,000개사 · 2년 추적 — 답은 No였습니다.
                 </p>
                 <p>
                   <strong>1단계 채널 확장기 (30~70억)</strong> — 공헌이익률 33%로 건강해 보이지만,<br className="desktop-br"/>
@@ -188,7 +188,7 @@ export default function CommerceGowidFasstоPage() {
           <div className="report-container">
             <div className="report-cta-content">
               <h3 className="report-h3">
-                <strong>우리 회사는 지금 어디에 있을까요?<br/>1,065개 회사 데이터로 확인하세요</strong>
+                <strong>우리 회사는 지금 어디에 있을까요?<br/>약 1,000개 회사 데이터로 확인하세요</strong>
               </h3>
               <button onClick={openModal} className="report-button-cta">
                 무료 다운로드
