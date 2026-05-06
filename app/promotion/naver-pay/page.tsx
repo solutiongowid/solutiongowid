@@ -746,6 +746,10 @@ export default function NaverPayPage() {
             <div className="stat-d">신용 공여일</div>
           </div>
           <div className="stat-item fu d1">
+            <div className="stat-n"><em>0.5%</em> 페이백</div>
+            <div className="stat-d">캐시백<br /><span style={{ fontSize: '0.72rem', color: 'var(--text-light)' }}>신용카드</span></div>
+          </div>
+          <div className="stat-item fu d1">
             <div className="stat-n">최대 <em>2.3%</em></div>
             <div className="stat-d">캐시백<br /><span style={{ fontSize: '0.72rem', color: 'var(--text-light)' }}>광고비 특화카드 전용</span></div>
           </div>
