@@ -722,7 +722,7 @@ export default function NaverPayPage() {
           <div className="fu">
             <div className="partner-badge">
               <span className="badge-dot"></span>
-              커머스 전문 법인카드
+              GOWID
             </div>
           </div>
           <h1 className="fu d1">
