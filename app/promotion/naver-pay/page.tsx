@@ -1100,7 +1100,7 @@ export default function NaverPayPage() {
             <span className="hl">한도에 가로막히지 마세요</span>
           </h2>
           <p className="sec-sub fu">
-            신청 5분 → 1영업일 내 연락 → 5영업일 내 사용 가능.<br />
+            비대면으로 간편하게 심사부터 수령까지!<br />
             지금 신청하면 다음 광고비 결제부터 바로 적용됩니다.
           </p>
           <div>
