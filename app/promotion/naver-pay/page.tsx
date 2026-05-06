@@ -584,7 +584,7 @@ footer {
 .modal {
     background: #fff;
     border-radius: 22px;
-    width: 100%; max-width: 720px;
+    width: 100%; max-width: 860px;
     max-height: 82vh;
     overflow-y: auto;
     padding: 36px 32px 32px;
@@ -1155,14 +1155,16 @@ export default function NaverPayPage() {
             <thead>
               <tr>
                 <th></th>
-                <th colSpan={2} className="cmp-group-hd credit">신용카드</th>
-                <th className="cmp-group-hd debit hl-col">체크카드</th>
+                <th colSpan={3} className="cmp-group-hd credit">신용카드</th>
+                <th colSpan={2} className="cmp-group-hd debit hl-col">체크카드</th>
               </tr>
               <tr>
                 <th>구분</th>
                 <th>신한카드</th>
                 <th>롯데카드</th>
-                <th className="hl-col">BC카드<br /><span style={{ fontSize: '0.68rem', color: '#027A36', fontWeight: '700' }}>광고비 특화카드</span></th>
+                <th>BC카드<br /><span style={{ fontSize: '0.68rem', color: '#666', fontWeight: '700' }}>광고비 특화</span></th>
+                <th className="hl-col">롯데카드</th>
+                <th className="hl-col">신한카드</th>
               </tr>
             </thead>
             <tbody>
@@ -1170,36 +1172,48 @@ export default function NaverPayPage() {
                 <td>연회비</td>
                 <td>10,000원<br /><span style={{ fontSize: '0.75rem', color: 'var(--text-light)' }}>신규 발급 시, 면제</span></td>
                 <td>—</td>
+                <td>5,000원<br /><span style={{ fontSize: '0.75rem', color: 'var(--text-light)' }}>최초 1회</span></td>
+                <td className="hl-col"><span className="cmp-grn">없음</span></td>
                 <td className="hl-col"><span className="cmp-grn">없음</span></td>
               </tr>
               <tr>
                 <td>전월실적</td>
                 <td>—</td>
                 <td>—</td>
+                <td>—</td>
+                <td className="hl-col"><span className="cmp-grn">없음</span></td>
                 <td className="hl-col"><span className="cmp-grn">없음</span></td>
               </tr>
               <tr>
                 <td>결제대금일</td>
                 <td>매월 15일</td>
                 <td>매월 15일</td>
-                <td className="hl-col"><span className="cmp-grn">매월 23일</span></td>
+                <td><span className="cmp-grn">매월 23일</span></td>
+                <td className="hl-col">—</td>
+                <td className="hl-col">—</td>
               </tr>
               <tr>
                 <td>한도 복원</td>
                 <td>D+1일</td>
                 <td><span className="cmp-grn">즉시</span></td>
-                <td className="hl-col">매월 1일</td>
+                <td>매월 1일</td>
+                <td className="hl-col">—</td>
+                <td className="hl-col">—</td>
               </tr>
               <tr>
                 <td>페이백 혜택</td>
                 <td>0.45%</td>
                 <td>0.45%</td>
-                <td className="hl-col"><span className="cmp-grn">0.50%</span></td>
+                <td>0.50%</td>
+                <td className="hl-col"><span className="cmp-grn">해외 2.0%<br />국내 1.5%</span></td>
+                <td className="hl-col"><span className="cmp-grn">해외 2.3%<br />국내 없음</span></td>
               </tr>
               <tr>
                 <td>라운지 혜택</td>
                 <td>—</td>
                 <td><span className="cmp-grn">공항 라운지<br />발레파킹</span></td>
+                <td>—</td>
+                <td className="hl-col">—</td>
                 <td className="hl-col">—</td>
               </tr>
             </tbody>
