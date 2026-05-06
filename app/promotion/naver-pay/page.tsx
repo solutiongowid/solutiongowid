@@ -584,7 +584,7 @@ footer {
 .modal {
     background: #fff;
     border-radius: 22px;
-    width: 100%; max-width: 560px;
+    width: 100%; max-width: 720px;
     max-height: 82vh;
     overflow-y: auto;
     padding: 36px 32px 32px;
@@ -606,6 +606,9 @@ footer {
 .cmp-table tr:last-child td { border-bottom: none; }
 .cmp-table .hl-col { background: rgba(3,199,90,0.04); }
 .cmp-grn { color: #027A36; font-weight: 700; }
+.cmp-group-hd { font-size: 0.72rem; font-weight: 800; letter-spacing: 0.04em; padding: 7px 14px; border-bottom: 2px solid var(--border) !important; }
+.cmp-group-hd.credit { color: var(--text-sub); background: var(--bg); }
+.cmp-group-hd.debit { color: #027A36; background: rgba(3,199,90,0.07); border-bottom-color: rgba(3,199,90,0.3) !important; }
 .cmp-tip { background: var(--bg); border-radius: 12px; padding: 16px 18px; font-size: 0.84rem; color: var(--text-sub); line-height: 1.75; }
 .cmp-tip strong { color: var(--text); }
 
@@ -1151,10 +1154,15 @@ export default function NaverPayPage() {
           <table className="cmp-table">
             <thead>
               <tr>
+                <th></th>
+                <th colSpan={2} className="cmp-group-hd credit">신용카드</th>
+                <th className="cmp-group-hd debit hl-col">체크카드</th>
+              </tr>
+              <tr>
                 <th>구분</th>
                 <th>신한카드</th>
                 <th>롯데카드</th>
-                <th className="hl-col">BC카드</th>
+                <th className="hl-col">BC카드<br /><span style={{ fontSize: '0.68rem', color: '#027A36', fontWeight: '700' }}>광고비 특화카드</span></th>
               </tr>
             </thead>
             <tbody>
@@ -1162,7 +1170,13 @@ export default function NaverPayPage() {
                 <td>연회비</td>
                 <td>10,000원<br /><span style={{ fontSize: '0.75rem', color: 'var(--text-light)' }}>신규 발급 시, 면제</span></td>
                 <td>—</td>
-                <td className="hl-col">5,000원<br /><span style={{ fontSize: '0.75rem', color: 'var(--text-light)' }}>최초 1회</span></td>
+                <td className="hl-col"><span className="cmp-grn">없음</span></td>
+              </tr>
+              <tr>
+                <td>전월실적</td>
+                <td>—</td>
+                <td>—</td>
+                <td className="hl-col"><span className="cmp-grn">없음</span></td>
               </tr>
               <tr>
                 <td>결제대금일</td>
