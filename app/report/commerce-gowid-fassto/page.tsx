@@ -192,7 +192,7 @@ export default function CommerceGowidFasstоPage() {
           <div className="report-container">
             <div className="report-cta-content">
               <h3 className="report-h3">
-                <strong>우리 회사는 지금 몇 단계입니까?<br/>지금 바로 확인하세요</strong>
+                <strong>우리 회사는 지금 어디에 있을까요?<br/>1,065개 회사 데이터로 확인하세요</strong>
               </h3>
               <button onClick={openModal} className="report-button-cta">
                 무료 다운로드
