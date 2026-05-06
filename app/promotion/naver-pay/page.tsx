@@ -1110,6 +1110,7 @@ export default function NaverPayPage() {
           </div>
           <div className="trust-row">
             <div className="trust-item"><span className="chk">✓</span> 기존 카드 해지 불필요</div>
+            <div className="trust-item"><span className="chk">✓</span> 0.5% 캐시백 <span style={{ fontSize: '0.72rem', color: 'var(--text-light)' }}>신용카드</span></div>
             <div className="trust-item"><span className="chk">✓</span> 최대 2.3% 캐시백 <span style={{ fontSize: '0.72rem', color: 'var(--text-light)' }}>광고비 특화카드 전용</span></div>
             <div className="trust-item"><span className="chk">✓</span> 최대 87일 신용 공여</div>
             <div className="trust-item"><span className="chk">✓</span> ERP 자동 연동</div>
