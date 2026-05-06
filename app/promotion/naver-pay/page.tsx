@@ -872,9 +872,12 @@ export default function NaverPayPage() {
             <div className="ben-card fu d2">
               <div className="ben-num">③</div>
               <div className="ben-icon">💰</div>
-              <h3>카드 사용액 0.5% ~ 최대 2.3% 캐시백 <span style={{ fontSize: '0.72rem', fontWeight: 400, color: 'var(--text-light)' }}>광고비 특화카드 전용</span></h3>
+              <h3>카드 사용액 최대 2.3% 캐시백</h3>
               <p>광고비·매입비 결제 시 사용액에 따라 캐시백이 적립됩니다. 쓸수록 돌아오는 혜택으로 실질 비용을 줄이세요.</p>
-              <div className="ben-val">0.5% ~ 최대 2.3%<br /><span style={{ fontSize: '0.72rem', fontWeight: 400, color: 'var(--text-light)' }}>광고비 특화카드 전용</span></div>
+              <div style={{ display: 'flex', gap: '10px', marginTop: '12px', flexWrap: 'wrap' }}>
+                <div className="ben-val">0.5% 페이백<br /><span style={{ fontSize: '0.72rem', fontWeight: 600 }}>신용카드</span></div>
+                <div className="ben-val">2.3% 페이백<br /><span style={{ fontSize: '0.72rem', fontWeight: 600 }}>광고비 특화카드</span></div>
+              </div>
             </div>
             <div className="ben-card fu d3">
               <div className="ben-num">④</div>
