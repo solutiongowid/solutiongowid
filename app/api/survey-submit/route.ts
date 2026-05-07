@@ -51,7 +51,7 @@ export async function POST(request: NextRequest) {
     await fetch('https://hooks.zapier.com/hooks/catch/10485854/4y47xse/', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ companyName, name, position, department, email, phone, annualRevenue, timestamp }),
+      body: JSON.stringify({ companyName, name, position, department, email, phone, annualRevenue, timestamp, utm_source, utm_medium, utm_campaign }),
     }).catch((err) => console.error('Zapier error:', err));
 
     return NextResponse.json({
