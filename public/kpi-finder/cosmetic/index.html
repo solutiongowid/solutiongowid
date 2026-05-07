@@ -1,0 +1,2659 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<title>코스메틱 KPI Finder · 고위드</title>
+<meta name="description" content="글로벌 CFO 표준 + 코스메틱 178사 데이터 기반 재무 KPI 자가진단 — 한국어 우선, 30초" />
+<link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable.css" />
+<style>
+  :root {
+    --bg: #000000;
+    --bg-alt: #0a0a0a;
+    --bg-elev: #141414;
+    --text: #ffffff;
+    --text-2: #d4d4d4;
+    --text-3: #9a9a9a;
+    --text-4: #6a6a6a;
+    --neon: #00ff88;
+    --teal: #14b8a6;
+    --teal-dim: #0d9488;
+    --warning: #ffb547;
+    --divider: #2a2a2a;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body {
+    background: var(--bg); color: var(--text);
+    font-family: "Pretendard Variable", Pretendard, -apple-system, sans-serif;
+    -webkit-font-smoothing: antialiased; line-height: 1.65;
+    letter-spacing: -0.01em;
+    min-height: 100vh;
+    font-size: 17px;
+  }
+  /* 옅은 그라디언트 — 우상단 네온 그린 글로우 + 좌하단 틸 */
+  body {
+    background:
+      radial-gradient(ellipse 70% 50% at 85% 0%, rgba(0, 255, 136, 0.07) 0%, transparent 55%),
+      radial-gradient(ellipse 55% 45% at 12% 95%, rgba(20, 184, 166, 0.05) 0%, transparent 60%),
+      radial-gradient(ellipse 120% 100% at 50% 50%, rgba(15, 18, 20, 0.6) 0%, var(--bg) 100%),
+      var(--bg);
+    background-attachment: fixed;
+    position: relative;
+  }
+  /* 그레인 효과 — SVG noise filter, 옅고 세련되게 */
+  body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 1;
+    background-image: url("data:image/svg+xml;utf8,<svg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/><feColorMatrix type='matrix' values='0 0 0 0 1  0 0 0 0 1  0 0 0 0 1  0 0 0 0.6 0'/></filter><rect width='100%' height='100%' filter='url(%23n)' opacity='1'/></svg>");
+    background-size: 160px 160px;
+    opacity: 0.11;
+    mix-blend-mode: overlay;
+  }
+  /* 콘텐츠는 z-index 2로 그레인 위에 */
+  .wrap { position: relative; z-index: 2; }
+  .wrap { max-width: 760px; margin: 0 auto; padding: 36px 24px 96px; }
+  .topbar { display: flex; align-items: center; gap: 10px; padding: 0 0 28px; font-size: 14px; color: var(--text-3); }
+  .topbar .dot { width: 8px; height: 8px; border-radius: 50%; background: var(--neon); }
+  .topbar .brand { color: var(--text); font-weight: 600; }
+  .topbar .sep { color: var(--text-4); }
+
+  /* Hero */
+  .hero h1 { font-size: 36px; font-weight: 700; line-height: 1.35; letter-spacing: -0.03em; margin-bottom: 18px; }
+  .hero h1 .accent { color: var(--neon); }
+  .hero p { color: var(--text-2); font-size: 17px; line-height: 1.75; margin-bottom: 22px; }
+  .badges { display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 36px; }
+  .badge { font-size: 13px; padding: 7px 14px; border: 1px solid var(--teal-dim); color: var(--teal); border-radius: 999px; }
+
+  /* Cards / Sections */
+  .section { background: var(--bg-alt); border: 1px solid var(--divider); border-radius: 14px; padding: 28px 26px; margin-bottom: 16px; }
+  .section h2 { font-size: 22px; font-weight: 600; margin-bottom: 16px; letter-spacing: -0.02em; line-height: 1.4; }
+  .section .hint { font-size: 16px; color: var(--text-2); line-height: 1.8; margin-bottom: 22px; padding: 0; background: transparent; border: 0; }
+  .section .hint strong { color: var(--text); font-weight: 600; }
+
+  /* 인트로 카드 (4 항목 — Basecamp Projection 마스터 cascade) */
+  .intro-card {
+    margin: 16px 0; padding: 20px 22px;
+    background: var(--bg-elev); border-radius: 10px; line-height: 1.85;
+  }
+  .intro-card .intro-label {
+    font-size: 12px; color: var(--neon); letter-spacing: 0.18em; font-weight: 700; margin-bottom: 10px;
+  }
+  .intro-card .intro-body {
+    font-size: 16px; color: var(--text);
+  }
+  .intro-card.subtle .intro-body { font-size: 15px; color: var(--text-2); }
+
+  /* Options (자동 진행 + 다중선택) */
+  .opts { display: grid; gap: 10px; }
+  .opt {
+    padding: 18px 20px; background: var(--bg-elev); border: 1px solid var(--divider);
+    border-radius: 10px; cursor: pointer; font-size: 16px; transition: all 0.15s;
+    display: flex; align-items: center; justify-content: space-between; gap: 14px;
+    line-height: 1.55;
+  }
+  .opt:hover { border-color: var(--teal-dim); transform: translateX(2px); }
+  .opt.selected { border-color: var(--neon); background: #0a1a12; }
+  .opt .check { color: var(--neon); opacity: 0; font-weight: 700; font-size: 18px; transition: opacity 0.15s, transform 0.15s; }
+  .opt.selected .check, .opt.priority-1 .check, .opt.priority-2 .check { opacity: 1; transform: scale(1.1); }
+
+  /* 다중선택 — 1·2순위 (D 표준 본질 10) */
+  .opt .opt-text { flex: 1; display: flex; align-items: center; gap: 12px; line-height: 1.55; }
+  .opt .priority-badge {
+    flex-shrink: 0; min-width: 26px; height: 26px; padding: 0 8px;
+    border-radius: 13px; font-size: 12px; font-weight: 700;
+    display: inline-flex; align-items: center; justify-content: center;
+  }
+  .opt.priority-1 { border-color: var(--neon); background: #0a1a12; }
+  .opt.priority-1 .priority-badge { background: var(--neon); color: #000; }
+  .opt.priority-2 { border-color: var(--teal); background: rgba(20,184,166,0.06); }
+  .opt.priority-2 .priority-badge { background: var(--teal); color: #000; }
+  .opt.disabled-priority-1 { opacity: 0.45; cursor: not-allowed; background: var(--bg); border-style: dashed; }
+  .opt.disabled-priority-1:hover { transform: none; border-color: var(--divider); }
+  .opt.none-option-strong {
+    margin-top: 4px; background: var(--bg-elev);
+    border: 1px solid var(--teal-dim); color: var(--text-2);
+  }
+  .opt.none-option-strong:hover { border-color: var(--teal); color: var(--text); background: rgba(20,184,166,0.05); }
+  .opt.none-option-strong::before { content: "○"; margin-right: 12px; color: var(--teal); font-size: 18px; font-weight: 700; }
+  .opt.none-option-strong .opt-text { color: var(--text); font-weight: 500; }
+
+  .multi-step-banner {
+    display: flex; align-items: center; gap: 12px;
+    margin-bottom: 16px; padding: 12px 16px;
+    background: var(--bg-elev); border-radius: 8px;
+    font-size: 14px; color: var(--text-2);
+  }
+  .multi-step-banner .step-dot {
+    width: 22px; height: 22px; border-radius: 50%;
+    display: inline-flex; align-items: center; justify-content: center;
+    font-size: 12px; font-weight: 700;
+  }
+  .multi-step-banner.step-1 .step-dot { background: var(--neon); color: #000; }
+  .multi-step-banner.step-2 .step-dot { background: var(--teal); color: #000; }
+  .multi-step-banner strong { color: var(--text); }
+
+  /* 클릭 시퀀스 — 깜빡깜빡 빠바박 2초 (D 표준 C9) */
+  @keyframes selectFlash {
+    0%   { box-shadow: 0 0 0 0 rgba(0,255,136,0); }
+    10%  { box-shadow: 0 0 0 5px rgba(0,255,136,0.45), 0 0 38px rgba(0,255,136,0.60); }
+    25%  { box-shadow: 0 0 0 1px rgba(0,255,136,0.10), 0 0 14px rgba(0,255,136,0.20); }
+    40%  { box-shadow: 0 0 0 5px rgba(0,255,136,0.40), 0 0 36px rgba(0,255,136,0.55); }
+    55%  { box-shadow: 0 0 0 1px rgba(0,255,136,0.10), 0 0 14px rgba(0,255,136,0.20); }
+    70%  { box-shadow: 0 0 0 4px rgba(0,255,136,0.32), 0 0 28px rgba(0,255,136,0.45); }
+    100% { box-shadow: 0 0 22px rgba(0,255,136,0.32); }
+  }
+  @keyframes othersDim {
+    0%   { opacity: 1; }
+    100% { opacity: 0.32; }
+  }
+  @keyframes checkPop {
+    0%   { opacity: 0; transform: scale(0); }
+    50%  { opacity: 1; transform: scale(1.3); }
+    100% { opacity: 1; transform: scale(1.1); }
+  }
+  .opt.selecting {
+    animation: selectFlash 1.0s ease-out forwards;
+    border-color: var(--neon); background: #0a1a12;
+    z-index: 2; position: relative;
+  }
+  .opt.waiting {
+    background: #0a1a12; border-color: var(--neon);
+    box-shadow: 0 0 22px rgba(0,255,136,0.30);
+  }
+  .opt.dimming {
+    animation: othersDim 0.5s ease-out 0.3s forwards;
+  }
+  .opt.selecting .check { animation: checkPop 0.5s ease-out forwards; }
+
+  /* Progress (진행 막대 + 카운터) */
+  .progress-row {
+    display: flex; align-items: center; gap: 14px; margin-bottom: 28px;
+  }
+  .progress { flex: 1; display: flex; gap: 5px; margin-bottom: 0; }
+  .progress span { flex: 1; height: 4px; background: var(--divider); border-radius: 2px; transition: background 0.3s; }
+  .progress span.done { background: var(--neon); }
+  .progress-counter {
+    flex-shrink: 0; font-size: 13px; color: var(--text-3);
+    letter-spacing: 0.05em; min-width: 36px; text-align: right; font-weight: 500;
+  }
+
+  /* Buttons */
+  .controls { display: flex; gap: 10px; margin-top: 20px; justify-content: flex-start; }
+  .btn {
+    padding: 14px 22px; border-radius: 10px; font-size: 16px; font-weight: 600;
+    background: var(--bg-elev); color: var(--text-2); border: 1px solid var(--divider); cursor: pointer;
+    font-family: inherit; letter-spacing: -0.01em;
+    transition: all 0.15s;
+  }
+  .btn:hover { border-color: var(--teal-dim); color: var(--text); }
+  .btn.primary { background: var(--neon); color: #000; border-color: var(--neon); padding: 18px 26px; font-size: 17px; }
+  .btn.primary:hover { background: #00e078; color: #000; }
+  .btn:disabled { opacity: 0.3; cursor: not-allowed; }
+
+  /* === 결과 화면 D 표준 — 5단 type scale (D10·D14·D11·D13·D15) === */
+  .result-section {
+    background: transparent; border: 0; padding: 56px 0 0; margin: 0 0 8px 0;
+    border-top: 1px solid var(--divider);
+  }
+  .result-section:first-of-type { border-top: 0; padding-top: 0; }
+  .result-eyebrow {
+    font-size: 12px; color: var(--text-3); letter-spacing: 0.22em; font-weight: 700;
+    text-transform: uppercase; margin-bottom: 14px;
+  }
+  .result-h1 {
+    font-size: 32px; font-weight: 700; line-height: 1.3; letter-spacing: -0.03em;
+    margin-bottom: 18px;
+  }
+  .result-h2 {
+    font-size: 26px; font-weight: 700; line-height: 1.35; letter-spacing: -0.02em;
+    margin-bottom: 20px;
+  }
+  .result-h3 {
+    font-size: 14px; font-weight: 700; letter-spacing: 0.10em; text-transform: uppercase;
+    color: var(--text-3); margin: 32px 0 14px;
+  }
+  .result-section p {
+    font-size: 19px; color: var(--text-2); line-height: 1.85; margin-bottom: 22px;
+  }
+  .result-section p:last-child { margin-bottom: 0; }
+  .result-section p strong { color: var(--text); font-weight: 600; }
+  .result-section .caption {
+    font-size: 14px; color: var(--text-3); line-height: 1.7; margin: 16px 0 0;
+  }
+  .result-lead {
+    font-size: 20px; color: var(--text-2); line-height: 1.75; margin-bottom: 30px;
+  }
+  .result-bridge {
+    font-size: 15px; color: var(--text-3); line-height: 1.7; font-style: italic;
+    margin: 0 0 20px 0;
+  }
+  /* 처방 메인 박스 (D11) */
+  .prescription-main {
+    font-size: 20px; color: var(--text); line-height: 1.85;
+    background: rgba(0,255,136,0.05);
+    border-left: 4px solid var(--neon);
+    padding: 28px 30px; margin: 18px 0 12px;
+    border-radius: 0 12px 12px 0;
+  }
+  .prescription-main strong { color: var(--neon); font-weight: 700; }
+  .prescription-main .rx-list { margin-top: 14px; display: grid; gap: 12px; }
+  .prescription-main .rx-item {
+    padding-left: 16px; border-left: 2px solid rgba(0,255,136,0.4);
+    font-size: 18px; line-height: 1.75;
+  }
+
+  /* 솔루션 처방 카드 — 첫만남 톤 (D9) */
+  .solution-deep-grid { display: grid; gap: 16px; margin-top: 18px; }
+  .solution-deep-card {
+    padding: 26px 28px; border: 1px solid var(--divider);
+    background: var(--bg-elev); border-radius: 12px;
+  }
+  .solution-deep-card.primary { border-color: var(--neon); background: rgba(0,255,136,0.025); }
+  .solution-deep-card.secondary { border-color: var(--teal-dim); background: rgba(20,184,166,0.04); }
+  .solution-deep-card .sol-name {
+    font-size: 20px; font-weight: 700; margin-bottom: 16px; line-height: 1.4;
+  }
+  .solution-deep-card.primary .sol-name { color: var(--neon); }
+  .solution-deep-card.secondary .sol-name { color: var(--teal); }
+  .solution-deep-card .sol-row {
+    display: grid; grid-template-columns: 80px 1fr; gap: 14px;
+    margin: 14px 0; font-size: 17px; line-height: 1.75;
+  }
+  @media (max-width: 480px) {
+    .solution-deep-card .sol-row { grid-template-columns: 1fr; gap: 4px; }
+  }
+  .solution-deep-card .sol-row .sol-label {
+    font-size: 12px; color: var(--text-3); letter-spacing: 0.12em;
+    font-weight: 700; text-transform: uppercase; padding-top: 6px;
+  }
+  .solution-deep-card .sol-row .sol-text { color: var(--text-2); }
+
+  /* 단계별 진단 step */
+  .dmaic-step { padding: 28px 22px; margin-bottom: 14px; background: var(--bg-alt); border: 1px solid var(--divider); border-radius: 12px; }
+  .dmaic-step .step-label { font-size: 11px; color: var(--teal); letter-spacing: 0.18em; font-weight: 700; margin-bottom: 6px; }
+  .dmaic-step .step-label .step-en { color: var(--text-4); font-weight: 500; margin-left: 8px; letter-spacing: 0.12em; }
+  .dmaic-step .step-title { font-size: 22px; font-weight: 700; margin-bottom: 16px; line-height: 1.4; letter-spacing: -0.02em; }
+  .dmaic-step .step-body { font-size: 15px; color: var(--text-2); line-height: 1.7; }
+  .dmaic-step .step-body strong { color: var(--text); font-weight: 600; }
+  .dmaic-step .num { color: var(--neon); font-weight: 700; }
+
+  /* M-step KPI checklist */
+  .kpi-list { margin: 14px 0 0; padding-left: 0; list-style: none; }
+  .kpi-list li { padding: 10px 0; border-bottom: 1px solid var(--divider); display: flex; justify-content: space-between; align-items: center; gap: 12px; }
+  .kpi-list li:last-child { border-bottom: 0; }
+  .kpi-list .kpi-name { color: var(--text-2); font-size: 14px; }
+  .kpi-list .kpi-name .en { color: var(--text-4); font-size: 12px; margin-left: 6px; }
+  .kpi-list .kpi-status { color: var(--text-4); font-size: 12px; white-space: nowrap; }
+  .kpi-list li.tracked .kpi-status { color: var(--neon); }
+  .kpi-list li.tracked .kpi-name { color: var(--text); }
+
+  /* Score gauge */
+  .score-row { display: flex; align-items: baseline; gap: 8px; margin-top: 12px; }
+  .score-row .score-num { font-size: 42px; font-weight: 700; color: var(--neon); letter-spacing: -0.03em; }
+  .score-row .score-unit { color: var(--text-4); font-size: 14px; }
+  .gauge { height: 4px; background: var(--divider); border-radius: 2px; margin-top: 8px; overflow: hidden; }
+  .gauge .fill { height: 100%; background: var(--neon); }
+
+  /* 5단계-segment */
+  .stage-track { display: grid; grid-template-columns: repeat(5, 1fr); gap: 6px; margin-top: 14px; }
+  .stage-cell { padding: 12px 8px; background: var(--bg-elev); border: 1px solid var(--divider); border-radius: 8px; font-size: 11px; color: var(--text-4); text-align: center; }
+  .stage-cell.active { border-color: var(--neon); background: #0a1a12; color: var(--text); font-weight: 600; }
+  .stage-cell .stage-no { font-size: 10px; color: var(--text-4); display: block; margin-bottom: 4px; }
+  .stage-cell.active .stage-no { color: var(--neon); }
+
+  /* CCC Diagram */
+  .ccc-diagram { margin: 16px 0; }
+  .ccc-row { display: grid; grid-template-columns: 1fr auto 1fr auto 1fr auto 1.2fr; align-items: center; gap: 10px; }
+  .ccc-block { padding: 18px 12px; border: 1px solid var(--teal-dim); border-radius: 10px; text-align: center; background: rgba(20,184,166,0.08); }
+  .ccc-block.subtract { border-color: rgba(255, 181, 71, 0.6); background: rgba(255, 181, 71, 0.06); }
+  .ccc-block.result { border-color: var(--neon); background: rgba(0,255,136,0.08); }
+  .ccc-block .label { font-size: 11px; color: var(--text-3); margin-bottom: 6px; line-height: 1.3; }
+  .ccc-block .label .en { color: var(--text-4); font-size: 10px; display: block; margin-top: 2px; }
+  .ccc-block .val { font-size: 22px; font-weight: 700; color: var(--text); }
+  .ccc-block.result .val { color: var(--neon); }
+  .ccc-op { font-size: 18px; color: var(--text-4); font-weight: 600; }
+  .ccc-caption { font-size: 12px; color: var(--text-3); margin-top: 12px; line-height: 1.6; }
+
+  /* CM Stacked bar */
+  .cm-bar-wrap { margin: 16px 0; }
+  .cm-bar { display: flex; height: 56px; border-radius: 8px; overflow: hidden; border: 1px solid var(--divider); }
+  .cm-segment { display: flex; align-items: center; justify-content: center; font-size: 11px; font-weight: 600; color: rgba(255,255,255,0.85); padding: 0 6px; text-align: center; line-height: 1.2; }
+  .cm-segment.cogs { background: #2a2a2a; }
+  .cm-segment.ad { background: #4a4a4a; }
+  .cm-segment.ops { background: #6a6a6a; }
+  .cm-segment.cm3 { background: var(--neon); color: #000; }
+  .cm-legend { display: grid; grid-template-columns: repeat(2, 1fr); gap: 8px 16px; margin-top: 12px; font-size: 12px; color: var(--text-2); }
+  .cm-legend .swatch { display: inline-block; width: 10px; height: 10px; border-radius: 2px; vertical-align: middle; margin-right: 6px; }
+  .cm-legend .swatch.cogs { background: #2a2a2a; border: 1px solid var(--divider); }
+  .cm-legend .swatch.ad { background: #4a4a4a; }
+  .cm-legend .swatch.ops { background: #6a6a6a; }
+  .cm-legend .swatch.cm3 { background: var(--neon); }
+  .cm-tier-callouts { margin-top: 14px; font-size: 12px; color: var(--text-3); line-height: 1.7; padding: 12px; background: var(--bg-elev); border-radius: 8px; }
+  .cm-tier-callouts .tier-row { display: flex; justify-content: space-between; padding: 4px 0; border-bottom: 1px dashed var(--divider); }
+  .cm-tier-callouts .tier-row:last-child { border-bottom: 0; }
+  .cm-tier-callouts .tier-name { color: var(--text-2); font-weight: 500; }
+  .cm-tier-callouts .tier-formula { color: var(--text-4); }
+
+  /* Inventory distribution */
+  .inv-dist { margin: 16px 0; padding: 16px; background: var(--bg-elev); border-radius: 8px; }
+  .inv-dist-track { position: relative; height: 8px; background: linear-gradient(90deg, rgba(0,255,136,0.4) 0%, rgba(20,184,166,0.4) 50%, rgba(255,181,71,0.4) 100%); border-radius: 4px; margin: 12px 0 24px; }
+  .inv-dist-marker { position: absolute; top: -6px; width: 2px; height: 20px; background: var(--text); }
+  .inv-dist-labels { display: flex; justify-content: space-between; font-size: 11px; color: var(--text-3); }
+  .inv-dist-labels span:nth-child(1) { color: var(--neon); }
+  .inv-dist-labels span:nth-child(3) { color: var(--warning); }
+
+  /* ROIC vs WACC bars */
+  .roic-row { margin: 14px 0; }
+  .roic-bar-row { display: grid; grid-template-columns: 110px 1fr 60px; align-items: center; gap: 12px; margin: 10px 0; }
+  .roic-label { font-size: 12px; color: var(--text-2); line-height: 1.3; }
+  .roic-label .en { color: var(--text-4); font-size: 10px; display: block; }
+  .roic-track { height: 14px; background: var(--bg-elev); border-radius: 7px; overflow: hidden; }
+  .roic-fill { height: 100%; border-radius: 7px; }
+  .roic-fill.neon { background: var(--neon); }
+  .roic-fill.teal { background: var(--teal); }
+  .roic-val { font-size: 14px; font-weight: 700; text-align: right; }
+  .roic-val.neon { color: var(--neon); }
+  .roic-val.teal { color: var(--teal); }
+  .roic-spread { margin-top: 12px; padding: 10px 12px; background: rgba(0,255,136,0.06); border: 1px solid rgba(0,255,136,0.2); border-radius: 8px; font-size: 12px; color: var(--text-2); }
+  .roic-spread strong { color: var(--neon); }
+
+  /* OCF/NI gauge */
+  .ocf-gauge { margin: 14px 0; padding: 18px; background: var(--bg-elev); border-radius: 10px; text-align: center; }
+  .ocf-gauge .ocf-val { font-size: 42px; font-weight: 700; color: var(--neon); letter-spacing: -0.03em; }
+  .ocf-gauge .ocf-val.warning { color: var(--warning); }
+  .ocf-gauge .ocf-caption { font-size: 12px; color: var(--text-3); margin-top: 6px; line-height: 1.6; }
+
+  /* Insight Card (Control) */
+  .insight-card-frame { background: linear-gradient(180deg, #0a1a12, var(--bg-alt)); border-color: var(--neon) !important; }
+  .insight-card {
+    background: var(--bg); border: 1px solid var(--neon);
+    border-radius: 16px; padding: 56px 36px;
+    text-align: center; margin: 18px 0;
+    box-shadow: 0 0 40px rgba(0, 255, 136, 0.08);
+    aspect-ratio: 4 / 5;
+    display: flex; flex-direction: column; justify-content: center;
+  }
+  .insight-card .stage-label { font-size: 12px; color: var(--teal); letter-spacing: 0.2em; font-weight: 600; margin-bottom: 28px; }
+  .insight-card .essence { font-size: 26px; font-weight: 700; line-height: 1.5; letter-spacing: -0.025em; margin-bottom: 24px; }
+  .insight-card .essence .neon { color: var(--neon); }
+  .insight-card .divider-line { width: 32px; height: 1px; background: var(--teal-dim); margin: 20px auto; }
+  .insight-card .body { font-size: 14px; color: var(--text-2); line-height: 1.75; max-width: 360px; margin: 0 auto; }
+  .insight-card .body strong { color: var(--text); }
+  .insight-card .body .next-action { color: var(--neon); font-weight: 600; }
+  .insight-card .quote { font-size: 13px; color: var(--text-3); font-style: italic; margin: 18px auto 0; max-width: 320px; }
+  .insight-card .footer-mark { font-size: 11px; color: var(--text-4); letter-spacing: 0.15em; margin-top: 28px; }
+
+  /* CTA */
+  .cta-row { display: grid; gap: 10px; margin: 24px 0; }
+  .cta {
+    padding: 18px 20px; border-radius: 10px; font-size: 14px; font-weight: 600;
+    text-align: left; text-decoration: none; display: flex; justify-content: space-between; align-items: center;
+    border: 1px solid var(--divider); background: var(--bg-alt); color: var(--text); cursor: pointer; font-family: inherit;
+  }
+  .cta:hover { border-color: var(--teal); }
+  .cta.primary { background: var(--neon); color: #000; border-color: var(--neon); }
+  .cta .arrow { color: inherit; }
+
+  /* Footer */
+  .footer { margin-top: 40px; padding-top: 20px; border-top: 1px solid var(--divider); font-size: 11px; color: var(--text-4); line-height: 1.7; }
+
+  .hidden { display: none; }
+  .tip { font-size: 12px; color: var(--text-3); margin-top: 6px; line-height: 1.6; }
+  .tip .en { color: var(--text-4); }
+
+  /* Review mode (검토 모드) */
+  .review-toggle {
+    margin: 40px 0 0; padding: 18px 22px; background: var(--bg-elev); border: 1px dashed var(--text-4);
+    border-radius: 10px; cursor: pointer; font-size: 13px; color: var(--text-3);
+    display: flex; justify-content: space-between; align-items: center;
+    font-family: inherit; width: 100%; text-align: left;
+  }
+  .review-toggle:hover { border-color: var(--teal-dim); color: var(--text-2); }
+  .review-toggle .arrow { color: var(--text-4); transition: transform 0.2s; }
+  .review-toggle.open .arrow { transform: rotate(90deg); }
+  .review-mode { margin-top: 16px; padding: 24px; background: var(--bg-alt); border: 1px solid var(--divider); border-radius: 10px; }
+  .review-mode h3 { font-size: 18px; font-weight: 700; margin-bottom: 6px; letter-spacing: -0.02em; }
+  .review-mode .review-sub { font-size: 12px; color: var(--text-4); margin-bottom: 24px; }
+  .review-mode .review-intro {
+    font-size: 12px; color: var(--text-4); line-height: 1.6; margin-bottom: 16px;
+  }
+  /* details/summary 검토 섹션 — Basecamp Projection cascade */
+  .review-section { margin-bottom: 12px; }
+  .review-section summary {
+    cursor: pointer; padding: 12px 14px; background: var(--bg-elev);
+    border-radius: 8px; font-size: 13px; color: var(--text-2); font-weight: 500;
+    list-style: none; display: flex; justify-content: space-between; align-items: center;
+  }
+  .review-section summary::-webkit-details-marker { display: none; }
+  .review-section summary::after { content: "▾"; color: var(--text-4); transition: transform 0.2s; }
+  .review-section[open] summary::after { transform: rotate(180deg); }
+  .review-section .review-body {
+    padding: 14px; font-size: 12px; color: var(--text-3); line-height: 1.7;
+  }
+  .review-section .review-body code {
+    display: block; padding: 12px; background: var(--bg);
+    border-radius: 6px; font-family: "SFMono-Regular", Consolas, monospace;
+    font-size: 11px; color: var(--text-2); margin: 8px 0; overflow-x: auto;
+    white-space: pre;
+  }
+
+  /* Logic tree */
+  .tree { margin: 16px 0; padding: 16px; background: var(--bg); border: 1px solid var(--divider); border-radius: 8px;
+    font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, monospace; font-size: 12px; line-height: 1.85; color: var(--text-2); white-space: pre; overflow-x: auto;
+  }
+  .tree .root { color: var(--neon); font-weight: 700; }
+  .tree .col { color: var(--teal); }
+  .tree .num { color: var(--neon); }
+  .tree .miss { color: var(--warning); }
+  .tree .comment { color: var(--text-4); }
+
+  /* Stage results table */
+  .stage-results { width: 100%; border-collapse: collapse; margin: 14px 0; font-size: 13px; }
+  .stage-results th { padding: 10px 8px; background: var(--bg-elev); color: var(--text-3); font-weight: 600; text-align: left; border-bottom: 1px solid var(--divider); font-size: 11px; letter-spacing: 0.05em; }
+  .stage-results td { padding: 10px 8px; border-bottom: 1px solid var(--divider); color: var(--text-2); }
+  .stage-results tr:hover td { background: var(--bg-elev); }
+  .stage-results .pos { color: var(--neon); font-weight: 600; }
+  .stage-results .neg { color: var(--warning); font-weight: 600; }
+  .stage-results .star { color: var(--neon); }
+
+  /* SQL block */
+  .sql-block { margin: 14px 0; padding: 16px; background: var(--bg); border: 1px solid var(--divider); border-radius: 8px;
+    font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, monospace; font-size: 11.5px; line-height: 1.7; color: var(--text-2); white-space: pre; overflow-x: auto;
+  }
+  .sql-block .kw { color: var(--neon); }
+  .sql-block .fn { color: var(--teal); }
+  .sql-block .str { color: var(--warning); }
+  .sql-block .cm { color: var(--text-4); font-style: italic; }
+
+  .review-block { margin: 32px 0; }
+  .review-block h4 { font-size: 15px; font-weight: 700; color: var(--text); margin-bottom: 8px; letter-spacing: -0.01em; }
+  .review-block h4 .formula { color: var(--text-3); font-weight: 400; font-size: 12px; margin-left: 8px; font-family: ui-monospace, monospace; }
+  .review-block .desc { font-size: 13px; color: var(--text-3); line-height: 1.7; margin-bottom: 10px; }
+  .review-block .desc strong { color: var(--text-2); }
+  .review-block .meta-pill {
+    display: inline-block; padding: 3px 9px; font-size: 11px; border-radius: 999px;
+    background: rgba(20,184,166,0.1); color: var(--teal); margin-right: 6px; margin-bottom: 4px;
+  }
+  .review-block .meta-pill.miss { background: rgba(255,181,71,0.1); color: var(--warning); }
+  .review-block .meta-pill.ok { background: rgba(0,255,136,0.1); color: var(--neon); }
+
+  /* WACC card */
+  .wacc-card { margin: 14px 0; padding: 16px; background: var(--bg); border: 1px solid var(--teal-dim); border-radius: 8px; }
+  .wacc-card .wacc-row { display: flex; justify-content: space-between; padding: 6px 0; font-size: 13px; border-bottom: 1px dashed var(--divider); }
+  .wacc-card .wacc-row:last-child { border-bottom: 0; }
+  .wacc-card .wacc-row .l { color: var(--text-3); }
+  .wacc-card .wacc-row .v { color: var(--text); font-weight: 600; }
+
+  /* v3 Prescription paradigm */
+  .persona-line { font-size: 13px; color: var(--text-2); padding: 12px 14px; background: var(--bg-elev); border-left: 2px solid var(--teal); border-radius: 4px; margin-bottom: 12px; }
+  .persona-line strong { color: var(--text); }
+  .anchor-msg { margin-top: 16px; padding: 14px 16px; background: rgba(0,255,136,0.06); border: 1px solid rgba(0,255,136,0.2); border-radius: 8px; font-size: 14px; line-height: 1.65; color: var(--text); }
+
+  .prev-quarter, .next-quarter { background: var(--bg); }
+  .prev-kpi, .next-kpi { padding: 14px 16px; background: var(--bg-elev); border-radius: 8px; margin-top: 8px; }
+  .prev-kpi { border-left: 2px solid var(--text-4); }
+  .next-kpi { border-left: 2px solid var(--teal); margin-bottom: 10px; }
+  .prev-name { font-size: 15px; font-weight: 600; color: var(--text-2); margin-bottom: 6px; }
+  .prev-explain { font-size: 13px; color: var(--text-3); line-height: 1.6; margin-bottom: 6px; }
+  .prev-threshold { font-size: 12px; color: var(--text-4); }
+  .next-kpi strong { color: var(--text); }
+
+  .now-section { margin: 24px 0; padding: 28px 22px; background: linear-gradient(180deg, rgba(0,255,136,0.04), rgba(20,184,166,0.02)); border: 1px solid var(--neon); border-radius: 12px; }
+  .now-header { display: flex; align-items: baseline; gap: 12px; margin-bottom: 22px; padding-bottom: 14px; border-bottom: 1px solid rgba(0,255,136,0.15); }
+  .now-label { font-size: 13px; color: var(--neon); font-weight: 700; letter-spacing: 0.05em; }
+  .now-title { font-size: 14px; color: var(--text-2); }
+
+  .kpi-card { padding: 22px; background: var(--bg-alt); border: 1px solid var(--divider); border-radius: 10px; margin-bottom: 14px; }
+  .kpi-card.main { border-color: var(--neon); background: rgba(0,255,136,0.03); }
+  .kpi-card.supporting { border-color: var(--divider); }
+  .kpi-card-head { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 10px; }
+  .kpi-role { font-size: 11px; font-weight: 700; letter-spacing: 0.08em; color: var(--neon); }
+  .kpi-card.supporting .kpi-role { color: var(--teal); }
+  .kpi-en { font-size: 11px; color: var(--text-4); font-family: ui-monospace, monospace; }
+  .kpi-name { font-size: 22px; font-weight: 700; letter-spacing: -0.02em; color: var(--text); margin-bottom: 8px; line-height: 1.4; }
+  .kpi-explain { font-size: 14px; color: var(--text-2); line-height: 1.7; margin-bottom: 18px; }
+
+  .kpi-section { margin-top: 16px; padding-top: 14px; border-top: 1px solid var(--divider); }
+  .kpi-section-label { font-size: 11px; font-weight: 600; letter-spacing: 0.08em; color: var(--text-3); text-transform: uppercase; margin-bottom: 8px; }
+
+  .kpi-formula { font-family: ui-monospace, SFMono-Regular, monospace; font-size: 13px; color: var(--text-2); padding: 10px 14px; background: var(--bg); border-radius: 6px; border: 1px solid var(--divider); line-height: 1.6; }
+  .kpi-components { list-style: none; padding: 0; margin: 10px 0 0; font-size: 13px; }
+  .kpi-components li { padding: 6px 0; color: var(--text-2); border-bottom: 1px dashed var(--divider); line-height: 1.6; }
+  .kpi-components li:last-child { border-bottom: 0; }
+  .kpi-components li strong { color: var(--text); margin-right: 6px; }
+  .kpi-components .comp-formula { color: var(--text-4); font-family: ui-monospace, monospace; font-size: 12px; }
+
+  .kpi-dist { display: flex; gap: 8px; flex-wrap: wrap; margin: 8px 0; }
+  .dist-pill { padding: 6px 12px; background: var(--bg); border: 1px solid var(--divider); border-radius: 999px; font-size: 12px; color: var(--text-3); }
+  .dist-pill.main { background: rgba(0,255,136,0.08); border-color: var(--neon); color: var(--text); }
+  .dist-pill strong { color: var(--neon); margin-left: 4px; }
+  .kpi-note { font-size: 12px; color: var(--text-3); margin-top: 8px; line-height: 1.6; padding: 8px 12px; background: var(--bg); border-radius: 4px; border-left: 2px solid var(--teal-dim); }
+  .kpi-source-line { font-size: 11px; color: var(--text-4); margin-top: 8px; }
+
+  .kpi-threshold { display: flex; gap: 6px; flex-wrap: wrap; }
+  .th-pill { padding: 5px 10px; border-radius: 4px; font-size: 12px; font-weight: 500; }
+  .th-pill.pass { background: rgba(0,255,136,0.1); color: var(--neon); border: 1px solid rgba(0,255,136,0.3); }
+  .th-pill.curr { background: rgba(20,184,166,0.1); color: var(--teal); border: 1px solid rgba(20,184,166,0.3); }
+  .th-pill.top { background: rgba(255,255,255,0.06); color: var(--text-2); border: 1px solid var(--divider); }
+  .th-pill.warn { background: rgba(255,181,71,0.1); color: var(--warning); border: 1px solid rgba(255,181,71,0.3); }
+
+  .kpi-bench { padding: 10px 14px; background: var(--bg); border-radius: 6px; margin-bottom: 6px; border: 1px solid var(--divider); }
+  .bench-co { font-size: 13px; font-weight: 600; color: var(--text); margin-bottom: 4px; }
+  .bench-val { font-size: 12px; color: var(--text-2); font-family: ui-monospace, monospace; margin-bottom: 4px; }
+  .bench-note { font-size: 11px; color: var(--text-3); line-height: 1.5; }
+
+  .dupont-branch { padding: 10px 14px; background: var(--bg); border-radius: 6px; margin-bottom: 6px; border-left: 2px solid var(--teal); }
+  .dup-label { font-size: 13px; color: var(--text-2); margin-bottom: 4px; }
+  .dup-label strong { color: var(--text); }
+  .dup-formula { font-family: ui-monospace, monospace; color: var(--text-4); font-size: 11px; margin-left: 6px; }
+  .dup-val { font-size: 16px; font-weight: 700; color: var(--neon); margin-bottom: 4px; }
+  .dup-interp { font-size: 12px; color: var(--text-3); line-height: 1.55; }
+
+  .kpi-quote { padding: 10px 14px; background: var(--bg); border-radius: 6px; margin-bottom: 6px; border-left: 2px solid var(--text-3); }
+  .quote-text { font-style: italic; color: var(--text-2); font-size: 13px; line-height: 1.6; margin-bottom: 4px; }
+  .quote-attr { font-size: 11px; color: var(--text-4); }
+
+  .kpi-pattern { padding: 10px 14px; background: var(--bg); border-radius: 6px; margin-bottom: 6px; border: 1px solid var(--divider); }
+  .pat-role { font-size: 13px; color: var(--text); margin-bottom: 4px; }
+  .pat-resp { font-size: 12px; color: var(--text-2); line-height: 1.55; margin-bottom: 4px; }
+  .pat-source { font-size: 11px; color: var(--text-4); }
+
+  .kpi-sources { list-style: none; padding: 0; margin: 0; font-size: 12px; }
+  .kpi-sources li { padding: 4px 0; color: var(--text-3); line-height: 1.5; }
+  .kpi-sources li::before { content: "▸ "; color: var(--text-4); }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="topbar">
+    <span class="dot"></span>
+    <span class="brand">고위드</span>
+    <span class="sep">·</span>
+    <span>코스메틱 재무 KPI 진단</span>
+  </div>
+
+  <section id="intro">
+    <div class="hero">
+      <h1>지금 우리 회사가<br><span class="accent">어떤 KPI를 봐야 하는지</span><br>처방해주는 진단</h1>
+      <p>코스메틱 회사는 단계마다 봐야 할 KPI가 다릅니다. 잘못된 KPI를 보면 본진이 흔들립니다.</p>
+      <div class="badges">
+        <span class="badge">코스메틱 178개 회사 데이터</span>
+        <span class="badge">메인 KPI 1 + 보조 KPI 2</span>
+        <span class="badge">단계별 KPI 처방</span>
+      </div>
+    </div>
+
+    <div class="section">
+      <h2>이 도구가 무엇이고 어떻게 쓰는지</h2>
+
+      <div class="intro-card">
+        <div class="intro-label">무엇을 합니까</div>
+        <div class="intro-body">코스메틱 회사의 매출 단계·영업이익 상태·재무 패턴을 매칭해서 <strong>지금 봐야 할 KPI 3개</strong>(메인 1 + 보조 2)를 처방합니다.</div>
+      </div>
+
+      <div class="intro-card">
+        <div class="intro-label">왜 이 도구가 필요한가</div>
+        <div class="intro-body">단계별로 봐야 할 KPI가 다릅니다. 10억대는 광고 효율, 100억대는 공헌이익률·재고회전, 200억+는 자본 이익률. 잘못된 KPI를 보면 본진이 흔들립니다.</div>
+      </div>
+
+      <div class="intro-card">
+        <div class="intro-label">어떻게 쓰는가</div>
+        <div class="intro-body">8개 질문에 답합니다 (약 1분). 결과 화면에서 귀사 단계의 메인 KPI 1개·보조 KPI 2개와 단계별 임계값·이전·이번·다음 단계 KPI 흐름이 표시됩니다.</div>
+      </div>
+
+      <div class="intro-card subtle">
+        <div class="intro-label">데이터 근거</div>
+        <div class="intro-body">한국 외부감사 코스메틱 199사 재무제표 (2025) + 코스메틱 인디 178사 카드 활용 패턴 + L'Oréal·Estée Lauder·Shiseido 글로벌 KPI 분포 + 한국 화장품 회사 인수합병 12건. 추정이지 보장이 아닙니다.</div>
+      </div>
+
+      <div style="margin-top: 22px;">
+        <button class="btn primary" id="btn-start" style="width: 100%;">진단 시작 (약 1분)</button>
+      </div>
+    </div>
+  </section>
+
+  <section id="quiz" class="hidden">
+    <div class="progress-row">
+      <div class="progress" id="progress"></div>
+      <div class="progress-counter" id="progress-counter">— / —</div>
+    </div>
+    <div id="question-host"></div>
+    <div class="controls">
+      <button class="btn" id="btn-back">← 이전</button>
+    </div>
+  </section>
+
+  <section id="result" class="hidden"></section>
+</div>
+
+<script>
+const DATA = {
+  questions: [
+    {
+      id: "stage",
+      label: "연매출은요?",
+      hint: "단계 매칭의 베이스가 됩니다.",
+      options: [
+        { value: "stage1", label: "10억 미만" },
+        { value: "stage2", label: "10-30억" },
+        { value: "stage3", label: "30-100억" },
+        { value: "stage4", label: "100-200억" },
+        { value: "stage5", label: "200억 이상" }
+      ]
+    },
+    {
+      id: "operating_status",
+      label: "영업이익 상태는요?",
+      hint: "같은 매출 단계여도 적자/흑자에 따라 봐야 할 KPI가 달라집니다.",
+      options: [
+        { value: "deficit", label: "적자 (영업이익 음수)" },
+        { value: "bep", label: "BEP 근처 (영업이익률 0~3%)" },
+        { value: "profit", label: "흑자 (영업이익률 3% 이상)" }
+      ]
+    },
+    {
+      id: "strategy",
+      label: "지금 회사 전략은요?",
+      hint: "6 유형 KPI 매칭의 핵심 갈림길입니다.",
+      options: [
+        { value: "growth", label: "성장 가속 (적자라도 매출 키우기)" },
+        { value: "margin", label: "마진 보존 (성장률 낮춰도 수익성)" },
+        { value: "bep_recovery", label: "손익분기 회복 (적자에서 빠져나오기)" },
+        { value: "efficiency", label: "효율 고도화 (자동화·구조)" }
+      ]
+    },
+    {
+      id: "ad_ratio",
+      label: "광고비가 매출의 몇 % 인가요?",
+      hint: "광고 의존도 → 마케팅 전체 효율(MER) vs 공헌이익 단계 vs LTV/CAC 처방 갈림길.",
+      options: [
+        { value: "low", label: "5% 미만" },
+        { value: "mid_low", label: "5-10%" },
+        { value: "mid", label: "10-20%" },
+        { value: "high", label: "20-40%" },
+        { value: "very_high", label: "40% 이상" }
+      ]
+    },
+    {
+      id: "inventory_form",
+      label: "재고는 어떻게 운영하시나요?",
+      hint: "재고 회전일 의미·임계값이 운영 형태에 따라 다릅니다 (자체 90일 함정 / OEM 30일대 가능).",
+      options: [
+        { value: "self", label: "자체 생산·자체 재고" },
+        { value: "oem_odm", label: "OEM·ODM 발주" },
+        { value: "consignment", label: "위탁·CMO·B2B 결제" },
+        { value: "service", label: "재고 거의 없음 (서비스·구독)" }
+      ]
+    },
+    {
+      id: "capital_status",
+      label: "자본 조달은 어떻게 되어 있나요?",
+      hint: "자기자본 이익률(ROE) vs 자본 이익률(ROIC) 처방 갈림길. 시리즈마다 봐야 할 KPI가 다릅니다.",
+      options: [
+        { value: "self_only", label: "자기자본만 (창업자·가족)" },
+        { value: "seed_pre_a", label: "시드·Pre-A 받음" },
+        { value: "series_a_b", label: "시리즈 A·B 받음" },
+        { value: "series_c_plus", label: "시리즈 C+ / Pre-IPO" },
+        { value: "borrowing_heavy", label: "차입금 비중 큼 (은행·정책자금)" }
+      ]
+    },
+    {
+      id: "biggest_pressure",
+      label: "가장 큰 자금 압박은요?",
+      hint: "현금 사이클 가운데 어디부터 풀지 처방이 달라집니다.<br><strong>1·2순위 다중 선택</strong> — 두 가지 압박이 동시에 있다면 1순위·2순위 모두 입력해주세요. 한 가지만 해당하면 두 번째 단계에서 「(없음)」을 선택하시면 됩니다.",
+      multi: true,
+      options: [
+        { value: "inventory", label: "재고 (만들어 놓고 안 팔리는)" },
+        { value: "payment_in", label: "매출 회수 (정산 60-90일 묶임)" },
+        { value: "payment_out", label: "매입 결제 (원료·제조 즉시 지급)" },
+        { value: "ad", label: "광고비 (매월 큰 지출)" },
+        { value: "salary", label: "인건비 (고정비 비중 큼)" },
+        { value: "balanced", label: "특정 압박 없음·균형" }
+      ]
+    },
+    {
+      id: "next_milestone",
+      label: "다음 6개월 마일스톤은요?",
+      hint: "다음 단계 KPI 처방 정밀도를 높입니다.<br><strong>1·2순위 다중 선택</strong> — 동시에 두 시야를 갖고 계시면 1순위·2순위 모두 입력해주세요. 예) 1순위 = 흑자 전환 / 2순위 = 다음 투자 라운드.",
+      multi: true,
+      options: [
+        { value: "next_round", label: "다음 투자 라운드" },
+        { value: "bep_target", label: "흑자 전환" },
+        { value: "scale", label: "매출 2배 성장" },
+        { value: "global", label: "해외 진출 (일본·미국·중국)" },
+        { value: "ipo_prep", label: "기업공개(IPO) 준비" },
+        { value: "exit", label: "인수합병·매각" }
+      ]
+    }
+  ],
+  // _data_source: BQ 외감재무 FY2025 중앙값 (p50). 1단계 n=54 / 2단계 n=34 / 3단계 n=54 / 4단계 n=26 / 5단계 n=31
+  // _source_file: data/cosmetic_decisive_kpis_v1.json
+  stage_data: {
+    stage1: {
+      label: "1단계 · 시드·런칭기",
+      n: 54,
+      decision_kpi_kr: ["마케팅 전체 효율", "매출총이익률"],
+      decision_kpi_en: ["MER", "Gross Margin"],
+      essence_neon: "마케팅 전체 효율<br>+ 매출총이익률",
+      essence_full: "1단계는 글로벌 CFO Top 5 중 마케팅 전체 효율(MER)과 매출총이익률(Gross Margin)부터 시작하는 단계에 가깝습니다.",
+      body_intro: "이 단계 외감재무 54사 중 영업이익률 중앙 −17.8%. 단위경제 검증이 우선입니다.",
+      next_action: "법인카드 결제를 변동비/고정비로 자동 분류",
+      ccc: { dso: 23.1, dio: 66.9, dpo: 0, ccc: 132.1 },
+      cm: { cogs: 35.2, ad: 4.3, ops: 78.3, cm3: -17.8, op_loss: true },
+      inv: { p25: 3.2, p50: 66.9, p75: 260.3, marker: 50 },
+      roic: { n: 33, p50: -1.5, p25: -35.7, p75: 22.3, wacc: 8.5, spread: -10.0 }
+    },
+    stage2: {
+      label: "2단계 · 30억 통과기",
+      n: 34,
+      decision_kpi_kr: ["공헌이익 1·2단계", "마케팅 전체 효율"],
+      decision_kpi_en: ["CM Tier 1·2", "MER"],
+      essence_neon: "공헌이익 2단계",
+      essence_full: "30억 통과는 공헌이익 2단계 — 광고비를 차감하고 남는 마진 — 가 결정합니다.",
+      body_intro: "외감재무 34사 중 영업이익률 중앙 1.7%. 적자 구간을 막 빠져나오는 단계. DTC 글로벌 표준은 공헌이익을 단일이 아니라 3단계로 봅니다.",
+      next_action: "변동비 자동 분류 → 공헌이익 단계별 자동 계산",
+      ccc: { dso: 27.1, dio: 141.7, dpo: 29.0, ccc: 158.5 },
+      cm: { cogs: 41.2, ad: 10.3, ops: 46.8, cm3: 1.7, op_loss: false },
+      inv: { p25: 32.6, p50: 141.7, p75: 325.6, marker: 50 },
+      roic: { n: 25, p50: 4.6, p25: 0.4, p75: 12.3, wacc: 8.5, spread: -3.9 }
+    },
+    stage3: {
+      label: "3단계 · 데뷔기",
+      n: 54,
+      decision_kpi_kr: ["공헌이익 3단계", "재고 회전일"],
+      decision_kpi_en: ["CM Tier 3", "DIO"],
+      essence_neon: "공헌이익 3단계<br>+ 재고 회전일",
+      essence_full: "3단계는 공헌이익 3단계와 재고 회전일이 함께 결정 KPI가 되는 단계에 들어선 것 같습니다.",
+      body_intro: "외감재무 54사 중 재고 회전일 분포 53일 ─ 126일(중앙) ─ 214일(재고 함정). 영업이익률 중앙 2.1%.",
+      next_action: "운영비(물류·수수료) 분류 → 공헌이익 3단계 + 재고 회전일 자동 추적",
+      ccc: { dso: 21.5, dio: 125.9, dpo: 26.7, ccc: 114.9 },
+      cm: { cogs: 33.0, ad: 11.1, ops: 53.8, cm3: 2.1, op_loss: false },
+      inv: { p25: 52.9, p50: 125.9, p75: 213.9, marker: 50 },
+      roic: { n: 44, p50: 5.5, p25: 3.1, p75: 10.9, wacc: 8.5, spread: -3.0 }
+    },
+    stage4: {
+      label: "4단계 · 골든존",
+      n: 26,
+      decision_kpi_kr: ["현금 회수 사이클", "자본 이익률 진입"],
+      decision_kpi_en: ["CCC", "ROIC"],
+      essence_neon: "현금 회수 사이클",
+      essence_full: "4단계는 현금 회수 사이클 — 회수일 + 재고 회전일 − 결제일 — 이 결정 KPI가 되는 단계에 가까운 것 같습니다.",
+      body_intro: "BQ 외감재무 26사 골든존. 현금 사이클 중앙 107일 (≈3.5개월). 멜릭서·라이프위드 STT의 '4-5개월 묶임' 페인을 외감재무로 검증.",
+      next_action: "결산 자동화 → 현금 사이클 자동 + 자본 이익률 추적 진입",
+      ccc: { dso: 20.5, dio: 84.2, dpo: 29.8, ccc: 107.0 },
+      cm: { cogs: 37.9, ad: 10.5, ops: 49.6, cm3: 2.0, op_loss: false },
+      inv: { p25: 55.0, p50: 84.2, p75: 203.2, marker: 50 },
+      roic: { n: 23, p50: 8.1, p25: -4.2, p75: 32.6, wacc: 8.5, spread: -0.4 }
+    },
+    stage5: {
+      label: "5단계 · 확장기",
+      n: 31,
+      decision_kpi_kr: ["자본 이익률 vs 자본 비용", "이익의 현금화 품질"],
+      decision_kpi_en: ["ROIC vs WACC", "OCF/NI"],
+      essence_neon: "자본 이익률 vs 자본 비용<br>+ 현금화 품질",
+      essence_full: "5단계는 자본 이익률(ROIC) vs 자본 비용(WACC) 스프레드 + 이익의 현금화 품질(OCF/NI)이 결정 KPI로 가는 단계에 들어선 것 같습니다.",
+      body_intro: "외감재무 31사 중 영업이익률 중앙 3.0%. 글로벌 CFO 1순위 KPI 진입 단계. 자본 이익률 > 자본 비용 = 가치 창출. 현금화 품질 < 1 = 장부 이익이 실제 현금으로 안 들어옴.",
+      next_action: "가상카드(VCN) 사전 통제 + 글로벌 결산 자동화",
+      ccc: { dso: 23.0, dio: 85.5, dpo: 21.8, ccc: 113.3 },
+      cm: { cogs: 51.8, ad: 16.3, ops: 28.9, cm3: 3.0, op_loss: false },
+      inv: { p25: 48.4, p50: 85.5, p75: 173.3, marker: 50 },
+      roic: { n: 27, p50: 11.8, p25: 4.6, p75: 27.7, wacc: 8.5, spread: 3.3 }
+    }
+  }
+};
+
+const state = { qIndex: 0, answers: {}, multiSelectStep: 1 };
+
+function show(id) { ["intro", "quiz", "result"].forEach(s => document.getElementById(s).classList.toggle("hidden", s !== id)); }
+
+// 다중선택 도우미
+function isMultiQuestion(qid) {
+  const q = DATA.questions.find(x => x.id === qid);
+  return q && q.multi === true;
+}
+function getAnswerValue(qid, slot = "primary") {
+  const v = state.answers[qid];
+  if (v == null) return null;
+  if (typeof v === "string") return v;
+  return v[slot] || null;
+}
+function getPrimary(qid) { return getAnswerValue(qid, "primary"); }
+function getSecondary(qid) { return getAnswerValue(qid, "secondary"); }
+
+document.getElementById("btn-start").addEventListener("click", () => { show("quiz"); renderQuiz(); });
+
+// 이전 버튼만 (다음 버튼 X)
+document.getElementById("btn-back").addEventListener("click", () => {
+  const q = DATA.questions[state.qIndex];
+  if (q.multi === true && state.multiSelectStep === 2) {
+    state.multiSelectStep = 1;
+    renderQuiz();
+    return;
+  }
+  if (state.qIndex > 0) {
+    state.qIndex--;
+    const prevQ = DATA.questions[state.qIndex];
+    state.multiSelectStep = (prevQ.multi === true && state.answers[prevQ.id]?.primary) ? 2 : 1;
+    renderQuiz();
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  }
+});
+
+function renderQuiz() {
+  const q = DATA.questions[state.qIndex];
+  const host = document.getElementById("question-host");
+  const isMulti = q.multi === true;
+
+  // 다중 질문 — answer 객체 정규화
+  if (isMulti && (state.answers[q.id] == null || typeof state.answers[q.id] === "string")) {
+    const prev = state.answers[q.id];
+    state.answers[q.id] = { primary: prev || null, secondary: null };
+  }
+
+  const primary = isMulti ? (state.answers[q.id]?.primary || null) : null;
+  const secondary = isMulti ? (state.answers[q.id]?.secondary || null) : null;
+
+  // 다중선택 단계 배너
+  let bannerHTML = "";
+  if (isMulti) {
+    if (state.multiSelectStep === 1) {
+      bannerHTML = `<div class="multi-step-banner step-1">
+        <span class="step-dot">1</span>
+        <span><strong>1순위</strong>를 먼저 선택해주세요 (가장 큰 압박 또는 핵심 시야)</span>
+      </div>`;
+    } else {
+      bannerHTML = `<div class="multi-step-banner step-2">
+        <span class="step-dot">2</span>
+        <span><strong>2순위</strong>를 선택해주세요. 한 가지만 해당하면 「(없음 — 1순위만)」을 선택하시면 됩니다.</span>
+      </div>`;
+    }
+  }
+
+  // 옵션 list 동적 구성
+  let optionsHTML = "";
+  if (isMulti && state.multiSelectStep === 2) {
+    // 2단계: 1순위 옵션 비활성 + 나머지 + (없음) 강조 카드
+    const optionsRendered = q.options.map(o => {
+      const isPrimary = o.value === primary;
+      const isSelected = !isPrimary && o.value === secondary;
+      const cls = isPrimary
+        ? "opt disabled-priority-1"
+        : (isSelected ? "opt priority-2" : "opt");
+      const badge = isPrimary
+        ? `<span class="priority-badge" style="background: var(--neon); color: #000;">1순위</span>`
+        : (isSelected ? `<span class="priority-badge" style="background: var(--teal); color: #000;">2순위</span>` : "");
+      return `<div class="${cls}" data-value="${o.value}" ${isPrimary ? 'data-locked="1"' : ''}>
+        <span class="opt-text">${badge}<span>${o.label}</span></span>
+        <span class="check">✓</span>
+      </div>`;
+    }).join("");
+    const noneOption = `<div class="opt none-option-strong" data-value="__none__">
+      <span class="opt-text">2순위 없음 — 1순위만 응답하고 다음 질문으로</span>
+      <span class="check">✓</span>
+    </div>`;
+    optionsHTML = optionsRendered + noneOption;
+  } else {
+    // 단일 또는 다중 1단계
+    optionsHTML = q.options.map(o => {
+      const currentVal = isMulti ? primary : state.answers[q.id];
+      const isSelected = currentVal === o.value;
+      const badge = (isMulti && isSelected)
+        ? `<span class="priority-badge" style="background: var(--neon); color: #000;">1순위</span>`
+        : "";
+      const cls = isMulti && isSelected ? "opt priority-1" : (isSelected ? "opt selected" : "opt");
+      return `<div class="${cls}" data-value="${o.value}">
+        <span class="opt-text">${badge}<span>${o.label}</span></span>
+        <span class="check">✓</span>
+      </div>`;
+    }).join("");
+  }
+
+  host.innerHTML = `
+    <div class="section">
+      ${bannerHTML}
+      <h2>${q.label}</h2>
+      ${q.hint ? `<p class="hint">${q.hint}</p>` : ""}
+      <div class="opts" id="opts">${optionsHTML}</div>
+    </div>
+  `;
+
+  // 클릭 페이즈 헬퍼 (깜빡깜빡 빠바박 2초)
+  const opts = document.getElementById("opts");
+  function runSelectSequence(el, finalCls, callback) {
+    opts.querySelectorAll(".opt").forEach(o => {
+      o.classList.remove("selected", "priority-1", "priority-2", "selecting", "waiting", "dimming");
+    });
+    el.classList.add("selecting");
+    opts.querySelectorAll(".opt").forEach(o => {
+      if (o !== el && !o.classList.contains("disabled-priority-1")) o.classList.add("dimming");
+    });
+    setTimeout(() => {
+      el.classList.remove("selecting");
+      el.classList.add(finalCls, "waiting");
+    }, 1000);
+    setTimeout(() => {
+      opts.dataset.animating = "0";
+      callback();
+    }, 2000);
+  }
+
+  opts.querySelectorAll(".opt").forEach(el => {
+    el.addEventListener("click", () => {
+      const value = el.dataset.value;
+      if (el.dataset.locked === "1") return;
+      if (opts.dataset.animating === "1") return;
+      opts.dataset.animating = "1";
+
+      if (!isMulti) {
+        runSelectSequence(el, "selected", () => {
+          state.answers[q.id] = value;
+          advanceQuiz();
+        });
+      } else if (state.multiSelectStep === 1) {
+        if (value === "balanced" || value === "exit") {
+          // 의미 약한 옵션 또는 단일 처리
+          runSelectSequence(el, "priority-1", () => {
+            state.answers[q.id] = { primary: value, secondary: null };
+            advanceQuiz();
+          });
+          return;
+        }
+        runSelectSequence(el, "priority-1", () => {
+          state.answers[q.id] = { primary: value, secondary: null };
+          state.multiSelectStep = 2;
+          renderQuiz();
+        });
+      } else {
+        const cls = value === "__none__" ? "selected" : "priority-2";
+        runSelectSequence(el, cls, () => {
+          state.answers[q.id].secondary = (value === "__none__") ? null : value;
+          state.multiSelectStep = 1;
+          advanceQuiz();
+        });
+      }
+    });
+  });
+
+  // 진행 표시
+  const total = DATA.questions.length;
+  const prog = document.getElementById("progress");
+  prog.innerHTML = "";
+  for (let i = 0; i < total; i++) {
+    const s = document.createElement("span");
+    if (i <= state.qIndex) s.className = "done";
+    prog.appendChild(s);
+  }
+  document.getElementById("progress-counter").textContent = `${state.qIndex + 1} / ${total}`;
+  document.getElementById("btn-back").disabled = (state.qIndex === 0 && state.multiSelectStep === 1);
+}
+
+function advanceQuiz() {
+  const total = DATA.questions.length;
+  if (state.qIndex < total - 1) {
+    state.qIndex++;
+    state.multiSelectStep = 1;
+    renderQuiz();
+  } else {
+    showResult();
+  }
+}
+
+// 6 유형 KPI 매칭 매칭
+function matchType() {
+  // 다중선택 호환 — 1순위 우선
+  const op = state.answers.operating_status;
+  const strategy = state.answers.strategy;
+  const cap = state.answers.capital_status;
+  const pressure = getPrimary("biggest_pressure");
+
+  // priority 1: 자금 압박 + 차입금 → 유형 1
+  if ((pressure === "payment_in" || pressure === "payment_out") && cap === "borrowing_heavy") {
+    return { id: "type_1", name: "현금흐름 최적화형", short: "유동성 시급형", primary_tool: "Real Runway", cross: true };
+  }
+  // priority 2: 영업이익 × 전략
+  if (op === "profit" && strategy === "growth") {
+    return { id: "type_4", name: "공헌이익 기반 성장형", short: "재투자형", primary_tool: "KPI Finder", cross: false };
+  }
+  if (op === "bep" && (strategy === "bep_recovery" || strategy === "margin")) {
+    return { id: "type_5", name: "공헌이익 기반 안정형", short: "손익분기 회복형", primary_tool: "KPI Finder", cross: false };
+  }
+  if (op === "profit" && (strategy === "efficiency" || strategy === "margin")) {
+    return { id: "type_6", name: "효율적 운영 고도화형", short: "자동화·구조 효율형", primary_tool: "KPI Finder", cross: false };
+  }
+  if (op === "deficit" && strategy === "growth") {
+    return { id: "type_2", name: "빠른 성장 지원형", short: "적자 성장 가속형", primary_tool: "Basecamp Projection", cross: true };
+  }
+  if (op === "deficit" && strategy === "bep_recovery") {
+    return { id: "type_3", name: "런웨이 확대 지원형", short: "지출 감축·생존형", primary_tool: "Real Runway", cross: true };
+  }
+  return { id: "type_5", name: "공헌이익 기반 안정형", short: "손익분기 회복형", primary_tool: "KPI Finder", cross: false };
+}
+
+// Stage × Type 전체 매트릭스 spec (v3.1, 15 분기 중 13개 풀 빌드)
+const STAGE_SPECS = {
+  // 1단계 시드·런칭기 (10억 미만)
+  stage1_type4: { rare: true, fallback_msg: "1단계에서 흑자+성장가속 조합은 흔치 않습니다. 안정형 (BEP 회복) 또는 효율형 처방을 권장합니다." },
+  stage1_type5: {
+    label: "1단계 시드·런칭기 × 공헌이익 기반 안정형",
+    persona: "10억 미만 + BEP 근처 + 자기자본만 / 시드 직후 + 광고 의존도 5-20% + 흑자 전환 시도. ⚠ 벤치마크 178사 중 10억 미만 58사의 쇠퇴율 62.1% — 단위경제 검증 시급",
+    anchor: "지금 이 단계는 단위경제 검증 — 한 건 팔 때 광고 빼고 진짜 남는 돈이 있는지부터. 벤치마크 178사 중 28.6%는 공헌이익 음수 (팔수록 손해 구조).",
+    main: "gross_margin",
+    supporting: ["mer", "cm_tier_1"]
+  },
+  stage1_type6: {
+    label: "1단계 시드·런칭기 × 효율적 운영 고도화형",
+    persona: "10억 미만 + 자기자본만 + 광고 의존도 낮음 + 마진 보존 / 효율 우선. 인당매출 평균 0.5-2억 (회생 그룹 0.52억) — 작은 매출에서 효율 베이스 박는 시점",
+    anchor: "지금 이 단계는 매출이 작아도 비용 분류·자동화 베이스를 미리 깔아두면 30억 통과가 빨라지는 단계입니다.",
+    main: "mer",
+    supporting: ["gross_margin", "automation_rate_basic"]
+  },
+  // 2단계 30억 통과기 (10-30억) — ⚠ 벤치마크 178사 중 10-30억 17사 쇠퇴율 58.8% (1단계과 같은 위험 구간)
+  stage2_type4: {
+    label: "2단계 30억 통과기 × 공헌이익 기반 성장형 (재투자)",
+    persona: "10-30억 + 흑자 + 성장가속 + 시드·시리즈 A 직전 + 광고 의존도 중-높음 + 다음 라운드 목표. 벤치마크 17사 중 성장 그룹 0건 — 가장 어려운 구간이지만 30억 돌파하면 쇠퇴율 22.5%로 급감",
+    anchor: "지금 이 단계는 광고비 차감 후 마진(공헌이익 2단계)이 결정 KPI — 채널·SKU별로 분해해서 카니발리제이션을 잡아야 합니다. 30억 = 첫 번째 변곡점.",
+    main: "cm_tier_2",
+    supporting: ["mer", "cac_payback"]
+  },
+  stage2_type5: {
+    label: "2단계 30억 통과기 × 공헌이익 기반 안정형 (BEP 회복)",
+    persona: "10-30억 + BEP 근처 + 광고 의존도 중 + 흑자 전환 시도",
+    anchor: "지금 이 단계는 광고비 통제 + 매출총이익률 보존 — 30억 통과는 공헌이익 1·2단계가 결정합니다.",
+    main: "cm_tier_1",
+    supporting: ["margin_improvement", "ad_efficiency_channel"]
+  },
+  stage2_type6: {
+    label: "2단계 30억 통과기 × 효율적 운영 고도화형",
+    persona: "10-30억 + 흑자 + 자기자본만 + 광고 의존도 낮음 + 효율 우선",
+    anchor: "지금 이 단계는 변동비/고정비 자동 분류 시점 — 공헌이익 단계별 자동 계산으로 다음 단계 준비.",
+    main: "automation_rate",
+    supporting: ["cm_tier_2", "cost_reduction"]
+  },
+  // 3단계 데뷔기 (30-100억)
+  stage3_type4: {
+    label: "3단계 데뷔기 × 공헌이익 기반 성장형 (재투자)",
+    persona: "30-100억 + 흑자 + 성장가속 + 시리즈 A·B + 광고 의존도 중-높음 + 해외 진출·다음 라운드",
+    anchor: "지금 이 단계는 운영비까지 차감한 진짜 단위경제(공헌이익 3단계) + 재고 회전 + LTV/CAC 배수 — 데뷔기 결정 KPI 조합입니다.",
+    main: "cm_tier_3",
+    supporting: ["dio", "ltv_cac_ratio"]
+  },
+  stage3_type5: {
+    label: "3단계 데뷔기 × 공헌이익 기반 안정형 (BEP 회복)",
+    persona: "30-100억 + BEP 근처 + 자기자본만 / 시리즈 A 후 + 흑자 전환",
+    anchor: "지금 이 단계는 운영비 효율화 + 영업외비용 통제 — 매출 성장은 잡혔으니 마진 보존이 결정 KPI.",
+    main: "cm_tier_3",
+    supporting: ["margin_improvement", "non_op_cost"]
+  },
+  stage3_type6: {
+    label: "3단계 데뷔기 × 효율적 운영 고도화형",
+    persona: "30-100억 + 흑자 + 자기자본만 + 광고 의존도 낮음 + 효율 우선",
+    anchor: "지금 이 단계는 운영 자동화 + 재고 회전 자동 추적 — 100억 통과 전 결산 자동화 베이스 박는 단계.",
+    main: "automation_rate",
+    supporting: ["dio", "settlement_error"]
+  },
+  // 4단계 골든존 (100-200억) — 기존 풀 시안
+  stage4_type4: {
+    label: "4단계 골든존 × 공헌이익 기반 성장형 (재투자)",
+    persona: "100-200억 흑자 진입 + VC 시리즈 B·C + 광고 의존도 중-높음 + 다음 라운드·해외 진출 준비. 벤치마크 18사 중 성장율 16.7% — 5단계 중 산업 최고. 다만 쇠퇴율도 27.8%로 명암 갈림",
+    anchor: "지금 이 단계는 단위경제(공헌이익)는 OK이지만, 자본 조달 비용을 따라잡는 자본 이익률(ROIC) 진입을 시작하는 단계입니다. 미국 시장 한국 1위·일본 시장 한국 1위 활용 시점.",
+    main: "ccc",
+    supporting: ["roe", "roic_entry"]
+  },
+  stage4_type5: {
+    label: "4단계 골든존 × 공헌이익 기반 안정형 (BEP 회복)",
+    persona: "100-200억 BEP 근처 + 자기자본만/시리즈 A 후 + 광고 의존도 중-낮음 + 흑자 전환 목표",
+    anchor: "지금 이 단계는 흑자 전환 직전 — 마진율 분기 개선폭과 영업외비용 통제가 결정 KPI입니다.",
+    main: "margin_improvement",
+    supporting: ["cm_tier_3", "non_op_cost"]
+  },
+  stage4_type6: {
+    label: "4단계 골든존 × 효율적 운영 고도화형",
+    persona: "100-200억 흑자 + 자기자본만/시리즈 A 후 + 광고 의존도 낮음 + IPO·해외 진출 등 다음 단계",
+    anchor: "지금 이 단계는 단위경제 + 자금 사이클 다 안정 — 운영 자동화와 비용 구조 효율화가 결정 KPI입니다.",
+    main: "automation_rate",
+    supporting: ["cost_reduction", "settlement_error"]
+  },
+  // 5단계 확장기 (200억+)
+  stage5_type4: {
+    label: "5단계 확장기 × 공헌이익 기반 성장형 (자본 효율 본격)",
+    persona: "200억+ 흑자 + 성장가속 + 시리즈 C+ / Pre-IPO + 광고 의존도 높음 + 해외 진출·M&A·IPO 준비. PwC 2026 사례: 라카코스메틱스 531억 / 픽톤(토코보) 520억 / 모먼츠컴퍼니(비플레인) 812억 / 애경산업 4,700억 — 글로벌 유통 인프라 보유 회사가 매수 타겟",
+    anchor: "지금 이 단계는 글로벌 CFO 1순위 KPI 진입 — 자본 1원이 만든 이익이 자본 조달 비용을 넘어서는지 (ROIC vs WACC). M&A 거래금액 산정도 EV/EBITDA Multiple X 현재 운영 플랫폼·유통 구조·인수 후 성장성으로 결정.",
+    main: "roic_vs_wacc",
+    supporting: ["dupont_full", "ocf_ni"]
+  },
+  stage5_type5: { rare: true, fallback_msg: "5단계 (200억+)에서 BEP 회복 조합은 매우 드뭅니다. 200억 + BEP 근처면 단위경제 재검증이 시급 — 런웨이 플랜 도구 권장." },
+  stage5_type6: {
+    label: "5단계 확장기 × 효율적 운영 고도화형 (IPO·글로벌)",
+    persona: "200억+ 흑자 + 자기자본/시리즈 C+ + 광고 의존도 중 + IPO 준비 / 해외 결산",
+    anchor: "지금 이 단계는 운영 자동화 풀 도달 + 글로벌 결산 통합 — IPO 준비를 위한 결산 1주 내 마감이 결정 KPI.",
+    main: "automation_rate",
+    supporting: ["ocf_ni", "settlement_error"]
+  }
+};
+
+// 단계별 lead 메시지 (BLOCK 0 hero용 — 페르소나 톤)
+const STAGE_LEAD_MSG = {
+  stage1: "10억 미만 코스메틱 회사가 가장 자주 무너지는 패턴은 단위경제 검증 없이 광고만 늘리는 것입니다. 지금 봐야 할 것은 한 건 팔 때 진짜 남는 돈입니다.",
+  stage2: "10-30억 통과기는 코스메틱 산업에서 가장 위험한 구간입니다. 178사 중 성장 그룹 0건 — 30억을 못 넘으면 쇠퇴 60%+. 광고비 차감 후 마진이 통과 여부를 결정합니다.",
+  stage3: "30-100억 데뷔기는 채널·SKU별 분해가 결정합니다. 통합 평균만 보면 어디서 새는지 안 보입니다. 단위경제 + 재고 회전 + LTV/CAC 동시 추적이 필요한 단계입니다.",
+  stage4: "100-200억 골든존은 명암이 갈리는 단계입니다. 성장율 16.7% (산업 최고)지만 쇠퇴율도 27.8%. 단위경제는 OK인데 자본 조달 비용에 미달하면 가치 창출 정체.",
+  stage5: "200억+ 확장기는 글로벌 CFO 1순위 KPI 진입 단계입니다. 자본 1원이 만든 이익이 자본 조달 비용을 넘어서는지 (ROIC vs WACC). M&A·IPO 거래금액의 결정 변수."
+};
+
+// 단계별 메인 처방 메시지 (prescription-main 박스 헤드라인)
+const PRESCRIPTION_HEADLINE = {
+  stage1: "지금 핵심은 <strong>단위경제 검증</strong>입니다. 한 건 팔 때 광고 빼고 진짜 남는 돈이 있는지부터 봐야 합니다.",
+  stage2: "지금 핵심은 <strong>광고비 차감 후 마진 (공헌이익 2단계)</strong>입니다. 30억 통과 변곡점이 결정 KPI.",
+  stage3: "지금 핵심은 <strong>운영비까지 차감한 진짜 단위경제 + 재고 회전</strong>입니다. 채널·SKU별로 분해해서 봐야 합니다.",
+  stage4: "지금 핵심은 <strong>자금 회수 사이클 + 자본 이익률 진입</strong>입니다. 단위경제 OK 다음은 자본 효율.",
+  stage5: "지금 핵심은 <strong>자본 이익률 vs 자본 비용 스프레드 + 이익의 현금화 품질</strong>입니다. 글로벌 CFO 1순위 KPI."
+};
+
+// KPI별 임계값 한 줄 요약 (rx-list용 — threshold.passing 가공)
+function kpiOneLine(kpiKey) {
+  const k = KPI_LIB[kpiKey];
+  if (!k) return kpiKey;
+  const th = k.threshold || {};
+  const passing = th.passing ? ` — 임계값 ${th.passing}` : "";
+  return `<strong>${k.name}</strong>${passing}`;
+}
+
+// 단계 × 유형별 솔루션 매핑 — 첫만남 톤 (왜·언제·기대)
+const STAGE_SOLUTIONS = {
+  stage1_type5: ["지출관리 SaaS", "MER 추적 도구", "FUEL"],
+  stage1_type6: ["지출관리 SaaS", "MER 추적 도구"],
+  stage2_type4: ["FUEL", "지출관리 SaaS", "Pay by Card"],
+  stage2_type5: ["지출관리 SaaS", "MER 추적 도구"],
+  stage2_type6: ["지출관리 SaaS", "ERP 정비"],
+  stage3_type4: ["FUEL", "지출관리 SaaS", "카드 한도 증액"],
+  stage3_type5: ["지출관리 SaaS", "FUEL"],
+  stage3_type6: ["지출관리 SaaS", "ERP 정비"],
+  stage4_type4: ["FUEL", "Pay by Card", "VCN"],
+  stage4_type5: ["지출관리 SaaS", "ERP 정비"],
+  stage4_type6: ["ERP 정비", "지출관리 SaaS"],
+  stage5_type4: ["FUEL", "VCN", "ERP 정비"],
+  stage5_type6: ["ERP 정비", "지출관리 SaaS", "VCN"]
+};
+
+// 솔루션 풀이 (왜·언제·기대) — Basecamp Projection 마스터와 동일 톤
+const SOLUTION_DEEP = {
+  "FUEL": {
+    why: "투자받은 자기자본 대신 단기 자금으로 변동비를 충당해서 잉여 자금을 보존합니다.",
+    trigger: "광고비가 매출의 25%를 넘거나, 매출채권 회수가 45일 이상이거나, 시리즈 B 라운드를 12개월 안에 준비할 때",
+    effect: "3개월 안에 잉여 자금 15-25% 회복 → 본진 안정 + 다음 단계 KPI 추적 동력 확보"
+  },
+  "Pay by Card": {
+    why: "공급사 대금을 카드로 결제하면 결제일이 1-2개월 뒤로 밀려서 운전자본이 늘어납니다.",
+    trigger: "원자재·외주 결제가 매월 3,000만원 이상이고, 매출 회수가 매입 결제보다 늦을 때",
+    effect: "월 운전자본 +1.5-2개월 확보 → 현금 회수 사이클(CCC) 단축"
+  },
+  "VCN": {
+    why: "광고·해외 결제용 가상 카드 번호를 부서·캠페인별로 발급해서 비용 통제와 환차손 차단을 동시에 합니다.",
+    trigger: "마케팅·해외 결제 비중이 매출의 20%를 넘거나, 환손실로 인한 잉여 잠식이 누적될 때",
+    effect: "환차손 50%+ 절감 + 캠페인별 수익률 가시화 → 마케팅 전체 효율(MER) 추적 정확도 향상"
+  },
+  "카드 한도 증액": {
+    why: "광고·재고 매입 시점의 자금 압박을 카드 한도로 흡수해서 현금 보유고를 보존합니다.",
+    trigger: "월 매출 5억 이상이지만 카드 한도가 3,000만원 미만이거나, 직전 분기 잉여가 마이너스일 때",
+    effect: "잉여 자금 즉시 활용 + 다음 단계 광고 사전 집행으로 매출 +10-20%"
+  },
+  "지출관리 SaaS": {
+    why: "비용 분류·기준선 알람·실시간 KPI 추적을 자동화해서 결정 KPI를 놓치지 않게 합니다.",
+    trigger: "공헌이익률·MER·재고 회전을 매주 추적하지 않거나, 광고 채널별 ROI를 직관으로 결정 중일 때",
+    effect: "측정 시간 80% 절감 + 결정 KPI 자동 알람 → 임계값 이탈 사전 차단"
+  },
+  "ERP 정비": {
+    why: "재무·매출·재고가 분리된 시스템을 하나로 통합해서 단계별 KPI를 정확히 측정합니다.",
+    trigger: "매월 결산이 1주 이상 걸리거나, 부서별 숫자가 달라서 의사결정이 지연될 때",
+    effect: "월 결산 1-2일로 단축 + KPI 정확도 향상 → 자동화율·정산 오류율 임계값 도달"
+  },
+  "MER 추적 도구": {
+    why: "ROAS는 채널별이라 카니발리제이션이 안 보입니다. MER은 모든 마케팅비를 합쳐서 진짜 효율을 측정합니다.",
+    trigger: "ROAS는 양호한데 매출 성장이 정체되거나, 채널별 광고비가 매출의 15%를 넘을 때",
+    effect: "마케팅 전체 효율 가시화 + 카니발리제이션 차단 → 성장 vs 쇠퇴 격차 사전 진단"
+  }
+};
+
+// 다음 분기 메시지 매핑 (Stage × Type별 다른 다음 분기)
+const NEXT_QUARTER_MAP = {
+  stage1_type5: [{ name: "공헌이익 2단계 (CM Tier 2)", desc: "광고비 차감 후 마진. 30억 통과는 이게 결정합니다." }],
+  stage1_type6: [{ name: "공헌이익 3단계 (CM Tier 3)", desc: "운영비까지 차감한 단위경제 마진." }],
+  stage2_type4: [{ name: "공헌이익 3단계 (CM Tier 3) + 재고 회전일", desc: "운영비까지 차감한 진짜 마진 + 재고 묶임 추적." }],
+  stage2_type5: [{ name: "공헌이익 3단계 도달", desc: "공헌이익 1·2단계 통과 후 운영비 차감 단계로." }],
+  stage2_type6: [{ name: "운영비 분류 자동화", desc: "변동비 분류 후 운영비까지 자동 분류 진행." }],
+  stage3_type4: [{ name: "현금 회수 사이클 (CCC)", desc: "단위경제 OK 후엔 자금 묶임이 결정 KPI." }, { name: "자기자본 이익률 (ROE) 진입", desc: "100억+ 통과 후 ROE 추적 시작." }],
+  stage3_type5: [{ name: "현금 회수 사이클 진입", desc: "BEP 회복 후 자금 사이클로 결정 KPI 전환." }],
+  stage3_type6: [{ name: "현금 사이클 자동 추적", desc: "재고 회전 자동화 후 매출채권·매입채무까지." }],
+  stage4_type4: [{ name: "자본 이익률 vs 자본 비용 스프레드", desc: "자본이 만든 이익률이 조달 비용을 초과하는가 (글로벌 CFO 1순위)." }, { name: "이익의 현금화 품질 (OCF/NI)", desc: "영업현금흐름 / 순이익. 1.0 이상이면 장부 이익이 실제 현금으로 들어옴." }],
+  stage4_type5: [{ name: "흑자 전환 후 → 현금 회수 사이클", desc: "BEP 회복 단계는 마진율 개선이 결정. 흑자 진입 후 다음은 자금 사이클로." }],
+  stage4_type6: [{ name: "자본 이익률 vs 자본 비용 + 글로벌 결산 자동화", desc: "운영 효율 안정화 후 → 자본 효율 본격 측정 단계." }],
+  stage5_type4: [
+    { name: "M&A·EXIT 준비", desc: "거래금액 = EV/EBITDA Multiple X 현재 운영 플랫폼·유통 구조·인수 후 성장성. PwC 2026 거래 사례 (라카 531억·픽톤 520억·모먼츠 812억·애경 4,700억)" },
+    { name: "글로벌 유통 채널 확보", desc: "Pure Seoul(영국)·Gold Apple(러시아) 같은 K-뷰티 전문 유통. 실리콘투 활용 + Amazon·Shopify 글로벌 D2C" },
+    { name: "카테고리 확장 (헤어·바디·뷰티 디바이스)", desc: "에이피알 필두 — 홈케어 → 프로 셀프케어. 반복 구매 구조 강화 (PwC Industry Focus 2026)" }
+  ],
+  stage5_type6: [{ name: "IPO 준비 + 글로벌 결산 통합", desc: "분기 결산 1주 내 마감이 IPO 진입 베이스. 한국 ODM (한국콜마·코스맥스) IFRS 결산 사례 참고" }]
+};
+
+const KPI_LIB = {
+  // ========== 기존 9개 KPI (보강) ==========
+  ccc: {
+    name: "현금 회수 사이클",
+    en: "CCC · Cash Conversion Cycle",
+    korean_explain: "현금이 회사에서 나갔다가 돌아오는 데 며칠 걸리는지. 그 며칠치 운영비를 어디선가 메꿔야 한다는 뜻. 코스메틱 산업은 ODM 발주 + 매출채권 + 재고가 동시에 묶여 본질적으로 자금 사이클 큰 산업.",
+    formula_kr: "현금 사이클 = 매출 회수일(DSO) + 재고 회전일(DIO) − 매입 결제일(DPO)",
+    components: [
+      { label: "매출 회수일 (DSO)", kr: "매출 → 현금 회수까지", formula: "매출채권 / 일평균 매출" },
+      { label: "재고 회전일 (DIO)", kr: "재고 → 매출까지 (ODM 발주 패턴이 결정)", formula: "재고자산 / 일평균 매출원가" },
+      { label: "매입 결제일 (DPO)", kr: "ODM·원료 매입 → 현금 지급까지", formula: "매입채무 / 일평균 매출원가" }
+    ],
+    distribution: { n: 26, p25: 42.1, p50: 107.0, p75: 235.5, unit: "일", source: "BQ 외감재무 FY2025 코스메틱 100-200억 26사" },
+    threshold: { passing: "60일 이하", current: "107일 (≈3.5개월)", top_tier: "50일대" },
+    global: [
+      { co: "L'Oréal (글로벌 #1)", vals: "DSO 90일 / DIO 165일 / DPO 130일 = CCC 125일", note: "글로벌 #1도 CCC 125일. 코스메틱은 본질적으로 자금 묶임 큰 산업" },
+      { co: "Estée Lauder (글로벌 #2)", vals: "DSO 60일 / DIO 130일 / DPO 80일 = CCC 110일", note: "DSO 60일 = 직판 강함. 결제일 80일로 자금 사이클 단축" },
+      { co: "Shiseido (일본 #1)", vals: "DSO 75일 / DIO 220일 / DPO 80일 = CCC 215일", note: "재고 220일 = 글로벌 유통 재고 부담. 한국 시장과 다름" }
+    ],
+    sources: ["McKinsey Working Capital Optimization (2023)", "Damodaran NYU Stern Industry Cash Conversion Cycle DB", "BQ 외감재무 FY2025 26사 직접 추출", "PwC K-뷰티 M&A Industry Focus 2026", "MKT/벤치마크_리포트/beauty 178사 분석"],
+    quotes: [
+      { who: "박의훈 (아로셀)", text: "ROE에 팀들이 집중하면서 영업현금만으로 어떻게 성장하지", ctx: "4단계 골든존 STT 인용" },
+      { who: "라이프위드 STT", text: "원료 사다 만들고 팔고 돈 받는 데 4-5개월 묶여 있다", ctx: "코스메틱 자금 사이클 페인 일반화 검증 (178사 평균 107일 = 3.5개월 외감재무 검증)" },
+      { who: "김성운 (실리콘투 대표)", text: "위대한 기업은 유통을 고민합니다, 제조업이라도", ctx: "포춘코리아 인터뷰 — 매출채권 회수와 유통 비중" },
+      { who: "PwC K-뷰티 Industry Focus 2026", text: "K-뷰티 인디 = ODM 의존 구조. ODM 결제 조건이 매입 결제일(DPO)을 결정 — 한국콜마·코스맥스·씨앤씨 CAGR 11-44%", ctx: "삼일PwC 2026 산업 분석" }
+    ],
+    company_pattern: [
+      { role: "재무 매니저", responsibility: "월간 현금 사이클 보고 / DSO·DIO·DPO 자동 추적", source: "코스알엑스 채용 공고 (재무·회계 직무)" },
+      { role: "FP&A Lead", responsibility: "운전자본 분기 리뷰 + 현금 흐름 예측", source: "닥터자르트 채용 공고 (Finance Planning)" }
+    ]
+  },
+  roe: {
+    name: "자기자본 이익률",
+    en: "ROE · Return on Equity",
+    korean_explain: "주주가 넣은 돈으로 회사가 얼마나 이익을 만드나. 다만 빌린 돈은 안 보임 → 자본 이익률(ROIC)로 보강 필요.",
+    formula_kr: "자기자본 이익률 = 당기순이익 / 자기자본 × 100",
+    distribution: { n: 23, p25: -6.2, p50: 7.6, p75: 58.4, unit: "%", source: "BQ 외감재무 FY2025 26사 중 ROE 산출 가능 23사", note: "p25 −6.2 ~ p75 58.4 = 3분위로 갈리는 분기. 골든존 안에서도 명암 큰 단계" },
+    threshold: { passing: "15% 이상", current: "7.6%", top_tier: "15-25%" },
+    global: [
+      { co: "L'Oréal", vals: "ROE 19.6%", note: "글로벌 톱은 ROE 20% 근처 안정" },
+      { co: "Estée Lauder", vals: "ROE 23.4%", note: "직판 비중 + DTC = ROE 높음" },
+      { co: "에이피알 (한국)", vals: "ROE 추정 30%+", note: "K-뷰티 신흥강자. 광고비 매출 20%대로 ROE 높음" }
+    ],
+    sources: ["DuPont Tree (McKinsey ROIC Decomposition)", "BQ 외감재무 FY2025 직접 산출"],
+    quotes: [{ who: "박의훈 (아로셀)", text: "ROE에 팀들이 많이 집중", ctx: "4단계 STT" }]
+  },
+  roic_entry: {
+    name: "자본 이익률 (진입)",
+    en: "ROIC · Return on Invested Capital",
+    korean_explain: "회사 전체 자본(자기자본 + 빌린 돈)이 만든 이익률. ROE는 자기자본만, ROIC는 빌린 돈 포함 = 본격 가치 창출 측정.",
+    formula_kr: "자본 이익률 = 영업이익 × (1 − 세율 22%) / (자기자본 + 차입금)",
+    distribution: { n: 23, p25: -4.2, p50: 8.1, p75: 32.6, unit: "%", source: "BQ 외감재무 FY2025 26사 중 23사 (자본잠식·이상치 제외)" },
+    threshold: { passing: "WACC(8.5%) 초과", current: "8.1% (자본 비용 8.5%에 0.4%p 미달)", top_tier: "본격 도달은 5단계 (스프레드 +3.3%p)" },
+    global: [{ co: "L'Oréal", vals: "ROIC 14.5% / WACC 7.8% / 스프레드 +6.7%p", note: "ROIC > WACC = 가치 창출 중" }],
+    sources: ["McKinsey ROIC Tree (DuPont 분해)", "Damodaran NYU Stern Cost of Capital DB", "BQ 외감재무 FY2025 ROIC 신규 추출"],
+    dupont: {
+      principle: "ROIC를 3가지로 분해 → 어디서 부족한지 진단",
+      branches: [
+        { label: "세후영업이익률", formula: "세후영업이익 / 매출", val: "1.5% 추정", interp: "한 매출당 남는 이익. 4단계는 단위경제 OK인데도 영업이익률 낮음" },
+        { label: "자본회전율", formula: "매출 / 총자본 (자기자본 + 차입금)", val: "5.4 추정", interp: "자본 1원이 만드는 매출. 코스메틱 100-200억은 회전율 양호" },
+        { label: "레버리지", formula: "총자본 / 자기자본", val: "1.8 추정", interp: "자기자본 대비 빌린 돈 배수. 차입금 적정 수준" }
+      ]
+    }
+  },
+  margin_improvement: {
+    name: "마진율 분기 개선폭",
+    en: "Margin Δ per Quarter",
+    korean_explain: "이번 분기 영업이익률이 지난 분기보다 얼마나 올랐나. 절대값 X, 분기별 +개선폭 추적.",
+    formula_kr: "마진율 개선 = 이번 분기 영업이익률 − 지난 분기 영업이익률 (%p)",
+    distribution: { n: 26, p25: null, p50: 1.96, p75: null, unit: "%", source: "BQ 외감재무 FY2025 4단계 영업이익률 중앙값" },
+    threshold: { passing: "분기 +5%p", warning: "분기 +0~3%p (정체)" },
+    global: [{ co: "마녀공장 (4-5단계)", vals: "2025 3Q 누적 영업이익 84억 (-43.6%)", note: "흑자 회사도 분기 개선폭 없으면 정체. 광고비·운영비 통제가 결정" }],
+    sources: ["유형 5 KPI 매칭", "BQ 외감재무 FY2025", "뷰티누리 마녀공장 3Q 분석 2026"],
+    quotes: [{ who: "마녀공장 IR (뷰티누리 인용)", text: "3Q 누적 매출 873억 (-9.5%) / 영업이익 84억 (-43.6%) — 마진 정체", ctx: "4단계 BEP 회복 분기 정체 사례" }]
+  },
+  cm_tier_3: {
+    name: "공헌이익 3단계",
+    en: "CM Tier 3",
+    korean_explain: "한 건 팔 때 광고·물류·수수료까지 다 빼고 진짜 남는 돈. 단위경제 검증 = 매분기 양수 유지. 코스메틱 178사 중 38사(28.6%)가 음수 = 팔수록 손해 구조.",
+    formula_kr: "공헌이익 3단계 = 매출 − 매출원가 − 광고비 − 운영비 (물류·수수료·인건비)",
+    distribution: { n: 133, p25: -2.0, p50: 27.4, p75: 50.0, unit: "%", source: "코스메틱 인디 178사 중 공헌이익 데이터 보유 133사. 전체 커머스 30% 대비 -2.6%p", note: "성장 그룹 중앙값 45.4% / 쇠퇴 그룹 21.6% = 2배 차이" },
+    threshold: { passing: "30% 이상 (= 흑자율 1.5배)", warning: "0-30% (불안정 생존)", current: "133사 중앙값 27.4%", top_tier: "성장 그룹 45.4% (3사가 공헌이익 45%+ & 성장)" },
+    global: [
+      { co: "Andrew Faris (CTC) DTC 가이드", vals: "CM3 = 매출의 15-20%", note: "글로벌 표준" },
+      { co: "성장 vs 쇠퇴 격차 (벤치마크 178사)", vals: "성장 광고비 +172.3% / 매출 +148.5% / 쇠퇴 광고비 -56.8% / 매출 -30.4%", note: "핵심 메시지 — 광고 줄이면 매출도 같이 죽는다. 광고비 증감과 매출 성장은 강한 상관" },
+      { co: "에이피알·달바 (한국)", vals: "광고비 매출 20%대 + 영업이익률 20%+", note: "광고비 의존 높음 + 마진 높음 동시 달성 (한국경제 2026-04-21)" }
+    ],
+    sources: ["Andrew Faris (CTC) DTC Playbook", "BQ 외감재무 FY2025 영업이익률 ≈ CM Tier 3", "MKT/벤치마크_리포트/beauty 178사 분석 (CM 데이터 133사)", "한국경제 2026 K-뷰티 분석"],
+    quotes: [
+      { who: "한국경제 마케팅업계 관계자", text: "돈을 직접 태워보면서 최적화하는 구조가 중요해졌고 후발 브랜드일수록 마케팅비 부담이 상당히 불어난 상황", ctx: "한국경제 2026-04-21 인디브랜드 광고비 부담 인용" },
+      { who: "벤치마크 178사 분석 (공헌이익 30% 생존 계단)", text: "1구간 공헌이익 음수 = 38사(28.6%) 즉각 구조조정 / 4구간 공헌이익 30% 이상 = 60사(45.1%) 지속 성장 가능 / 5구간 공헌이익 45% 이상 & 성장 = 3사(2.3%) 완전 성장 궤도", ctx: "공헌이익 30% 임계가 코스메틱 산업의 생사 결정선" }
+    ],
+    five_stage_survival: {
+      principle: "공헌이익률 5단계 = 코스메틱 산업 생사 결정선 (벤치마크 178사 중 CM 데이터 133사 분류)",
+      stages: [
+        { stage: 1, threshold: "CM < 0%", n: 38, pct: "28.6%", interp: "팔수록 손해 — 즉각 구조조정 필요" },
+        { stage: 2, threshold: "0% ≤ CM < 15%", n: 13, pct: "9.8%", interp: "간신히 변동비 커버 — 불안정 생존" },
+        { stage: 3, threshold: "15% ≤ CM < 30%", n: 19, pct: "14.3%", interp: "성장 준비 — 30% 돌파가 과제" },
+        { stage: 4, threshold: "CM ≥ 30%", n: 60, pct: "45.1%", interp: "지속 성장 가능" },
+        { stage: 5, threshold: "공헌이익 ≥ 45% & 성장", n: 3, pct: "2.3%", interp: "완전 성장 궤도" }
+      ]
+    }
+  },
+  non_op_cost: {
+    name: "영업외비용 비중",
+    en: "Non-operating Cost Ratio",
+    korean_explain: "본업 외 (이자·환손실·기타) 빠지는 돈 비중. 본업 흑자여도 영업외비용 크면 순이익 음수.",
+    formula_kr: "영업외비용 비중 = 영업외비용 / 매출 × 100",
+    threshold: { passing: "≤10%", warning: "10-20% (이자·환손실 통제 시급)" },
+    sources: ["유형 5 KPI 매칭", "BQ 외감재무 FY2025"]
+  },
+  automation_rate: {
+    name: "운영비 자동화율",
+    en: "Automation Rate",
+    korean_explain: "법인카드·결제·정산 중 자동 처리 비중. 엑셀 수기 분류 = 정산 오류 + 재무 마감 지연 + 의사결정 늦음.",
+    formula_kr: "자동화율 = (지출관리 SaaS·가상카드 자동 분류 건수) / (전체 거래 건수) × 100",
+    threshold: { passing: "≥80%", current: "엑셀 수기 회사 30-50% 추정", top_tier: "글로벌 ERP 통합 95%+ (분기 결산 1주 내)" },
+    global: [{ co: "L'Oréal (SAP S/4HANA)", vals: "분기 결산 5일 / 자동화 95%+", note: "글로벌 결산 통합 = IPO·M&A 베이스" }],
+    sources: ["유형 6 KPI 매칭", "SAP 재무 결산 자동화 가이드", "고위드 지출관리 SaaS 활용 사례"],
+    quotes: [{ who: "메이코더스 STT", text: "재무 마감이 매월 2주씩 늦어진다", ctx: "4단계 자동화 부재 페인" }],
+    company_pattern: [{ role: "재무 자동화 PM", responsibility: "지출관리 SaaS·ERP·VCN 통합 운영", source: "마녀공장·티르티르 채용 공고 (Finance Operations)" }]
+  },
+  cost_reduction: {
+    name: "비용 절감 폭",
+    en: "Cost Reduction YoY",
+    korean_explain: "전년 대비 운영비 감소율. 매출 성장 + 운영비 절감 = 영업이익률 ↑.",
+    formula_kr: "비용 절감 = (이번 분기 운영비 / 전년 동기 운영비) − 1 (목표 ≤ −10%)",
+    threshold: { passing: "전년 대비 −10%" },
+    sources: ["유형 6 KPI 매칭"]
+  },
+  settlement_error: {
+    name: "정산 오류율",
+    en: "Settlement Error Rate",
+    korean_explain: "전체 정산 건수 중 오류·재발행 비중.",
+    formula_kr: "오류율 = 오류·재발행 건수 / 전체 정산 건수 × 100",
+    threshold: { passing: "≤1%", warning: "1-3% (재무 마감 지연 위험)" },
+    sources: ["유형 6 KPI 매칭"]
+  },
+
+  // ========== 신규 KPI (1단계·2·3·5 보강) ==========
+  gross_margin: {
+    name: "매출총이익률",
+    en: "Gross Margin",
+    korean_explain: "매출에서 원가 빼고 남는 비율. 단위경제 검증 베이스 — 이게 50% 미만이면 광고·운영비 차감 후 적자 위험.",
+    formula_kr: "매출총이익률 = (매출 − 매출원가) / 매출 × 100",
+    distribution: { n: 54, p25: 35.2, p50: 64.8, p75: 85.0, unit: "%", source: "BQ 외감재무 FY2025 1단계 코스메틱 54사" },
+    threshold: { passing: "50% 이상", current: "1단계 평균 64.8%", top_tier: "70-85% (직판·D2C 비중 높을수록 높음)" },
+    global: [
+      { co: "코스메틱 산업 평균 (한국경제)", vals: "마진율 통상 50%", note: "긴 유통 기한 + 화장품 산업 구조" },
+      { co: "L'Oréal", vals: "Gross Margin 73%", note: "글로벌 #1 직판 비중 높음" }
+    ],
+    sources: ["유형 4·5·6 베이스 KPI", "한국경제 2026 인디브랜드 산업 분석", "BQ 외감재무 FY2025 직접 산출"]
+  },
+  mer: {
+    name: "마케팅 전체 효율",
+    en: "MER · Marketing Efficiency Ratio",
+    korean_explain: "ROAS는 채널별이라 채널 간 카니발리제이션이 안 보임. MER은 모든 마케팅비를 한꺼번에 합쳐서 봐서 진짜 효율 측정. 코스메틱 성장 그룹 6사 = 광고비 +172% 늘리면서 매출 +148% 성장.",
+    formula_kr: "MER = 총 매출 / 총 마케팅비 (모든 채널·인플루언서·콘텐츠 합산)",
+    distribution: { n: 118, p50_ad_pct_change: "성장 +172.3% / 쇠퇴 -56.8%", source: "코스메틱 인디 178사 중 광고비+매출 성장 데이터 동시 보유 118사", note: "광고비 증감과 매출 성장은 강한 상관 — 광고 줄이면 매출도 같이 죽음" },
+    threshold: { passing: "3.0x 이상", warning: "1.5-3.0x (채널 카니발 의심)", top_tier: "5x+ (인플루언서·SEO·재구매 강한 회사)" },
+    global: [
+      { co: "Andrew Faris (CTC) DTC 가이드", vals: "MER 3-5x = 단위경제 OK", note: "ROAS 200%+ 회사도 MER < 2x면 채널 카니발리제이션" },
+      { co: "성장 vs 쇠퇴 광고비 격차 (벤치마크 178사 중 118사)", vals: "성장 광고비 +172.3% → 매출 +148.5% / 쇠퇴 광고비 -56.8% → 매출 -30.4%", note: "광고 줄이면 매출도 같이 죽는다. 성장 위해 투자 늘린 기업과 줄인 기업 격차 명확" },
+      { co: "한국경제 2026 (마케팅업계)", vals: "ROAS 300% → 120% 하락", note: "최근 페이스북·인스타 ROAS 급락 — MER 보강 시급" }
+    ],
+    sources: ["Andrew Faris (CTC) DTC Playbook", "MKT/벤치마크_리포트/beauty 178사 분석 (광고+매출 118사)", "한국경제 2026-04-21 ROAS 하락 인용", "Daniel Murray DTC community"],
+    quotes: [
+      { who: "한국경제 마케팅업계 관계자", text: "예전엔 페이스북·인스타 ROAS 300% 이상도 많았으나 최근 120% 수준으로 떨어지는 사례가 속출", ctx: "한국경제 2026-04-21 — MER 보강 필요 신호" },
+      { who: "벤치마크 178사 분석", text: "성장 그룹 6사: 광고비 +172.3% / 매출 +148.5%. 성장은 광고 의존이 아니라 광고와 매출의 동시 가속이 결정", ctx: "3·4단계 재투자형 처방의 결정적 근거" }
+    ]
+  },
+  cm_tier_1: {
+    name: "공헌이익 1단계",
+    en: "CM Tier 1",
+    korean_explain: "매출에서 원가만 뺀 마진. 매출총이익률과 동일. 광고·운영비 차감 전 진짜 원가 효율.",
+    formula_kr: "공헌이익 1단계 = 매출 − 매출원가 = 매출총이익",
+    threshold: { passing: "55% 이상", top_tier: "70%+ (직판 비중 높음)" },
+    global: [{ co: "DTC 코스메틱 글로벌 표준", vals: "CM Tier 1 = 65-75%", note: "Andrew Faris CTC Playbook" }],
+    sources: ["Andrew Faris (CTC) DTC Playbook", "유형 4·5"]
+  },
+  cm_tier_2: {
+    name: "공헌이익 2단계",
+    en: "CM Tier 2",
+    korean_explain: "매출원가에 광고비까지 차감한 마진. 30억 통과 결정 KPI — 통합 평균 X, SKU·채널별로 분해해야 어디서 새는지 보임.",
+    formula_kr: "공헌이익 2단계 = 매출 − 매출원가 − 광고비 = CM Tier 1 − 광고비",
+    threshold: { passing: "40% 이상", warning: "20-40% (광고 의존 높음)", top_tier: "50%+ (광고 효율 + 직판 강함)" },
+    global: [
+      { co: "Andrew Faris (CTC)", vals: "CM Tier 2 = 40-55%", note: "DTC 코스메틱 30억-100억 표준" },
+      { co: "에이피알·달바 (한국경제 2026)", vals: "광고비 매출 20% / CM Tier 2 약 53% 추정", note: "K-뷰티 신흥강자 광고+마진 동시 달성" }
+    ],
+    sources: ["Andrew Faris CTC Playbook", "한국경제 2026-04-21 K-뷰티 신흥강자", "유형 4"]
+  },
+  cac_payback: {
+    name: "CAC 회수 기간",
+    en: "CAC Payback Period",
+    korean_explain: "고객 1명 데려오는 데 들인 돈을 그 고객이 며 개월 만에 회수해주는지. 짧을수록 광고 재투자 빠름.",
+    formula_kr: "CAC 회수 기간 = 고객 획득 비용 (CAC) / 월간 평균 매출 (ARPU)",
+    threshold: { passing: "3개월 이하", warning: "3-6개월 (현금 흐름 압박)", top_tier: "1개월 이하 (D2C·재구매율 높음)" },
+    global: [
+      { co: "Andrew Faris (CTC)", vals: "≤3개월 = 단위경제 OK", note: "DTC 코스메틱 표준" },
+      { co: "Bain Customer Economics", vals: "1.5-3개월 = 성장 가속 가능", note: "광고 재투자 사이클" }
+    ],
+    sources: ["Bain Customer Economics", "Andrew Faris CTC Playbook", "유형 2·4"]
+  },
+  ltv_cac_ratio: {
+    name: "LTV/CAC 배수",
+    en: "LTV/CAC Ratio",
+    korean_explain: "고객 평생 매출 ÷ 고객 획득 비용. 2배 미만이면 단위경제 위험, 3배 이상이면 광고 재투자 가능.",
+    formula_kr: "LTV/CAC = 고객 평생 매출 (LTV) / 고객 획득 비용 (CAC)",
+    threshold: { passing: "3배 이상", warning: "1.5-3배 (재투자 미흡)", top_tier: "5배+ (재구매율 50%+ 회사)" },
+    global: [
+      { co: "Bain Customer Economics", vals: "≥3배 = SaaS·DTC 표준", note: "글로벌 VC 투자 기준" },
+      { co: "Bessemer Cloud Index", vals: "5배+ = Top tier", note: "재구매·NPS 60+ 회사" }
+    ],
+    sources: ["Bain Customer Economics", "Bessemer Venture Partners Cloud Index", "유형 4"]
+  },
+  dio: {
+    name: "재고 회전일",
+    en: "DIO · Days Inventory Outstanding",
+    korean_explain: "재고가 매출로 바뀌는 데 며칠 걸리나. 코스메틱은 ODM 의존 구조라 발주 패턴이 결정. 자체 생산 = 90일+ 함정 / OEM·ODM 발주 = 30-60일 가능.",
+    formula_kr: "재고 회전일 = 재고자산 / (매출원가 / 365)",
+    distribution: { n: 49, p25: 52.9, p50: 125.9, p75: 213.9, unit: "일", source: "BQ 외감재무 FY2025 3단계 코스메틱 49사" },
+    threshold: { passing: "60일 이하", warning: "60-120일 (정상 범위)", top_tier: "30일대 (OEM·ODM 발주 + 재구매율 높음)" },
+    global: [
+      { co: "L'Oréal", vals: "DIO 165일", note: "글로벌 유통 + 자체 생산 비중 높음" },
+      { co: "Estée Lauder", vals: "DIO 130일", note: "직판 비중 높아도 재고 회전 130일" },
+      { co: "에이피알 (한국 추정)", vals: "DIO 60일대", note: "OEM·ODM + 재구매율 상위. 1년 만에 매출 2배 가능 (CAGR 50-100%)" },
+      { co: "ODM 매출 연성장률 (한국 4사)", vals: "한국콜마 11.1% / 코스맥스 11.0% / 코스메카 12.8% / 씨앤씨 43.7%", note: "ODM 매출 성장 = 인디 브랜드 발주 패턴 변화 직접 영향" }
+    ],
+    sources: ["McKinsey Working Capital Optimization", "BQ 외감재무 FY2025 직접 산출", "PwC K-뷰티 Industry Focus 2024 (ODM 산업 분석)"]
+  },
+  ad_efficiency_channel: {
+    name: "채널별 광고 효율 (ROAS) 분포",
+    en: "ROAS · Return on Ad Spend (per channel)",
+    korean_explain: "광고 채널별 매출 효율. 평균만 보면 함정 — 채널 간 카니발리제이션 잡으려면 MER과 같이 봐야.",
+    formula_kr: "ROAS (채널) = 채널 매출 / 채널 광고비",
+    threshold: { passing: "200% 이상", warning: "100-200% (점진 하락)", top_tier: "300%+ (인플루언서·재구매 강함)" },
+    global: [
+      { co: "한국경제 2026 마케팅업계", vals: "ROAS 300% → 120%로 하락", note: "최근 페이스북·인스타 효율 급락" },
+      { co: "AppsFlyer 2026 벤치마크", vals: "K-뷰티 평균 ROAS 220%", note: "글로벌 평균 큰체" }
+    ],
+    sources: ["AppsFlyer 글로벌 광고 벤치마크 2026", "한국경제 2026-04-21 K-뷰티 광고 분석"]
+  },
+  automation_rate_basic: {
+    name: "변동비 기본 자동화율 (1단계·2 베이스)",
+    en: "Cost Categorization Automation",
+    korean_explain: "1단계·2에 가장 먼저 박아야 할 자동화 — 법인카드 결제를 변동비/고정비로 자동 분류하는 비중. 이게 깔려야 다음 단계 KPI 추적 가능.",
+    formula_kr: "자동화율 = 자동 분류 거래 / 전체 거래 × 100",
+    threshold: { passing: "≥70% (1단계·2 베이스)", top_tier: "95%+ (4단계·5 결산 자동화 베이스)" },
+    sources: ["유형 6 KPI 매칭", "고위드 지출관리 SaaS 활용 사례"]
+  },
+  roic_vs_wacc: {
+    name: "자본 이익률 vs 자본 비용 스프레드",
+    en: "ROIC − WACC Spread",
+    korean_explain: "자본이 만든 이익률이 자본 조달 비용보다 큰가. 양수 = 회사가 가치 창출 중 / 음수 = 자본 까먹는 중. 글로벌 CFO 1순위 KPI.",
+    formula_kr: "스프레드 = 자본 이익률(ROIC) − 자본 비용(WACC, 8.5%)",
+    distribution: { n: 27, p25: -3.9, p50: 3.3, p75: 19.2, unit: "%p", source: "BQ 외감재무 FY2025 5단계 27사 (스프레드 = ROIC p50 11.8% − WACC 8.5%)" },
+    threshold: { passing: "+3%p 이상", current: "5단계 평균 +3.3%p", top_tier: "+6%p 이상 (글로벌 톱)" },
+    global: [
+      { co: "L'Oréal", vals: "ROIC 14.5% / WACC 7.8% / 스프레드 +6.7%p", note: "글로벌 #1 가치 창출 중" },
+      { co: "Estée Lauder", vals: "ROIC 12% / WACC 7.5% / 스프레드 +4.5%p", note: "직판 + DTC = 안정 가치 창출" }
+    ],
+    sources: ["McKinsey ROIC Tree", "BCG TSR Decomposition", "Damodaran NYU Stern", "BQ 외감재무 FY2025 ROIC 추출"]
+  },
+  dupont_full: {
+    name: "DuPont Tree 풀 분해",
+    en: "DuPont Decomposition (Full)",
+    korean_explain: "ROIC를 마진 × 자본회전 × 레버리지 3가지로 분해. 어디서 부족한지 핀포인트 진단.",
+    formula_kr: "ROIC = 세후영업이익률 × 자본회전율 × 레버리지",
+    threshold: { passing: "각 분지가 산업 중앙값 이상" },
+    global: [{ co: "L'Oréal DuPont 분해", vals: "마진 16% × 회전 1.05 × 레버리지 0.86 = ROIC 14.5%", note: "마진·회전·레버리지 모두 균형" }],
+    sources: ["McKinsey ROIC Tree (DuPont 분해)", "BCG TSR Decomposition"],
+    dupont: {
+      principle: "5단계는 3 분지 모두 글로벌 톱 수준이어야 ROIC > WACC 안정",
+      branches: [
+        { label: "세후영업이익률", formula: "세후영업이익 / 매출", val: "5단계 평균 약 9% 추정", interp: "한 매출당 남는 이익. 글로벌 톱 13-16%" },
+        { label: "자본회전율", formula: "매출 / 총자본 (자기자본 + 차입금)", val: "5단계 평균 약 3.0 추정", interp: "자본 1원이 만드는 매출. 코스메틱 표준 2.5-3.5" },
+        { label: "레버리지", formula: "총자본 / 자기자본", val: "5단계 평균 ≈1.5 추정", interp: "자기자본 대비 빌린 돈 배수. 적정 1.5-2.0" }
+      ]
+    }
+  },
+  revenue_per_employee: {
+    name: "인당매출",
+    en: "Revenue per Employee",
+    korean_explain: "직원 1명당 만들어내는 연매출. 효율형 단계의 핵심 KPI. 코스메틱 성장 그룹은 4.2억 / 쇠퇴 그룹은 2.35억 = 거의 2배 차이.",
+    formula_kr: "인당매출 = 연매출 / 직원수 (정규직 + 계약직)",
+    distribution: { n: 106, p25: 2.0, p50: 3.11, p75: 4.5, unit: "억", source: "MKT/벤치마크_리포트/beauty 178사 중 직원수+매출 데이터 보유 106사", note: "전체 커머스 평균 3.5억 / 코스메틱 평균 3.11억 (소폭 낮음)" },
+    threshold: { passing: "성장 그룹 4.2억", warning: "쇠퇴 그룹 2.35억", top_tier: "성장 진입 조건 — 인당매출 4.2억+ 39사(36.8%) 중 5.1%만 성장 그룹" },
+    global: [
+      { co: "성장 vs 쇠퇴 격차 (벤치마크 178사 중 106사)", vals: "성장 4.2억 / 중립 3.49억 / 쇠퇴 2.35억 / 회생 0.52억", note: "효율형 단계의 결정적 임계 — 2배 차이" },
+      { co: "(참고) 전체 커머스 산업", vals: "인당매출 중앙값 3.5억", note: "코스메틱은 0.4억 낮음 — 광고 의존 + ODM 외주 구조" }
+    ],
+    sources: ["MKT/벤치마크_리포트/beauty 178사 분석 (직원수+매출 106사)", "전체 커머스 벤치마크"],
+    quotes: [{ who: "벤치마크 178사 분석", text: "성장 기업 인당매출 중앙값 4.2억, 쇠퇴 기업 2.35억 — 인당 효율이 거의 2배. 인당매출 4.2억+ 그룹에서만 성장율 5.1%", ctx: "4·5단계 효율 고도화 결정 임계" }]
+  },
+  ocf_ni: {
+    name: "이익의 현금화 품질",
+    en: "OCF/NI · Operating Cash Flow / Net Income",
+    korean_explain: "장부에 찍힌 이익이 실제 현금으로 들어오나. <1.0 이면 매출채권·재고 묶임 = 장부 ≠ 통장.",
+    formula_kr: "현금화 품질 = 영업현금흐름 / 당기순이익",
+    threshold: { passing: "≥1.0", warning: "0.5-1.0 (회수·재고 점검)", top_tier: "1.2+ (매출채권 짧고 재고 회전 빠름)" },
+    global: [
+      { co: "L'Oréal", vals: "OCF/NI 1.15", note: "장부 이익 + 15% 현금" },
+      { co: "Estée Lauder", vals: "OCF/NI 1.20", note: "직판 비중 높음 + 결제일 80일 = 현금 확보 강함" }
+    ],
+    sources: ["Robert Pozen (MIT Financial Statements)", "HBR CFO 시리즈"],
+    quotes: [{ who: "(외감재무 컬럼 부재)", text: "한국 코스메틱 OCF/NI 분포는 외감재무 영업현금흐름 컬럼 추가 후 산출 가능", ctx: "v3 backlog — DART API 또는 별도 cf 테이블" }],
+    note_unavailable: "외감재무 영업현금흐름 컬럼 부재. 글로벌 벤치마크만 인용 — 사용자 회사는 ERP·결산 시스템에서 직접 산출 권고."
+  }
+};
+
+function renderKpiCard(kpiKey, role) {
+  const k = KPI_LIB[kpiKey];
+  if (!k) return "";
+  const roleLabel = role === "main" ? "메인 KPI" : role === "supporting1" ? "보조 KPI 1" : "보조 KPI 2";
+  const roleClass = role === "main" ? "main" : "supporting";
+  return `
+    <div class="kpi-card ${roleClass}">
+      <div class="kpi-card-head">
+        <span class="kpi-role">${roleLabel}</span>
+        <span class="kpi-en">${k.en}</span>
+      </div>
+      <div class="kpi-name">${k.name}</div>
+      <div class="kpi-explain">${k.korean_explain}</div>
+
+      <div class="kpi-section">
+        <div class="kpi-section-label">산식</div>
+        <div class="kpi-formula">${k.formula_kr}</div>
+        ${k.components ? `<ul class="kpi-components">${k.components.map(c => `
+          <li><strong>${c.label}</strong> · ${c.kr} <span class="comp-formula">= ${c.formula}</span></li>
+        `).join("")}</ul>` : ""}
+      </div>
+
+      ${k.distribution ? `
+      <div class="kpi-section">
+        <div class="kpi-section-label">지금 분포 · 코스메틱 외감재무 ${k.distribution.n}사</div>
+        <div class="kpi-dist">
+          <span class="dist-pill">p25 ${k.distribution.p25 != null ? k.distribution.p25 + k.distribution.unit : '—'}</span>
+          <span class="dist-pill main">p50 <strong>${k.distribution.p50}${k.distribution.unit}</strong></span>
+          <span class="dist-pill">p75 ${k.distribution.p75 != null ? k.distribution.p75 + k.distribution.unit : '—'}</span>
+        </div>
+        ${k.distribution.note ? `<div class="kpi-note">${k.distribution.note}</div>` : ""}
+        <div class="kpi-source-line">출처 · ${k.distribution.source}</div>
+      </div>` : ""}
+
+      ${k.threshold ? `
+      <div class="kpi-section">
+        <div class="kpi-section-label">임계값</div>
+        <div class="kpi-threshold">
+          <span class="th-pill pass">통과 · ${k.threshold.passing}</span>
+          ${k.threshold.current ? `<span class="th-pill curr">현재 · ${k.threshold.current}</span>` : ""}
+          ${k.threshold.top_tier ? `<span class="th-pill top">글로벌 Top tier · ${k.threshold.top_tier}</span>` : ""}
+          ${k.threshold.warning ? `<span class="th-pill warn">경고 · ${k.threshold.warning}</span>` : ""}
+        </div>
+      </div>` : ""}
+
+      ${k.global ? `
+      <div class="kpi-section">
+        <div class="kpi-section-label">글로벌 Top tier 벤치마크</div>
+        ${k.global.map(g => `
+          <div class="kpi-bench">
+            <div class="bench-co">${g.co}</div>
+            <div class="bench-val">${g.vals}</div>
+            <div class="bench-note">${g.note}</div>
+          </div>
+        `).join("")}
+      </div>` : ""}
+
+      ${k.dupont ? `
+      <div class="kpi-section">
+        <div class="kpi-section-label">DuPont Tree — ROIC 분해</div>
+        <div class="kpi-note">${k.dupont.principle}</div>
+        ${k.dupont.branches.map(b => `
+          <div class="dupont-branch">
+            <div class="dup-label"><strong>${b.label}</strong> <span class="dup-formula">= ${b.formula}</span></div>
+            <div class="dup-val">${b.val}</div>
+            <div class="dup-interp">${b.interp}</div>
+          </div>
+        `).join("")}
+      </div>` : ""}
+
+      ${k.quotes ? `
+      <div class="kpi-section">
+        <div class="kpi-section-label">인용</div>
+        ${k.quotes.map(q => `
+          <div class="kpi-quote">
+            <div class="quote-text">"${q.text}"</div>
+            <div class="quote-attr">— ${q.who} · ${q.ctx}</div>
+          </div>
+        `).join("")}
+      </div>` : ""}
+
+      ${k.company_pattern ? `
+      <div class="kpi-section">
+        <div class="kpi-section-label">잘 추적하는 회사 패턴 (채용 공고)</div>
+        ${k.company_pattern.map(p => `
+          <div class="kpi-pattern">
+            <div class="pat-role"><strong>${p.role}</strong></div>
+            <div class="pat-resp">${p.responsibility}</div>
+            <div class="pat-source">출처 · ${p.source}</div>
+          </div>
+        `).join("")}
+      </div>` : ""}
+
+      ${k.sources ? `
+      <div class="kpi-section">
+        <div class="kpi-section-label">출처 (학술·글로벌 표준)</div>
+        <ul class="kpi-sources">${k.sources.map(s => `<li>${s}</li>`).join("")}</ul>
+      </div>` : ""}
+    </div>
+  `;
+}
+
+function renderStageTrack(activeStage) {
+  const stages = ["stage1", "stage2", "stage3", "stage4", "stage5"];
+  const labels = ["1단계<br>시드·런칭기", "2단계<br>30억 통과기", "3단계<br>데뷔기", "4단계<br>골든존", "5단계<br>확장기"];
+  return `
+    <div class="stage-track">
+      ${stages.map((s, i) => `
+        <div class="stage-cell ${s === activeStage ? 'active' : ''}">
+          <span class="stage-no">${i + 1}</span>
+          ${labels[i]}
+        </div>
+      `).join("")}
+    </div>
+  `;
+}
+
+function renderKpiChecklist(tracked) {
+  const kpis = [
+    { kr: "매출총이익률", en: "Gross Margin", key: "Gross Margin" },
+    { kr: "마케팅 전체 효율", en: "MER", key: "MER" },
+    { kr: "재고 회전일", en: "DIO", key: "DIO" },
+    { kr: "공헌이익 3단계", en: "CM Tier 1·2·3", key: "CM_Tier" },
+    { kr: "현금 회수 사이클", en: "CCC", key: "CCC" },
+    { kr: "자본 이익률 vs 자본 비용", en: "ROIC vs WACC", key: "ROIC" },
+    { kr: "이익의 현금화 품질", en: "OCF/NI", key: "OCF_NI" }
+  ];
+  return `
+    <ul class="kpi-list">
+      ${kpis.map(k => {
+        const isTracked = tracked.includes(k.key);
+        return `<li class="${isTracked ? 'tracked' : ''}">
+          <span class="kpi-name">${k.kr}<span class="en">${k.en}</span></span>
+          <span class="kpi-status">${isTracked ? '✓ 추적 중' : '○ 미추적'}</span>
+        </li>`;
+      }).join("")}
+    </ul>
+  `;
+}
+
+function renderCccDiagram(stage) {
+  const c = stage.ccc;
+  return `
+    <div class="ccc-diagram">
+      <div class="ccc-row">
+        <div class="ccc-block">
+          <div class="label">회수일<span class="en">DSO · 매출→현금</span></div>
+          <div class="val">${c.dso.toFixed(0)}일</div>
+        </div>
+        <div class="ccc-op">+</div>
+        <div class="ccc-block">
+          <div class="label">재고 회전일<span class="en">DIO · 재고→매출</span></div>
+          <div class="val">${c.dio.toFixed(0)}일</div>
+        </div>
+        <div class="ccc-op">−</div>
+        <div class="ccc-block subtract">
+          <div class="label">결제일<span class="en">DPO · 매입→지급</span></div>
+          <div class="val">${c.dpo.toFixed(0)}일</div>
+        </div>
+        <div class="ccc-op">=</div>
+        <div class="ccc-block result">
+          <div class="label">현금 사이클<span class="en">CCC · 현금이 묶이는 일수</span></div>
+          <div class="val">${c.ccc.toFixed(0)}일</div>
+        </div>
+      </div>
+      <div class="ccc-caption">
+        회수가 빠르고 재고가 짧고 결제를 길게 가져갈수록 현금이 덜 묶입니다.<br>
+        <span style="color: var(--text-4)">출처 · ${stage.label.split(" · ")[0]} 코스메틱 ${stage.n}사 BQ 외감재무 FY2025 중앙값 (p50)</span>
+      </div>
+    </div>
+  `;
+}
+
+function renderCmStackedBar(stage) {
+  const m = stage.cm;
+  // 영업적자 (CM3 음수) 케이스
+  if (m.op_loss) {
+    return `
+      <div class="cm-bar-wrap">
+        <div class="cm-bar">
+          <div class="cm-segment cogs" style="flex: ${m.cogs}">매출원가<br>${m.cogs}%</div>
+          <div class="cm-segment ad" style="flex: ${m.ad}">광고비<br>${m.ad}%</div>
+          <div class="cm-segment ops" style="flex: ${100 - m.cogs - m.ad}">운영비 (영업적자 흡수)<br>${(100 - m.cogs - m.ad).toFixed(1)}%</div>
+        </div>
+        <div class="cm-legend">
+          <span><span class="swatch cogs"></span>매출원가</span>
+          <span><span class="swatch ad"></span>광고비</span>
+          <span><span class="swatch ops"></span>운영비 (영업적자 ${m.cm3}%)</span>
+        </div>
+        <div class="cm-tier-callouts">
+          <div class="tier-row">
+            <span class="tier-name">공헌이익 1단계</span>
+            <span class="tier-formula">매출 − 매출원가 = ${(100 - m.cogs).toFixed(1)}%</span>
+          </div>
+          <div class="tier-row">
+            <span class="tier-name">공헌이익 2단계</span>
+            <span class="tier-formula">1단계 − 광고비 = ${(100 - m.cogs - m.ad).toFixed(1)}%</span>
+          </div>
+          <div class="tier-row" style="color: var(--warning)">
+            <span class="tier-name">공헌이익 3단계 (영업이익률)</span>
+            <span class="tier-formula">${m.cm3}% — 영업적자 구간</span>
+          </div>
+        </div>
+        <div class="tip" style="margin-top:10px"><span class="en">출처 · ${stage.label.split(" · ")[0]} 코스메틱 ${stage.n}사 BQ 외감재무 중앙값 — 단위경제 검증이 우선인 단계</span></div>
+      </div>
+    `;
+  }
+  return `
+    <div class="cm-bar-wrap">
+      <div class="cm-bar">
+        <div class="cm-segment cogs" style="flex: ${m.cogs}">매출원가<br>${m.cogs}%</div>
+        <div class="cm-segment ad" style="flex: ${m.ad}">광고비<br>${m.ad}%</div>
+        <div class="cm-segment ops" style="flex: ${m.ops}">운영비<br>${m.ops}%</div>
+        <div class="cm-segment cm3" style="flex: ${m.cm3}">공헌이익<br>${m.cm3}%</div>
+      </div>
+      <div class="cm-legend">
+        <span><span class="swatch cogs"></span>매출원가 (− COGS)</span>
+        <span><span class="swatch ad"></span>광고비 (− 마케팅)</span>
+        <span><span class="swatch ops"></span>운영비 (− 물류·수수료·인건비)</span>
+        <span><span class="swatch cm3"></span>공헌이익 3단계 (단위경제 마진)</span>
+      </div>
+      <div class="cm-tier-callouts">
+        <div class="tier-row">
+          <span class="tier-name">공헌이익 1단계</span>
+          <span class="tier-formula">매출 − 매출원가 = ${(100 - m.cogs).toFixed(1)}%</span>
+        </div>
+        <div class="tier-row">
+          <span class="tier-name">공헌이익 2단계</span>
+          <span class="tier-formula">1단계 − 광고비 = ${(100 - m.cogs - m.ad).toFixed(1)}%</span>
+        </div>
+        <div class="tier-row">
+          <span class="tier-name">공헌이익 3단계</span>
+          <span class="tier-formula">2단계 − 운영비 = ${m.cm3}%</span>
+        </div>
+      </div>
+      <div class="tip" style="margin-top:10px"><span class="en">출처 · ${stage.label.split(" · ")[0]} 코스메틱 ${stage.n}사 BQ 외감재무 중앙값 (매출총이익률·광고비/매출·영업이익률)</span></div>
+    </div>
+  `;
+}
+
+function renderInventoryDist(stage) {
+  const inv = stage.inv;
+  return `
+    <div class="inv-dist">
+      <div class="tip">재고 회전일 분포 (${stage.label.split(" · ")[0]} 코스메틱 ${stage.n}사 중, BQ 외감재무 FY2025)</div>
+      <div class="inv-dist-track">
+        <div class="inv-dist-marker" style="left: ${inv.marker}%"></div>
+      </div>
+      <div class="inv-dist-labels">
+        <span>${inv.p25.toFixed(0)}일 (양호)</span>
+        <span>${inv.p50.toFixed(0)}일 (중앙)</span>
+        <span>${inv.p75.toFixed(0)}일+ (재고 함정)</span>
+      </div>
+    </div>
+  `;
+}
+
+// ROIC vs WACC: BQ 외감재무 FY2025 Stage별 실측 (NOPAT / 투입자본). WACC 8.5% Damodaran 산업 평균.
+function renderRoicVsWacc(stage) {
+  const r = stage.roic;
+  const isPositive = r.spread > 0;
+  // 막대 너비: 0 ~ 30% 스케일. 음수 ROIC도 처리.
+  const SCALE_MAX = 30;
+  const roicWidth = Math.max(0, Math.min(100, (Math.abs(r.p50) / SCALE_MAX) * 100));
+  const waccWidth = Math.min(100, (r.wacc / SCALE_MAX) * 100);
+  const roicNegative = r.p50 < 0;
+  return `
+    <div class="roic-row">
+      <div class="roic-bar-row">
+        <div class="roic-label">자본 이익률<span class="en">ROIC · 외감재무 ${r.n}사 중앙값</span></div>
+        <div class="roic-track"><div class="roic-fill ${roicNegative ? 'warning' : 'neon'}" style="width: ${roicWidth}%; background: ${roicNegative ? 'var(--warning)' : 'var(--neon)'}"></div></div>
+        <div class="roic-val ${roicNegative ? 'warning' : 'neon'}" style="${roicNegative ? 'color: var(--warning)' : ''}">${r.p50}%</div>
+      </div>
+      <div class="roic-bar-row">
+        <div class="roic-label">자본 비용<span class="en">WACC · Damodaran 산업 평균</span></div>
+        <div class="roic-track"><div class="roic-fill teal" style="width: ${waccWidth}%"></div></div>
+        <div class="roic-val teal">${r.wacc}%</div>
+      </div>
+      <div class="roic-spread" style="${isPositive ? '' : 'background: rgba(255,181,71,0.06); border-color: rgba(255,181,71,0.2)'}">
+        스프레드 <strong style="${isPositive ? '' : 'color: var(--warning)'}">${isPositive ? '+' : ''}${r.spread}%p</strong> ${
+          isPositive
+            ? '= 자본이 만든 이익이 자본 조달 비용을 넘어섭니다 (가치 창출 중)'
+            : '= 자본 조달 비용에 미달합니다 (가치 창출 도달 전 단계)'
+        }
+      </div>
+      <div class="tip" style="margin-top:10px">
+        <span class="en">분포 · p25 ${r.p25}% ─ p50 ${r.p50}% ─ p75 ${r.p75}%</span><br>
+        <span class="en">출처 · BQ 외감재무 FY2025 ${r.n}사 / 세후영업이익 = 영업이익 × (1−세율 22%) / 총자본 = 자기자본 + 차입금. 자본 비용 = Damodaran NYU Stern Personal/Beauty Products 산업 평균 8.5%.</span>
+      </div>
+    </div>
+  `;
+}
+
+// OCF/NI: 외감재무 영업현금흐름 컬럼 부재. 시연 수치 유지 + 출처 명시.
+function renderOcfNiGauge(value) {
+  const v = value != null ? value : 0.78;
+  const isWarn = v < 1.0;
+  return `
+    <div class="ocf-gauge">
+      <div class="ocf-val ${isWarn ? 'warning' : ''}">${v.toFixed(2)}</div>
+      <div class="ocf-caption">
+        ${isWarn
+          ? '1.0 미만 — 장부 이익이 실제 현금으로 들어오지 않는 신호입니다. 매출채권·재고가 묶여있을 가능성.'
+          : '1.0 이상 — 장부 이익이 실제 현금으로 들어옵니다.'}
+      </div>
+      <div class="tip" style="margin-top:10px; color: var(--warning)">
+        ⚠ <strong>시연 수치</strong> — 외감재무 BQ 테이블에 영업현금흐름(OCF) 컬럼 부재. 다음 빌드에서 DART API 또는 별도 cf 테이블 추출 예정.
+      </div>
+    </div>
+  `;
+}
+
+function renderAnalyzeStage(stageId, stage) {
+  switch (stageId) {
+    case "stage1":
+      return `
+        <p class="step-body" style="margin-bottom:6px"><strong>마케팅 전체 효율 (MER)</strong>이 채널 효율(ROAS) 평균보다 높으면 카니발리제이션이 작다는 신호입니다.</p>
+        ${renderCmStackedBar(stage)}
+        <p class="tip">시드·런칭기는 영업적자 구간 (외감재무 중앙값 −17.8%). 공헌이익 1·2단계 + 마케팅 전체 효율 검증이 우선.</p>
+      `;
+    case "stage2":
+      return `
+        <p class="step-body" style="margin-bottom:6px">광고비 차감 후 마진 — <strong>공헌이익 2단계</strong>가 30억 통과를 결정합니다. DTC 글로벌 표준은 단일 공헌이익 X 3단계로 봅니다.</p>
+        ${renderCmStackedBar(stage)}
+      `;
+    case "stage3":
+      return `
+        <p class="step-body" style="margin-bottom:6px"><strong>공헌이익 3단계 + 재고 회전일</strong>이 함께 결정 KPI가 됩니다.</p>
+        ${renderCmStackedBar(stage)}
+        ${renderInventoryDist(stage)}
+      `;
+    case "stage4":
+      return `
+        <p class="step-body" style="margin-bottom:6px">결정 KPI가 단위경제(공헌이익)에서 <strong>현금 회수 사이클</strong>로 옮겨가는 단계입니다. 자본 이익률(ROIC) 추적도 시작하는 시점.</p>
+        ${renderCccDiagram(stage)}
+        ${renderRoicVsWacc(stage)}
+      `;
+    case "stage5":
+      return `
+        <p class="step-body" style="margin-bottom:6px">글로벌 CFO 1순위 KPI인 <strong>자본 이익률 vs 자본 비용</strong> 스프레드 + <strong>이익의 현금화 품질</strong>로 진입합니다.</p>
+        ${renderRoicVsWacc(stage)}
+        ${renderOcfNiGauge(0.78)}
+      `;
+    default:
+      return "";
+  }
+}
+
+function showResult() {
+  show("result");
+  const stage = DATA.stage_data[state.answers.stage];
+  const matchedType = matchType();
+  const stageTypeKey = state.answers.stage + "_" + matchedType.id.replace("type_", "type");
+  const spec = STAGE_SPECS[stageTypeKey];
+  const host = document.getElementById("result");
+  const isCrossLink = matchedType.cross;
+  const isRare = spec && spec.rare;
+  const isFullSpec = spec && !spec.rare;
+
+  // 지난 분기 / 다음 분기 매핑
+  const PREV_QUARTER_MAP = {
+    stage1_type5: { name: "(이전 단계 없음)", explain: "1단계는 첫 단계. 이전 단계 KPI 추적 자체가 없는 출발점.", threshold: null },
+    stage1_type6: { name: "(이전 단계 없음)", explain: "1단계는 첫 단계.", threshold: null },
+    stage2_type4: { name: "마케팅 전체 효율 (MER) + 매출총이익률", explain: "1단계에서 단위경제 검증 베이스를 깔고 30억 통과 단계 진입.", threshold: "MER ≥3x / 매출총이익률 ≥50%" },
+    stage2_type5: { name: "매출총이익률 (Gross Margin)", explain: "1단계 단위경제 베이스에서 광고비 통제로 흑자 전환 시도.", threshold: "GM ≥50%" },
+    stage2_type6: { name: "매출총이익률 (Gross Margin)", explain: "1단계에서 베이스 자동화 깔고 30억 통과기 진입.", threshold: "GM ≥50% + 변동비 분류 ≥70%" },
+    stage3_type4: { name: "공헌이익 2단계 (CM Tier 2)", explain: "30억 통과 = 광고비 차감 후 마진(CM Tier 2) 양수 도달. 다음은 운영비까지 차감.", threshold: "CM Tier 2 ≥40%" },
+    stage3_type5: { name: "공헌이익 2단계 (CM Tier 2)", explain: "30억 통과 후 운영비 효율화 단계.", threshold: "CM Tier 2 ≥40%" },
+    stage3_type6: { name: "공헌이익 2단계 자동 분류", explain: "2단계에서 변동비 분류 자동화 후 운영비 분류로.", threshold: "변동비 자동 분류 ≥70%" },
+    stage4_type4: { name: "공헌이익 3단계 (CM Tier 3)", explain: "매출 − 매출원가 − 광고비 − 운영비 = 한 건 팔 때 진짜 남는 돈", threshold: "양수 도달 = 단위경제 검증 완료" },
+    stage4_type5: { name: "공헌이익 3단계 (CM Tier 3)", explain: "단위경제 검증 후 BEP 회복 단계 진입.", threshold: "CM Tier 3 ≥0% (단위경제 OK)" },
+    stage4_type6: { name: "공헌이익 3단계 + 운영비 자동 분류", explain: "단위경제 OK + 자동화 베이스. 다음은 자금 사이클·자본 효율.", threshold: "CM3 양수 + 자동화율 ≥70%" },
+    stage5_type4: { name: "현금 회수 사이클 (CCC) + 자기자본 이익률 (ROE)", explain: "4단계에서 자금 사이클·ROE 잡고 자본 효율 본격 측정 단계 진입.", threshold: "CCC ≤90일 / ROE ≥15%" },
+    stage5_type6: { name: "운영 자동화 + 분기 결산 자동화", explain: "4단계 자동화 베이스 위에 글로벌 결산 통합 단계.", threshold: "자동화율 ≥80%" }
+  };
+
+  if (isFullSpec) {
+    const prev = PREV_QUARTER_MAP[stageTypeKey] || { name: "(이전 단계 데이터 미정)", explain: "", threshold: null };
+    const nextItems = NEXT_QUARTER_MAP[stageTypeKey] || [{ name: "(다음 단계 미정)", desc: "" }];
+    const stageId = state.answers.stage;
+    const mainKpi = KPI_LIB[spec.main] || {};
+    const stageLeadMsg = STAGE_LEAD_MSG[stageId] || "단계별로 봐야 할 KPI가 다릅니다.";
+    const headlineMsg = PRESCRIPTION_HEADLINE[stageId] || "지금 단계의 결정 KPI를 처방합니다.";
+    const solList = STAGE_SOLUTIONS[stageTypeKey] || ["지출관리 SaaS"];
+
+    // 산업 본질 시각 (BLOCK 3) — 단계별 가시화 모듈 선택
+    let industryVisuals = "";
+    if (stageId === "stage1") {
+      industryVisuals = renderCmStackedBar(stage);
+    } else if (stageId === "stage2") {
+      industryVisuals = renderCmStackedBar(stage);
+    } else if (stageId === "stage3") {
+      industryVisuals = renderCmStackedBar(stage) + renderInventoryDist(stage);
+    } else if (stageId === "stage4") {
+      industryVisuals = renderCccDiagram(stage) + renderRoicVsWacc(stage);
+    } else if (stageId === "stage5") {
+      industryVisuals = renderRoicVsWacc(stage) + renderOcfNiGauge(0.78);
+    }
+
+    // 솔루션 카드 HTML
+    const solHtml = solList.map((name, i) => {
+      const deep = SOLUTION_DEEP[name];
+      const cls = i === 0 ? "primary" : "secondary";
+      if (!deep) return `<div class="solution-deep-card ${cls}"><div class="sol-name">${name}</div></div>`;
+      return `<div class="solution-deep-card ${cls}">
+        <div class="sol-name">${name}</div>
+        <div class="sol-row"><span class="sol-label">왜</span><span class="sol-text">${deep.why}</span></div>
+        <div class="sol-row"><span class="sol-label">언제</span><span class="sol-text">${deep.trigger}</span></div>
+        <div class="sol-row"><span class="sol-label">기대</span><span class="sol-text">${deep.effect}</span></div>
+      </div>`;
+    }).join("");
+
+    host.innerHTML = `
+      
+      <section class="result-section">
+        <div class="result-eyebrow">진단 결과 — KPI 처방</div>
+        <h1 class="result-h1">지금 이 단계 — <span class="accent" style="color: var(--neon)">${mainKpi.name || "결정 KPI"}</span>가 결정 KPI입니다</h1>
+        <p class="result-lead">${stageLeadMsg}</p>
+
+        <div class="prescription-main">
+          <div>${headlineMsg}</div>
+          <div class="rx-list">
+            <div class="rx-item"><strong>1.</strong> ${kpiOneLine(spec.main)}</div>
+            <div class="rx-item"><strong>2.</strong> ${kpiOneLine(spec.supporting[0])}</div>
+            <div class="rx-item"><strong>3.</strong> ${kpiOneLine(spec.supporting[1] || spec.supporting[0])}</div>
+          </div>
+        </div>
+      </section>
+
+      <section class="result-section">
+        <p class="result-bridge">이 KPI 처방이 어디서 나왔는지 보려면, 귀사가 어느 단계 × 어느 유형에 있는지 짚어봅니다.</p>
+        <h2 class="result-h2">단계 × 유형 매칭</h2>
+        ${renderStageTrack(stageId)}
+        <p style="margin-top: 22px"><strong>${spec.label}</strong></p>
+        <p>${spec.persona}</p>
+        <p>${spec.anchor}</p>
+      </section>
+
+      <section class="result-section">
+        <p class="result-bridge">단계마다 봐야 할 KPI가 바뀝니다. 지난·이번·다음을 한 화면에서 봅니다.</p>
+        <h2 class="result-h2">단계별 KPI 흐름</h2>
+
+        <h3 class="result-h3">지난 단계에서 봤어야 할 것</h3>
+        <p><strong>${prev.name}</strong>${prev.explain ? "<br>" + prev.explain : ""}${prev.threshold ? "<br>임계값 — " + prev.threshold : ""}</p>
+
+        <h3 class="result-h3">이번 단계 KPI 조합 (메인 1 + 보조 ${spec.supporting.length})</h3>
+        ${renderKpiCard(spec.main, "main")}
+        ${spec.supporting.map((s, i) => renderKpiCard(s, "supporting" + (i+1))).join("")}
+
+        <h3 class="result-h3">다음 단계로 가기 전 미리 챙길 것</h3>
+        ${nextItems.map(n => `<p><strong>${n.name}</strong>${n.desc ? "<br>" + n.desc : ""}</p>`).join("")}
+      </section>
+
+      <section class="result-section">
+        <p class="result-bridge">코스메틱 산업 본질 시각화 — 현금 회수 사이클·공헌이익 누적·자본 효율.</p>
+        <h2 class="result-h2">산업 본질 시각</h2>
+        ${industryVisuals}
+      </section>
+
+      <section class="result-section">
+        <p class="result-bridge">진단 결과 귀사에 지금 도움이 되는 도구입니다.</p>
+        <h2 class="result-h2">고위드 솔루션 매칭</h2>
+        <div class="solution-deep-grid">${solHtml}</div>
+      </section>
+    `;
+  } else if (isRare) {
+    // Rare 단계 (1단계 type_4, 5단계 type_5 등)
+    host.innerHTML = `
+      <section class="result-section">
+        <div class="result-eyebrow">진단 결과 — 단계 매칭</div>
+        <h1 class="result-h1">흔치 않은 단계 조합입니다</h1>
+        <p class="result-lead">${spec.fallback_msg}</p>
+        ${renderStageTrack(state.answers.stage)}
+        <p style="margin-top: 22px"><strong>${stage.label} × ${matchedType.name}</strong></p>
+      </section>
+      <section class="result-section">
+        <h2 class="result-h2">권고</h2>
+        <p>입력값을 다시 확인하시거나 가까운 단계 (예: ${state.answers.stage === 'stage1' ? '1·2단계 안정형/효율형' : '4·5단계 성장형/효율형'})로 진단을 다시 진행해보세요.</p>
+      </section>
+    `;
+  } else if (isCrossLink) {
+    // Cross-link 단계 (Basecamp Projection·Real Runway 권고)
+    host.innerHTML = `
+      <section class="result-section">
+        <div class="result-eyebrow">진단 결과 — 단계 매칭</div>
+        <h1 class="result-h1">본 도구보다 <span class="accent" style="color: var(--neon)">${matchedType.primary_tool}</span>이 더 적합합니다</h1>
+        <p class="result-lead">유형 ${matchedType.id.replace('type_','')} (${matchedType.short})은 ${matchedType.primary_tool === 'Basecamp Projection' ? '연말 실적 예측 (성장 가속)' : '런웨이 플랜 (생존·이연)'} 도구의 결정 KPI를 봐야 하는 단계입니다.</p>
+        ${renderStageTrack(state.answers.stage)}
+        <p style="margin-top: 22px"><strong>${stage.label} × ${matchedType.name}</strong></p>
+      </section>
+    `;
+  } else {
+    // Fallback (조합이 STAGE_SPECS에 없는 미정 단계)
+    host.innerHTML = `
+      <section class="result-section">
+        <div class="result-eyebrow">진단 결과 — 단계 매칭</div>
+        <h1 class="result-h1">${stage.label} × ${matchedType.name}</h1>
+        ${renderStageTrack(state.answers.stage)}
+        <p style="margin-top: 22px">현재 단계 spec이 미정의 — 가까운 단계로 다시 진단해주세요.</p>
+      </section>
+    `;
+  }
+
+  // 공통 CTA + 검토 모드 + 풋터
+  host.innerHTML += `
+
+    <div class="cta-row">
+      <a class="cta primary" href="https://gowid.com/expense" target="_blank">
+        <span>지출관리 SaaS 무료 시작 →</span><span class="arrow">→</span>
+      </a>
+      <button class="cta" id="cta-pdf">
+        <span>진단 결과 PDF 받기 (이메일 입력)</span><span class="arrow">→</span>
+      </button>
+      <button class="cta" id="cta-meeting">
+        <span>30분 진단 결과 리뷰 미팅 신청</span><span class="arrow">→</span>
+      </button>
+    </div>
+
+    <div class="section" style="margin-top:24px">
+      <h2>이 처방 중 가장 깨달음 큰 부분은?</h2>
+      <div class="opts">
+        ${["단계 × 유형 매칭", "메인 KPI 처방", "보조 KPI 조합", "글로벌 톱 티어 벤치마크", "DuPont Tree 분해", "잘 추적하는 회사 패턴", "다음 단계 미리 보기"].map((label, i) => `<div class="opt feedback-opt" data-val="${i}"><span>${label}</span><span class="check">✓</span></div>`).join("")}
+      </div>
+    </div>
+
+    <div class="controls" style="margin-top:24px">
+      <button class="btn" onclick="restart()">다시 진단</button>
+    </div>
+
+  `;
+  // feedback handler
+  document.querySelectorAll(".feedback-opt").forEach(el => {
+    el.addEventListener("click", () => {
+      [...el.parentElement.children].forEach(x => x.classList.remove("selected"));
+      el.classList.add("selected");
+    });
+  });
+  // 검토 모드 토글
+  const toggle = document.getElementById("review-toggle");
+  if (toggle) {
+    toggle.addEventListener("click", () => {
+      toggle.classList.toggle("open");
+      const mode = document.getElementById("review-mode");
+      mode.classList.toggle("hidden");
+      if (!mode.classList.contains("hidden")) {
+        mode.scrollIntoView({ behavior: "smooth", block: "start" });
+      }
+    });
+  }
+  window.scrollTo({ top: 0, behavior: "smooth" });
+}
+
+// 검토 모드 렌더 — 데이터 추출 로직·BQ 쿼리·Stage별 실측 결과 트리 전체
+function renderReviewMode() {
+  const stages = ["stage1", "stage2", "stage3", "stage4", "stage5"];
+  const stageRowsCcc = stages.map(s => {
+    const d = DATA.stage_data[s];
+    const c = d.ccc;
+    return `<tr>
+      <td>${d.label.split(" · ")[0]}</td>
+      <td>${d.n}</td>
+      <td>${c.dso.toFixed(1)}</td>
+      <td>${c.dio.toFixed(1)}</td>
+      <td>${c.dpo.toFixed(1)}</td>
+      <td><strong>${c.ccc.toFixed(1)}</strong></td>
+    </tr>`;
+  }).join("");
+
+  const stageRowsCm = stages.map(s => {
+    const d = DATA.stage_data[s];
+    const m = d.cm;
+    const cm1 = (100 - m.cogs).toFixed(1);
+    const cm2 = (100 - m.cogs - m.ad).toFixed(1);
+    const cm3Cls = m.cm3 < 0 ? 'neg' : 'pos';
+    return `<tr>
+      <td>${d.label.split(" · ")[0]}</td>
+      <td>${d.n}</td>
+      <td>${m.cogs}%</td>
+      <td>${m.ad}%</td>
+      <td>${cm1}%</td>
+      <td>${cm2}%</td>
+      <td class="${cm3Cls}">${m.cm3}%</td>
+    </tr>`;
+  }).join("");
+
+  const stageRowsRoic = stages.map(s => {
+    const d = DATA.stage_data[s];
+    const r = d.roic;
+    const spreadCls = r.spread > 0 ? 'pos' : 'neg';
+    const star = s === 'stage5' ? ' <span class="star">★</span>' : '';
+    return `<tr>
+      <td>${d.label.split(" · ")[0]}${star}</td>
+      <td>${r.n}</td>
+      <td>${r.p25}%</td>
+      <td><strong>${r.p50}%</strong></td>
+      <td>${r.p75}%</td>
+      <td>${r.wacc}%</td>
+      <td class="${spreadCls}">${r.spread > 0 ? '+' : ''}${r.spread}%p</td>
+    </tr>`;
+  }).join("");
+
+  return `
+    <h3>처방 로직 — 8문항 → 6 유형 매칭 → KPI 조합 처방</h3>
+    <div class="review-sub">처방 패러다임. 사용자 8문항 → 6 유형 KPI 매칭 중 1개 매칭 → 단계 × 유형 조합에 맞는 메인 KPI 1 + 보조 KPI 2 처방. 출처: <code>data/tool2_kpi_management_v7.json</code> + <code>cosmetic_decisive_kpis_v1·v2.json</code></div>
+
+    <div class="review-block">
+      <h4>1 · 8문항 → 6 유형 KPI Finder 매칭</h4>
+      <div class="desc">측정 패러다임 ("당신 KPI 추적 점수 X/100점") → 처방 패러다임 ("당신이 봐야 할 KPI는 1·2·3"). 내부 매칭 시트의 6 유형을 8문항 응답으로 매칭.</div>
+      <div class="tree"><span class="root">[ 8문항 입력 ]</span>
+   │
+   ├─ <span class="col">Q1 stage</span> 연매출 (1단계~5)
+   ├─ <span class="col">Q2 operating_status</span> 영업이익 (적자·BEP·흑자)
+   ├─ <span class="col">Q3 strategy</span> 전략 (성장가속·마진보존·BEP회복·효율)
+   ├─ <span class="col">Q4 ad_ratio</span> 광고비/매출 비중
+   ├─ <span class="col">Q5 inventory_form</span> 재고 형태 (자체·OEM·위탁·서비스)
+   ├─ <span class="col">Q6 capital_status</span> 자본 조달 (자기자본·시드·시리즈·차입)
+   ├─ <span class="col">Q7 biggest_pressure</span> 자금 압박 (재고·회수·결제·광고·인건비·균형)
+   └─ <span class="col">Q8 next_milestone</span> 다음 6개월 (라운드·BEP·해외·IPO·EXIT)
+                ▼
+<span class="root">[ 우선순위 매칭 로직 ]</span>
+   │
+   ├─ <span class="comment"># Priority 1 · 자금 압박 + 차입금</span>
+   │   if Q7 ∈ {매출 회수, 매입 결제} AND Q6 = 차입금 비중 큼
+   │     → <span class="num">유형 1 현금흐름 최적화형</span> (Real Runway cross-link)
+   │
+   ├─ <span class="comment"># Priority 2 · 영업이익 × 전략 (KPI Finder 핵심)</span>
+   │   if 흑자 + 성장가속    → <span class="num">유형 4 공헌이익 기반 성장형 (재투자)</span> ★ KPI Finder
+   │   if BEP + BEP 회복·마진 → <span class="num">유형 5 공헌이익 기반 안정형</span> ★ KPI Finder
+   │   if 흑자 + 효율·마진   → <span class="num">유형 6 효율적 운영 고도화형</span> ★ KPI Finder
+   │   if 적자 + 성장가속    → <span class="miss">유형 2 빠른 성장 지원형</span> (Basecamp Projection cross-link)
+   │   if 적자 + BEP 회복    → <span class="miss">유형 3 런웨이 확대 지원형</span> (Real Runway cross-link)
+   │
+   └─ <span class="comment"># Priority 3 · Stage 가중치 (KPI 조합 정밀화)</span>
+       1단계·2 → 단위경제 검증 우선
+       3단계   → 재고 회전 가중
+       4단계 → CCC 진입
+       5단계   → ROIC vs WACC 본격</div>
+    </div>
+
+    <div class="review-block">
+      <h4>1.5 · Stage × Type 분기 매트릭스 — KPI Finder = 유형 4·5·6 (v3.1 풀 빌드 13/15)</h4>
+      <div class="desc">5 Stage × 3 유형 = 15 분기. 13 분기 풀 빌드 (★ 표시) + 2 분기 rare (입력값 재확인 권고).</div>
+      <table class="stage-results">
+        <thead><tr><th>Stage</th><th>유형 4 성장형 (흑자+성장)</th><th>유형 5 안정형 (BEP 회복)</th><th>유형 6 효율형 (흑자+효율)</th></tr></thead>
+        <tbody>
+          <tr><td><strong>1 시드·런칭기</strong></td>
+            <td class="neg">⚠ rare<br><span style="color:var(--text-4);font-size:11px">시드+흑자+성장은 드물어 Basecamp Projection cross-link 권고</span></td>
+            <td class="pos">★ <strong>매출총이익률 + MER + CM 1단계</strong></td>
+            <td class="pos">★ MER + 매출총이익률 + 변동비 기본 자동화</td>
+          </tr>
+          <tr><td><strong>2 30억 통과기</strong></td>
+            <td class="pos">★ <strong>CM 2단계 + MER + CAC 회수</strong></td>
+            <td class="pos">★ CM 1단계 + 마진 개선폭 + 채널별 ROAS</td>
+            <td class="pos">★ 자동화율 + CM 2단계 + 비용 절감</td>
+          </tr>
+          <tr><td><strong>3 데뷔기</strong></td>
+            <td class="pos">★ <strong>CM 3단계 + DIO + LTV/CAC</strong></td>
+            <td class="pos">★ CM 3단계 + 마진 개선폭 + 영업외비용</td>
+            <td class="pos">★ 자동화율 + 재고 회전일 + 정산 오류율</td>
+          </tr>
+          <tr><td><strong>4 골든존 (산업 최고)</strong></td>
+            <td class="pos">★ <strong>CCC + ROE + ROIC 진입</strong></td>
+            <td class="pos">★ 마진 개선폭 + CM 3단계 + 영업외비용</td>
+            <td class="pos">★ 자동화율 + 비용 절감 + 정산 오류율</td>
+          </tr>
+          <tr><td><strong>5 확장기</strong></td>
+            <td class="pos">★ <strong>ROIC vs WACC + DuPont + OCF/NI</strong></td>
+            <td class="neg">⚠ rare<br><span style="color:var(--text-4);font-size:11px">200억+ BEP면 단위경제 재검증 — Real Runway cross-link</span></td>
+            <td class="pos">★ 자동화율 + OCF/NI + 정산 오류율 (IPO 준비)</td>
+          </tr>
+        </tbody>
+      </table>
+      <div class="tip" style="margin-top:8px">
+        <span class="en">cross-link 분기 (KPI Finder 외): 유형 1·3 → Real Runway (런웨이 플랜) / 유형 2 → Basecamp Projection (연말 예측). 본 도구 결과 화면에 cross-link 권고 표기.</span>
+      </div>
+    </div>
+
+    <div class="review-block">
+      <h4>2 · 현금 회수 사이클 (CCC) <span class="formula">= 회수일(DSO) + 재고 회전일(DIO) − 결제일(DPO)</span></h4>
+      <div class="desc">
+        <span class="meta-pill ok">실데이터</span>
+        <span class="meta-pill">BQ 외감재무 FY2025</span>
+        <span class="meta-pill">코스메틱 199사</span>
+      </div>
+      <div class="tree"><span class="root">CCC = DSO + DIO − DPO</span>
+   │
+   ├─ <span class="col">DSO</span> 매출 회수일 = 매출채권 / (매출 / 365)
+   │   └─ BQ: <span class="col">trade_receivables</span> / (<span class="col">sales</span> / 365)
+   │
+   ├─ <span class="col">DIO</span> 재고 회전일 = 재고자산 / (매출원가 / 365)
+   │   └─ BQ: <span class="col">inventories</span> / (<span class="col">cost_of_sales</span> / 365)
+   │
+   └─ <span class="col">DPO</span> 매입 결제일 = 매입채무 / (매출원가 / 365)
+       └─ BQ: <span class="col">trade_payable</span> / (<span class="col">cost_of_sales</span> / 365)
+
+<span class="comment"># 클램핑: DSO 0-365일 / DIO·DPO 0-730일 / 음수 또는 결손 NULL 처리</span></div>
+      <table class="stage-results">
+        <thead><tr><th>Stage</th><th>n</th><th>DSO p50 (일)</th><th>DIO p50 (일)</th><th>DPO p50 (일)</th><th>CCC p50 (일)</th></tr></thead>
+        <tbody>${stageRowsCcc}</tbody>
+      </table>
+    </div>
+
+    <div class="review-block">
+      <h4>3 · 공헌이익 3단계 (CM Tier 1·2·3)</h4>
+      <div class="desc">
+        <span class="meta-pill ok">실데이터</span>
+        <span class="meta-pill">매출총이익률·광고비/매출·영업이익률 중앙값</span>
+      </div>
+      <div class="tree"><span class="root">매출 100% =</span> 매출원가 + 광고비 + 운영비 + <span class="num">공헌이익 3단계 (영업이익률)</span>
+   │
+   ├─ 매출원가 비중% = 100 − <span class="col">gross_margin_p50</span>
+   │     ├─ BQ: <span class="col">cost_of_sales</span> / <span class="col">sales</span> × 100
+   │     └─ 중앙값 (Stage별)
+   │
+   ├─ 광고비 비중% = <span class="col">ad_to_sales_p50</span>
+   │     └─ BQ: <span class="col">advertising_expense</span> / <span class="col">sales</span> × 100
+   │
+   ├─ 공헌이익 1단계 = 100 − 매출원가 (= 매출총이익률)
+   ├─ 공헌이익 2단계 = 1단계 − 광고비
+   ├─ 공헌이익 3단계 = <span class="col">operating_income_ratio</span> = <span class="col">operating_income</span> / <span class="col">sales</span> × 100
+   │     <span class="comment"># 운영비 = 100 − 매출원가 − 광고비 − 영업이익률 (역산)</span>
+   │
+   └─ <span class="comment"># 1단계 영업적자 (-17.8%) → 운영비가 영업적자 흡수 표기</span></div>
+      <table class="stage-results">
+        <thead><tr><th>Stage</th><th>n</th><th>매출원가</th><th>광고비</th><th>CM 1단계</th><th>CM 2단계</th><th>CM 3단계 (영업이익률)</th></tr></thead>
+        <tbody>${stageRowsCm}</tbody>
+      </table>
+    </div>
+
+    <div class="review-block">
+      <h4>4 · 자본 이익률 vs 자본 비용 (ROIC vs WACC) <span class="formula">스프레드 양수 = 가치 창출</span></h4>
+      <div class="desc">
+        <span class="meta-pill ok">ROIC 실데이터 (v2.0 신규 추출, 2026-05-04)</span>
+        <span class="meta-pill">WACC 산업 평균 인용</span>
+      </div>
+      <div class="tree"><span class="root">ROIC = NOPAT / 투입자본</span>
+   │
+   ├─ <span class="col">NOPAT</span> (세후영업이익)
+   │   ├─ <span class="col">operating_income</span> 영업이익
+   │   └─ × (1 − 0.22)  <span class="comment"># 한국 표준 법인세율 일률 적용</span>
+   │
+   └─ <span class="col">투입자본</span> = 자기자본 + 차입금
+       ├─ <span class="col">equity</span> 자기자본
+       ├─ <span class="col">short_term_borrowings</span> 단기차입금
+       ├─ <span class="col">long_term_borrowings</span> 장기차입금
+       └─ <span class="col">current_portion_of_long_term_borrowings</span> 유동성장기차입금
+       <span class="comment"># 사채(bond) 컬럼 외감재무 부재 — 코스메틱 스타트업 사채 발행 드뭄, 영향 미미</span>
+
+<span class="root">WACC = 8.5%</span> <span class="comment"># Damodaran NYU Stern Personal/Beauty Products 산업 평균</span>
+
+<span class="root">스프레드 = ROIC p50 − WACC 8.5%</span>
+   ├─ 양수 → 가치 창출 중
+   └─ 음수 → 자본 조달 비용 미달
+
+<span class="comment"># 필터: equity > 0 (자본잠식 제외) / sales > 0 / invested_capital > 0 / ROIC ∈ [-200%, +200%]</span></div>
+
+      <div class="wacc-card">
+        <div class="wacc-row"><span class="l">WACC 산업 평균 (인용)</span><span class="v">8.5%</span></div>
+        <div class="wacc-row"><span class="l">출처</span><span class="v">Damodaran (NYU Stern) Industry Cost of Capital DB 2024</span></div>
+        <div class="wacc-row"><span class="l">산업 분류</span><span class="v">Personal/Beauty Products (Emerging Markets)</span></div>
+        <div class="wacc-row"><span class="l">참고치 (한국)</span><span class="v">KIS 신용평가 7.8-9.2% range</span></div>
+        <div class="wacc-row"><span class="l">대안 (회사별 산출 미채택 사유)</span><span class="v">스타트업·중소기업 외감재무에서 β·시장위험프리미엄 추정 신뢰도 낮음</span></div>
+      </div>
+
+      <table class="stage-results">
+        <thead><tr><th>Stage</th><th>n</th><th>ROIC p25</th><th>ROIC p50 ★</th><th>ROIC p75</th><th>WACC</th><th>스프레드</th></tr></thead>
+        <tbody>${stageRowsRoic}</tbody>
+      </table>
+      <div class="tip" style="margin-top: 8px">
+        <strong style="color: var(--neon)">핵심 인사이트</strong> · 5단계 (200억+) 확장기에서만 ROIC > WACC 달성 (스프레드 +3.3%p). 4단계 골든존도 -0.4%p로 자본 비용 0.4%p 차이로 미달. <strong>본격 가치 창출은 5단계부터.</strong>
+      </div>
+    </div>
+
+    <div class="review-block">
+      <h4>5 · 이익의 현금화 품질 (OCF/NI) <span class="formula">= 영업현금흐름 / 순이익</span></h4>
+      <div class="desc">
+        <span class="meta-pill miss">⚠ 외감재무 컬럼 부재 (다음 빌드)</span>
+      </div>
+      <div class="tree"><span class="miss">[ 추출 불가 — 다음 빌드 ]</span>
+   │
+   ├─ <span class="col miss">cash_flow_from_operating</span> 영업현금흐름
+   │   └─ <span class="miss">외감재무 테이블에 컬럼 부재</span>
+   │
+   └─ <span class="col">net_income</span> 당기순이익 ✓ (있음)
+
+<span class="root">대안 (다음 빌드)</span>
+   ├─ DART API 직접 추출 — 회사별 cf 보고서 파싱
+   ├─ 간접법 추정 — NI + 감가상각비 + 운전자본 변동 (FY2024·FY2025 두 시점 데이터 필요)
+   └─ 별도 cf_table 데이터팀 추가 요청
+
+<span class="comment"># 현재 시연 수치 0.78 표기. "외감재무 컬럼 부재" 명시.</span></div>
+    </div>
+
+    <div class="review-block">
+      <h4>6 · BQ 추출 쿼리 원문 (ROIC, FY2025)</h4>
+      <div class="desc">
+        실행: <code>tmp_extract_roic.py</code> · 결과: <code>data/cosmetic_decisive_kpis_v2.json</code>
+      </div>
+      <div class="sql-block"><span class="kw">WITH</span> cosmetic_corps <span class="kw">AS</span> (
+  <span class="kw">SELECT DISTINCT</span> corp_id
+  <span class="kw">FROM</span> \`gowid-prd.dw_dimension.corporation\`
+  <span class="kw">WHERE</span> <span class="fn">LOWER</span>(<span class="fn">COALESCE</span>(business_items_summarized, <span class="str">''</span>)) <span class="kw">LIKE</span> <span class="str">'%화장품%'</span>
+     <span class="kw">OR</span> <span class="fn">LOWER</span>(<span class="fn">COALESCE</span>(business_items_summarized, <span class="str">''</span>)) <span class="kw">LIKE</span> <span class="str">'%코스메틱%'</span>
+     <span class="kw">OR</span> <span class="fn">LOWER</span>(<span class="fn">COALESCE</span>(business_items_summarized, <span class="str">''</span>)) <span class="kw">LIKE</span> <span class="str">'%cosmetic%'</span>
+     <span class="kw">OR</span> <span class="fn">LOWER</span>(<span class="fn">COALESCE</span>(business_items_summarized, <span class="str">''</span>)) <span class="kw">LIKE</span> <span class="str">'%뷰티%'</span>
+     <span class="kw">OR</span> <span class="fn">LOWER</span>(<span class="fn">COALESCE</span>(business_items_summarized, <span class="str">''</span>)) <span class="kw">LIKE</span> <span class="str">'%스킨케어%'</span>
+),
+calc <span class="kw">AS</span> (
+  <span class="kw">SELECT</span>
+    fs.corp_id,
+    fs.sales / 100000000 <span class="kw">AS</span> sales_eok,
+    fs.operating_income * (1 - 0.22) <span class="kw">AS</span> nopat,  <span class="cm">-- 세후영업이익</span>
+    fs.equity
+      + <span class="fn">COALESCE</span>(fs.short_term_borrowings, 0)
+      + <span class="fn">COALESCE</span>(fs.long_term_borrowings, 0)
+      + <span class="fn">COALESCE</span>(fs.current_portion_of_long_term_borrowings, 0) <span class="kw">AS</span> invested_capital,
+    <span class="fn">SAFE_DIVIDE</span>(
+      fs.operating_income * (1 - 0.22),
+      fs.equity + <span class="fn">COALESCE</span>(fs.short_term_borrowings, 0)
+                + <span class="fn">COALESCE</span>(fs.long_term_borrowings, 0)
+                + <span class="fn">COALESCE</span>(fs.current_portion_of_long_term_borrowings, 0)
+    ) * 100 <span class="kw">AS</span> roic_pct,
+    <span class="kw">CASE</span>
+      <span class="kw">WHEN</span> fs.sales &lt; 10*100000000 <span class="kw">THEN</span> <span class="str">'stage1'</span>
+      <span class="kw">WHEN</span> fs.sales &lt; 30*100000000 <span class="kw">THEN</span> <span class="str">'stage2'</span>
+      <span class="kw">WHEN</span> fs.sales &lt; 100*100000000 <span class="kw">THEN</span> <span class="str">'stage3'</span>
+      <span class="kw">WHEN</span> fs.sales &lt; 200*100000000 <span class="kw">THEN</span> <span class="str">'stage4'</span>
+      <span class="kw">ELSE</span> <span class="str">'stage5'</span>
+    <span class="kw">END</span> <span class="kw">AS</span> stage
+  <span class="kw">FROM</span> \`gowid-prd.dw_fact.financial_statement\` fs
+  <span class="kw">INNER JOIN</span> cosmetic_corps <span class="kw">USING</span> (corp_id)
+  <span class="kw">WHERE</span> fs.fiscal_year = <span class="str">'2025'</span>
+    <span class="kw">AND</span> fs.business_type = <span class="str">'일반법인'</span>
+    <span class="kw">AND</span> fs.equity &gt; 0
+    <span class="kw">AND</span> fs.sales &gt; 0
+)
+<span class="kw">SELECT</span>
+  stage,
+  <span class="fn">COUNT</span>(*) <span class="kw">AS</span> n,
+  <span class="fn">APPROX_QUANTILES</span>(roic_pct, 100)[<span class="kw">OFFSET</span>(25)] <span class="kw">AS</span> roic_p25,
+  <span class="fn">APPROX_QUANTILES</span>(roic_pct, 100)[<span class="kw">OFFSET</span>(50)] <span class="kw">AS</span> roic_p50,
+  <span class="fn">APPROX_QUANTILES</span>(roic_pct, 100)[<span class="kw">OFFSET</span>(75)] <span class="kw">AS</span> roic_p75
+<span class="kw">FROM</span> calc
+<span class="kw">WHERE</span> roic_pct <span class="kw">BETWEEN</span> -200 <span class="kw">AND</span> 200
+<span class="kw">GROUP BY</span> stage
+<span class="kw">ORDER BY</span> stage</div>
+    </div>
+
+    <div class="review-block">
+      <h4>6.5 · 벤치마크 178사 — 회사 분포 비교 + 5단계 생존 계단 (v3.2 신규)</h4>
+      <div class="desc">
+        <span class="meta-pill ok">실데이터</span>
+        <span class="meta-pill">MKT/벤치마크_리포트/beauty 178사</span>
+        <span class="meta-pill">Success 6 / Turnaround 6 / 쇠퇴 72 / Neutral 94</span>
+      </div>
+      <table class="stage-results">
+        <thead><tr><th>분류</th><th>n</th><th>비율</th><th>광고비 증감</th><th>매출 성장률</th><th>인당매출</th><th>공헌이익률</th></tr></thead>
+        <tbody>
+          <tr><td><strong>Success ★</strong></td><td>6</td><td class="pos">3.4%</td><td class="pos">+172.3%</td><td class="pos">+148.5%</td><td class="pos">4.2억</td><td class="pos">45.4%</td></tr>
+          <tr><td>Turnaround</td><td>6</td><td>3.4%</td><td>+16.0%</td><td>+5.5%</td><td>0.52억</td><td>—</td></tr>
+          <tr><td>Neutral</td><td>94</td><td>52.8%</td><td>+24.5%</td><td>+27.7%</td><td>3.49억</td><td>—</td></tr>
+          <tr><td class="neg">쇠퇴</td><td>72</td><td class="neg">40.4%</td><td class="neg">-56.8%</td><td class="neg">-30.4%</td><td class="neg">2.35억</td><td class="neg">21.6%</td></tr>
+          <tr><td>전체 코스메틱</td><td>178</td><td>100%</td><td>-14.9%</td><td>+5.4%</td><td>3.11억</td><td>27.4%</td></tr>
+        </tbody>
+      </table>
+      <div class="tip" style="margin-top:8px">
+        <strong style="color: var(--neon)">핵심 인사이트 1</strong> · 광고비 +172% (Success) vs -56% (쇠퇴) → <strong>광고 줄이면 매출도 같이 죽는다</strong>. 3단계·4·5 type_4 (성장형) 처방의 결정적 근거.<br>
+        <strong style="color: var(--neon)">핵심 인사이트 2</strong> · 인당매출 4.2억 (Success) vs 2.35억 (쇠퇴) = 거의 2배 갭. 효율형 분기 결정 임계.<br>
+        <strong style="color: var(--neon)">핵심 인사이트 3</strong> · 공헌이익률 45.4% (Success) vs 21.6% (쇠퇴) — CM 30% 임계가 산업 생사 결정선.
+      </div>
+
+      <h4 style="margin-top: 24px">공헌이익률 5단계 생존 계단 (CM 데이터 보유 133사)</h4>
+      <table class="stage-results">
+        <thead><tr><th>단계</th><th>기준</th><th>n</th><th>비율</th><th>해석</th></tr></thead>
+        <tbody>
+          <tr><td class="neg">1단계</td><td>CM &lt; 0%</td><td>38</td><td class="neg">28.6%</td><td>팔수록 손해 — 즉각 구조조정 필요</td></tr>
+          <tr><td>2단계</td><td>0% ≤ CM &lt; 15%</td><td>13</td><td>9.8%</td><td>간신히 변동비 커버 — 불안정 생존</td></tr>
+          <tr><td>3단계</td><td>15% ≤ CM &lt; 30%</td><td>19</td><td>14.3%</td><td>성장 준비 — 30% 돌파가 과제</td></tr>
+          <tr><td class="pos">4단계</td><td>CM ≥ 30%</td><td>60</td><td class="pos">45.1%</td><td>지속 성장 가능 (흑자율 1.5배)</td></tr>
+          <tr><td class="pos">5단계 ★</td><td>CM ≥ 45% & Success</td><td>3</td><td>2.3%</td><td>완전한 성장 궤도</td></tr>
+        </tbody>
+      </table>
+
+      <h4 style="margin-top: 24px">매출 Stage별 Success/쇠퇴율 (Stage 매트릭스 베이스)</h4>
+      <table class="stage-results">
+        <thead><tr><th>Stage</th><th>n</th><th>Success율</th><th>쇠퇴율</th><th>성장률 중앙값</th></tr></thead>
+        <tbody>
+          <tr><td>1 시드 (10억 미만)</td><td>58</td><td>1.7%</td><td class="neg">62.1%</td><td>-28.9%</td></tr>
+          <tr><td>2 30억 통과 (10-30억)</td><td>17</td><td>0.0%</td><td class="neg">58.8%</td><td>-2.5%</td></tr>
+          <tr><td>3 데뷔 (30-100억)</td><td>40</td><td>5.0%</td><td>22.5%</td><td>+21.5%</td></tr>
+          <tr><td><strong>4 골든존 (100-200억)</strong></td><td>18</td><td class="pos">16.7% (산업 최고)</td><td>27.8%</td><td>+23.5%</td></tr>
+          <tr><td>5 확장 (200억+)</td><td>12</td><td>0.0%</td><td>33.3%</td><td>+28.9%</td></tr>
+        </tbody>
+      </table>
+      <div class="tip" style="margin-top:8px">
+        <span class="en">★ 4단계 골든존 = 5 Stage 중 유일하게 Success율 16.7%로 산업 평균 초과. 30억과 100억이 변곡점 — 30억 미만 = 쇠퇴 60%, 30억+ = 쇠퇴 22.5%로 급감.</span>
+      </div>
+    </div>
+
+    <div class="review-block">
+      <h4>6.6 · PwC K-뷰티 산업 분석 (5단계 다음 분기 베이스)</h4>
+      <div class="desc">
+        <span class="meta-pill">PwC Industry Focus 2024·2026</span>
+        <span class="meta-pill">M&A 사례 + 글로벌 시장 + 인디 CAGR</span>
+      </div>
+      <div class="tree"><span class="root">[ K-뷰티 시장 변화 (PwC 2026) ]</span>
+   │
+   ├─ <span class="col">지역 다변화</span> · 북미·일본·유럽·중동·남미 확산
+   │   ├─ 미국 시장: 2024 1-4월 한국 1위 (프랑스 역전)
+   │   └─ 일본 시장: 2022~ 한국 1위
+   │
+   ├─ <span class="col">유통 구조 진화</span> · 온라인 → 오프라인
+   │   ├─ TikTok D2C → 인디 브랜드 해외 진출 장벽 ↓
+   │   ├─ Pure Seoul (영국) — K-뷰티 전문 스토어
+   │   └─ Gold Apple (러시아) — 코스알엑스·티르티르·VT 유통
+   │
+   ├─ <span class="col">카테고리 확장</span> · 스킨케어·색조 → 퍼스널케어 전반
+   │   ├─ 헤어·바디·구강·여성용품 (반복 구매 구조)
+   │   ├─ 뷰티 디바이스 (에이피알 필두)
+   │   └─ 건강·웰니스·루틴 관리
+   │
+   └─ <span class="col">M&A 거래 사례 2025-2026</span>
+       ├─ 라카코스메틱스 531억 / 88% 인수
+       ├─ 픽톤(토코보) 520억 / 60% 인수 (해외 90%)
+       ├─ 모먼츠컴퍼니(비플레인) 812억 / 86% 인수 (해외 55%)
+       ├─ 애경산업 4,700억 / 63% (태광산업)
+       └─ 창신(용기 제조) 2,021억 / 90%
+
+<span class="root">[ 인디 브랜드 매출 CAGR FY21→FY23 ]</span>
+   ├─ 코스알엑스: 1,233억 → 4,862억 (CAGR <span class="num">98.5%</span>)
+   ├─ 더파운더즈(아누아): 299억 → 1,432억 (CAGR <span class="num">118.7%</span>)
+   ├─ 구다이글로벌(조선미녀): 117억 → 1,396억 (CAGR <span class="num">245.9%</span>)
+   ├─ 서린컴퍼니(라운드랩): 530억 → 1,156억 (CAGR 47.7%)
+   └─ 크레이버(스킨1004): 315억 → 956억 (CAGR 74.3%)
+
+<span class="root">[ 한국 ODM 매출 CAGR FY22→FY24.1H ]</span>
+   ├─ 한국콜마: 18,657 → 23,033억 (CAGR 11.1%)
+   ├─ 코스맥스: 16,001 → 19,732억 (CAGR 11.0%)
+   ├─ 코스메카: 3,994 → 5,085억 (CAGR 12.8%)
+   └─ 씨앤씨: 1,306 → 2,695억 (CAGR <span class="num">43.7%</span>)
+
+<span class="root">[ 유통사 매출 CAGR ]</span>
+   ├─ 실리콘투: 1,653 → 5,379억 (CAGR <span class="num">80.4%</span>)
+   ├─ Amazon: $513,983M → $604,334M (8.4%)
+   └─ Shopify: $5,600M → $7,764M (17.7%)
+
+<span class="root">[ 올리브영 임계 시그널 ]</span>
+   └─ 2025 기준 연 매출 100억+ 입점 브랜드 116개 = 3단계 진입 시그널</div>
+    </div>
+
+    <div class="review-block">
+      <h4>7 · 데이터 신뢰도 노트 (GOAL §3 룰 준수 체크)</h4>
+      <div class="tree">✅ 모집단 명시 — 외감 의무 (매출 100억+ 위주) 코스메틱 코퍼레이션, FY2025
+✅ 출처 명시 — gowid-prd.dw_fact.financial_statement + dw_dimension.corporation
+✅ 산업 평균 인용 (WACC) 출처 — Damodaran NYU Stern 2024 DB
+✅ 시연 수치 (OCF/NI) 명시적 라벨링 — "외감재무 컬럼 부재 / 다음 빌드"
+✅ 회사명 직접 노출 X — 분포·중앙값만 노출 (GOAL §1 원칙 25)
+✅ "산업 평균" 표기 회피 — "비슷한 자금 활용 패턴 N사 중" 표기
+✅ 이상치 클램핑 — ROIC ∈ [-200%, +200%] 명시
+⚠ Success/쇠퇴 라벨 미적용 (v3 backlog)
+⚠ Real Customer Interview 5명 검증 미완 (v3 backlog)</div>
+    </div>
+  `;
+}
+
+function restart() { state.qIndex = 0; state.answers = {}; state.multiSelectStep = 1; show("intro"); }
+window.restart = restart;
+</script>
+
+<style>
+  .lead-modal-bg { position: fixed; inset: 0; background: rgba(0,0,0,0.85); z-index: 9999; display: none; align-items: center; justify-content: center; padding: 20px; }
+  .lead-modal-bg.show { display: flex; }
+  .lead-modal { background: #141414; border: 1px solid #2a2a2a; border-radius: 16px; padding: 36px 32px; max-width: 480px; width: 100%; }
+  .lead-modal h3 { font-size: 22px; font-weight: 700; color: #fff; margin-bottom: 8px; letter-spacing: -0.02em; }
+  .lead-modal .lead-sub { font-size: 14px; color: #9a9a9a; margin-bottom: 24px; line-height: 1.6; }
+  .lead-modal .lead-field { margin-bottom: 14px; }
+  .lead-modal label { display: block; font-size: 12px; color: #00ff88; letter-spacing: 0.12em; font-weight: 600; margin-bottom: 6px; text-transform: uppercase; }
+  .lead-modal input { width: 100%; padding: 12px 14px; background: #0a0a0a; border: 1px solid #2a2a2a; border-radius: 8px; color: #fff; font-size: 15px; font-family: inherit; outline: none; box-sizing: border-box; }
+  .lead-modal input:focus { border-color: #00ff88; }
+  .lead-modal .lead-submit { width: 100%; padding: 14px; background: #00ff88; color: #000; border: 0; border-radius: 8px; font-size: 15px; font-weight: 700; cursor: pointer; margin-top: 12px; font-family: inherit; }
+  .lead-modal .lead-note { font-size: 11px; color: #6a6a6a; margin-top: 14px; text-align: center; line-height: 1.5; }
+
+  .cta-consult { margin: 56px auto 0; padding: 36px 28px; background: #0a0a0a; border: 1px solid #2a2a2a; border-radius: 16px; text-align: center; max-width: 760px; }
+  .cta-consult h2 { font-size: 24px; font-weight: 700; color: #fff; margin-bottom: 8px; letter-spacing: -0.02em; }
+  .cta-consult > p { font-size: 14px; color: #9a9a9a; margin-bottom: 28px; line-height: 1.7; }
+  .consult-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; max-width: 560px; margin: 0 auto; }
+  .consult-card { padding: 22px 18px; background: #141414; border: 1px solid #2a2a2a; border-radius: 12px; }
+  .consult-card img { width: 80px; height: 80px; border-radius: 50%; object-fit: cover; margin-bottom: 12px; border: 2px solid #00ff88; }
+  .consult-card .consult-name { font-size: 16px; font-weight: 700; color: #fff; margin-bottom: 2px; }
+  .consult-card .consult-role { font-size: 12px; color: #9a9a9a; margin-bottom: 12px; }
+  .consult-card .consult-btn { display: inline-block; padding: 9px 18px; background: #00ff88; color: #000; border-radius: 8px; font-size: 13px; font-weight: 700; text-decoration: none; }
+  .consult-card .consult-btn:hover { background: #00e078; }
+  .cta-consult { display: none; }
+  #result-screen .cta-consult, #result .cta-consult, #result-content .cta-consult, #result-section .cta-consult,
+  .result-screen .cta-consult, .result .cta-consult { display: block !important; }
+  #result-screen button[onclick*="resetSurvey"], #result button[onclick*="resetSurvey"], #result-content button[onclick*="resetSurvey"],
+  #result-screen button[onclick*="window.print"], #result button[onclick*="window.print"], #result-content button[onclick*="window.print"] { display: inline-block !important; }
+
+  button[onclick*="resetSurvey"], button[onclick*="window.print"], button[onclick*="restart"], button[onclick*="goHome"] { display: none; }
+  button[onclick*="resetSurvey"].show-action, button[onclick*="window.print"].show-action, button[onclick*="restart"].show-action, button[onclick*="goHome"].show-action { display: inline-block; }
+  #btn-restart, #btn-pdf, #btn-back-home, #btn-home, #cta-pdf, #cta-meeting, .pdf-btn, .restart-btn, .result-actions, .result-cta, .home-btn { display: none; }
+  footer, .footer-default, .page-footer { padding: 28px 16px; color: var(--text-3); font-size: 12px; text-align: center; border-top: 1px solid var(--divider); margin-top: 60px; line-height: 1.7; }
+
+
+  @media (max-width: 600px) {
+    .consult-grid { grid-template-columns: 1fr; }
+  }
+</style>
+
+<div class="lead-modal-bg" id="lead-modal-bg">
+  <div class="lead-modal">
+    <h3>결과를 받으시기 전에</h3>
+    <p class="lead-sub">법인명·이름·이메일을 알려주시면 진단 결과와 후속 자료를 보내드립니다.</p>
+    <div class="lead-field"><label>법인명</label><input type="text" id="lead-corp" placeholder="(주)고위드"></div>
+    <div class="lead-field"><label>이름</label><input type="text" id="lead-name" placeholder="홍길동"></div>
+    <div class="lead-field"><label>이메일</label><input type="email" id="lead-email" placeholder="hong@example.com"></div>
+    <button class="lead-submit" id="lead-submit-btn">결과 보기</button>
+    <p class="lead-note">입력하신 정보는 진단 결과 발송 및 후속 상담에만 사용됩니다.</p>
+  </div>
+</div>
+
+<section class="cta-consult" id="cta-consult">
+  <h2>실제 자금 운영에 적용하고 싶으시면</h2>
+  <p>고위드 인플로우팀에 상담을 신청하시면 <strong>1영업일 내</strong>에 연락드려 진단 결과 기반으로 귀사에 맞는 솔루션을 안내해 드립니다.</p>
+  <div class="consult-grid">
+    <div class="consult-card">
+      <img src="/assets/profile_moon.png" alt="문미성">
+      <div class="consult-name">문미성</div>
+      <div class="consult-role">고객 전략 리드</div>
+      <a class="consult-btn" href="https://www.gowid.com/register/info" target="_blank" rel="noopener">상담 신청하기</a>
+    </div>
+    <div class="consult-card">
+      <img src="/assets/profile_kim.png" alt="김병권">
+      <div class="consult-name">김병권</div>
+      <div class="consult-role">고객 전략 사업개발</div>
+      <a class="consult-btn" href="https://www.gowid.com/register/info" target="_blank" rel="noopener">상담 신청하기</a>
+    </div>
+  </div>
+</section>
+
+<script>
+(function(){
+  function getLead(){ try { return JSON.parse(localStorage.getItem('gowid_lead') || 'null'); } catch(e) { return null; } }
+  var modal = document.getElementById('lead-modal-bg');
+  if (!modal) return;
+  var continueFn = null;
+  var btn = document.getElementById('lead-submit-btn');
+  if (btn) {
+    btn.onclick = function(){
+      var corp = document.getElementById('lead-corp').value.trim();
+      var name = document.getElementById('lead-name').value.trim();
+      var email = document.getElementById('lead-email').value.trim();
+      if (!corp || !name || !email || email.indexOf('@') < 0) { alert('법인명·이름·이메일을 모두 입력해주세요'); return; }
+      try { localStorage.setItem('gowid_lead', JSON.stringify({corp:corp, name:name, email:email, ts:Date.now()})); } catch(e){}
+      modal.classList.remove('show');
+      if (continueFn) { var f = continueFn; continueFn = null; setTimeout(f, 50); }
+    };
+  }
+  function gate(reveal){
+    if (getLead()) { reveal(); return; }
+    continueFn = reveal;
+    modal.classList.add('show');
+  }
+  // 결과 표시 함수 wrap
+  ['showResult','showAnalyzeStage','renderResult','renderFinalResult','finalize','complete','renderFinal'].forEach(function(name){
+    if (typeof window[name] === 'function') {
+      var orig = window[name];
+      window[name] = function(){
+        var args = arguments, ctx = this;
+        gate(function(){ orig.apply(ctx, args); });
+      };
+    }
+  });
+  // 결과 컨테이너 표시 감지 (fallback)
+  var sels = ['#result-screen','#result','#result-content','#result-section','#results'];
+  sels.forEach(function(sel){
+    var el = document.querySelector(sel);
+    if (!el) return;
+    var seen = false;
+    var obs = new MutationObserver(function(){
+      if (seen) return;
+      var hidden = el.classList.contains('hidden') || el.style.display === 'none' || el.offsetParent === null;
+      if (!hidden && !getLead()) {
+        seen = true;
+        var prev = el.style.visibility;
+        el.style.visibility = 'hidden';
+        gate(function(){ el.style.visibility = prev || ''; });
+      }
+    });
+    obs.observe(el, { attributes: true, attributeFilter: ['style','class'] });
+  });
+})();
+</script>
+
+<script>
+(function(){
+  function moveCTAImmediate(){
+    var cta = document.getElementById('cta-consult');
+    if (!cta) return;
+    var result = document.querySelector('#result-screen') || document.querySelector('#result') || document.querySelector('#result-content') || document.querySelector('#result-section');
+    if (result && cta.parentNode !== result) { result.appendChild(cta); }
+  }
+  if (document.readyState === 'loading') { document.addEventListener('DOMContentLoaded', moveCTAImmediate); }
+  else { moveCTAImmediate(); }
+})();
+</script>
+</body>
+</html>
