@@ -48,22 +48,15 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    // Google Sheets Apps Script Web App URL
-    const GOOGLE_SCRIPT_URL = process.env.GOOGLE_SCRIPT_SURVEY_URL || '';
-
-    // Google Sheets에 데이터 전송 (설정된 경우에만)
-    if (GOOGLE_SCRIPT_URL) {
-      await fetch(GOOGLE_SCRIPT_URL, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ companyName, name, position, department, email, phone, annualRevenue, timestamp }),
-      }).catch((err) => console.error('Google Sheets error:', err));
-    }
+    await fetch('https://hooks.zapier.com/hooks/catch/10485854/4y47xse/', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ companyName, name, position, department, email, phone, annualRevenue, timestamp }),
+    }).catch((err) => console.error('Zapier error:', err));
 
     return NextResponse.json({
       success: true,
       message: '정보가 성공적으로 제출되었습니다.',
-      debug_url_set: !!GOOGLE_SCRIPT_URL,
     });
 
   } catch (error) {
