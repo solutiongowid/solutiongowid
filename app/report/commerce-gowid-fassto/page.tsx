@@ -7,7 +7,7 @@ import SurveyForm from './SurveyForm';
 
 export default function CommerceGowidFasstоPage() {
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [utmParams, setUtmParams] = useState({ utm_source: '', utm_medium: '', utm_campaign: '' });
+  const [utmParams, setUtmParams] = useState({ utm_source: '', utm_medium: '', utm_campaign: '', utm_content: '' });
 
   useEffect(() => {
     const params = new URLSearchParams(window.location.search);
@@ -15,6 +15,7 @@ export default function CommerceGowidFasstоPage() {
       utm_source: params.get('utm_source') || '',
       utm_medium: params.get('utm_medium') || '',
       utm_campaign: params.get('utm_campaign') || '',
+      utm_content: params.get('utm_content') || '',
     });
   }, []);
 

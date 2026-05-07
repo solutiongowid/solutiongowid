@@ -5,7 +5,7 @@ export async function POST(request: NextRequest) {
   try {
     const body = await request.json();
 
-    const { companyName, name, position, department, email, phone, annualRevenue, timestamp, utm_source, utm_medium, utm_campaign } = body;
+    const { companyName, name, position, department, email, phone, annualRevenue, timestamp, utm_source, utm_medium, utm_campaign, utm_content } = body;
 
     // 필수 필드 검증
     if (!companyName || !name || !position || !email || !phone) {
@@ -51,7 +51,7 @@ export async function POST(request: NextRequest) {
     await fetch('https://hooks.zapier.com/hooks/catch/10485854/4y47xse/', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ companyName, name, position, department, email, phone, annualRevenue, timestamp, utm_source, utm_medium, utm_campaign }),
+      body: JSON.stringify({ companyName, name, position, department, email, phone, annualRevenue, timestamp, utm_source, utm_medium, utm_campaign, utm_content }),
     }).catch((err) => console.error('Zapier error:', err));
 
     return NextResponse.json({
