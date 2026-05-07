@@ -53,7 +53,7 @@ export async function POST(request: NextRequest) {
 
     // Google Sheets에 데이터 전송 (설정된 경우에만)
     if (GOOGLE_SCRIPT_URL) {
-      fetch(GOOGLE_SCRIPT_URL, {
+      await fetch(GOOGLE_SCRIPT_URL, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ companyName, name, position, department, email, phone, annualRevenue, timestamp }),
