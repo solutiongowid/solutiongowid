@@ -1,11 +1,11 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { supabase } from '@/app/lib/supabase';
+import { supabaseAdmin } from '@/app/lib/supabase';
 
 export async function POST(request: NextRequest) {
   try {
     const body = await request.json();
-    
-    const { companyName, name, position, email, phone, timestamp, utm_source, utm_medium, utm_campaign } = body;
+
+    const { companyName, name, position, department, email, phone, annualRevenue, timestamp, utm_source, utm_medium, utm_campaign } = body;
 
     // 필수 필드 검증
     if (!companyName || !name || !position || !email || !phone) {
@@ -15,24 +15,37 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    // Supabase에 데이터 저장
-    const { error: supabaseError } = await supabase
-      .from('report_downloads')
+    const notes = [
+      department ? `부서: ${department}` : null,
+      annualRevenue ? `연매출: ${annualRevenue}` : null,
+    ].filter(Boolean).join(' | ') || null;
+
+    // Supabase leads 테이블에 데이터 저장
+    const { error: supabaseError } = await supabaseAdmin
+      .from('leads')
       .insert([
         {
           company_name: companyName,
-          name,
-          position,
+          contact_name: name,
+          job_title: position,
           email,
-          phone,
-          utm_source: utm_source || null,
-          utm_medium: utm_medium || null,
-          utm_campaign: utm_campaign || null,
+          phone_number: phone,
+          lead_source: utm_source || 'report-download',
+          lead_source_detail: utm_medium || null,
+          campaign: utm_campaign || 'commerce-gowid-fassto',
+          campaign_detail: utm_campaign || null,
+          funnel_stage: 'new',
+          lead_type: 'potential',
+          notes,
         },
       ]);
 
     if (supabaseError) {
       console.error('Supabase error:', supabaseError);
+      return NextResponse.json(
+        { error: '데이터 저장 중 오류가 발생했습니다.' },
+        { status: 500 }
+      );
     }
 
     // Google Sheets Apps Script Web App URL
