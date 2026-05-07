@@ -584,7 +584,7 @@ footer {
 .modal {
     background: #fff;
     border-radius: 22px;
-    width: 100%; max-width: 560px;
+    width: 100%; max-width: 860px;
     max-height: 82vh;
     overflow-y: auto;
     padding: 36px 32px 32px;
@@ -606,6 +606,9 @@ footer {
 .cmp-table tr:last-child td { border-bottom: none; }
 .cmp-table .hl-col { background: rgba(3,199,90,0.04); }
 .cmp-grn { color: #027A36; font-weight: 700; }
+.cmp-group-hd { font-size: 0.72rem; font-weight: 800; letter-spacing: 0.04em; padding: 7px 14px; border-bottom: 2px solid var(--border) !important; }
+.cmp-group-hd.credit { color: var(--text-sub); background: var(--bg); }
+.cmp-group-hd.debit { color: #027A36; background: rgba(3,199,90,0.07); border-bottom-color: rgba(3,199,90,0.3) !important; }
 .cmp-tip { background: var(--bg); border-radius: 12px; padding: 16px 18px; font-size: 0.84rem; color: var(--text-sub); line-height: 1.75; }
 .cmp-tip strong { color: var(--text); }
 
@@ -743,6 +746,10 @@ export default function NaverPayPage() {
             <div className="stat-d">신용 공여일</div>
           </div>
           <div className="stat-item fu d1">
+            <div className="stat-n"><em>0.5%</em></div>
+            <div className="stat-d">캐시백<br /><span style={{ fontSize: '0.72rem', color: 'var(--text-light)' }}>신용카드</span></div>
+          </div>
+          <div className="stat-item fu d1">
             <div className="stat-n">최대 <em>2.3%</em></div>
             <div className="stat-d">캐시백<br /><span style={{ fontSize: '0.72rem', color: 'var(--text-light)' }}>광고비 특화카드 전용</span></div>
           </div>
@@ -869,9 +876,12 @@ export default function NaverPayPage() {
             <div className="ben-card fu d2">
               <div className="ben-num">③</div>
               <div className="ben-icon">💰</div>
-              <h3>카드 사용액 0.5% ~ 최대 2.3% 캐시백 <span style={{ fontSize: '0.72rem', fontWeight: 400, color: 'var(--text-light)' }}>광고비 특화카드 전용</span></h3>
+              <h3>카드 사용액 최대 2.3% 캐시백</h3>
               <p>광고비·매입비 결제 시 사용액에 따라 캐시백이 적립됩니다. 쓸수록 돌아오는 혜택으로 실질 비용을 줄이세요.</p>
-              <div className="ben-val">0.5% ~ 최대 2.3%<br /><span style={{ fontSize: '0.72rem', fontWeight: 400, color: 'var(--text-light)' }}>광고비 특화카드 전용</span></div>
+              <div style={{ display: 'flex', gap: '10px', marginTop: '12px', flexWrap: 'wrap' }}>
+                <div className="ben-val">0.5% 페이백<br /><span style={{ fontSize: '0.72rem', fontWeight: 600 }}>신용카드</span></div>
+                <div className="ben-val">2.3% 페이백<br /><span style={{ fontSize: '0.72rem', fontWeight: 600 }}>광고비 특화카드</span></div>
+              </div>
             </div>
             <div className="ben-card fu d3">
               <div className="ben-num">④</div>
@@ -1090,7 +1100,7 @@ export default function NaverPayPage() {
             <span className="hl">한도에 가로막히지 마세요</span>
           </h2>
           <p className="sec-sub fu">
-            신청 5분 → 1영업일 내 연락 → 5영업일 내 사용 가능.<br />
+            비대면으로 간편하게 심사부터 수령까지!<br />
             지금 신청하면 다음 광고비 결제부터 바로 적용됩니다.
           </p>
           <div>
@@ -1100,6 +1110,7 @@ export default function NaverPayPage() {
           </div>
           <div className="trust-row">
             <div className="trust-item"><span className="chk">✓</span> 기존 카드 해지 불필요</div>
+            <div className="trust-item"><span className="chk">✓</span> 0.5% 캐시백 <span style={{ fontSize: '0.72rem', color: 'var(--text-light)' }}>신용카드</span></div>
             <div className="trust-item"><span className="chk">✓</span> 최대 2.3% 캐시백 <span style={{ fontSize: '0.72rem', color: 'var(--text-light)' }}>광고비 특화카드 전용</span></div>
             <div className="trust-item"><span className="chk">✓</span> 최대 87일 신용 공여</div>
             <div className="trust-item"><span className="chk">✓</span> ERP 자동 연동</div>
@@ -1123,7 +1134,7 @@ export default function NaverPayPage() {
             캐시백은 전월 실적 조건 충족 시 적용되며, 카드사별 조건이 상이할 수 있습니다.
           </p>
           <div>
-            고위드(주) | 서울특별시 강남구 | 사업자등록번호: 000-00-00000 | 고객센터: 1551-9020<br />
+            고위드(주) | 서울특별시 강남구 | 사업자등록번호: 261-81-25793 | 고객센터: 1551-9020<br />
             © 2026 GoWid Inc. All rights reserved.
           </div>
         </div>
@@ -1151,10 +1162,17 @@ export default function NaverPayPage() {
           <table className="cmp-table">
             <thead>
               <tr>
+                <th></th>
+                <th colSpan={3} className="cmp-group-hd credit">신용카드</th>
+                <th colSpan={2} className="cmp-group-hd debit hl-col">체크카드</th>
+              </tr>
+              <tr>
                 <th>구분</th>
                 <th>신한카드</th>
                 <th>롯데카드</th>
-                <th className="hl-col">BC카드</th>
+                <th>BC카드<br /><span style={{ fontSize: '0.68rem', color: '#666', fontWeight: '700' }}>광고비 특화</span></th>
+                <th className="hl-col">롯데카드</th>
+                <th className="hl-col">신한카드</th>
               </tr>
             </thead>
             <tbody>
@@ -1162,30 +1180,48 @@ export default function NaverPayPage() {
                 <td>연회비</td>
                 <td>10,000원<br /><span style={{ fontSize: '0.75rem', color: 'var(--text-light)' }}>신규 발급 시, 면제</span></td>
                 <td>—</td>
-                <td className="hl-col">5,000원<br /><span style={{ fontSize: '0.75rem', color: 'var(--text-light)' }}>최초 1회</span></td>
+                <td>5,000원<br /><span style={{ fontSize: '0.75rem', color: 'var(--text-light)' }}>최초 1회</span></td>
+                <td className="hl-col"><span className="cmp-grn">없음</span></td>
+                <td className="hl-col"><span className="cmp-grn">없음</span></td>
+              </tr>
+              <tr>
+                <td>전월실적</td>
+                <td>—</td>
+                <td>—</td>
+                <td>—</td>
+                <td className="hl-col"><span className="cmp-grn">없음</span></td>
+                <td className="hl-col"><span className="cmp-grn">없음</span></td>
               </tr>
               <tr>
                 <td>결제대금일</td>
                 <td>매월 15일</td>
                 <td>매월 15일</td>
-                <td className="hl-col"><span className="cmp-grn">매월 23일</span></td>
+                <td><span className="cmp-grn">매월 23일</span></td>
+                <td className="hl-col">—</td>
+                <td className="hl-col"><span className="cmp-grn">매월 15일</span></td>
               </tr>
               <tr>
                 <td>한도 복원</td>
                 <td>D+1일</td>
                 <td><span className="cmp-grn">즉시</span></td>
-                <td className="hl-col">매월 1일</td>
+                <td>매월 1일</td>
+                <td className="hl-col">—</td>
+                <td className="hl-col">—</td>
               </tr>
               <tr>
                 <td>페이백 혜택</td>
                 <td>0.45%</td>
                 <td>0.45%</td>
-                <td className="hl-col"><span className="cmp-grn">0.50%</span></td>
+                <td>0.50%</td>
+                <td className="hl-col"><span className="cmp-grn">해외 2.0%<br />국내 1.5%</span></td>
+                <td className="hl-col"><span className="cmp-grn">해외 2.3%<br />국내 없음</span></td>
               </tr>
               <tr>
                 <td>라운지 혜택</td>
                 <td>—</td>
                 <td><span className="cmp-grn">공항 라운지<br />발레파킹</span></td>
+                <td>—</td>
+                <td className="hl-col">—</td>
                 <td className="hl-col">—</td>
               </tr>
             </tbody>
