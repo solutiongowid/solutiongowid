@@ -63,6 +63,7 @@ export async function POST(request: NextRequest) {
     return NextResponse.json({
       success: true,
       message: '정보가 성공적으로 제출되었습니다.',
+      debug_url_set: !!GOOGLE_SCRIPT_URL,
     });
 
   } catch (error) {
