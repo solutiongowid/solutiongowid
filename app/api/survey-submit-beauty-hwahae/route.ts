@@ -56,6 +56,24 @@ export async function POST(request: NextRequest) {
       }).catch((err) => console.error('Google Sheets error:', err));
     }
 
+    fetch('https://hooks.zapier.com/hooks/catch/10485854/4ymog3i/', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        company_name: companyName,
+        name,
+        position,
+        department,
+        email,
+        phone,
+        annual_revenue: annualRevenue,
+        utm_source: utm_source || '',
+        utm_medium: utm_medium || '',
+        utm_campaign: utm_campaign || 'beauty-gowid-hwahae',
+        timestamp,
+      }),
+    }).catch((err) => console.error('Zapier webhook error:', err));
+
     return NextResponse.json({
       success: true,
       message: '정보가 성공적으로 제출되었습니다.',
