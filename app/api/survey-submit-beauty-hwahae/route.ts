@@ -5,7 +5,7 @@ export async function POST(request: NextRequest) {
   try {
     const body = await request.json();
 
-    const { companyName, name, position, department, email, phone, annualRevenue, timestamp, utm_source, utm_medium, utm_campaign } = body;
+    const { companyName, name, position, department, email, phone, annualRevenue, timestamp, utm_source, utm_medium, utm_campaign, utm_content } = body;
 
     if (!companyName || !name || !position || !email || !phone) {
       return NextResponse.json(
@@ -70,6 +70,7 @@ export async function POST(request: NextRequest) {
         utm_source: utm_source || '',
         utm_medium: utm_medium || '',
         utm_campaign: utm_campaign || 'beauty-gowid-hwahae',
+        utm_content: utm_content || '',
         timestamp,
       }),
     }).catch((err) => console.error('Zapier webhook error:', err));

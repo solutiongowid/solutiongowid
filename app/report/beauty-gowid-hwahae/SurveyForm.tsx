@@ -5,7 +5,7 @@ import { useState, FormEvent } from 'react';
 interface SurveyFormProps {
   isOpen: boolean;
   onClose: () => void;
-  utmParams?: { utm_source: string; utm_medium: string; utm_campaign: string };
+  utmParams?: { utm_source: string; utm_medium: string; utm_campaign: string; utm_content: string };
 }
 
 export default function SurveyForm({ isOpen, onClose, utmParams }: SurveyFormProps) {
