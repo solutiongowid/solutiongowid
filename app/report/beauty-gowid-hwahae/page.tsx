@@ -57,8 +57,8 @@ export default function BeautyGowidHwahaeePage() {
                   </strong>
                 </h1>
                 <div className="report-subtitle">
-                  화해 × 고위드,<br/>
-                  141개 뷰티 기업 재무 데이터 × 화장품 브랜드 21,232개 리뷰·유입 분석
+                  화해 × 고위드<br/>
+                  141개 뷰티 기업 재무 데이터 × 화장품 브랜드<br className="desktop-br"/>21,232개 리뷰·유입 분석
                 </div>
                 <button onClick={openModal} className="report-button-primary">
                   무료 다운로드
@@ -171,13 +171,13 @@ export default function BeautyGowidHwahaeePage() {
               <h2 className="report-h2 for-feature">화해 × 고위드</h2>
               <div className="report-feature-description">
                 <p>
-                  <strong>화해</strong>는 21,232개 화장품 브랜드의 리뷰·유입 데이터를 보유한 뷰티 전문 플랫폼입니다.<br/>
-                  리뷰 자산이 단기 광고비를 대체하는 축적형 광고 구조를 만들어,<br/>
+                  <strong>화해</strong>는 21,232개 화장품 브랜드의 리뷰·유입 데이터를 보유한 뷰티 전문 플랫폼입니다.<br className="desktop-br"/>
+                  리뷰 자산이 단기 광고비를 대체하는 축적형 광고 구조를 만들어,<br className="desktop-br"/>
                   운영 6개월 뒤에도 82%의 유입이 유지되는 선순환을 설계합니다.
                 </p>
                 <p>
-                  <strong>고위드</strong>는 성장 기업에 최적의 혜택을 연결하고 효율적인 비용관리 솔루션을 제공하는 핀테크 서비스입니다.<br/>
-                  원가율을 모르면 순서가 보이지 않습니다. 고위드 법인카드로 원가·수수료·광고비를 실시간으로 가시화하세요.
+                  <strong>고위드</strong>는 성장 기업에 최적의 혜택과 효율적인 비용관리 솔루션을 제공하는 핀테크 서비스입니다.<br/>
+                  원가율을 모르면 순서가 보이지 않습니다. 고위드 법인카드로 원가·수수료·광고비를 한 눈에 확인하세요.
                 </p>
               </div>
             </div>
