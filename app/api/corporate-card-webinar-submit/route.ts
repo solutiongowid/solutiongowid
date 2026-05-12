@@ -61,8 +61,11 @@ export async function POST(request: NextRequest) {
     }
 
     // Zapier Webhook 호출 (슬랙 알림용)
+    const slackWebhookUrl = webinar_type === 'cosmetic'
+      ? 'https://hooks.zapier.com/hooks/catch/10485854/4yfzlh9/'
+      : 'https://hooks.zapier.com/hooks/catch/10485854/uxmyyc2/';
     try {
-      await fetch('https://hooks.zapier.com/hooks/catch/10485854/uxmyyc2/', {
+      await fetch(slackWebhookUrl, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
