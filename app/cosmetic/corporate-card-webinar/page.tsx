@@ -514,12 +514,12 @@ export default function CorporateCardWebinarCosmeticPage() {
                     <label htmlFor="annualRevenue" className="form-label">연매출 <span className="required">*</span></label>
                     <select id="annualRevenue" name="annualRevenue" value={formData.annualRevenue} onChange={handleChange} className="form-input" required>
                       <option value="">선택해주세요</option>
-                      <option value="under_1b">10억 미만</option>
-                      <option value="1b_3b">10억 ~ 30억</option>
-                      <option value="3b_5b">30억 ~ 50억</option>
-                      <option value="5b_10b">50억 ~ 100억</option>
-                      <option value="10b_30b">100억 ~ 300억</option>
-                      <option value="over_30b">300억 이상</option>
+                      <option value="10억 미만">10억 미만</option>
+                      <option value="10억 ~ 30억">10억 ~ 30억</option>
+                      <option value="30억 ~ 50억">30억 ~ 50억</option>
+                      <option value="50억 ~ 100억">50억 ~ 100억</option>
+                      <option value="100억 ~ 300억">100억 ~ 300억</option>
+                      <option value="300억 이상">300억 이상</option>
                     </select>
                   </div>
 
