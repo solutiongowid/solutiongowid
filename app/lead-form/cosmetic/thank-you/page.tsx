@@ -62,8 +62,9 @@ export default function CosmeticLeadFormThankYouPage() {
               신청해보세요!
             </h2>
             <p className="thank-you-webinar-description">
-              아누아, 데이지크, 비플레인 등 고위드 178개 뷰티 브랜드는<br/>
-              어떻게 현금 흐름을 관리하는지 구체적으로 정리해보았습니다.
+              아누아, 데이지크, 비플레인 등<br/>
+              고위드 178개 뷰티 브랜드는 어떻게 현금 흐름을<br/>
+              관리하는 지 구체적으로 다뤄드립니다.
             </p>
             <p className="thank-you-webinar-description">
               라이브 세션의 주제는<br/>
