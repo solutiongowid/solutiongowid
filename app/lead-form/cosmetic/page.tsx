@@ -47,7 +47,8 @@ export default function CosmeticLeadFormPage() {
                 </strong>
               </h1>
               <div className="report-subtitle">
-                화해 × 고위드
+                화해 × 고위드<br/>
+                141개 뷰티 기업 재무 데이터 × 화장품 브랜드<br className="desktop-br"/>21,232개 리뷰·유입 분석
               </div>
 
               <div className="lead-form-cover-wrapper">
