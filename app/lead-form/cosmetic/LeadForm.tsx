@@ -237,7 +237,16 @@ export default function LeadForm({ utmParams }: LeadFormProps) {
               required
             />
             <span className="checkbox-text">
-              마케팅 활용에 동의합니다 (필수)
+              <a
+                href="https://www.notion.so/teamgowid/2e88db64698e809cacdcd68460500c94"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="privacy-link"
+                onClick={(e) => e.stopPropagation()}
+              >
+                마케팅 수신∙이용 동의
+              </a>
+              {' '}(필수)
             </span>
           </label>
         </div>
