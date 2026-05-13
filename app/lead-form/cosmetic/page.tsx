@@ -53,7 +53,7 @@ export default function CosmeticLeadFormPage() {
 
               <div className="lead-form-cover-wrapper">
                 <Image
-                  src="/hwahae_cover.png"
+                  src="/lead-form-cosmetic-cover.png"
                   alt="연매출 30~80억 뷰티 브랜드를 위한 성장 효율 리포트"
                   width={600}
                   height={450}
