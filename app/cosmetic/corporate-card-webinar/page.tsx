@@ -106,7 +106,7 @@ export default function CorporateCardWebinarCosmeticPage() {
                 <Image src="/gowid-logotype.png" alt="GOWID" width={84} height={28} priority style={{ objectFit: 'contain' }} />
               </a>
               <button className="report-nav-button" onClick={openModal} style={{ background: accentColor, color: '#fff' }}>
-                무료 웨비나 신청하기
+                무료 라이브세션 신청하기
               </button>
             </div>
           </div>
@@ -117,7 +117,7 @@ export default function CorporateCardWebinarCosmeticPage() {
           <div className="report-container">
             <div style={{ maxWidth: '800px', margin: '0 auto', textAlign: 'center' }}>
               <div style={{ marginBottom: '1.5rem' }}>
-                <span className="badge" style={{ fontSize: '0.875rem', padding: '0.5rem 1.25rem', background: accentLight, color: accentColor, border: `1px solid ${accentBorder}` }}>5월 20일 (수) 오후 4시 | 온라인 웨비나</span>
+                <span className="badge" style={{ fontSize: '0.875rem', padding: '0.5rem 1.25rem', background: accentLight, color: accentColor, border: `1px solid ${accentBorder}` }}>5월 20일 (수) 오후 4시 | 온라인 라이브세션</span>
               </div>
               <h1 className="report-h1" style={{ textAlign: 'center', marginBottom: '1.5rem', color: '#111' }}>
                 <strong>
@@ -130,7 +130,7 @@ export default function CorporateCardWebinarCosmeticPage() {
               <div style={{ maxWidth: '600px', margin: '0 auto' }}>
                 <Image
                   src="/corporate-card-webinar-cosmetic-thumbnail.png"
-                  alt="2026 법인카드 — 여기까지 왔습니다 : 코스메틱편 - GoWid 웨비나"
+                  alt="2026 법인카드 — 여기까지 왔습니다 : 코스메틱편 - GoWid 라이브세션"
                   width={1200}
                   height={630}
                   priority
@@ -199,7 +199,7 @@ export default function CorporateCardWebinarCosmeticPage() {
             <div style={{ maxWidth: '800px', margin: '0 auto', textAlign: 'center' }}>
               <h2 className="report-h2" style={{ textAlign: 'center', marginBottom: '1rem', color: '#111', wordBreak: 'keep-all' }}>이런 분들께 추천합니다</h2>
               <p style={{ fontSize: '1rem', color: '#888', marginBottom: '2.5rem', lineHeight: '1.6' }}>
-                아래에 해당하신다면, 이 웨비나가 답이 됩니다.
+                아래에 해당하신다면, 이 라이브세션가 답이 됩니다.
               </p>
               <div style={{ display: 'flex', flexDirection: 'column', gap: '0.75rem', maxWidth: '600px', margin: '0 auto' }}>
                 {[
@@ -219,7 +219,7 @@ export default function CorporateCardWebinarCosmeticPage() {
               </div>
 
               <button onClick={openModal} className="report-button-primary" style={{ marginTop: '2.5rem', background: accentColor, color: '#fff', boxShadow: '0 4px 20px rgba(216, 90, 122, 0.25)' }}>
-                무료 웨비나 신청하기
+                무료 라이브세션 신청하기
               </button>
             </div>
           </div>
@@ -358,7 +358,7 @@ export default function CorporateCardWebinarCosmeticPage() {
                   { icon: '\u{1F4C4}', title: 'D2C 뷰티 카드 사용\n벤치마크 리포트 2026', desc: 'PDF 무료 제공' },
                   { icon: '\u{1F4B3}', title: '고위드 법인카드\n한도 사전 조회', desc: '신청 즉시 확인 가능' },
                   { icon: '\u{1F50D}', title: '1:1 자금 운영\n상담권', desc: '고위드 제공' },
-                  { icon: '\u{1F4E5}', title: '웨비나 발표 자료\nPDF 제공', desc: '당일 참석자 대상' },
+                  { icon: '\u{1F4E5}', title: '라이브세션 발표 자료\nPDF 제공', desc: '당일 참석자 대상' },
                 ].map((b, i) => (
                   <div key={i} style={{ background: '#fff', border: `1px solid ${accentBorder}`, borderRadius: '0.75rem', padding: '1.5rem 1.25rem', textAlign: 'center' }}>
                     <div style={{ fontSize: '1.75rem', marginBottom: '0.75rem' }}>{b.icon}</div>
@@ -377,11 +377,11 @@ export default function CorporateCardWebinarCosmeticPage() {
             <div style={{ maxWidth: '640px', margin: '0 auto' }}>
               <h2 className="report-h2" style={{ textAlign: 'center', marginBottom: '2rem', color: '#111' }}>자주 묻는 질문</h2>
               {[
-                { q: '웨비나는 어디서 진행되나요?', a: 'Zoom 온라인으로 진행됩니다. 신청 완료 시 이메일로 참여 링크가 발송됩니다.' },
+                { q: '라이브세션는 어디서 진행되나요?', a: 'Zoom 온라인으로 진행됩니다. 신청 완료 시 이메일로 참여 링크가 발송됩니다.' },
                 { q: '참여 비용이 있나요?', a: '완전 무료입니다.' },
-                { q: '참석하지 못하면 녹화본을 받을 수 있나요?', a: '네, 신청하신 분들께 웨비나 종료 후 녹화본을 이메일로 발송해 드립니다.' },
-                { q: '어떤 업종에 적합한 웨비나인가요?', a: 'D2C 뷰티 브랜드를 중심으로 구성했지만, 광고비 ROAS 변동·OEM 매입·정산 시차 등 코스메틱 업의 현금 흐름 이슈가 있다면 카테고리 불문하고 도움이 됩니다.' },
-                { q: '사전 질문은 어떻게 활용되나요?', a: '신청 시 남겨주신 질문을 분석하여 웨비나 인트로에서 주요 관심사를 먼저 다루고, Q&A 시간에 집중 답변해 드립니다.' },
+                { q: '참석하지 못하면 녹화본을 받을 수 있나요?', a: '네, 신청하신 분들께 라이브세션 종료 후 녹화본을 이메일로 발송해 드립니다.' },
+                { q: '어떤 업종에 적합한 라이브세션인가요?', a: 'D2C 뷰티 브랜드를 중심으로 구성했지만, 광고비 ROAS 변동·OEM 매입·정산 시차 등 코스메틱 업의 현금 흐름 이슈가 있다면 카테고리 불문하고 도움이 됩니다.' },
+                { q: '사전 질문은 어떻게 활용되나요?', a: '신청 시 남겨주신 질문을 분석하여 라이브세션 인트로에서 주요 관심사를 먼저 다루고, Q&A 시간에 집중 답변해 드립니다.' },
               ].map((faq, i) => (
                 <div key={i} style={{ borderBottom: '1px solid #e0e0e0' }}>
                   <button
@@ -415,7 +415,7 @@ export default function CorporateCardWebinarCosmeticPage() {
                 <strong>바꿀 타이밍인지,<br />40분이면 답이 나옵니다.</strong>
               </h3>
               <button onClick={openModal} className="report-button-cta" style={{ background: accentColor, color: '#fff', boxShadow: '0 4px 20px rgba(216, 90, 122, 0.25)' }}>
-                무료 웨비나 신청하기
+                무료 라이브세션 신청하기
               </button>
             </div>
           </div>
@@ -429,7 +429,7 @@ export default function CorporateCardWebinarCosmeticPage() {
               {[
                 '본 행사는 온라인(Zoom)에서 진행되며, 참가 확정자분들께 접속 링크를 안내드립니다.',
                 '참가비가 없는 무료 행사입니다.',
-                '웨비나 종료 후 녹화본을 신청자 전원에게 발송해 드립니다.',
+                '라이브세션 종료 후 녹화본을 신청자 전원에게 발송해 드립니다.',
                 '참가자 모집은 조기 마감될 수 있습니다.',
                 '참석자 혜택은 광고성 정보 수신 및 제3자 제공 동의를 한 당일 참석자에게 제공합니다.',
               ].map((notice, i) => (
@@ -464,7 +464,7 @@ export default function CorporateCardWebinarCosmeticPage() {
         </footer>
       </div>
 
-      {/* 웨비나 신청 폼 모달 */}
+      {/* 라이브세션 신청 폼 모달 */}
       {isModalOpen && (
         <div className="modal-overlay" onClick={closeModal}>
           <div className="modal-content" onClick={(e) => e.stopPropagation()} style={{ maxWidth: '560px', padding: 0 }}>
@@ -474,7 +474,7 @@ export default function CorporateCardWebinarCosmeticPage() {
               <div style={{ padding: '3rem 2.5rem', display: 'flex', flexDirection: 'column', alignItems: 'center', textAlign: 'center' }}>
                 <h2 className="modal-title" style={{ marginBottom: '1.5rem' }}>신청이 완료되었습니다!</h2>
                 <p className="modal-description" style={{ fontSize: '1.125rem', color: '#6b7280', marginBottom: '2rem', lineHeight: '1.6' }}>
-                  웨비나 안내를 이메일로 보내드리겠습니다.<br />감사합니다.
+                  라이브세션 안내를 이메일로 보내드리겠습니다.<br />감사합니다.
                 </p>
                 <button onClick={closeModal} style={{ padding: '0.875rem 2rem', fontSize: '1rem', fontWeight: '600', borderRadius: '8px', border: 'none', background: accentColor, color: '#fff', cursor: 'pointer' }}>
                   닫기
@@ -483,7 +483,7 @@ export default function CorporateCardWebinarCosmeticPage() {
             ) : (
               <>
                 <div className="modal-header">
-                  <h2 className="modal-title">무료 웨비나 신청</h2>
+                  <h2 className="modal-title">무료 라이브세션 신청</h2>
                   <p className="modal-description">5월 20일(수) 오후 4시 | 2026 법인카드 — 여기까지 왔습니다 : 코스메틱편</p>
                 </div>
 
@@ -548,13 +548,13 @@ export default function CorporateCardWebinarCosmeticPage() {
                       </span>
                     </label>
                     <p style={{ fontSize: '0.75rem', color: '#999', lineHeight: '1.5', marginTop: '0.5rem', paddingLeft: '1.625rem' }}>
-                      금번 수집하는 개인정보는 웨비나 콘텐츠 준비 및 안내 용도로 사용됩니다. 웨비나 이후 관련 서비스 소개를 위해 연락드릴 수 있습니다. [개인정보보호법] 제15조 법규에 의거하여 고위드는 이벤트 참여자분들의 개인정보 수집 및 활용에 대한 동의를 받고 있습니다.
+                      금번 수집하는 개인정보는 라이브세션 콘텐츠 준비 및 안내 용도로 사용됩니다. 라이브세션 이후 관련 서비스 소개를 위해 연락드릴 수 있습니다. [개인정보보호법] 제15조 법규에 의거하여 고위드는 이벤트 참여자분들의 개인정보 수집 및 활용에 대한 동의를 받고 있습니다.
                     </p>
                   </div>
 
                   <div style={{ position: 'relative', zIndex: 10, pointerEvents: isSubmitting ? 'none' : 'auto' }}>
                     <button type="submit" disabled={isSubmitting} className="form-submit-button" style={{ background: accentColor }}>
-                      {isSubmitting ? '제출 중...' : '웨비나 신청하기'}
+                      {isSubmitting ? '제출 중...' : '라이브세션 신청하기'}
                     </button>
                   </div>
                 </form>
