@@ -52,23 +52,30 @@ export default function CosmeticLeadFormThankYouPage() {
             <p className="thank-you-note">
               메일이 보이지 않는다면 스팸함도 확인해주세요.
             </p>
+          </div>
 
-            <div className="thank-you-cta-group">
-              <a
-                href="https://gowid.com"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="thank-you-cta-primary"
-              >
-                고위드 홈으로
-              </a>
-              <a
-                href="/report/beauty-gowid-hwahae"
-                className="thank-you-cta-secondary"
-              >
-                리포트 미리보기
-              </a>
-            </div>
+          <div className="thank-you-webinar-card">
+            <div className="thank-you-webinar-date">5/20 (수) 오후 4시 · 라이브세션</div>
+            <h2 className="thank-you-webinar-title">
+              뷰티 브랜드를 위한<br/>
+              현금 흐름 구조 재설계 웨비나도<br/>
+              신청해보세요!
+            </h2>
+            <p className="thank-you-webinar-description">
+              아누아, 데이지크, 비플레인 등 고위드 178개 뷰티 브랜드는<br className="desktop-br"/>
+              어떻게 현금 흐름을 관리하는지 구체적으로 정리해보았습니다.
+            </p>
+            <p className="thank-you-webinar-description">
+              라이브세션의 주제는 <strong>‘뷰티 브랜드의 현금 흐름 구조 재설계 방법’</strong>입니다.
+            </p>
+            <a
+              href="https://www.solutiongowid.com/cosmetic/corporate-card-webinar"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="thank-you-webinar-cta"
+            >
+              웨비나 신청페이지 바로가기 →
+            </a>
           </div>
         </div>
       </main>
