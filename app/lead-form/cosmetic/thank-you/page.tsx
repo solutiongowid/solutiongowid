@@ -3,11 +3,29 @@
 import { useEffect } from 'react';
 import Image from 'next/image';
 
+type FbqFn = (...args: unknown[]) => void;
+type LintrkFn = (action: string, data: { conversion_id: string | number }) => void;
+
+declare global {
+  interface Window {
+    fbq?: FbqFn;
+    lintrk?: LintrkFn;
+  }
+}
+
 export default function CosmeticLeadFormThankYouPage() {
   useEffect(() => {
-    // TODO: Meta Pixel / GA4 전환 이벤트 발행
-    // fbq('track', 'Lead');
-    // gtag('event', 'conversion', { send_to: 'AW-XXX/YYY' });
+    if (typeof window.fbq === 'function') {
+      window.fbq('track', 'Lead', {
+        content_name: 'lead-form-cosmetic',
+        content_category: 'beauty-report',
+      });
+    }
+
+    const linkedinConversionId = process.env.NEXT_PUBLIC_LINKEDIN_LEAD_CONVERSION_ID;
+    if (linkedinConversionId && typeof window.lintrk === 'function') {
+      window.lintrk('track', { conversion_id: linkedinConversionId });
+    }
   }, []);
 
   return (

@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import "./globals.css";
+import Pixels from "./components/Pixels";
 
 export const metadata: Metadata = {
   title: "고위드 - 법인카드로 성장하세요",
@@ -20,6 +21,7 @@ export default function RootLayout({
         <meta name="apple-mobile-web-app-status-bar-style" content="default" />
       </head>
       <body className="antialiased">
+        <Pixels />
         {children}
       </body>
     </html>
