@@ -68,31 +68,25 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    const ZAPIER_WEBHOOK_URL = process.env.ZAPIER_COSMETIC_LEAD_WEBHOOK_URL || '';
-
-    if (ZAPIER_WEBHOOK_URL) {
-      fetch(ZAPIER_WEBHOOK_URL, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          company_name: companyName,
-          name,
-          position,
-          department,
-          email,
-          phone,
-          annual_revenue: annualRevenue,
-          utm_source: utm_source || '',
-          utm_medium: utm_medium || '',
-          utm_campaign: utm_campaign || '',
-          utm_content: utm_content || '',
-          landing_page: 'lead-form-cosmetic',
-          timestamp,
-        }),
-      }).catch((err) => console.error('Zapier webhook error:', err));
-    } else {
-      console.warn('ZAPIER_COSMETIC_LEAD_WEBHOOK_URL is not set — Slack/Stibee 자동화가 발동되지 않습니다.');
-    }
+    fetch('https://hooks.zapier.com/hooks/catch/10485854/4ye7nyq/', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        company_name: companyName,
+        name,
+        position,
+        department,
+        email,
+        phone,
+        annual_revenue: annualRevenue,
+        utm_source: utm_source || '',
+        utm_medium: utm_medium || '',
+        utm_campaign: utm_campaign || '',
+        utm_content: utm_content || '',
+        landing_page: 'lead-form-cosmetic',
+        timestamp,
+      }),
+    }).catch((err) => console.error('Zapier webhook error:', err));
 
     return NextResponse.json({
       success: true,
