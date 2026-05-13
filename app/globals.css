@@ -1381,12 +1381,10 @@ html, body {
   .lead-form-hero {
     align-items: center;
     text-align: center;
-    gap: 0;
   }
-  .lead-form-hero .report-h1,
-  .lead-form-hero .report-subtitle,
-  .lead-form-hero .lead-form-bullets {
-    display: none;
+  .lead-form-bullets li {
+    font-size: 0.9375rem;
+    text-align: left;
   }
   .lead-form-card-title {
     font-size: 1.375rem;
