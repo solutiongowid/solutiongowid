@@ -5,6 +5,7 @@ const nextConfig = {
       { source: '/card-data-api', destination: '/card-data-api/index.html' },
       { source: '/card-data-api/', destination: '/card-data-api/index.html' },
       { source: '/card-api-landing', destination: '/card-api-landing/index.html' },
+      { source: '/cosmetic/kakao-sync', destination: '/cosmetic/kakao-sync/index.html' },
     ];
   },
 };
