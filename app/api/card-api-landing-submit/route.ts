@@ -48,7 +48,7 @@ export async function POST(request: NextRequest) {
         funnel_stage: 'new',
         lead_type: 'potential',
         notes,
-        biz_number: biz || null,
+        biz,
         source: trim(body.source) || 'card-api-landing',
         name,
         company,
