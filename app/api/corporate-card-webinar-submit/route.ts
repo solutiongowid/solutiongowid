@@ -9,6 +9,7 @@ export async function POST(request: NextRequest) {
       companyName,
       department,
       position,
+      annualRevenue,
       email,
       phone,
       question,
@@ -37,6 +38,7 @@ export async function POST(request: NextRequest) {
           company_name: companyName,
           department,
           position,
+          annual_revenue: annualRevenue || null,
           email,
           phone,
           question: question || null,
@@ -59,8 +61,11 @@ export async function POST(request: NextRequest) {
     }
 
     // Zapier Webhook 호출 (슬랙 알림용)
+    const slackWebhookUrl = webinar_type === 'cosmetic'
+      ? 'https://hooks.zapier.com/hooks/catch/10485854/4yfzlh9/'
+      : 'https://hooks.zapier.com/hooks/catch/10485854/uxmyyc2/';
     try {
-      await fetch('https://hooks.zapier.com/hooks/catch/10485854/uxmyyc2/', {
+      await fetch(slackWebhookUrl, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
@@ -70,6 +75,7 @@ export async function POST(request: NextRequest) {
           phone,
           department,
           position,
+          annualRevenue: annualRevenue || '',
           question,
           timestamp,
           utm_source: utm_source || '',
