@@ -926,10 +926,15 @@ fbq('track', 'PageView');
             <input id="company" name="company" type="text" autocomplete="organization" required>
           </div>
         </div>
-        <div class="field">
-          <label for="biz">사업자 등록번호<span class="req">*</span></label>
-          <input id="biz" name="biz" type="text" inputmode="numeric" autocomplete="off"
-                 placeholder="000-00-00000" pattern="[0-9-]{10,12}" required>
+        <div class="field-row">
+          <div class="field">
+            <label for="department">부서명<span class="req">*</span></label>
+            <input id="department" name="department" type="text" autocomplete="organization-title" required>
+          </div>
+          <div class="field">
+            <label for="position">직급<span class="req">*</span></label>
+            <input id="position" name="position" type="text" autocomplete="organization-title" required>
+          </div>
         </div>
         <div class="field">
           <label for="email">이메일<span class="req">*</span></label>
@@ -1126,7 +1131,8 @@ fbq('track', 'PageView');
       source: LEAD_SOURCE,
       name: fd.get('name') || '',
       company: fd.get('company') || '',
-      biz: fd.get('biz') || '',
+      department: fd.get('department') || '',
+      position: fd.get('position') || '',
       email: fd.get('email') || '',
       phone: fd.get('phone') || '',
       msg: fd.get('msg') || '',

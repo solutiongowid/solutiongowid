@@ -8,11 +8,12 @@ export async function POST(request: NextRequest) {
 
     const name = trim(body.name);
     const company = trim(body.company);
-    const biz = trim(body.biz);
+    const department = trim(body.department);
+    const position = trim(body.position);
     const email = trim(body.email);
     const phone = trim(body.phone);
 
-    if (!name || !company || !biz || !email) {
+    if (!name || !company || !department || !position || !email) {
       return NextResponse.json(
         { error: '필수 항목을 모두 입력해주세요.' },
         { status: 400 }
@@ -28,7 +29,7 @@ export async function POST(request: NextRequest) {
     const fbclid = trim(body.fbclid);
 
     const notes = [
-      biz ? `사업자등록번호: ${biz}` : null,
+      department ? `부서: ${department}` : null,
       utm_content ? `utm_content: ${utm_content}` : null,
       utm_term ? `utm_term: ${utm_term}` : null,
       gclid ? `gclid: ${gclid}` : null,
@@ -47,8 +48,8 @@ export async function POST(request: NextRequest) {
         campaign_detail: utm_campaign || null,
         funnel_stage: 'new',
         lead_type: 'potential',
+        job_title: position,
         notes,
-        biz,
         source: trim(body.source) || 'card-api-landing',
         name,
         company,
