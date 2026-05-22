@@ -64,7 +64,7 @@ export async function POST(request: NextRequest) {
 
     // Zapier webhook — fire-and-forget, Supabase 성공 후 전송
     try {
-      await fetch('https://hooks.zapier.com/hooks/catch/10485854/4ofm5wk/', {
+      await fetch('https://hooks.zapier.com/hooks/catch/10485854/4of0cd3/', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
