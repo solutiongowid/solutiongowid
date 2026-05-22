@@ -1,12 +1,11 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { createClient } from '@supabase/supabase-js';
 
-const supabaseAdmin = createClient(
-  'https://hcaevdnfemmesbojgvim.supabase.co',
-  process.env.SUPABASE_SERVICE_ROLE_KEY!
-);
-
 export async function POST(request: NextRequest) {
+  const supabaseAdmin = createClient(
+    'https://hcaevdnfemmesbojgvim.supabase.co',
+    process.env.SUPABASE_SERVICE_ROLE_KEY!
+  );
   try {
     const body = await request.json();
     const { company_name, contact_name, email, utm_source, utm_medium, utm_campaign, utm_content, utm_term } = body;
