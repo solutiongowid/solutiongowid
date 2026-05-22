@@ -2595,6 +2595,26 @@ window.restart = restart;
   var modal = document.getElementById('lead-modal-bg');
   if (!modal) return;
   var continueFn = null;
+  function getUtmParams() {
+    var p = new URLSearchParams(window.location.search);
+    return {
+      utm_source: p.get('utm_source') || null,
+      utm_medium: p.get('utm_medium') || null,
+      utm_campaign: p.get('utm_campaign') || null,
+      utm_content: p.get('utm_content') || null,
+      utm_term: p.get('utm_term') || null,
+    };
+  }
+  function saveLeadToServer(corp, name, email) {
+    var utm = getUtmParams();
+    fetch('/api/kpi-lead', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ company_name: corp, contact_name: name, email: email,
+        utm_source: utm.utm_source, utm_medium: utm.utm_medium,
+        utm_campaign: utm.utm_campaign, utm_content: utm.utm_content, utm_term: utm.utm_term }),
+    }).catch(function(e) { console.error('lead save error:', e); });
+  }
   var btn = document.getElementById('lead-submit-btn');
   if (btn) {
     btn.onclick = function(){
@@ -2603,6 +2623,7 @@ window.restart = restart;
       var email = document.getElementById('lead-email').value.trim();
       if (!corp || !name || !email || email.indexOf('@') < 0) { alert('법인명·이름·이메일을 모두 입력해주세요'); return; }
       try { localStorage.setItem('gowid_lead', JSON.stringify({corp:corp, name:name, email:email, ts:Date.now()})); } catch(e){}
+      saveLeadToServer(corp, name, email);
       modal.classList.remove('show');
       if (continueFn) { var f = continueFn; continueFn = null; setTimeout(f, 50); }
     };
