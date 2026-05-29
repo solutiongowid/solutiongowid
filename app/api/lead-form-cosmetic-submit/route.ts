@@ -68,7 +68,7 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    fetch('https://hooks.zapier.com/hooks/catch/10485854/4ye7nyq/', {
+    await fetch('https://hooks.zapier.com/hooks/catch/10485854/4ye7nyq/', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
