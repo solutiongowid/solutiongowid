@@ -41,8 +41,7 @@ export default function TravelLeadFormPage() {
             <div className="lead-form-hero">
               <h1 className="report-h1">
                 <strong>
-                  성수기를 앞둔<br/>
-                  여행·OTA 기업을 위한<br/>
+                  여행·OTA 기업<br/>
                   현금흐름 리포트
                 </strong>
               </h1>
