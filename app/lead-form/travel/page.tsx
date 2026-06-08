@@ -47,7 +47,7 @@ export default function TravelLeadFormPage() {
               </h1>
               <div className="report-subtitle">
                 고위드 × 소스라이브<br/>
-                50개 여행 기업 25개월 결제 데이터 <br className="desktop-br"/>× 광고비–매출 구조 분석
+                매출 TOP 50 여행 기업 최근 2년 <br className="desktop-br"/>결제 데이터/광고비/매출 구조 분석
               </div>
 
               <div className="lead-form-cover-wrapper">
