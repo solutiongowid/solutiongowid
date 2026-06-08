@@ -219,6 +219,7 @@ export default function LeadForm({ utmParams }: LeadFormProps) {
             required
           >
             <option value="">선택해주세요</option>
+            <option value="10억 미만">10억 미만</option>
             <option value="10~50억">10~50억</option>
             <option value="50억~100억">50억~100억</option>
             <option value="100억~200억">100억~200억</option>
