@@ -12,6 +12,12 @@ const nextConfig = {
       },
     ];
   },
+  async redirects() {
+    return [
+      { source: '/cc-demo', destination: '/cc-demo/deck-marketer/index.html', permanent: false },
+      { source: '/cc-demo/', destination: '/cc-demo/deck-marketer/index.html', permanent: false },
+    ];
+  },
   async rewrites() {
     return [
       { source: '/card-data-api', destination: '/card-data-api/index.html' },
@@ -23,8 +29,6 @@ const nextConfig = {
       { source: '/cc-demo/anua/dashboard-2/', destination: '/cc-demo/anua/dashboard-2/index.html' },
       { source: '/seo-strategy', destination: '/api/serve-html/seo-strategy' },
       { source: '/seo-strategy/', destination: '/api/serve-html/seo-strategy' },
-      { source: '/cc-demo', destination: '/cc-demo/index.html' },
-      { source: '/cc-demo/', destination: '/cc-demo/index.html' },
       { source: '/cc-demo/deck-marketer/index.html', destination: '/api/serve-html/deck-marketer' },
       { source: '/anua-dashboard', destination: '/api/serve-html/anua-dashboard' },
       { source: '/anua-dashboard/', destination: '/api/serve-html/anua-dashboard' },
