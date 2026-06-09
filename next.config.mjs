@@ -24,6 +24,8 @@ const nextConfig = {
       { source: '/seo-strategy', destination: '/api/serve-html/seo-strategy' },
       { source: '/seo-strategy/', destination: '/api/serve-html/seo-strategy' },
       { source: '/cc-demo/deck-marketer/index.html', destination: '/api/serve-html/deck-marketer' },
+      { source: '/anua-dashboard', destination: '/api/serve-html/anua-dashboard' },
+      { source: '/anua-dashboard/', destination: '/api/serve-html/anua-dashboard' },
     ];
   },
 };
