@@ -21,8 +21,9 @@ const nextConfig = {
       { source: '/cosmetic/kakao-sync', destination: '/cosmetic/kakao-sync/index.html' },
       { source: '/cc-demo/anua/dashboard-2', destination: '/cc-demo/anua/dashboard-2/index.html' },
       { source: '/cc-demo/anua/dashboard-2/', destination: '/cc-demo/anua/dashboard-2/index.html' },
-      { source: '/seo-strategy', destination: '/seo-strategy/index.html' },
-      { source: '/seo-strategy/', destination: '/seo-strategy/index.html' },
+      { source: '/seo-strategy', destination: '/api/serve-html/seo-strategy' },
+      { source: '/seo-strategy/', destination: '/api/serve-html/seo-strategy' },
+      { source: '/cc-demo/deck-marketer/index.html', destination: '/api/serve-html/deck-marketer' },
     ];
   },
 };
