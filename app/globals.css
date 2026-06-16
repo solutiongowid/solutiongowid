@@ -1588,3 +1588,42 @@ html, body {
     width: 100%;
   }
 }
+
+/* ===== AGENCY REPORT (LG CNS × 고위드) — Red Color Overrides ===== */
+.agency-report .report-header {
+  background: linear-gradient(135deg, #FFF5F8 0%, #ffffff 100%);
+}
+.agency-report .report-section-feature {
+  background: #FFF0F5;
+}
+.agency-report .report-nav-button {
+  background: linear-gradient(135deg, #A50034 0%, #870029 100%);
+}
+.agency-report .report-nav-button:hover {
+  background: linear-gradient(135deg, #870029 0%, #6D0021 100%);
+  box-shadow: 0 4px 12px rgba(165, 0, 52, 0.3);
+}
+.agency-report .report-button-primary {
+  background: linear-gradient(135deg, #A50034 0%, #870029 100%);
+  box-shadow: 0 4px 20px rgba(165, 0, 52, 0.3);
+}
+.agency-report .report-button-primary:hover {
+  background: linear-gradient(135deg, #870029 0%, #6D0021 100%);
+  box-shadow: 0 6px 30px rgba(165, 0, 52, 0.4);
+}
+.agency-report .report-button-cta {
+  background: linear-gradient(135deg, #A50034 0%, #870029 100%);
+  box-shadow: 0 4px 20px rgba(165, 0, 52, 0.3);
+}
+.agency-report .report-button-cta:hover {
+  box-shadow: 0 6px 30px rgba(165, 0, 52, 0.4);
+}
+.agency-report .report-recommendation-digit {
+  background: #A50034;
+}
+.agency-report .carousel-indicator.active {
+  background: #A50034;
+}
+.agency-report .report-footer-link:hover {
+  color: #A50034;
+}
