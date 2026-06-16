@@ -7,7 +7,7 @@ const GOOGLE_FORM_URL = 'https://forms.gle/5xKYkD1oQPw7GAc79';
 
 export default function AgencyGowidLgcnsPage() {
   return (
-    <div className="report-page">
+    <div className="report-page agency-theme">
       {/* 네비게이션 */}
       <nav className="report-nav">
         <div className="report-container">
