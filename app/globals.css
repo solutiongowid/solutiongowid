@@ -46,3 +46,42 @@
 .agency-theme .report-footer-link:hover {
   color: #A50034;
 }
+
+/* ===== AGENCY THEME (LG CNS cherry red) ===== */
+.agency-theme .report-nav-button {
+  background: linear-gradient(135deg, #A50034 0%, #870029 100%);
+}
+.agency-theme .report-nav-button:hover {
+  background: linear-gradient(135deg, #870029 0%, #6D0021 100%);
+  box-shadow: 0 4px 12px rgba(165, 0, 52, 0.3);
+}
+.agency-theme .report-header {
+  background: linear-gradient(135deg, #FFF5F8 0%, #ffffff 100%);
+}
+.agency-theme .report-button-primary {
+  background: linear-gradient(135deg, #A50034 0%, #870029 100%);
+  box-shadow: 0 4px 20px rgba(165, 0, 52, 0.3);
+}
+.agency-theme .report-button-primary:hover {
+  background: linear-gradient(135deg, #870029 0%, #6D0021 100%);
+  box-shadow: 0 6px 30px rgba(165, 0, 52, 0.4);
+}
+.agency-theme .report-recommendation-digit {
+  background: #A50034;
+}
+.agency-theme .report-section-feature {
+  background: #FFF0F5;
+}
+.agency-theme .carousel-indicator.active {
+  background: #A50034;
+}
+.agency-theme .report-button-cta {
+  background: linear-gradient(135deg, #A50034 0%, #870029 100%);
+  box-shadow: 0 4px 20px rgba(165, 0, 52, 0.3);
+}
+.agency-theme .report-button-cta:hover {
+  box-shadow: 0 6px 30px rgba(165, 0, 52, 0.4);
+}
+.agency-theme .report-footer-link:hover {
+  color: #A50034;
+}
