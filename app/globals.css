@@ -1589,6 +1589,45 @@ html, body {
   }
 }
 
+/* ===== FnB REPORT (외식 프랜차이즈) — Orange Color Overrides ===== */
+.fnb-report .report-header {
+  background: linear-gradient(135deg, #FFF8F3 0%, #ffffff 100%);
+}
+.fnb-report .report-section-feature {
+  background: #FFF8F3;
+}
+.fnb-report .report-nav-button {
+  background: linear-gradient(135deg, #E07A3C 0%, #C4611E 100%);
+}
+.fnb-report .report-nav-button:hover {
+  background: linear-gradient(135deg, #C4611E 0%, #A34F18 100%);
+  box-shadow: 0 4px 12px rgba(224, 122, 60, 0.3);
+}
+.fnb-report .report-button-primary {
+  background: linear-gradient(135deg, #E07A3C 0%, #C4611E 100%);
+  box-shadow: 0 4px 20px rgba(224, 122, 60, 0.3);
+}
+.fnb-report .report-button-primary:hover {
+  background: linear-gradient(135deg, #C4611E 0%, #A34F18 100%);
+  box-shadow: 0 6px 30px rgba(224, 122, 60, 0.4);
+}
+.fnb-report .report-button-cta {
+  background: linear-gradient(135deg, #E07A3C 0%, #C4611E 100%);
+  box-shadow: 0 4px 20px rgba(224, 122, 60, 0.3);
+}
+.fnb-report .report-button-cta:hover {
+  box-shadow: 0 6px 30px rgba(224, 122, 60, 0.4);
+}
+.fnb-report .report-recommendation-digit {
+  background: #E07A3C;
+}
+.fnb-report .carousel-indicator.active {
+  background: #E07A3C;
+}
+.fnb-report .report-footer-link:hover {
+  color: #E07A3C;
+}
+
 /* ===== AGENCY REPORT (LG CNS × 고위드) — Red Color Overrides ===== */
 .agency-report .report-header {
   background: linear-gradient(135deg, #FFF5F8 0%, #ffffff 100%);
