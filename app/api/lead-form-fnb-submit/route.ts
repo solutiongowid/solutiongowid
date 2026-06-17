@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { supabaseAdmin } from '@/app/lib/supabase';
 
-const ZAPIER_FNB_HOOK_URL = 'https://hooks.zapier.com/hooks/catch/10485854/43eg5u7/';
+const ZAPIER_FNB_HOOK_URL = 'https://hooks.zapier.com/hooks/catch/10485854/43ec8bz/';
 
 export async function POST(request: NextRequest) {
   try {
