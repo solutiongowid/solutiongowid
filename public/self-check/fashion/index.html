@@ -441,7 +441,7 @@ function captureLead(){
   };
   var zapPayload=Object.assign({},leadsPayload,{corp_name:corp,job_rank:title,biggest_pressure_primary:ANS.pressure||null,matched_type:tk,matched_type_name:(TYPES[tk]||TYPES.sellout).name,runway:R?Math.round(R.realRunway*10)/10:null,revenue_range:ANS.stage?REV[ANS.stage]:null,operating_status:ANS.operating_status||null,inventory_form:ANS.inventory_form||null,primary_segment:ANS.channel||null,next_milestone_primary:ANS.next_milestone||null,page_url:location.href});
   fetch(SB_URL+'/rest/v1/leads',{method:'POST',headers:{'apikey':SB_ANON,'Authorization':'Bearer '+SB_ANON,'Content-Type':'application/json','Prefer':'return=minimal'},body:JSON.stringify(leadsPayload)}).catch(function(){});
-  fetch('https://hooks.zapier.com/hooks/catch/10485854/43j3mcu/',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(zapPayload)}).catch(function(){});
+  fetch('https://hooks.zapier.com/hooks/catch/10485854/43jxxli/',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(zapPayload)}).catch(function(){});
 }
 
 function go(step){ document.querySelectorAll('.step').forEach(function(s){s.classList.remove('on');}); document.getElementById('s'+step).classList.add('on'); document.querySelectorAll('.prog .pi').forEach(function(p){ p.classList.toggle('on', parseInt(p.dataset.pi,10)<=step); }); window.scrollTo({top:0,behavior:'smooth'}); }
