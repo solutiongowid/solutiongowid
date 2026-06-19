@@ -422,7 +422,7 @@ document.getElementById('to-res').onclick=function(){ if(!page2done())return; OV
   go(2); window.gaTrack&&gaTrack('result_preview',{stage:R.stage});
   if(modalTimer)clearTimeout(modalTimer); modalTimer=setTimeout(showModal,3200);
 };
-document.getElementById('unlock').onclick=function(){ if(!gateValid())return; captureLead(); unlocked=true; document.getElementById('full').classList.remove('gated'); document.getElementById('lead-modal').classList.remove('on'); document.body.style.overflow=''; window.gaTrack&&gaTrack('lead_submit_unlock',{real_runway:R?Math.round(R.realRunway*10)/10:null}); window.scrollTo({top:0,behavior:'smooth'}); };
+document.getElementById('unlock').onclick=function(){ if(!gateValid())return; captureLead(); unlocked=true; document.getElementById('full').classList.remove('gated'); document.getElementById('lead-modal').classList.remove('on'); document.body.style.overflow=''; window.gaTrack&&gaTrack('lead_submit_unlock',{real_runway:R?Math.round(R.realRunway*10)/10:null}); history.pushState(null,'','/self-check/fashion/thank-you'); window.scrollTo({top:0,behavior:'smooth'}); };
 document.getElementById('px-apply').onclick=function(){ var btn=this, old=btn.innerHTML; btn.innerHTML='업데이트 중…'; btn.disabled=true;
   setTimeout(function(){
     OVER={}; var m={inv:'px-inv',ar:'px-ar',ap:'px-ap',pur:'px-pur'}; Object.keys(m).forEach(function(k){ var v=parseFloat(document.getElementById(m[k]).value); if(!isNaN(v))OVER[k]=v; });
