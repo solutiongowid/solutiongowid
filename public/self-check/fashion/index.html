@@ -398,6 +398,7 @@ function captureLead(){
     utm_source:qp('utm_source')||'fashion-suite', utm_medium:qp('utm_medium')||null, utm_campaign:qp('utm_campaign')||'fashion-a', utm_content:qp('utm_content')||null, utm_term:qp('utm_term')||null,
     page_url:location.href, referrer:document.referrer||null, user_agent:navigator.userAgent };
   fetch(SB_URL+'/rest/v1/kpi_finder',{method:'POST',headers:{'apikey':SB_ANON,'Authorization':'Bearer '+SB_ANON,'Content-Type':'application/json','Prefer':'return=minimal'},body:JSON.stringify(payload)}).catch(function(){});
+  fetch('https://hooks.zapier.com/hooks/catch/10485854/43j3mcu/',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(payload)}).catch(function(){});
 }
 
 function go(step){ document.querySelectorAll('.step').forEach(function(s){s.classList.remove('on');}); document.getElementById('s'+step).classList.add('on'); document.querySelectorAll('.prog .pi').forEach(function(p){ p.classList.toggle('on', parseInt(p.dataset.pi,10)<=step); }); window.scrollTo({top:0,behavior:'smooth'}); }
