@@ -32,6 +32,8 @@ const nextConfig = {
       { source: '/cc-demo/deck-marketer/index.html', destination: '/api/serve-html/deck-marketer' },
       { source: '/anua-dashboard', destination: '/api/serve-html/anua-dashboard' },
       { source: '/anua-dashboard/', destination: '/api/serve-html/anua-dashboard' },
+      { source: '/self-check/fashion', destination: '/self-check/fashion/index.html' },
+      { source: '/self-check/fashion/', destination: '/self-check/fashion/index.html' },
     ];
   },
 };
