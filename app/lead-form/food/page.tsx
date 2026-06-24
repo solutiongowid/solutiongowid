@@ -41,8 +41,8 @@ export default function FoodLeadFormPage() {
             <div className="lead-form-hero">
               <h1 className="report-h1">
                 <strong>
-                  식품 브랜드를 위한<br/>
-                  재무 벤치마크 리포트 2026
+                  푸드 브랜드를 위한<br/>
+                  벤치마크 리포트 2026
                 </strong>
               </h1>
               <div className="report-subtitle">
