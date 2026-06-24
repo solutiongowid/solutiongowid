@@ -10,15 +10,16 @@ export async function POST(request: NextRequest) {
       department,
       position,
       annualRevenue,
+      attendanceType,
       email,
       phone,
       question,
       agreePrivacy,
-      timestamp,
       utm_source,
       utm_medium,
       utm_campaign,
       utm_content,
+      utm_term,
       webinar_type,
     } = body;
 
@@ -30,24 +31,27 @@ export async function POST(request: NextRequest) {
     }
 
     const { data, error } = await supabase
-      .from('corporate_card_webinar')
+      .from('leads')
       .insert([
         {
-          webinar_type: webinar_type || 'commerce',
-          name,
+          contact_name: name,
           company_name: companyName,
-          department,
-          position,
-          annual_revenue: annualRevenue || null,
+          job_name: department,
+          job_title: position,
+          description: annualRevenue || null,
+          campaign_detail: attendanceType || null,
           email,
-          phone,
-          question: question || null,
-          agree_privacy: agreePrivacy,
-          submitted_at: timestamp || new Date().toISOString(),
+          phone_number: phone,
+          message: question || null,
+          campaign: webinar_type || 'food-finance-live',
+          lead_source: 'webinar',
+          funnel_stage: 'new',
           utm_source: utm_source || null,
           utm_medium: utm_medium || null,
           utm_campaign: utm_campaign || null,
           utm_content: utm_content || null,
+          utm_term: utm_term || null,
+          created_at: new Date().toISOString(),
         },
       ])
       .select();

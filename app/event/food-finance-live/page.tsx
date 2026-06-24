@@ -81,6 +81,8 @@ export default function FoodFinanceLivePage() {
         email: formData.email,
         phone: formData.phone,
         question: formData.question,
+        agreePrivacy: formData.agreePrivacy,
+        webinar_type: 'food-finance-live',
         ...Object.fromEntries(Object.entries(utmParams).filter(([, v]) => v)),
       };
 
