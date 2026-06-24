@@ -460,21 +460,21 @@ export default function FoodFinanceLivePage() {
                 </select>
               </div>
               <div className="form-group">
-                <label htmlFor="attendanceType" className="form-label">온/오프라인 참석 선택 <span className="required">*</span></label>
-                <p style={{ fontSize: '0.8rem', color: '#888', lineHeight: '1.6', marginBottom: '0.625rem' }}>업계 핵심 관계자들과의 네트워킹 시간이 마련되어 있습니다. 최종 선정 여부는 제출해주신 연락처를 통해 안내드릴 예정입니다.</p>
-                <select id="attendanceType" name="attendanceType" value={formData.attendanceType} onChange={handleChange} className="form-input" required>
-                  <option value="">선택해주세요</option>
-                  <option value="오프라인">오프라인 참석 (추첨 확정)</option>
-                  <option value="온라인">온라인 참석</option>
-                </select>
-              </div>
-              <div className="form-group">
                 <label htmlFor="email" className="form-label">회사 이메일 <span className="required">*</span></label>
                 <input type="email" id="email" name="email" value={formData.email} onChange={handleChange} className="form-input" placeholder="contact@company.com" required />
               </div>
               <div className="form-group">
                 <label htmlFor="phone" className="form-label">전화번호 <span className="required">*</span></label>
                 <input type="tel" id="phone" name="phone" value={formData.phone} onChange={handleChange} className="form-input" placeholder="010-1234-5678" required />
+              </div>
+              <div className="form-group">
+                <label htmlFor="attendanceType" className="form-label">온/오프라인 참석 선택 <span className="required">*</span></label>
+                <p style={{ fontSize: '0.8rem', color: '#888', lineHeight: '1.6', marginBottom: '0.625rem' }}>업계 핵심 관계자들과의 네트워킹 시간이 마련되어 있습니다. 최종 선정 여부는 제출해주신 연락처를 통해 안내드릴 예정입니다.</p>
+                <select id="attendanceType" name="attendanceType" value={formData.attendanceType} onChange={handleChange} className="form-input" required>
+                  <option value="">선택해주세요</option>
+                  <option value="오프라인">오프라인 참석 (추첨)</option>
+                  <option value="온라인">온라인 참석</option>
+                </select>
               </div>
               <div className="form-group">
                 <label htmlFor="question" className="form-label">궁금하신 점을 편하게 남겨주세요!</label>
