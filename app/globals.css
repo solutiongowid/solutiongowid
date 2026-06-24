@@ -380,6 +380,10 @@ html, body {
   display: none;
 }
 
+.mobile-br {
+  display: none;
+}
+
 @media (max-width: 768px) {
   .report-h1 {
     font-size: 2.25rem;
@@ -396,6 +400,10 @@ html, body {
 
   .desktop-br {
     display: none;
+  }
+
+  .mobile-br {
+    display: block;
   }
 
   .webinar-logo-grid {

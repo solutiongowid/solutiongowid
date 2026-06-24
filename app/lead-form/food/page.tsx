@@ -47,7 +47,8 @@ export default function FoodLeadFormPage() {
               </h1>
               <div className="report-subtitle">
                 버는 돈, 남기는 돈, 쥐는 돈<br/>
-                식품 119개사 + D2C 38개사 2년 재무제표 직접 분석
+                식품 119개사 + D2C 38개사<br className="mobile-br" />
+              2년 재무제표 직접 분석
               </div>
 
               <div className="lead-form-cover-wrapper">
