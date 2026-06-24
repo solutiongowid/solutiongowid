@@ -67,6 +67,8 @@ export async function POST(request: NextRequest) {
     // Zapier Webhook 호출 (슬랙 알림용)
     const slackWebhookUrl = webinar_type === 'cosmetic'
       ? 'https://hooks.zapier.com/hooks/catch/10485854/4yfzlh9/'
+      : webinar_type === 'food-finance-live'
+      ? 'https://hooks.zapier.com/hooks/catch/10485854/42mpg30/'
       : 'https://hooks.zapier.com/hooks/catch/10485854/uxmyyc2/';
     try {
       await fetch(slackWebhookUrl, {
@@ -80,6 +82,7 @@ export async function POST(request: NextRequest) {
           department,
           position,
           annualRevenue: annualRevenue || '',
+          attendanceType: attendanceType || '',
           question,
           timestamp: new Date().toISOString(),
           utm_source: utm_source || '',
