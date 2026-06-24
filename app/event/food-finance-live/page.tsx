@@ -84,7 +84,7 @@ export default function FoodFinanceLivePage() {
         ...Object.fromEntries(Object.entries(utmParams).filter(([, v]) => v)),
       };
 
-      const response = await fetch('https://resource-center-three.vercel.app/resource/api/event/register', {
+      const response = await fetch('/api/corporate-card-webinar-submit', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(submitData),
@@ -92,7 +92,7 @@ export default function FoodFinanceLivePage() {
       const data = await response.json();
       if (!response.ok) throw new Error(data.error || '제출에 실패했습니다.');
 
-      window.location.href = 'https://resource-center-three.vercel.app/resource/event/food-finance-live/thank-you';
+      window.location.href = '/event/food-finance-live/thank-you';
     } catch (error) {
       setSubmitError(error instanceof Error ? error.message : '제출 중 오류가 발생했습니다.');
     } finally {
