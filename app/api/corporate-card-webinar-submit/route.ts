@@ -89,6 +89,7 @@ export async function POST(request: NextRequest) {
           utm_medium: utm_medium || '',
           utm_campaign: utm_campaign || '',
           utm_content: utm_content || '',
+          utm_term: utm_term || '',
           webinar: `corporate-card-webinar-${webinar_type || 'commerce'}`,
         }),
       });
