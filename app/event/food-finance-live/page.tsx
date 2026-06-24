@@ -2,13 +2,11 @@
 
 import { useState, useEffect, FormEvent } from 'react';
 import Image from 'next/image';
-import { useRouter } from 'next/navigation';
 
 export default function FoodFinanceLivePage() {
-  const router = useRouter();
   const [openFaq, setOpenFaq] = useState<number | null>(0);
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [utmParams, setUtmParams] = useState({ utm_source: '', utm_medium: '', utm_campaign: '', utm_content: '' });
+  const [utmParams, setUtmParams] = useState({ utm_source: '', utm_medium: '', utm_campaign: '', utm_content: '', utm_term: '' });
 
   useEffect(() => {
     const params = new URLSearchParams(window.location.search);
@@ -17,6 +15,7 @@ export default function FoodFinanceLivePage() {
       utm_medium: params.get('utm_medium') || '',
       utm_campaign: params.get('utm_campaign') || '',
       utm_content: params.get('utm_content') || '',
+      utm_term: params.get('utm_term') || '',
     });
   }, []);
 
@@ -26,10 +25,10 @@ export default function FoodFinanceLivePage() {
     department: '',
     position: '',
     annualRevenue: '',
+    attendanceType: '',
     email: '',
     phone: '',
     question: '',
-    serviceInterest: [] as string[],
     agreePrivacy: false,
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -64,6 +63,7 @@ export default function FoodFinanceLivePage() {
     if (!formData.department.trim()) { setSubmitError('부서를 입력해주세요.'); return; }
     if (!formData.position.trim()) { setSubmitError('직급을 입력해주세요.'); return; }
     if (!formData.annualRevenue) { setSubmitError('연매출을 선택해주세요.'); return; }
+    if (!formData.attendanceType) { setSubmitError('온/오프라인 참석 방식을 선택해주세요.'); return; }
     if (!formData.email.trim()) { setSubmitError('회사 이메일을 입력해주세요.'); return; }
     if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email)) { setSubmitError('올바른 이메일 형식을 입력해주세요.'); return; }
     if (!formData.phone.trim()) { setSubmitError('전화번호를 입력해주세요.'); return; }
@@ -71,19 +71,28 @@ export default function FoodFinanceLivePage() {
 
     setIsSubmitting(true);
     try {
-      const now = new Date();
-      const kstTime = new Date(now.getTime() + (9 * 60 * 60 * 1000));
-      const formattedTimestamp = kstTime.toISOString().replace('T', ' ').substring(0, 19) + ' (KST)';
+      const submitData = {
+        name: formData.name,
+        companyName: formData.companyName,
+        department: formData.department,
+        position: formData.position,
+        annualRevenue: formData.annualRevenue,
+        attendanceType: formData.attendanceType,
+        email: formData.email,
+        phone: formData.phone,
+        question: formData.question,
+        ...Object.fromEntries(Object.entries(utmParams).filter(([, v]) => v)),
+      };
 
-      const response = await fetch('/api/corporate-card-webinar-submit', {
+      const response = await fetch('https://resource-center-three.vercel.app/resource/api/event/register', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ ...formData, webinar_type: 'food-finance-live', timestamp: formattedTimestamp, ...utmParams }),
+        body: JSON.stringify(submitData),
       });
       const data = await response.json();
       if (!response.ok) throw new Error(data.error || '제출에 실패했습니다.');
 
-      router.push('/event/food-finance-live/thank-you');
+      window.location.href = 'https://resource-center-three.vercel.app/resource/event/food-finance-live/thank-you';
     } catch (error) {
       setSubmitError(error instanceof Error ? error.message : '제출 중 오류가 발생했습니다.');
     } finally {
@@ -106,9 +115,6 @@ export default function FoodFinanceLivePage() {
                 <Image src="/gowid-logotype.png" alt="GOWID" width={84} height={28} priority style={{ objectFit: 'contain' }} />
               </a>
               <div style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
-                <span className="nav-date-text" style={{ fontSize: '0.8125rem', color: '#888', whiteSpace: 'nowrap' }}>
-                  2026년 7월 7일 (화) · 온라인 라이브 + 현장
-                </span>
                 <button
                   className="report-nav-button"
                   onClick={openModal}
@@ -127,7 +133,7 @@ export default function FoodFinanceLivePage() {
             <div style={{ maxWidth: '800px', margin: '0 auto', textAlign: 'center' }}>
               <div style={{ marginBottom: '1.5rem' }}>
                 <span className="badge" style={{ fontSize: '0.875rem', padding: '0.5rem 1.25rem', background: accentLight, color: accentColor, border: `1px solid ${accentBorder}` }}>
-                  7월 7일 (화) 오후 7시 | 온라인 라이브 + 현장
+                  7월 8일 (수) 오후 7시 | 강남구 도산대로 317 호림아트센터 14층
                 </span>
               </div>
               <h1 className="report-h1" style={{ textAlign: 'center', marginBottom: '1.5rem', color: '#111' }}>
@@ -218,31 +224,6 @@ export default function FoodFinanceLivePage() {
               >
                 무료 라이브세션 신청하기
               </button>
-            </div>
-          </div>
-        </section>
-
-        {/* 연사 소개 */}
-        <section className="report-section" style={{ background: '#fff8f4' }}>
-          <div className="report-container">
-            <div style={{ maxWidth: '800px', margin: '0 auto' }}>
-              <h2 className="report-h2" style={{ textAlign: 'center', marginBottom: '2.5rem', color: '#111' }}>연사 소개</h2>
-              <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: '1.25rem' }}>
-                {[
-                  { name: '고위드', role: '', desc: '커머스 기업 전용 법인카드·자금운영 솔루션. 푸드 48개사 재무 데이터 분석 + 푸드 브랜드 1,000곳 인터뷰.' },
-                  { name: '문미성', role: '고위드', desc: '푸드 브랜드 1,000곳 인터뷰' },
-                  { name: '김병권', role: '고위드 BD', desc: '48개사 재무 데이터 분석' },
-                ].map((s, i) => (
-                  <div key={i} style={{ background: '#fff', border: `1px solid ${accentBorder}`, borderRadius: '1rem', padding: '1.75rem 1.5rem' }}>
-                    <div style={{ width: '3rem', height: '3rem', background: accentLight, border: `1px solid ${accentBorder}`, borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: '1rem', fontSize: '1.25rem', fontWeight: '700', color: accentColor }}>
-                      {s.name[0]}
-                    </div>
-                    <h4 style={{ fontSize: '1.0625rem', fontWeight: '700', color: '#111', marginBottom: '0.25rem' }}>{s.name}</h4>
-                    {s.role && <p style={{ fontSize: '0.875rem', color: '#888', marginBottom: '0.75rem' }}>{s.role}</p>}
-                    <p style={{ fontSize: '0.9375rem', color: '#555', lineHeight: '1.6', margin: 0 }}>{s.desc}</p>
-                  </div>
-                ))}
-              </div>
             </div>
           </div>
         </section>
@@ -437,9 +418,16 @@ export default function FoodFinanceLivePage() {
             <button className="modal-close" onClick={closeModal} aria-label="닫기">✕</button>
             <div className="modal-header">
               <h2 className="modal-title">무료 라이브세션 신청</h2>
-              <p className="modal-description">7월 7일(화) 오후 7시 | 푸드 브랜드 — 버는 돈, 남기는 돈, 쥐는 돈</p>
+              <p className="modal-description">7월 8일(수) 오후 7시 | 강남구 도산대로 317 호림아트센터 14층</p>
             </div>
             <form onSubmit={handleSubmit} className="modal-form">
+              <div style={{ background: '#fff8f4', border: `1px solid ${accentBorder}`, borderRadius: '0.75rem', padding: '1.25rem 1.5rem', marginBottom: '1.75rem', fontSize: '0.9rem', color: '#444', lineHeight: '1.7' }}>
+                <p style={{ margin: '0 0 0.75rem' }}>안녕하세요,<br /><strong>푸드 브랜드 — 버는 돈, 남기는 돈, 쥐는 돈</strong><br />라이브세션에 관심을 가져주셔서 진심으로 감사드립니다.</p>
+                <p style={{ margin: '0 0 0.75rem' }}>본 행사는<br /><strong>푸드 브랜드 대표, 재무 운영 담당, 멀티채널 운영 담당자</strong> 분들을 위한 자리입니다.</p>
+                <p style={{ margin: '0 0 0.75rem' }}>🚀 장소 제약으로 인해 오프라인 참석은 신청 후 별도 추첨을 통해 확정됩니다.</p>
+                <p style={{ margin: '0 0 0.75rem', fontSize: '0.8rem', color: '#888' }}>*오프라인 신청 후 추첨에서 확정되지 않으실 경우 자동으로 온라인 참석으로 안내드립니다.</p>
+                <p style={{ margin: 0, fontSize: '0.875rem', fontWeight: '600', color: accentColor }}>🎁 참가신청자 전원 세미나 자료 제공</p>
+              </div>
               {submitError && <div className="form-error">{submitError}</div>}
               <div className="form-group">
                 <label htmlFor="name" className="form-label">이름 <span className="required">*</span></label>
@@ -467,6 +455,15 @@ export default function FoodFinanceLivePage() {
                   <option value="50억 ~ 100억">50억 ~ 100억</option>
                   <option value="100억 ~ 300억">100억 ~ 300억</option>
                   <option value="300억 이상">300억 이상</option>
+                </select>
+              </div>
+              <div className="form-group">
+                <label htmlFor="attendanceType" className="form-label">온/오프라인 참석 선택 <span className="required">*</span></label>
+                <p style={{ fontSize: '0.8rem', color: '#888', lineHeight: '1.6', marginBottom: '0.625rem' }}>업계 핵심 관계자들과의 네트워킹 시간이 마련되어 있습니다. 최종 선정 여부는 제출해주신 연락처를 통해 안내드릴 예정입니다.</p>
+                <select id="attendanceType" name="attendanceType" value={formData.attendanceType} onChange={handleChange} className="form-input" required>
+                  <option value="">선택해주세요</option>
+                  <option value="오프라인">오프라인 참석 (추첨 확정)</option>
+                  <option value="온라인">온라인 참석</option>
                 </select>
               </div>
               <div className="form-group">
