@@ -47,7 +47,7 @@ export default function FoodLeadFormPage() {
               </h1>
               <div className="report-subtitle">
                 버는 돈, 남기는 돈, 쥐는 돈<br/>
-                식품 119개사 + D2C 38개사 양년 재무제표 직접 분석
+                식품 119개사 + D2C 38개사 2년 재무제표 직접 분석
               </div>
 
               <div className="lead-form-cover-wrapper">
@@ -64,7 +64,7 @@ export default function FoodLeadFormPage() {
               <ul className="lead-form-bullets">
                 <li>
                   <span className="lead-form-bullet-check" style={{ background: '#FF6B35' }}>✓</span>
-                  <span>식품 119개사·D2C 38개사 재무제표 직접 분석 (매출·GP·OP·현금 네 칸)</span>
+                  <span>식품 119개사·D2C 38개사 2년 재무제표 직접 분석</span>
                 </li>
                 <li>
                   <span className="lead-form-bullet-check" style={{ background: '#FF6B35' }}>✓</span>
