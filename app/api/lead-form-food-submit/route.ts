@@ -38,7 +38,6 @@ export async function POST(request: NextRequest) {
     const notes = [
       department ? `부서: ${department}` : null,
       annualRevenue ? `연매출: ${annualRevenue}` : null,
-      utm_content ? `utm_content: ${utm_content}` : null,
     ].filter(Boolean).join(' | ') || null;
 
     const { error: supabaseError } = await supabaseAdmin
@@ -57,6 +56,10 @@ export async function POST(request: NextRequest) {
           funnel_stage: 'new',
           lead_type: 'potential',
           notes,
+          utm_source: utm_source || null,
+          utm_medium: utm_medium || null,
+          utm_campaign: utm_campaign || null,
+          utm_content: utm_content || null,
         },
       ]);
 
@@ -68,26 +71,25 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    // TODO: Zapier 웹훅 URL 추가 필요
-    // await fetch('https://hooks.zapier.com/hooks/catch/.../', {
-    //   method: 'POST',
-    //   headers: { 'Content-Type': 'application/json' },
-    //   body: JSON.stringify({
-    //     company_name: companyName,
-    //     name,
-    //     position,
-    //     department,
-    //     email,
-    //     phone,
-    //     annual_revenue: annualRevenue,
-    //     utm_source: utm_source || '',
-    //     utm_medium: utm_medium || '',
-    //     utm_campaign: utm_campaign || '',
-    //     utm_content: utm_content || '',
-    //     landing_page: 'lead-form-food',
-    //     timestamp,
-    //   }),
-    // }).catch((err) => console.error('Zapier webhook error:', err));
+    await fetch('https://hooks.zapier.com/hooks/catch/10485854/421dphf/', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        company_name: companyName,
+        name,
+        position,
+        department,
+        email,
+        phone,
+        annual_revenue: annualRevenue,
+        utm_source: utm_source || '',
+        utm_medium: utm_medium || '',
+        utm_campaign: utm_campaign || '',
+        utm_content: utm_content || '',
+        landing_page: 'lead-form-food',
+        timestamp,
+      }),
+    }).catch((err) => console.error('Zapier webhook error:', err));
 
     return NextResponse.json({
       success: true,
