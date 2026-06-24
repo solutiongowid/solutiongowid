@@ -86,7 +86,7 @@ export default function FoodFinanceLivePage() {
         ...Object.fromEntries(Object.entries(utmParams).filter(([, v]) => v)),
       };
 
-      const response = await fetch('/api/corporate-card-webinar-submit', {
+      const response = await fetch('/api/food-finance-live-submit', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(submitData),

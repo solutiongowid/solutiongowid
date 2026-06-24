@@ -10,16 +10,16 @@ export async function POST(request: NextRequest) {
       department,
       position,
       annualRevenue,
+      attendanceType,
       email,
       phone,
       question,
       agreePrivacy,
-      timestamp,
       utm_source,
       utm_medium,
       utm_campaign,
       utm_content,
-      webinar_type,
+      utm_term,
     } = body;
 
     if (!name || !companyName || !department || !position || !email || !phone || !agreePrivacy) {
@@ -30,24 +30,27 @@ export async function POST(request: NextRequest) {
     }
 
     const { data, error } = await supabase
-      .from('corporate_card_webinar')
+      .from('leads')
       .insert([
         {
-          webinar_type: webinar_type || 'commerce',
-          name,
+          contact_name: name,
           company_name: companyName,
-          department,
-          position,
-          annual_revenue: annualRevenue || null,
+          job_name: department,
+          job_title: position,
+          description: annualRevenue || null,
+          campaign_detail: attendanceType || null,
           email,
-          phone,
-          question: question || null,
-          agree_privacy: agreePrivacy,
-          submitted_at: timestamp || new Date().toISOString(),
+          phone_number: phone,
+          message: question || null,
+          campaign: 'food-finance-live',
+          lead_source: 'webinar',
+          funnel_stage: 'new',
           utm_source: utm_source || null,
           utm_medium: utm_medium || null,
           utm_campaign: utm_campaign || null,
           utm_content: utm_content || null,
+          utm_term: utm_term || null,
+          created_at: new Date().toISOString(),
         },
       ])
       .select();
@@ -60,12 +63,9 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    // Zapier Webhook 호출 (슬랙 알림용)
-    const slackWebhookUrl = webinar_type === 'cosmetic'
-      ? 'https://hooks.zapier.com/hooks/catch/10485854/4yfzlh9/'
-      : 'https://hooks.zapier.com/hooks/catch/10485854/uxmyyc2/';
+    // Zapier Webhook (슬랙 알림)
     try {
-      await fetch(slackWebhookUrl, {
+      await fetch('https://hooks.zapier.com/hooks/catch/10485854/42mpg30/', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
@@ -76,43 +76,27 @@ export async function POST(request: NextRequest) {
           department,
           position,
           annualRevenue: annualRevenue || '',
+          attendanceType: attendanceType || '',
           question,
-          timestamp,
+          timestamp: new Date().toISOString(),
           utm_source: utm_source || '',
           utm_medium: utm_medium || '',
           utm_campaign: utm_campaign || '',
           utm_content: utm_content || '',
-          webinar: `corporate-card-webinar-${webinar_type || 'commerce'}`,
+          utm_term: utm_term || '',
         }),
       });
     } catch (err) {
       console.error('Zapier webhook error:', err);
     }
 
-    // Zapier Webhook 호출 (Zoom 링크 메일 발송 + 구글 캘린더 등록용)
-    try {
-      await fetch('https://hooks.zapier.com/hooks/catch/10485854/unlpond/', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          name,
-          email,
-          companyName,
-          phone,
-          webinar: `corporate-card-webinar-${webinar_type || 'commerce'}`,
-        }),
-      });
-    } catch (err) {
-      console.error('Zapier zoom/calendar webhook error:', err);
-    }
-
     return NextResponse.json({
       success: true,
-      message: '웨비나 신청이 완료되었습니다.',
+      message: '신청이 완료되었습니다.',
       data,
     });
   } catch (error) {
-    console.error('Error in corporate-card-webinar-submit API:', error);
+    console.error('Error in food-finance-live-submit API:', error);
     return NextResponse.json(
       { error: '서버 오류가 발생했습니다.' },
       { status: 500 }
