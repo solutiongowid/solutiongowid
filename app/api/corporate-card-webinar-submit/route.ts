@@ -81,7 +81,7 @@ export async function POST(request: NextRequest) {
           position,
           annualRevenue: annualRevenue || '',
           question,
-          timestamp,
+          timestamp: new Date().toISOString(),
           utm_source: utm_source || '',
           utm_medium: utm_medium || '',
           utm_campaign: utm_campaign || '',
