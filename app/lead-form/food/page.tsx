@@ -72,7 +72,7 @@ export default function FoodLeadFormPage() {
                 </li>
                 <li>
                   <span className="lead-form-bullet-check" style={{ background: '#FF6B35' }}>✓</span>
-                  <span>번영한 17곳이 다르게 한 것 — 마진 → 성장 → 재고 순서의 실증 데이터</span>
+                  <span>성장한 17곳이 다르게 한 것 — 마진 → 성장 → 재고 순서의 실제 데이터</span>
                 </li>
               </ul>
             </div>
