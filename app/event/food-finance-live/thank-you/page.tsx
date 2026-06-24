@@ -25,7 +25,7 @@ export default function FoodFinanceLiveThankYouPage() {
         <p style={{ fontSize: '1rem', color: '#222', fontWeight: '700', marginBottom: '0.25rem' }}>
           푸드 브랜드 — 버는 돈, 남기는 돈, 쥐는 돈
         </p>
-        <p style={{ fontSize: '0.9375rem', color: '#555' }}>2026년 7월 7일 (화) 오후 7시</p>
+        <p style={{ fontSize: '0.9375rem', color: '#555' }}>2026년 7월 8일 (수) 오후 7시</p>
         <p style={{ fontSize: '0.9375rem', color: '#555' }}>온라인 라이브 + 현장</p>
       </div>
       <a
