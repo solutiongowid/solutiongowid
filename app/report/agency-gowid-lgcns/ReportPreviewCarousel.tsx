@@ -4,10 +4,10 @@ import { useState, useEffect, useRef } from 'react';
 import Image from 'next/image';
 
 const previewImages = [
-  { src: '/agency_slide_04.png', alt: 'AX 밀도 경영 리포트 - 슬라이드 4' },
-  { src: '/agency_slide_06.png', alt: 'AX 밀도 경영 리포트 - 슬라이드 6' },
-  { src: '/agency_slide_17.png', alt: 'AX 밀도 경영 리포트 - 슬라이드 17' },
-  { src: '/agency_slide_18.png', alt: 'AX 밀도 경영 리포트 - 슬라이드 18' },
+  { src: '/agency-lgcns-slide-04.png', alt: 'AX 밀도 경영 리포트 - 슬라이드 4' },
+  { src: '/agency-lgcns-slide-06.png', alt: 'AX 밀도 경영 리포트 - 슬라이드 6' },
+  { src: '/agency-lgcns-slide-17.png', alt: 'AX 밀도 경영 리포트 - 슬라이드 17' },
+  { src: '/agency-lgcns-slide-18.png', alt: 'AX 밀도 경영 리포트 - 슬라이드 18' },
 ];
 
 export default function ReportPreviewCarousel() {
@@ -80,13 +80,7 @@ export default function ReportPreviewCarousel() {
         aria-label="이전 페이지"
       >
         <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
-          <path
-            d="M15 18L9 12L15 6"
-            stroke="currentColor"
-            strokeWidth="2"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-          />
+          <path d="M15 18L9 12L15 6" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
         </svg>
       </button>
 
@@ -96,13 +90,7 @@ export default function ReportPreviewCarousel() {
         aria-label="다음 페이지"
       >
         <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
-          <path
-            d="M9 18L15 12L9 6"
-            stroke="currentColor"
-            strokeWidth="2"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-          />
+          <path d="M9 18L15 12L9 6" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
         </svg>
       </button>
 

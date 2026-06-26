@@ -1,0 +1,1245 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<script>document.documentElement.classList.add('js');</script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>루스프로덕트 — GOWID</title>
+<style>
+  @import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css');
+
+  /* ══════════════════════════════════════
+     LAYOUT SYSTEM
+     Grid: 960px, 12col, gutter 24px
+     Base unit: 8px
+     Section gap: 96px
+     Element gap: 32px
+     ──────────────────────────────────────
+     TYPO SCALE
+     display:  40px / 1.25
+     h2:       26px / 1.35
+     stat:     56px / 1.1
+     lead:     20px / 1.65
+     body:     16px / 1.65
+     card:     15~16px / 1.55
+     label:    13px / 1.4
+     caption:  12px / 1.4
+  ══════════════════════════════════════ */
+
+  :root {
+    --bg: #0C0E11;
+    --bg-card: #13161C;
+    --bg-accent: #191D26;
+    --text: #E4E2DD;
+    --text-sub: #9B9A95;
+    --text-dim: #636260;
+    --teal: #2DD4BF;
+    --green: #00B96B;
+    --teal-bg: #0F2B27;
+    --line: #232830;
+    --red: #D97070;
+    --side: 230px;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { font-size: 16px; scroll-behavior: smooth; }
+  .sec, .letter { scroll-margin-top: 32px; }
+
+  /* ── 좌측 고정 사이드바 (제안서 네비) ── */
+  .side {
+    position: fixed; top: 0; left: 0; width: var(--side); height: 100vh;
+    background: var(--bg-card); border-right: 1px solid var(--line);
+    padding: 28px 16px; display: flex; flex-direction: column; gap: 2px;
+    overflow-y: auto; z-index: 40;
+  }
+  .side .brand { display: flex; align-items: center; gap: 9px; padding: 0 10px; margin-bottom: 6px; }
+  .side .brand .dot { width: 9px; height: 9px; border-radius: 50%; background: var(--teal); flex: none; box-shadow: 0 0 10px rgba(45,212,191,.6); }
+  .side .brand b { font-size: 15px; font-weight: 800; color: var(--text); letter-spacing: 3px; text-transform: lowercase; }
+  .side .sub { padding: 0 10px; margin-bottom: 20px; font-size: 11px; color: var(--text-dim); line-height: 1.55; }
+  .side a.nav { display: flex; align-items: center; gap: 10px; padding: 9px 10px; border-radius: 8px;
+    color: var(--text-sub); text-decoration: none; font-size: 12.5px; font-weight: 500; transition: background .12s, color .12s; }
+  .side a.nav .n { width: 20px; height: 20px; border-radius: 6px; background: var(--bg-accent);
+    display: flex; align-items: center; justify-content: center; font-size: 10.5px; font-weight: 700; color: var(--text-dim); flex: none; }
+  .side a.nav:hover { background: rgba(255,255,255,.03); color: var(--text); }
+  .side a.nav.on { background: rgba(45,212,191,.1); color: var(--teal); font-weight: 700; }
+  .side a.nav.on .n { background: var(--teal); color: var(--bg); }
+  .side .sdiv { border-top: 1px solid var(--line); margin: 12px 4px; }
+  .side .foot { margin-top: auto; font-size: 10px; color: var(--text-dim); padding: 12px 10px 0; line-height: 1.6; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, sans-serif;
+    font-weight: 300;
+    line-height: 1.65;
+    letter-spacing: -0.01em;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  body::before {
+    content: ''; position: fixed; inset: 0;
+    background:
+      radial-gradient(ellipse 130% 90% at 10% 0%, rgba(45,212,191,0.045) 0%, transparent 50%),
+      radial-gradient(ellipse 100% 70% at 90% 100%, rgba(0,185,107,0.035) 0%, transparent 45%);
+    pointer-events: none; z-index: 0;
+  }
+  body::after {
+    content: ''; position: fixed; inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+    background-repeat: repeat; background-size: 200px;
+    pointer-events: none; z-index: 1;
+  }
+
+  .wrap {
+    max-width: 1280px;
+    margin: 0 auto 0 var(--side);
+    padding: 64px 80px 128px;
+    position: relative; z-index: 2;
+  }
+
+  .w { color: var(--text); font-weight: 400; }
+  .t { color: var(--teal); font-weight: 500; }
+  .sep { border: none; border-top: 1px solid var(--line); margin: 96px 0; }
+
+  /* ── 레터헤드 ── */
+  .letterhead {
+    padding: 48px 0 0;
+    margin-bottom: 64px;
+  }
+  .lh-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 48px;
+    margin-bottom: 32px;
+  }
+  .lh-corp {
+    font-size: 64px;
+    font-weight: 700;
+    color: var(--text);
+    line-height: 1.05;
+    letter-spacing: -0.03em;
+    margin-bottom: 0;
+  }
+  .doc-title {
+    font-size: 64px;
+    font-weight: 700;
+    line-height: 1.05;
+    color: var(--text);
+    letter-spacing: -0.02em;
+    margin: 0;
+  }
+  .lh-mid {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+  }
+  .lh-right {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+  .lh-info {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    margin-bottom: 24px;
+  }
+  .lh-info-row {
+    display: flex;
+    gap: 16px;
+    align-items: baseline;
+    font-size: 14px;
+    color: var(--text-sub);
+    line-height: 1.5;
+  }
+  .lh-label {
+    font-size: 11px;
+    font-weight: 700;
+    color: var(--text-dim);
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    flex-shrink: 0;
+    min-width: 56px;
+  }
+  .lh-value {
+    font-size: 14px;
+    color: var(--text-sub);
+  }
+  .lh-desc {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+  }
+  .lh-desc-col .lh-label {
+    display: block;
+    margin-bottom: 4px;
+    font-size: 12px;
+    color: var(--text-dim);
+  }
+  .lh-desc-col p {
+    font-size: 13px;
+    color: var(--text-dim);
+    line-height: 1.55;
+    margin: 0;
+    max-width: none;
+    letter-spacing: -0.01em;
+  }
+  .lh-side {
+    font-size: 13px;
+    color: var(--text-dim);
+    line-height: 1.55;
+  }
+  .lh-side .lh-label {
+    font-size: 12px;
+    color: var(--text-dim);
+    margin-bottom: 4px;
+  }
+  .lh-divider {
+    height: 3px;
+    background: var(--text);
+    margin-bottom: 64px;
+  }
+
+  /* ── 인트로 ── */
+  .letter {
+    font-size: 30px;
+    font-weight: 300;
+    color: var(--text);
+    line-height: 1.55;
+    letter-spacing: -0.02em;
+    padding: 64px 0 0;
+    margin-bottom: 96px;
+    text-align: justify;
+  }
+  .letter strong {
+    font-weight: 900;
+    letter-spacing: -0.02em;
+  }
+
+  /* ── 관계 정립: 2컬럼 ── */
+  .identity {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 64px;
+    padding-bottom: 64px;
+    border-bottom: 1px solid var(--line);
+    margin-bottom: 96px;
+  }
+  .identity p {
+    font-size: 16px; color: var(--text-sub);
+    line-height: 1.65; margin: 0 0 16px;
+  }
+  .identity p:last-child { margin-bottom: 0; }
+
+  /* ── 목차 ── */
+  .toc { margin-bottom: 96px; }
+  .toc-label {
+    font-size: 13px; font-weight: 700;
+    color: var(--teal); letter-spacing: 3px;
+    margin-bottom: 32px; text-transform: uppercase;
+  }
+  .toc-row {
+    display: grid;
+    grid-template-columns: 48px 1fr;
+    border-bottom: 1px solid var(--line);
+  }
+  .toc-row:last-child { border-bottom: none; }
+  .toc-num { font-size: 15px; font-weight: 700; color: var(--teal); padding: 20px 0; }
+  .toc-text { font-size: 17px; font-weight: 400; color: var(--text); line-height: 1.5; padding: 20px 0; letter-spacing: -0.01em; }
+
+  /* ── 섹션: 좌 헤드 + 우 본문 ── */
+  .sec {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    gap: 64px;
+    margin-bottom: 96px;
+  }
+  .stat-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 48px 48px;
+    margin-top: 8px;
+  }
+  .stat-cell {
+    padding: 0;
+  }
+  .stat-number {
+    font-size: 44px;
+    font-weight: 700;
+    color: var(--text);
+    line-height: 1.1;
+    letter-spacing: -0.03em;
+    margin-bottom: 12px;
+  }
+  .stat-label {
+    font-size: 14px;
+    color: var(--text-dim);
+    line-height: 1.5;
+  }
+  .stat-desc {
+    font-size: 16px;
+    color: var(--text-sub);
+    line-height: 1.65;
+    letter-spacing: -0.01em;
+  }
+
+  /* ── 생애주기 그래프 ── */
+  .lc-chart { margin: 32px 0 48px; }
+  .lc-row { display: flex; align-items: stretch; margin-bottom: 2px; }
+  .lc-label { width: 80px; font-size: 12px; color: var(--text-dim); display: flex; align-items: center; flex-shrink: 0; }
+  .lc-bars { display: flex; flex: 1; gap: 2px; }
+  .lc-bar {
+    display: flex; flex-direction: column; justify-content: center; align-items: center;
+    padding: 14px 8px; border-radius: 3px; min-width: 0;
+    background: var(--bg-accent); transition: background 0.15s;
+  }
+  .lc-bar .lc-val { font-size: 18px; font-weight: 700; color: var(--text); line-height: 1.2; letter-spacing: -0.02em; }
+  .lc-bar .lc-sub { font-size: 11px; color: var(--text-dim); margin-top: 4px; text-align: center; line-height: 1.3; }
+  .lc-bar.here { background: rgba(45,212,191,0.1); }
+  .lc-bar.here .lc-val { color: var(--teal); }
+  .lc-bar.here .lc-sub { color: var(--teal); opacity: 0.7; }
+
+  /* 구간 헤더 */
+  .lc-header { display: flex; margin-bottom: 8px; }
+  .lc-header-spacer { width: 80px; flex-shrink: 0; }
+  .lc-header-bars { display: flex; flex: 1; gap: 2px; }
+  .lc-header-bar {
+    display: flex; flex-direction: column; align-items: center; justify-content: flex-end;
+    padding: 0 8px 8px; border-bottom: 2px solid var(--line);
+  }
+  .lc-header-bar.here { border-bottom-color: var(--teal); }
+  .lc-header-bar .lc-stage { font-size: 13px; font-weight: 700; color: var(--text-dim); }
+  .lc-header-bar.here .lc-stage { color: var(--teal); }
+  .lc-header-bar .lc-range { font-size: 11px; color: var(--text-dim); margin-top: 2px; }
+  .sec-head .num {
+    font-size: 13px; font-weight: 700;
+    color: var(--teal); letter-spacing: 2px;
+    margin-bottom: 12px;
+  }
+  .sec-head h2 {
+    font-size: 26px; font-weight: 700;
+    line-height: 1.35; margin: 0 0 16px;
+    position: sticky; top: 64px;
+  }
+  .sec-head .sub {
+    font-size: 16px; font-weight: 500;
+    color: var(--text-sub); line-height: 1.55;
+    margin-top: 4px;
+  }
+  .sec-body p {
+    font-size: 16px; color: var(--text-sub);
+    line-height: 1.65; margin: 0 0 20px;
+  }
+  .sec-body p:last-child { margin-bottom: 0; }
+  .sec-body strong { font-weight: 700; color: var(--text); }
+
+  /* ── 타임라인 ── */
+  .timeline { margin: 40px 0; }
+  .tl-header { display: grid; grid-template-columns: 120px 1fr; margin-bottom: 4px; }
+  .tl-weeks { display: flex; justify-content: space-between; padding: 0 4px; }
+  .tl-weeks span { font-size: 12px; color: var(--text-dim); font-weight: 500; }
+  .tl-row { display: grid; grid-template-columns: 120px 1fr; align-items: center; height: 40px; border-bottom: 1px solid rgba(255,255,255,0.03); }
+  .tl-label { font-size: 14px; color: var(--text-sub); font-weight: 500; }
+  .tl-track { position: relative; height: 28px; }
+  .tl-bar { position: absolute; top: 0; height: 28px; border-radius: 3px; display: flex; align-items: center; padding: 0 12px; font-size: 13px; font-weight: 600; white-space: nowrap; }
+  .tl-bar.out { background: rgba(217,112,112,0.15); color: var(--red); }
+  .tl-bar.in  { background: rgba(45,212,191,0.12); color: var(--teal); }
+  .tl-bar.gap { background: rgba(255,255,255,0.02); border: 1px dashed rgba(255,255,255,0.08); color: var(--text-dim); font-weight: 400; }
+  .tl-note { margin-top: 20px; font-size: 14px; color: var(--text-dim); text-align: center; }
+
+  /* ── 풀퀘트 ── */
+  .pullquote {
+    font-size: 26px; font-weight: 500;
+    line-height: 1.4; color: var(--text);
+    padding: 40px 0;
+    border-top: 1px solid var(--line);
+    margin: 48px 0 0;
+  }
+
+  /* ── 2×2 그리드 ── */
+  .grid-2x2 {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    margin: 40px 0;
+  }
+  .card {
+    background: var(--bg-card);
+    border: 1px solid var(--line);
+    border-radius: 6px;
+    padding: 28px 32px;
+  }
+  .card-label {
+    font-size: 13px; font-weight: 700;
+    color: var(--teal); letter-spacing: 0.5px;
+    margin-bottom: 16px;
+  }
+  .card p {
+    font-size: 15px; color: var(--text-sub);
+    line-height: 1.55; margin: 0;
+  }
+
+  /* ── CTA ── */
+  .cta {
+    background: var(--bg-card);
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    padding: 56px 48px;
+    margin-top: 96px;
+  }
+  .cta h2 { font-size: 26px; margin-bottom: 8px; text-align: center; }
+  .cta > p { font-size: 16px; text-align: center; color: var(--text-sub); margin-bottom: 40px; max-width: none; }
+
+  .menu-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 32px;
+    margin-bottom: 40px;
+  }
+  .menu-group { }
+  .menu-title {
+    font-size: 13px; font-weight: 700;
+    color: var(--teal); letter-spacing: 1px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid var(--line);
+    margin-bottom: 0;
+  }
+  .menu-row {
+    display: flex; justify-content: space-between; align-items: baseline;
+    padding: 10px 0;
+    border-bottom: 1px solid rgba(255,255,255,0.03);
+  }
+  .menu-row:last-child { border-bottom: none; }
+  .menu-name { font-size: 15px; color: var(--text); font-weight: 400; }
+  .menu-val { font-size: 15px; color: var(--teal); font-weight: 600; text-align: right; white-space: nowrap; margin-left: 16px; }
+
+  /* ── 견적서 서브그리드 ── */
+  .quote-group {
+    display: grid;
+    grid-template-columns: 120px 1fr;
+    gap: 0 32px;
+    margin-bottom: 40px;
+  }
+  .quote-cat {
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--teal);
+    letter-spacing: 0.5px;
+    padding-top: 10px;
+  }
+  .quote-items {
+    border-top: 1px solid var(--line);
+  }
+
+  /* ── 로드맵 타임라인 ── */
+  .roadmap { margin-top: 8px; }
+  .roadmap-item {
+    display: grid;
+    grid-template-columns: 88px 1fr;
+    gap: 0 28px;
+    padding: 32px 0;
+    border-bottom: 1px solid var(--line);
+  }
+  .roadmap-item:first-child { padding-top: 0; }
+  .roadmap-item:last-child { border-bottom: none; padding-bottom: 0; }
+  .roadmap-time {
+    font-size: 20px;
+    font-weight: 700;
+    color: var(--teal);
+    line-height: 1.2;
+    letter-spacing: -0.01em;
+  }
+  .roadmap-unit {
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--teal);
+    opacity: 0.7;
+    display: block;
+    margin-top: 4px;
+  }
+  .roadmap-head {
+    font-size: 17px;
+    font-weight: 700;
+    color: var(--text);
+    margin-bottom: 10px;
+    line-height: 1.4;
+  }
+  .roadmap-desc {
+    font-size: 16px;
+    color: var(--text-sub);
+    line-height: 1.65;
+    letter-spacing: -0.01em;
+  }
+
+  /* ── CTA 폼 요소 ── */
+  .form-input {
+    background: var(--bg-accent);
+    border: 1px solid var(--line);
+    border-radius: 4px;
+    padding: 3px 12px;
+    color: var(--teal);
+    font-size: 15px;
+    font-weight: 600;
+    font-family: inherit;
+    display: inline-block;
+    white-space: nowrap;
+  }
+  .form-stepper {
+    display: inline-flex;
+    align-items: stretch;
+    border: 1px solid var(--line);
+    border-radius: 4px;
+    overflow: hidden;
+  }
+  .step-btn {
+    padding: 2px 8px;
+    background: var(--bg-accent);
+    color: var(--text-dim);
+    font-size: 13px;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+  }
+  .step-val {
+    padding: 2px 14px;
+    background: var(--bg-card);
+    color: var(--teal);
+    font-size: 15px;
+    font-weight: 600;
+    border-left: 1px solid var(--line);
+    border-right: 1px solid var(--line);
+    white-space: nowrap;
+  }
+  .form-select {
+    background: var(--bg-accent);
+    border: 1px solid var(--line);
+    border-radius: 4px;
+    padding: 3px 12px;
+    color: var(--teal);
+    font-size: 15px;
+    font-weight: 600;
+    font-family: inherit;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    cursor: pointer;
+    white-space: nowrap;
+  }
+  .form-chevron {
+    font-size: 10px;
+    color: var(--text-dim);
+    margin-left: 4px;
+  }
+  .form-date {
+    background: var(--bg-accent);
+    border: 1px solid var(--line);
+    border-radius: 4px;
+    padding: 3px 12px;
+    color: var(--teal);
+    font-size: 15px;
+    font-weight: 600;
+    font-family: inherit;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    cursor: pointer;
+    white-space: nowrap;
+  }
+  .form-cal {
+    width: 14px; height: 14px;
+    border: 1.5px solid var(--text-dim);
+    border-radius: 2px;
+    position: relative;
+    flex-shrink: 0;
+  }
+  .form-cal::before {
+    content: '';
+    position: absolute;
+    top: 3px; left: 2px; right: 2px;
+    height: 1.5px;
+    background: var(--text-dim);
+  }
+  .form-btn-action {
+    background: var(--teal-bg);
+    border: 1px solid rgba(45,212,191,0.3);
+    border-radius: 4px;
+    padding: 4px 14px;
+    color: var(--teal);
+    font-size: 14px;
+    font-weight: 600;
+    font-family: inherit;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    white-space: nowrap;
+  }
+  .form-tag {
+    background: var(--bg-accent);
+    border: 1px solid var(--line);
+    border-radius: 4px;
+    padding: 3px 10px;
+    color: var(--teal);
+    font-size: 13px;
+    font-weight: 600;
+    display: inline-block;
+    white-space: nowrap;
+  }
+  .pbc-detail {
+    margin: 6px 0 0;
+    padding: 10px 14px;
+    background: var(--bg-accent);
+    border-radius: 4px;
+    border: 1px solid var(--line);
+  }
+  .pbc-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    padding: 5px 0;
+    font-size: 14px;
+    border-bottom: 1px solid rgba(255,255,255,0.03);
+  }
+  .pbc-row:last-child { border-bottom: none; }
+  .pbc-name { color: var(--text-sub); }
+  .pbc-cycle { color: var(--text-dim); font-size: 13px; }
+  .pbc-amount { color: var(--teal); font-weight: 600; }
+  .quote-desc {
+    font-size: 13px;
+    color: var(--text-dim);
+    padding: 2px 0 6px;
+    line-height: 1.5;
+  }
+
+  .cta-center { text-align: center; margin: 40px 0 0; }
+  .btn {
+    display: inline-flex; align-items: center; gap: 10px;
+    background: var(--teal-bg); border: 1.5px solid var(--teal);
+    color: var(--teal); font-size: 17px; font-weight: 700;
+    padding: 16px 44px; border-radius: 6px;
+    text-decoration: none; cursor: pointer; transition: background 0.15s;
+  }
+  .btn:hover { background: #163A35; }
+  .btn .ico {
+    width: 22px; height: 22px; border-radius: 50%;
+    background: var(--teal); color: var(--bg);
+    display: inline-flex; align-items: center; justify-content: center;
+    font-size: 12px; font-weight: 900;
+  }
+
+  .branches { margin-top: 32px; display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 12px; }
+  .branch {
+    padding: 16px 20px; background: var(--bg-accent);
+    border-radius: 6px; border: 1px solid var(--line);
+  }
+  .branch-label { font-size: 13px; font-weight: 600; color: var(--text-sub); margin-bottom: 6px; }
+  .branch p { font-size: 13px; color: var(--text-dim); margin: 0; }
+  .branch a { color: var(--teal); text-decoration: underline; font-weight: 400; }
+  .branch .btn { font-size: 13px; padding: 8px 16px; margin-top: 8px; }
+
+  .foot {
+    margin-top: 96px; padding-top: 40px;
+    border-top: 1px solid var(--line);
+    display: flex; justify-content: space-between; align-items: baseline;
+  }
+  .foot .mark { font-size: 14px; font-weight: 300; color: var(--text-sub); letter-spacing: 4px; text-transform: lowercase; }
+  .foot .meta { font-size: 12px; color: var(--text-dim); text-align: right; }
+
+  /* ── 스크롤 애니메이션 ── */
+  .js .letterhead, .js .letter, .js .sec-head,
+  .js .toc-row, .js .stat-cell, .js .roadmap-item,
+  .js .tl-row, .js .quote-group, .js .branch, .js .foot {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1),
+                transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  .js .lh-divider, .js .sep {
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 1.2s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  .js .in {
+    opacity: 1;
+    transform: none;
+  }
+
+  @media (max-width: 880px) {
+    :root { --side: 56px; }
+    .side { padding: 20px 8px; }
+    .side .brand b, .side .sub, .side a.nav span:not(.n), .side .foot { display: none; }
+    .side .brand { justify-content: center; padding: 0; }
+    .side a.nav { justify-content: center; padding: 9px 0; }
+    .wrap { margin-left: var(--side); }
+  }
+  @media (max-width: 768px) {
+    .wrap { padding: 40px 24px 80px; }
+    .intro, .identity, .sec, .grid-2x2, .menu-grid, .branches { grid-template-columns: 1fr; }
+    .intro { gap: 24px; align-items: start; }
+    .intro-left h1 { font-size: 28px; }
+    .pullquote { font-size: 22px; }
+    .sec-head h2 { position: static; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ── 좌측 사이드바 ── -->
+<aside class="side">
+  <div class="brand"><span class="dot"></span><b>gowid</b></div>
+  <div class="sub">루스프로덕트<br>Waypoint Report · 2026.04</div>
+  <a class="nav on" href="#s-intro"><span class="n">·</span><span>인트로</span></a>
+  <a class="nav" href="#s01"><span class="n">01</span><span>빨라질 수 없는 단계</span></a>
+  <a class="nav" href="#s02"><span class="n">02</span><span>현금이 도는 구조</span></a>
+  <a class="nav" href="#s03"><span class="n">03</span><span>구조를 바꾸는 법</span></a>
+  <a class="nav" href="#s04"><span class="n">04</span><span>같은 단계의 브랜드</span></a>
+  <div class="sdiv"></div>
+  <a class="nav" href="#s-quote"><span class="n">✓</span><span>견적서 · 시작하기</span></a>
+  <div class="foot">고위드 고객전략팀<br>공개정보 + 업종분석 기반</div>
+</aside>
+
+<div class="wrap">
+
+  <!-- ── 레터헤드 ── -->
+  <div class="letterhead">
+    <div class="lh-grid">
+      <div class="lh-left">
+        <div class="lh-corp">루스프로덕트</div>
+        <h1 class="doc-title">Gowid<br>Waypoint<br>Report</h1>
+      </div>
+      <div class="lh-mid">
+        <div class="lh-desc-col">
+          <span class="lh-label">이 리포트가 만들어진 이유</span>
+          <p>루스프로덕트의 다음 단계를 함께 설계하기 위해서입니다. 귀사의 사업 구조와 업종 특성을 분석하여, 지금 구간에서 성장을 가속할 수 있는 방법을 정리했습니다.</p>
+        </div>
+        <div class="lh-desc-col">
+          <span class="lh-label">이 리포트를 만들 수 있는 이유</span>
+          <p>해브해드, 포터리, 아모멘토 — 같은 구간에서 시작한 D2C 브랜드들과 함께 구조를 바꿔온 경험이 있습니다. 4,000개 이상의 법인에서 쌓인 데이터가 이 리포트의 근거입니다.</p>
+        </div>
+      </div>
+      <div class="lh-side">
+        <div><span class="lh-label">담당 AM</span><br>문미성<br>고객전략 리드<br>moon@gowid.com</div>
+        <div style="margin-top:24px;"><span class="lh-label">작성일</span><br>2026년 4월 9일</div>
+        <div style="margin-top:24px;"><span class="lh-label">Disclaimer</span><br>본 리포트는 귀사의 공개 정보와 업종 벤치마크를 기반으로 작성되었습니다. 실제 수치는 계좌 연동 후 정밀하게 확인됩니다.</div>
+      </div>
+    </div>
+    <div class="lh-divider"></div>
+  </div>
+
+  <!-- ── 인트로: 하나의 덩어리 ── -->
+  <div class="letter" id="s-intro">
+    <strong>장인의 속도로 만들고, 시장의 속도로 팔리는 브랜드.</strong> 아틀리에에서 장인이 한 땀씩 만드는 클라우드백, 초콜렛백, 버터플라이 셔츠. 더 자주, 더 많이 만들 수만 있다면, 루스프로덕트에겐 파는 것은 문제가 아닙니다. 다만 마진이 넉넉하지 않은 단계 — 광고도, 재고도, 모두 현금이 허락하는 범위 안에서만 움직일 수밖에 없습니다. <strong>이 구간에서 성장 속도를 결정하는 건 돈이 도는 속도와 구조입니다.</strong> 만나서 반갑습니다. 그 문제를 푸는 것에 골똘하였던 고위드입니다. 성장하는 기업이 자금 때문에 멈추는 일이 없도록, 그 목적으로 태어난 회사입니다. 4,000개 이상의 법인과 함께 그 일을 해왔습니다. <strong>루스프로덕트가 성장에만 집중할 수 있는 구조를 만드는 것이 우리의 목표입니다.</strong> 귀사가 성장하면 고위드도 함께 성장합니다. 그래서 루스프로덕트에게 다음 단계를 만들어주는 우리의 일을 아주 잘하고자 합니다.
+  </div>
+
+  <hr class="sep">
+
+  <!-- ── 목차: 1:2 ── -->
+  <div class="sec" style="margin-bottom:96px">
+    <div class="sec-head">
+      <h2>이 리포트에서<br>다루는 것</h2>
+    </div>
+    <div class="sec-body">
+      <div class="toc-row"><div class="toc-num">01</div><div class="toc-text">만들 수 있고, 팔 수 있는데 — 빨라질 수가 없는 단계</div></div>
+      <div class="toc-row"><div class="toc-num">02</div><div class="toc-text">그 이유는 현금이 도는 구조에 있습니다</div></div>
+      <div class="toc-row"><div class="toc-num">03</div><div class="toc-text">한도, 결제, 관리, 최적화로 그 구조를 바꿉니다</div></div>
+      <div class="toc-row"><div class="toc-num">04</div><div class="toc-text">같은 단계에서 구조를 바꾼 브랜드들이 있습니다</div></div>
+    </div>
+  </div>
+
+  <hr class="sep">
+
+  <!-- ── 01: 1:2 ── -->
+  <div class="sec" id="s01">
+    <div class="sec-head">
+      <div class="num">01</div>
+      <h2>만들 수 있고,<br>팔 수 있는데 —<br>빨라질 수가<br>없는 단계</h2>
+      <p class="sub">상품력이 아니라 현금 구조가 다음 단계를 결정합니다.</p>
+    </div>
+    <div class="sec-body">
+      <p>
+        고위드는 392개 커머스 법인의 매출, 원가, 현금흐름 데이터를 분석해왔습니다. 루스프로덕트는 현재 <strong>연매출 10억 미만, 초기 성장 구간</strong>에 있습니다. 이 구간에 속한 115개 법인 중 <strong>56.5%가 하락세</strong>에 있고, 다음 단계로 올라선 기업은 10.4%입니다.
+      </p>
+
+      <!-- 생애주기 도표 -->
+      <style>
+        @keyframes drawLine { from { stroke-dashoffset: 1400; } to { stroke-dashoffset: 0; } }
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+        .al { stroke-dasharray: 1400; stroke-dashoffset: 1400; animation: drawLine 2s ease-out forwards; }
+        .af { opacity: 0; animation: fadeIn 1.2s ease-out 0.6s forwards; }
+        .ad { opacity: 0; animation: fadeIn 0.4s ease-out forwards; }
+      </style>
+      <div style="margin:32px 0 48px;">
+        <svg viewBox="0 0 720 380" style="width:100%;height:auto;overflow:visible;" font-family="Pretendard">
+          <defs>
+            <linearGradient id="gArea" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0%" stop-color="#00B96B" stop-opacity="0.12"/>
+              <stop offset="100%" stop-color="#00B96B" stop-opacity="0.01"/>
+            </linearGradient>
+            <linearGradient id="sArea" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0%" stop-color="#ffffff" stop-opacity="0.12"/>
+              <stop offset="100%" stop-color="#ffffff" stop-opacity="0.02"/>
+            </linearGradient>
+          </defs>
+
+          <!-- 구간 구분 실선 (5구간, 좌우 꽉 참) -->
+          <line x1="0" y1="30" x2="0" y2="280" stroke="#2a2e38" stroke-width="1"/>
+          <line x1="132" y1="30" x2="132" y2="280" stroke="#2a2e38" stroke-width="1"/>
+          <line x1="264" y1="30" x2="264" y2="280" stroke="#2a2e38" stroke-width="1"/>
+          <line x1="396" y1="30" x2="396" y2="280" stroke="#2a2e38" stroke-width="1"/>
+          <line x1="528" y1="30" x2="528" y2="280" stroke="#2a2e38" stroke-width="1"/>
+          <line x1="660" y1="30" x2="660" y2="280" stroke="#2a2e38" stroke-width="1"/>
+          <!-- X축 -->
+          <line x1="0" y1="280" x2="660" y2="280" stroke="#2a2e38" stroke-width="1"/>
+          <!-- 가로 그리드 -->
+          <line x1="0" y1="218" x2="660" y2="218" stroke="#1a1e28" stroke-width="1" stroke-dasharray="3"/>
+          <line x1="0" y1="155" x2="660" y2="155" stroke="#1a1e28" stroke-width="1" stroke-dasharray="3"/>
+          <line x1="0" y1="93" x2="660" y2="93" stroke="#1a1e28" stroke-width="1" stroke-dasharray="3"/>
+
+          <!-- 현재 위치 하이라이트 배경 -->
+          <rect x="132" y="30" width="132" height="250" fill="rgba(45,212,191,0.05)"/>
+
+          <!-- 공헌이익률 AREA — 현실적 출렁임: 낮음→급등→하락→재상승→살짝하락→안정화 -->
+          <path class="af" d="M66,245 C90,220 130,165 165,150 C185,142 200,158 220,165 C240,170 260,148 290,135 C310,128 335,142 355,148 C375,152 395,130 420,115 C440,105 460,112 480,108 C500,104 530,95 560,88 C575,84 585,82 594,80 L594,280 L66,280 Z" fill="url(#gArea)"/>
+          <path class="al" d="M66,245 C90,220 130,165 165,150 C185,142 200,158 220,165 C240,170 260,148 290,135 C310,128 335,142 355,148 C375,152 395,130 420,115 C440,105 460,112 480,108 C500,104 530,95 560,88 C575,84 585,82 594,80" fill="none" stroke="#00B96B" stroke-width="1.5" style="animation-delay:0.3s;"/>
+
+          <!-- 현금 여력 AREA — 자글자글 출렁이며 상승 -->
+          <path class="af" d="M66,240 C80,232 95,238 110,225 C125,218 140,228 155,215 C170,208 185,218 198,205 C215,195 230,205 245,192 C260,185 275,195 290,182 C305,175 320,182 330,170 C345,162 360,170 375,158 C390,152 405,160 420,148 C435,142 450,150 462,140 C478,132 495,138 510,128 C525,122 540,130 555,118 C570,112 580,120 594,110 L594,280 L66,280 Z" fill="url(#sArea)" style="animation-delay:0.8s;"/>
+          <path class="al" d="M66,240 C80,232 95,238 110,225 C125,218 140,228 155,215 C170,208 185,218 198,205 C215,195 230,205 245,192 C260,185 275,195 290,182 C305,175 320,182 330,170 C345,162 360,170 375,158 C390,152 405,160 420,148 C435,142 450,150 462,140 C478,132 495,138 510,128 C525,122 540,130 555,118 C570,112 580,120 594,110" fill="none" stroke="#9B9A95" stroke-width="1" style="animation-delay:0.6s;"/>
+
+          <!-- 인당 매출 LINE — S커브 -->
+          <path class="al" d="M66,269 C110,265 160,260 198,258 C250,250 290,210 330,177 C370,148 420,130 462,121 C510,105 550,75 594,59" fill="none" stroke="#2DD4BF" stroke-width="2.5"/>
+
+          <!-- 인원수 LINE — 초기 급등 후 감속 -->
+          <path class="al" d="M66,260 C110,235 160,210 198,195 C250,175 290,162 330,155 C370,150 420,146 462,143 C510,141 550,140 594,139" fill="none" stroke="#636260" stroke-width="1" stroke-dasharray="2 4" style="animation-delay:0.4s;"/>
+
+          <!-- 현재 위치: 점 하나만 크게 -->
+          <circle class="ad" style="animation-delay:1s;" cx="198" cy="258" r="7" fill="#2DD4BF" stroke="#0C0E11" stroke-width="3"/>
+
+          <!-- 다음 단계: 작은 링 -->
+          <circle class="ad" style="animation-delay:1.5s;" cx="330" cy="177" r="5" fill="none" stroke="#2DD4BF" stroke-width="1.5" opacity="0.4"/>
+
+          <!-- X축 구간 레이블 -->
+          <text x="66" y="300" text-anchor="middle" fill="#636260" font-size="12">시드</text>
+          <text x="66" y="314" text-anchor="middle" fill="#636260" font-size="11">0~5억</text>
+
+          <text x="198" y="300" text-anchor="middle" fill="#2DD4BF" font-size="12" font-weight="700">초기 성장</text>
+          <text x="198" y="314" text-anchor="middle" fill="#2DD4BF" font-size="11">5~10억</text>
+
+          <text x="330" y="300" text-anchor="middle" fill="#636260" font-size="12">스케일업</text>
+          <text x="330" y="314" text-anchor="middle" fill="#636260" font-size="11">10~30억</text>
+
+          <text x="462" y="300" text-anchor="middle" fill="#636260" font-size="12">가속 성장</text>
+          <text x="462" y="314" text-anchor="middle" fill="#636260" font-size="11">30~100억</text>
+
+          <text x="594" y="300" text-anchor="middle" fill="#636260" font-size="12">안정 성장</text>
+          <text x="594" y="314" text-anchor="middle" fill="#636260" font-size="11">100억+</text>
+
+          <!-- 선 끝 레이블 (우측) -->
+          <text x="604" y="55" fill="#2DD4BF" font-size="11" font-weight="600">인당 매출</text>
+          <text x="604" y="74" fill="#00B96B" font-size="11">공헌이익률</text>
+          <text x="604" y="90" fill="#9B9A95" font-size="11">현금 여력</text>
+          <text x="604" y="136" fill="#636260" font-size="11">인원</text>
+        </svg>
+      </div>
+
+      <!-- 현재 vs 다음 단계 비교 -->
+      <div style="display:grid; grid-template-columns:1fr 1fr; gap:48px; margin:40px 0 8px;">
+        <div style="font-size:14px; color:var(--teal); font-weight:700;">▲ 현재 위치</div>
+        <div style="font-size:14px; color:var(--text-dim);">▵ 다음 단계</div>
+      </div>
+      <div style="display:grid; grid-template-columns:1fr 1fr; gap:48px; margin:0 0 40px;">
+        <div>
+          <div style="font-size:12px; font-weight:700; color:var(--teal); letter-spacing:1px; margin-bottom:16px; padding-bottom:8px; border-bottom:2px solid var(--teal);">현재 — 초기 성장 (5~10억)</div>
+          <div style="display:flex; justify-content:space-between; padding:8px 0; border-bottom:1px solid var(--line); font-size:14px;"><span style="color:var(--text-sub);">인당 매출</span><span style="color:var(--text); font-weight:600;">0.6억</span></div>
+          <div style="display:flex; justify-content:space-between; padding:8px 0; border-bottom:1px solid var(--line); font-size:14px;"><span style="color:var(--text-sub);">공헌이익률</span><span style="color:var(--text); font-weight:600;">20.5%</span></div>
+          <div style="display:flex; justify-content:space-between; padding:8px 0; border-bottom:1px solid var(--line); font-size:14px;"><span style="color:var(--text-sub);">현금 여력</span><span style="color:var(--text); font-weight:600;">8.3개월</span></div>
+          <div style="display:flex; justify-content:space-between; padding:8px 0; font-size:14px;"><span style="color:var(--text-sub);">인원</span><span style="color:var(--text); font-weight:600;">5~8명</span></div>
+        </div>
+        <div>
+          <div style="font-size:12px; font-weight:700; color:var(--text-dim); letter-spacing:1px; margin-bottom:16px; padding-bottom:8px; border-bottom:2px solid var(--text-dim);">다음 — 스케일업 (10~30억)</div>
+          <div style="display:flex; justify-content:space-between; padding:8px 0; border-bottom:1px solid var(--line); font-size:14px;"><span style="color:var(--text-sub);">인당 매출</span><span style="color:var(--text-sub);">2.9억</span></div>
+          <div style="display:flex; justify-content:space-between; padding:8px 0; border-bottom:1px solid var(--line); font-size:14px;"><span style="color:var(--text-sub);">공헌이익률</span><span style="color:var(--text-sub);">23.9%</span></div>
+          <div style="display:flex; justify-content:space-between; padding:8px 0; border-bottom:1px solid var(--line); font-size:14px;"><span style="color:var(--text-sub);">현금 여력</span><span style="color:var(--text-sub);">11.0개월</span></div>
+          <div style="display:flex; justify-content:space-between; padding:8px 0; font-size:14px;"><span style="color:var(--text-sub);">인원</span><span style="color:var(--text-sub);">10~20명</span></div>
+        </div>
+      </div>
+
+      <p>
+        상품력의 문제가 아닙니다. 이 구간의 기업들이 공통적으로 겪는 구조적 문제가 있습니다. <strong>변동비가 매출의 65~70%를 차지하고, 그 비용이 매출보다 먼저 나가며, 남은 현금으로는 다음 성장을 위한 투자를 할 수 없는 구조</strong>입니다.
+      </p>
+      <p>
+        다음 단계(스케일업, 10억+)로 넘어가면 인당 매출이 0.6억에서 2.9억으로 뛰고, 고정비 부담이 구조적으로 줄어듭니다. 다음 단계로 넘어간 기업들에게는 세 가지 공통점이 있었습니다.
+      </p>
+
+      <div class="stat-grid">
+        <div class="stat-cell">
+          <div class="stat-number">30%+</div>
+          <div class="stat-desc">공헌이익률. 이 아래에서는 매출을 키울수록 적자가 커집니다. 이 구간 중위값 20.5%, 다음 단계 32.6%.</div>
+        </div>
+        <div class="stat-cell">
+          <div class="stat-number">12개월+</div>
+          <div class="stat-desc">현금 여력. 다음 단계에 진입한 기업은 100% 전부 12개월 이상. 이 구간 중위값은 8.3개월.</div>
+        </div>
+        <div class="stat-cell">
+          <div class="stat-number">+16%</div>
+          <div class="stat-desc">턴어라운드 기업 매출 성장률. 비용을 줄여서 살아남은 기업은 없었습니다. 성장하면서 효율을 잡은 기업만 살아남았습니다.</div>
+        </div>
+        <div class="stat-cell">
+          <div class="stat-number">×5</div>
+          <div class="stat-desc">인당 매출 점프. 10억을 넘기면 0.6억→2.9억. 시스템과 구조가 갖춰지면서 효율이 구조적으로 달라집니다.</div>
+        </div>
+      </div>
+
+      <p style="margin-top:32px;">
+        루스프로덕트에게 부족한 것은 상품력이 아닙니다. <strong>마진을 지키면서 발주 속도를 높이고, 현금 여력을 확보하는 구조</strong>입니다. 이 리포트의 나머지는 그 구조를 만드는 방법에 대한 이야기입니다.
+      </p>
+    </div>
+  </div>
+
+  <hr class="sep">
+
+  <!-- ── 02: 1:2 (타임라인 우측에) ── -->
+  <div class="sec" id="s02">
+    <div class="sec-head">
+      <div class="num">02</div>
+      <h2>그 이유는<br>현금이 도는<br>구조에 있습니다</h2>
+      <p class="sub">같은 현금으로 발주 속도를 1.5배 높일 수 있습니다.</p>
+    </div>
+    <div class="sec-body">
+
+      <div class="stat-grid">
+        <div class="stat-cell">
+          <div class="stat-number">65~70%</div>
+          <div class="stat-desc">매출 대비 변동비 비율. 원단·부자재·제작비가 매출의 50~55%, 광고비까지 더하면 65~70%에 달합니다. 남는 마진은 30~35%. 인건비와 임차료를 빼면 순이익은 한 자릿수입니다. 이 비용이 매출보다 먼저 나갑니다.</div>
+        </div>
+        <div class="stat-cell">
+          <div class="stat-number">2,800만</div>
+          <div class="stat-desc">배치당 선지출. 원단·부자재 매입 1,500만원, 아틀리에 제작비 800만원, 메타·인스타 광고비 월 500만원. 모두 매출 입금 전에 나갑니다. 돌아온 돈은 아직 없습니다.</div>
+        </div>
+        <div class="stat-cell">
+          <div class="stat-number">4~5주</div>
+          <div class="stat-desc">현금 공백. 자사몰은 결제 후 3~7일이면 약 1,200만원이 입금되지만, 29CM 매출 약 1,800만원은 판매 후 15~50일 뒤에 들어옵니다. 전체 매출의 60%가 한 달 넘게 묶여 있는 구조입니다.</div>
+        </div>
+        <div class="stat-cell">
+          <div class="stat-number">×1.5</div>
+          <div class="stat-desc">이 사이클이 연간 약 7회 반복됩니다. 현금 공백을 줄이면 같은 돈으로 연간 10~12회 발주가 가능합니다. 상품력이나 마케팅의 차이가 아닙니다. 돈이 도는 속도의 차이입니다.</div>
+        </div>
+      </div>
+
+      <div class="timeline" style="margin-top:48px;">
+        <div class="tl-header">
+          <div></div>
+          <div class="tl-weeks">
+            <span>1주차</span><span>2주차</span><span>3주차</span><span>4주차</span><span>5주차</span><span>6주차</span><span>7주차</span><span>8주차</span>
+          </div>
+        </div>
+        <div class="tl-row"><div class="tl-label">원단 매입</div><div class="tl-track"><div class="tl-bar out" style="left:0%;width:12%;">-1,500만</div></div></div>
+        <div class="tl-row"><div class="tl-label">제작비</div><div class="tl-track"><div class="tl-bar out" style="left:25%;width:18%;">-800만</div></div></div>
+        <div class="tl-row"><div class="tl-label">광고비</div><div class="tl-track"><div class="tl-bar out" style="left:37%;width:50%;">-500만 /월</div></div></div>
+        <div class="tl-row"><div class="tl-label">자사몰 매출</div><div class="tl-track"><div class="tl-bar in" style="left:50%;width:15%;">+1,200만</div></div></div>
+        <div class="tl-row"><div class="tl-label">29CM 매출</div><div class="tl-track"><div class="tl-bar in" style="left:68%;width:15%;">+1,800만</div></div></div>
+        <div class="tl-row" style="border-bottom:none"><div class="tl-label" style="color:var(--text-dim)">현금 공백</div><div class="tl-track"><div class="tl-bar gap" style="left:0%;width:50%;">4~5주 · -2,800만</div></div></div>
+      </div>
+    </div>
+  </div>
+
+  <hr class="sep">
+
+  <!-- ── 03: 1:2 (제안 + 로드맵) ── -->
+  <div class="sec" id="s03">
+    <div class="sec-head">
+      <div class="num">03</div>
+      <h2>한도, 결제, 관리,<br>최적화로<br>그 구조를 바꿉니다</h2>
+      <p class="sub">루스프로덕트의 성장 구간에 맞춘 구조입니다.</p>
+    </div>
+    <div class="sec-body">
+      <p>각각이 루스프로덕트의 성장 구간에 맞춰 설계됩니다.</p>
+
+      <div class="stat-grid" style="margin-top:32px;">
+        <div class="stat-cell">
+          <div class="stat-number" style="font-size:16px; margin-bottom:12px; color:var(--teal);">한도 — 성장을 막지 않는 자금력</div>
+          <div class="stat-desc">매출이 늘면 한도도 함께 늘어나는 구조입니다. 일반 한도에 더해, 원단·부자재 매입에 쓸 수 있는 변동비 전용 한도가 별도로 설계됩니다. 시즌 발주가 몰리면 한시적 증액도 가능합니다.</div>
+        </div>
+        <div class="stat-cell">
+          <div class="stat-number" style="font-size:16px; margin-bottom:12px; color:var(--teal);">지급 수단 — 지출마다 맞는 결제 방식</div>
+          <div class="stat-desc">원단 매입, 광고비, 아틀리에 외주비 — 각각 다른 카드로 결제합니다. 매입 대금은 최대 53일 뒤에 나갑니다. 세금계산서 거래도 카드로 전환 가능. 광고비는 전용 체크카드로 매월 페이백.</div>
+        </div>
+        <div class="stat-cell">
+          <div class="stat-number" style="font-size:16px; margin-bottom:12px; color:var(--teal);">지출 관리 — 실시간으로 보이는 구조</div>
+          <div class="stat-desc">임직원별 카드를 발급하고, 사용 내역이 한 곳에 모입니다. 영수증과 전표가 자동 처리되어 월말 정산 시간이 줄어듭니다. 지출 정책을 미리 설정하면 용도 외 사용이 사전 차단됩니다.</div>
+        </div>
+        <div class="stat-cell">
+          <div class="stat-number" style="font-size:16px; margin-bottom:12px; color:var(--teal);">지출 최적화 — 같은 돈으로 더 많은 성과</div>
+          <div class="stat-desc">카드 사용액의 0.5%가 매월 페이백으로 돌아옵니다. 마진이 빠듯한 구간에서 실질적인 차이입니다. 같은 업종·규모 대비 지출 리포트를 분기마다 제공합니다.</div>
+        </div>
+      </div>
+
+      <div class="stat-grid" style="margin-top:48px;">
+        <div class="stat-cell">
+          <div class="stat-number">연 84시간</div>
+          <div class="stat-desc">영수증 정리, 전표 입력, 월말 정산에 쓰던 시간입니다. 카드 사용 즉시 자동 매칭되고, 회계 시스템에 바로 연동됩니다. 5명 규모에서 한 사람이 매달 하루를 되찾습니다.</div>
+        </div>
+        <div class="stat-cell">
+          <div class="stat-number">연 290만원</div>
+          <div class="stat-desc">카드 페이백과 매입비 신용공여로 돌아오는 금액입니다. 마진이 30~35%인 구간에서 연 290만원은 매출 약 900만원에 해당하는 이익입니다.</div>
+        </div>
+      </div>
+
+      <p style="margin-top:48px; font-size:17px; font-weight:500; color:var(--text); border-top:1px solid var(--line); padding-top:32px;">시작하면 이렇게 달라집니다.</p>
+
+      <div class="roadmap">
+
+        <div class="roadmap-item">
+          <div>
+            <div class="roadmap-time">1주</div>
+          </div>
+          <div>
+            <div class="roadmap-head">카드가 도착합니다</div>
+            <div class="roadmap-desc">기명카드 5장, 매입 전용 2장, 광고비 전용 2장. 누가, 어디에, 얼마를 쓰는지가 한 곳에 모이기 시작합니다. 경비 정책이 적용되어 용도 외 사용은 자동으로 차단됩니다.</div>
+          </div>
+        </div>
+
+        <div class="roadmap-item">
+          <div>
+            <div class="roadmap-time">2주</div>
+          </div>
+          <div>
+            <div class="roadmap-head">첫 정산이 끝납니다</div>
+            <div class="roadmap-desc">영수증과 전표가 자동으로 매칭됩니다. 월말에 하던 정산 작업이 사라집니다. 회계 시스템 연동이 확인되면 수동 입력도 제거됩니다.</div>
+          </div>
+        </div>
+
+        <div class="roadmap-item">
+          <div>
+            <div class="roadmap-time">1개월</div>
+          </div>
+          <div>
+            <div class="roadmap-head">현금 공백이 줄어들기 시작합니다</div>
+            <div class="roadmap-desc">매입비 1,500만원이 카드로 전환됩니다. 원단을 사는 시점과 돈이 나가는 시점 사이에 53일의 여유가 생깁니다. 광고비 페이백이 첫 정산됩니다. 4~5주였던 현금 공백이 줄어들기 시작합니다.</div>
+          </div>
+        </div>
+
+        <div class="roadmap-item">
+          <div>
+            <div class="roadmap-time">3개월</div>
+          </div>
+          <div>
+            <div class="roadmap-head">발주 속도가 빨라집니다</div>
+            <div class="roadmap-desc">2~3번의 배치 사이클을 경험합니다. 사용 실적 기반으로 한도가 자동 증액됩니다. 연 7회였던 발주가 8~9회 페이스로 빨라집니다. 같은 업종·규모 법인 대비 지출 벤치마크 리포트를 받습니다.</div>
+          </div>
+        </div>
+
+        <div class="roadmap-item">
+          <div>
+            <div class="roadmap-time">6개월</div>
+          </div>
+          <div>
+            <div class="roadmap-head">구조가 달라져 있습니다</div>
+            <div class="roadmap-desc">발주 사이클이 연 10~12회에 도달합니다. 현금 여력이 12개월에 근접합니다. 아틀리에 외주비도 카드 결제 안에 들어옵니다. 같은 현금으로 더 많이 만들고, 더 자주 내보내는 구조. 다음 단계 — 스케일업, 연매출 10억 이상 — 의 조건이 갖춰집니다.</div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <hr class="sep">
+
+  <!-- ── 04: 1:2 ── -->
+  <div class="sec" id="s04">
+    <div class="sec-head">
+      <div class="num">04</div>
+      <h2>같은 단계에서<br>구조를 바꾼<br>브랜드들이<br>있습니다</h2>
+      <p class="sub">비용을 줄여서가 아니라, 돈이 도는 속도를 바꿔서 성장했습니다.</p>
+    </div>
+    <div class="sec-body">
+      <p>
+        아래 세 브랜드는 모두 고위드와 함께하고 있는 수작업 기반 D2C 패션 브랜드입니다. 루스프로덕트와 같은 구간에서 시작했고, 구조를 바꾼 뒤 다음 단계로 넘어갔습니다.
+      </p>
+
+      <div class="stat-grid" style="margin-top:32px;">
+        <div class="stat-cell">
+          <div class="stat-number" style="font-size:20px; margin-bottom:16px;">A사 — 가방 브랜드</div>
+          <div class="stat-desc">
+            자사몰 + 29CM 중심. 연매출 4억에서 시작. 아틀리에 발주 사이클이 6~8주였고 연간 발주 6회가 한계였습니다. 매입비를 카드로 전환한 뒤 발주 사이클이 4주로 단축. <strong>18개월 만에 연매출 12억.</strong>
+          </div>
+        </div>
+        <div class="stat-cell">
+          <div class="stat-number" style="font-size:20px; margin-bottom:16px;">B사 — 의류 브랜드</div>
+          <div class="stat-desc">
+            무신사 + 자사몰. 연매출 7억, 광고비가 월 800만원이었지만 현금 부족으로 시즌마다 광고를 끊었습니다. 체크카드 페이백 + 변동비 한도로 광고를 끊지 않는 구조를 만들었고, <strong>연매출이 2년 만에 22억.</strong>
+          </div>
+        </div>
+      </div>
+
+      <p style="margin-top:32px;">
+        세 브랜드의 공통점이 있습니다. <strong>비용을 줄여서 살아남은 게 아니라, 돈이 도는 구조를 바꿔서 성장한 것입니다.</strong> 발주 속도를 통장이 아닌 기업의 실질 신용으로 키운 것. 그것이 고위드가 하는 일입니다. 셋업부터 운영까지 모든 과정은 우리가 직접 진행합니다.
+      </p>
+    </div>
+  </div>
+
+  <!-- ── CTA: 견적서 ── -->
+  <div class="sec" id="s-quote" style="margin-bottom:0;">
+    <div class="sec-head">
+      <h2>이제<br>시작해봅시다</h2>
+      <p class="sub">루스프로덕트에 맞게 설계한 구성입니다. 기본값이 입력되어 있으며, 조정이 필요하면 담당 AM과 함께 변경합니다.</p>
+    </div>
+    <div class="sec-body">
+
+      <!-- 한도 -->
+      <div class="quote-group">
+        <div class="quote-cat">한도</div>
+        <div class="quote-items">
+          <div class="menu-row"><div class="menu-name">일반 신용 한도</div><div class="form-input">800만원</div></div>
+          <div class="quote-desc">기준자산 9,058만원 기반 산출. 사용 실적에 따라 자동 증액.</div>
+          <div class="menu-row"><div class="menu-name">변동비 특별한도</div><div class="form-input">2,000만원</div></div>
+          <div class="quote-desc">원단·부자재 매입 전용. 매출 성장에 연동하여 증가.</div>
+        </div>
+      </div>
+
+      <!-- 지급 수단 -->
+      <div class="quote-group">
+        <div class="quote-cat">지급 수단</div>
+        <div class="quote-items">
+          <div class="menu-row"><div class="menu-name">기명 신용카드</div><div class="form-stepper"><span class="step-btn">&minus;</span><span class="step-val">5장</span><span class="step-btn">+</span></div></div>
+          <div class="quote-desc">임직원 ~5명 기준 1인1카드. 대표 + 운영팀.</div>
+          <div class="menu-row"><div class="menu-name">매입비 전용 신용카드</div><div class="form-stepper"><span class="step-btn">&minus;</span><span class="step-val">2장</span><span class="step-btn">+</span></div></div>
+          <div class="quote-desc">아틀리에 제작비, 원단 발주. 53일 신용공여.</div>
+          <div class="menu-row"><div class="menu-name">매체비 전용 체크카드</div><div class="form-stepper"><span class="step-btn">&minus;</span><span class="step-val">2장</span><span class="step-btn">+</span></div></div>
+          <div class="quote-desc">메타·인스타 광고비. 페이백 적용. 계정별 분리.</div>
+          <div class="menu-row"><div class="menu-name">전환용 체크카드</div><div class="form-stepper"><span class="step-btn">&minus;</span><span class="step-val">1장</span><span class="step-btn">+</span></div></div>
+          <div class="quote-desc">백업 발급. 현금 여력 12개월+ 확보 후 본격 활성화.</div>
+          <div class="menu-row"><div class="menu-name">세금계산서 카드 전환</div><div class="form-stepper"><span class="step-btn">&minus;</span><span class="step-val">2곳</span><span class="step-btn">+</span></div></div>
+          <div class="pbc-detail">
+            <div class="pbc-row"><span class="pbc-name">아틀리에 루스공방</span><span class="pbc-cycle">매월 10일</span><span class="pbc-amount">800만원</span></div>
+            <div class="pbc-row"><span class="pbc-name">성수텍스타일</span><span class="pbc-cycle">매월 15일</span><span class="pbc-amount">700만원</span></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 지출 관리 -->
+      <div class="quote-group">
+        <div class="quote-cat">지출 관리</div>
+        <div class="quote-items">
+          <div class="menu-row"><div class="menu-name">ERP 연동</div><div class="form-select">위하고<span class="form-chevron">&#9662;</span></div></div>
+          <div class="quote-desc">자동 연동 후 수동 입력 제거. 아마란스, 더존, 세무사랑 등 변경 가능.</div>
+          <div class="menu-row"><div class="menu-name">경비 정책</div><div class="form-btn-action">기본 경비정책 설정</div></div>
+          <div class="quote-desc">업무비(인당 월 30만) · 매입비(한도 내) · 광고비(월 예산 연동). 용도 외 자동 차단.</div>
+          <div class="menu-row"><div class="menu-name">영수증·전표 자동화</div><div class="menu-val">즉시 적용</div></div>
+          <div class="quote-desc">카드 사용 즉시 자동 매칭. 월말 정산 소요 시간 대폭 단축.</div>
+          <div class="menu-row"><div class="menu-name">온보딩 시작일</div><div class="form-date"><span class="form-cal"></span>2026. 4. 14 (월)</div></div>
+          <div class="quote-desc">D+14 완료 예정: 2026. 4. 28. 카드 수령 → 세팅 → 정책 적용 → 첫 정산.</div>
+        </div>
+      </div>
+
+      <!-- 지출 최적화 -->
+      <div class="quote-group">
+        <div class="quote-cat">지출 최적화</div>
+        <div class="quote-items">
+          <div class="menu-row"><div class="menu-name">카드 페이백</div><div class="menu-val">사용액 0.5%</div></div>
+          <div class="quote-desc">월 사용액 기준 자동 정산. 별도 신청 불필요.</div>
+          <div class="menu-row"><div class="menu-name">Google Workspace</div><div class="menu-val">자동 신청</div></div>
+          <div class="quote-desc">~5명 기준 최대 35% 할인. 결제처 전환만으로 적용.</div>
+          <div class="menu-row"><div class="menu-name">IT 장비</div><div class="form-select">LG 그램 2대 · 구독<span class="form-chevron">&#9662;</span></div></div>
+          <div class="quote-desc">월 구독료 기준 반납형. 시중 최저가 대비 최대 6% 추가 할인.</div>
+          <div class="menu-row"><div class="menu-name">업종 벤치마크 리포트</div><div class="form-select">분기별 수신<span class="form-chevron">&#9662;</span></div></div>
+          <div class="quote-desc">같은 업종·규모 대비 지출 패턴 비교. 비효율 자동 감지.</div>
+        </div>
+      </div>
+
+      <!-- 담당 -->
+      <div class="quote-group" style="margin-bottom:0;">
+        <div class="quote-cat">담당</div>
+        <div class="quote-items">
+          <div class="menu-row"><div class="menu-name">어카운트 매니저</div><div class="menu-val">문미성</div></div>
+          <div class="quote-desc">고객전략 리드 · moon@gowid.com · 010-2125-9069. 전 과정 직접 진행.</div>
+        </div>
+      </div>
+
+      <!-- CTA 버튼 -->
+      <div style="margin-top:48px; padding-top:32px; border-top:1px solid var(--line); text-align:center;">
+        <a href="#" class="btn"><span class="ico">&#10003;</span>이대로 시작합니다</a>
+      </div>
+
+      <!-- 분기 -->
+      <div class="branches" style="margin-top:32px;">
+        <div class="branch">
+          <div class="branch-label">내부 검토가 필요하다면</div>
+          <p><a href="#" class="btn">서비스 요약 자료 받기</a></p>
+        </div>
+        <div class="branch">
+          <div class="branch-label">지금은 타이밍이 아니라면</div>
+          <p><a href="#">매달 리포트 업데이트 받기</a></p>
+        </div>
+        <div class="branch">
+          <div class="branch-label">궁금한 것이 있다면</div>
+          <p>담당 AM 문미성 — <a href="mailto:moon@gowid.com">moon@gowid.com</a></p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── 푸터 ── -->
+  <div class="foot">
+    <div class="mark">gowid</div>
+    <div class="meta">루스프로덕트 공개 정보 + 업종 분석 기반 | 2026년 4월</div>
+  </div>
+
+</div>
+
+<script>
+(() => {
+  const delay = (sel, d) => {
+    document.querySelectorAll(sel).forEach(el => {
+      const idx = [...el.parentElement.children].filter(c => c.matches(sel)).indexOf(el);
+      el.style.transitionDelay = (idx * d) + 's';
+    });
+  };
+
+  // 페이지 상단 — 로드 시 순차 등장
+  const lh = document.querySelector('.letterhead');
+  const lt = document.querySelector('.letter');
+  if (lh) lh.style.transitionDelay = '0.15s';
+  if (lt) lt.style.transitionDelay = '0.4s';
+
+  // 스태거 — 자식 순차 등장
+  delay('.toc-row', 0.06);
+  delay('.stat-cell', 0.08);
+  delay('.roadmap-item', 0.1);
+  delay('.tl-row', 0.05);
+  delay('.quote-group', 0.07);
+  delay('.branch', 0.08);
+
+  // 관찰
+  const obs = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('in');
+        obs.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.1, rootMargin: '0px 0px -30px 0px' });
+
+  document.querySelectorAll(
+    '.letterhead, .letter, .sec-head, .toc-row, .stat-cell, .roadmap-item, .tl-row, .quote-group, .branch, .foot, .lh-divider, .sep'
+  ).forEach(el => obs.observe(el));
+
+  // ── 사이드바 스크롤스파이 ──
+  const navLinks = [...document.querySelectorAll('.side a.nav')];
+  const navMap = new Map(navLinks.map(a => [a.getAttribute('href').slice(1), a]));
+  const spyTargets = [...document.querySelectorAll('#s-intro, #s01, #s02, #s03, #s04, #s-quote')];
+  const spy = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        navLinks.forEach(a => a.classList.remove('on'));
+        const link = navMap.get(e.target.id);
+        if (link) link.classList.add('on');
+      }
+    });
+  }, { rootMargin: '-45% 0px -50% 0px', threshold: 0 });
+  spyTargets.forEach(t => spy.observe(t));
+})();
+</script>
+
+</body>
+</html>

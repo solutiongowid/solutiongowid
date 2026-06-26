@@ -94,6 +94,7 @@ export default function CorporateCardWebinarCosmeticPage() {
   const accentColor = '#D85A7A';
   const accentLight = 'rgba(216, 90, 122, 0.08)';
   const accentBorder = 'rgba(216, 90, 122, 0.18)';
+  const isWebinarEnded = true;
 
   return (
     <>
@@ -105,8 +106,17 @@ export default function CorporateCardWebinarCosmeticPage() {
               <a href="https://gowid.com" className="report-brand" target="_blank" rel="noopener noreferrer">
                 <Image src="/gowid-logotype.png" alt="GOWID" width={84} height={28} priority style={{ objectFit: 'contain' }} />
               </a>
-              <button className="report-nav-button" onClick={openModal} style={{ background: accentColor, color: '#fff' }}>
-                무료 라이브세션 신청하기
+              <button
+                className="report-nav-button"
+                onClick={isWebinarEnded ? undefined : openModal}
+                disabled={isWebinarEnded}
+                style={{
+                  background: isWebinarEnded ? '#b0b0b0' : accentColor,
+                  color: '#fff',
+                  cursor: isWebinarEnded ? 'not-allowed' : 'pointer',
+                }}
+              >
+                {isWebinarEnded ? '신청이 마감되었습니다' : '무료 라이브세션 신청하기'}
               </button>
             </div>
           </div>
@@ -119,6 +129,25 @@ export default function CorporateCardWebinarCosmeticPage() {
               <div style={{ marginBottom: '1.5rem' }}>
                 <span className="badge" style={{ fontSize: '0.875rem', padding: '0.5rem 1.25rem', background: accentLight, color: accentColor, border: `1px solid ${accentBorder}` }}>5월 20일 (수) 오후 4시 | 온라인 라이브세션</span>
               </div>
+              {isWebinarEnded && (
+                <div style={{ marginBottom: '1.5rem' }}>
+                  <div style={{
+                    display: 'inline-flex',
+                    alignItems: 'center',
+                    gap: '0.5rem',
+                    padding: '0.75rem 1.5rem',
+                    background: '#f3f3f3',
+                    border: '1px solid #d0d0d0',
+                    borderRadius: '0.75rem',
+                    color: '#666',
+                    fontSize: '0.9375rem',
+                    fontWeight: '600',
+                  }}>
+                    <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="7" stroke="#999" strokeWidth="1.5"/><path d="M8 4.5V8.5" stroke="#999" strokeWidth="1.5" strokeLinecap="round"/><circle cx="8" cy="11" r="0.75" fill="#999"/></svg>
+                    이 웨비나는 종료되었습니다
+                  </div>
+                </div>
+              )}
               <h1 className="report-h1" style={{ textAlign: 'center', marginBottom: '1.5rem', color: '#111' }}>
                 <strong>
                   2026 법인카드 —<br />여기까지 왔습니다<br />: 코스메틱편
@@ -218,8 +247,19 @@ export default function CorporateCardWebinarCosmeticPage() {
                 ))}
               </div>
 
-              <button onClick={openModal} className="report-button-primary" style={{ marginTop: '2.5rem', background: accentColor, color: '#fff', boxShadow: '0 4px 20px rgba(216, 90, 122, 0.25)' }}>
-                무료 라이브세션 신청하기
+              <button
+                onClick={isWebinarEnded ? undefined : openModal}
+                disabled={isWebinarEnded}
+                className="report-button-primary"
+                style={{
+                  marginTop: '2.5rem',
+                  background: isWebinarEnded ? '#b0b0b0' : accentColor,
+                  color: '#fff',
+                  boxShadow: isWebinarEnded ? 'none' : '0 4px 20px rgba(216, 90, 122, 0.25)',
+                  cursor: isWebinarEnded ? 'not-allowed' : 'pointer',
+                }}
+              >
+                {isWebinarEnded ? '신청이 마감되었습니다' : '무료 라이브세션 신청하기'}
               </button>
             </div>
           </div>
@@ -414,8 +454,18 @@ export default function CorporateCardWebinarCosmeticPage() {
               <h3 className="report-h3" style={{ color: '#111' }}>
                 <strong>바꿀 타이밍인지,<br />40분이면 답이 나옵니다.</strong>
               </h3>
-              <button onClick={openModal} className="report-button-cta" style={{ background: accentColor, color: '#fff', boxShadow: '0 4px 20px rgba(216, 90, 122, 0.25)' }}>
-                무료 라이브세션 신청하기
+              <button
+                onClick={isWebinarEnded ? undefined : openModal}
+                disabled={isWebinarEnded}
+                className="report-button-cta"
+                style={{
+                  background: isWebinarEnded ? '#b0b0b0' : accentColor,
+                  color: '#fff',
+                  boxShadow: isWebinarEnded ? 'none' : '0 4px 20px rgba(216, 90, 122, 0.25)',
+                  cursor: isWebinarEnded ? 'not-allowed' : 'pointer',
+                }}
+              >
+                {isWebinarEnded ? '신청이 마감되었습니다' : '무료 라이브세션 신청하기'}
               </button>
             </div>
           </div>

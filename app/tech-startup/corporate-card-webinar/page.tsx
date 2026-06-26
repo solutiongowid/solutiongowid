@@ -102,7 +102,7 @@ export default function CorporateCardWebinarPage() {
               <a href="https://gowid.com" className="report-brand" target="_blank" rel="noopener noreferrer">
                 <Image src="/gowid-logotype.png" alt="GOWID" width={84} height={28} priority style={{ objectFit: 'contain' }} />
               </a>
-              <button className="report-nav-button" onClick={openModal} style={{ background: accentColor, color: '#fff' }}>
+              <button className="report-nav-button" disabled style={{ background: '#bbb', color: '#fff', cursor: 'not-allowed', opacity: 0.6 }}>
                 무료 웨비나 신청하기
               </button>
             </div>
@@ -217,7 +217,7 @@ export default function CorporateCardWebinarPage() {
                 ))}
               </div>
 
-              <button onClick={openModal} className="report-button-primary" style={{ marginTop: '2.5rem', background: accentColor, color: '#fff', boxShadow: '0 4px 20px rgba(26, 86, 219, 0.25)' }}>
+              <button disabled className="report-button-primary" style={{ marginTop: '2.5rem', background: '#bbb', color: '#fff', cursor: 'not-allowed', opacity: 0.6, boxShadow: 'none' }}>
                 무료 웨비나 신청하기
               </button>
             </div>
@@ -407,7 +407,7 @@ export default function CorporateCardWebinarPage() {
               <h3 className="report-h3" style={{ color: '#111' }}>
                 <strong>법인카드, 바꿀 타이밍인지,<br />40분 투자로 답을 알아가세요.</strong>
               </h3>
-              <button onClick={openModal} className="report-button-cta" style={{ background: accentColor, color: '#fff', boxShadow: '0 4px 20px rgba(26, 86, 219, 0.25)' }}>
+              <button disabled className="report-button-cta" style={{ background: '#bbb', color: '#fff', cursor: 'not-allowed', opacity: 0.6, boxShadow: 'none' }}>
                 무료 웨비나 신청하기
               </button>
             </div>

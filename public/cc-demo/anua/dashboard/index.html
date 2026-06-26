@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>아누아 PDRN 세럼 — 광고주 대시보드</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.css" />
+<style>
+  :root{
+    --emerald:#1FB6AA; --mint:#3FD0C9; --aqua:#9FE8E4;
+    --teal:#0E7C75; --pink:#F58AA8; --paper:#F4FBFA;
+    --ink:#10302E; --soft:#5A7672; --line:#E1EFEE; --bad:#E07A8B;
+    --font:"Pretendard Variable",Pretendard,-apple-system,system-ui,sans-serif;
+    --mono:ui-monospace,SFMono-Regular,Menlo,monospace;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  body{font-family:var(--font);background:#EAF4F3;color:var(--ink);
+    -webkit-font-smoothing:antialiased;word-break:keep-all;padding:28px 20px 60px}
+  .wrap{max-width:1180px;margin:0 auto}
+
+  /* header */
+  .head{background:linear-gradient(135deg,var(--teal),var(--emerald));color:#fff;
+    border-radius:20px;padding:26px 30px;display:flex;justify-content:space-between;
+    align-items:center;gap:20px;flex-wrap:wrap;box-shadow:0 16px 40px rgba(14,124,117,.22)}
+  .head .brand{font-size:1.5rem;font-weight:800;letter-spacing:-.01em}
+  .head .brand small{display:block;font-size:.8rem;font-weight:600;opacity:.85;margin-top:4px;letter-spacing:.02em}
+  .head .meta{text-align:right;font-size:.9rem;opacity:.92;line-height:1.7}
+  .head .meta .range{font-weight:800;font-size:1.05rem}
+  .head .pill{display:inline-block;background:rgba(255,255,255,.18);border-radius:999px;padding:3px 11px;font-size:.78rem;font-weight:700;margin-top:4px}
+
+  .grid{margin-top:18px;display:grid;grid-template-columns:repeat(12,1fr);gap:18px}
+  .card{background:#fff;border:1px solid var(--line);border-radius:18px;padding:22px 24px;
+    box-shadow:0 8px 24px rgba(14,124,117,.06)}
+  .card .ct{font-size:.78rem;font-weight:800;color:var(--emerald);letter-spacing:.08em;text-transform:uppercase}
+  .card .ch{font-size:1.15rem;font-weight:800;margin-top:2px}
+  .span12{grid-column:span 12} .span8{grid-column:span 8}
+  .span7{grid-column:span 7} .span6{grid-column:span 6}
+  .span5{grid-column:span 5} .span4{grid-column:span 4}
+
+  /* KPI row */
+  .kpis{display:grid;grid-template-columns:repeat(5,1fr);gap:14px;margin-top:4px}
+  .kpi{background:var(--paper);border:1px solid var(--line);border-radius:14px;padding:16px 18px}
+  .kpi .l{font-size:.82rem;color:var(--soft);font-weight:700}
+  .kpi .v{font-size:1.55rem;font-weight:800;letter-spacing:-.02em;margin-top:4px}
+  .kpi .d{font-size:.8rem;font-weight:700;margin-top:4px}
+  .up{color:var(--emerald)} .down{color:var(--bad)}
+  .spark{margin-top:10px;display:flex;align-items:flex-end;gap:3px;height:34px}
+  .spark i{flex:1;background:var(--mint);border-radius:2px;opacity:.8}
+  .spark i:last-child{background:var(--emerald);opacity:1}
+
+  /* creative table */
+  table{width:100%;border-collapse:collapse;margin-top:8px}
+  th,td{text-align:left;padding:10px 8px;border-bottom:1px solid var(--line);font-size:.92rem}
+  th{font-size:.76rem;color:var(--soft);text-transform:uppercase;letter-spacing:.04em;font-weight:800}
+  td.code{font-family:var(--mono);font-weight:800;color:var(--teal);white-space:nowrap}
+  td .num{font-variant-numeric:tabular-nums}
+  .bar{height:8px;background:var(--line);border-radius:999px;overflow:hidden;min-width:70px}
+  .bar i{display:block;height:100%;background:var(--emerald);border-radius:999px}
+  .bar.bad i{background:var(--bad)}
+  .tag{display:inline-block;font-size:.72rem;font-weight:800;padding:2px 9px;border-radius:999px}
+  .tag.win{background:var(--aqua);color:var(--teal)}
+  .tag.guard{background:#FBE0E5;color:#B84A5E}
+
+  /* funnel */
+  .funnel{margin-top:8px;display:flex;flex-direction:column;gap:8px}
+  .fstep{display:flex;align-items:center;gap:12px}
+  .fstep .fl{width:96px;font-size:.85rem;font-weight:700;color:var(--soft)}
+  .ftrack{flex:1;background:var(--paper);border-radius:8px;overflow:hidden;height:40px;position:relative;border:1px solid var(--line)}
+  .ffill{height:100%;background:linear-gradient(90deg,var(--emerald),var(--mint));
+    display:flex;align-items:center;padding-left:14px;color:#fff;font-weight:800;font-size:.95rem}
+  .fdrop{width:70px;text-align:right;font-size:.8rem;font-weight:700}
+  .fdrop.warn{color:var(--bad)}
+
+  /* audience */
+  .seg{margin-top:6px}
+  .seg .row{display:flex;align-items:center;gap:10px;padding:7px 0}
+  .seg .row .nm{width:74px;font-size:.86rem;font-weight:700}
+  .seg .row .track{flex:1;height:14px;background:var(--paper);border:1px solid var(--line);border-radius:999px;overflow:hidden}
+  .seg .row .fill{height:100%;background:var(--emerald);border-radius:999px}
+  .seg .row .pct{width:46px;text-align:right;font-size:.82rem;font-weight:800;font-variant-numeric:tabular-nums}
+  .seg .row .roas{width:54px;text-align:right;font-size:.78rem;color:var(--soft);font-weight:700}
+  .donut{display:flex;align-items:center;gap:18px;margin-top:8px}
+  .ring{width:120px;height:120px;border-radius:50%;
+    background:conic-gradient(var(--emerald) 0 86%,var(--pink) 86% 100%);
+    display:grid;place-items:center}
+  .ring::after{content:"";width:74px;height:74px;border-radius:50%;background:#fff}
+  .ring .c{position:absolute;font-weight:800;text-align:center;line-height:1.1}
+  .ring-wrap{position:relative;display:grid;place-items:center}
+  .legend{font-size:.88rem;line-height:1.9}
+  .legend .dot{display:inline-block;width:10px;height:10px;border-radius:3px;margin-right:7px}
+  .chips{margin-top:10px;display:flex;flex-wrap:wrap;gap:8px}
+  .chip{background:var(--paper);border:1px solid var(--line);border-radius:999px;padding:6px 13px;font-size:.82rem;font-weight:700}
+  .chip b{color:var(--teal)}
+
+  /* retention cohort */
+  .reten-top{display:flex;gap:24px;flex-wrap:wrap;margin-top:6px}
+  .rstat .v{font-size:1.7rem;font-weight:800;color:var(--emerald)}
+  .rstat .l{font-size:.82rem;color:var(--soft);font-weight:700}
+  .cohort{margin-top:14px;border-collapse:separate;border-spacing:5px}
+  .cohort td,.cohort th{padding:0;border:none;text-align:center}
+  .cohort th{font-size:.74rem;color:var(--soft);font-weight:800;padding-bottom:4px}
+  .cohort .clab{font-size:.78rem;font-weight:800;color:var(--ink);text-align:right;padding-right:8px;white-space:nowrap}
+  .cell{width:54px;height:34px;border-radius:7px;display:grid;place-items:center;
+    font-size:.78rem;font-weight:800;color:#fff}
+
+  .foot{margin-top:18px;color:var(--soft);font-size:.82rem;line-height:1.7;text-align:center}
+  .foot code{font-family:var(--mono);background:#fff;border:1px solid var(--line);padding:1px 7px;border-radius:6px}
+
+  @media (max-width:860px){
+    .grid > *{grid-column:span 12 !important}
+    .kpis{grid-template-columns:1fr 1fr}
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <!-- HEADER -->
+  <div class="head">
+    <div class="brand">아누아 · PDRN 히알루론산 캡슐 100 세럼<small>광고 성과 모니터링 대시보드 · 더파운더즈</small></div>
+    <div class="meta">
+      <div class="range">2026-06-02 ~ 06-08 (7일)</div>
+      <div>Meta Marketing · GA4 <span class="pill">데모 데이터</span></div>
+    </div>
+  </div>
+
+  <div class="grid">
+
+    <!-- DAILY KPI -->
+    <div class="card span12">
+      <div class="ct">① Daily KPI</div>
+      <div class="ch">핵심 지표 — 최근 7일</div>
+      <div class="kpis">
+        <div class="kpi">
+          <div class="l">광고비</div><div class="v">₩2.98M</div><div class="d up">▲ 4.1%</div>
+          <div class="spark"><i style="height:60%"></i><i style="height:68%"></i><i style="height:55%"></i><i style="height:72%"></i><i style="height:64%"></i><i style="height:80%"></i><i style="height:88%"></i></div>
+        </div>
+        <div class="kpi">
+          <div class="l">ROAS</div><div class="v">3.27x</div><div class="d up">▲ 0.15</div>
+          <div class="spark"><i style="height:70%"></i><i style="height:62%"></i><i style="height:74%"></i><i style="height:66%"></i><i style="height:78%"></i><i style="height:82%"></i><i style="height:92%"></i></div>
+        </div>
+        <div class="kpi">
+          <div class="l">CPA</div><div class="v">₩18,900</div><div class="d up">▼ ₩900</div>
+          <div class="spark"><i style="height:90%"></i><i style="height:84%"></i><i style="height:88%"></i><i style="height:76%"></i><i style="height:72%"></i><i style="height:66%"></i><i style="height:60%"></i></div>
+        </div>
+        <div class="kpi">
+          <div class="l">전환 (구매)</div><div class="v">486건</div><div class="d up">▲ 7.2%</div>
+          <div class="spark"><i style="height:58%"></i><i style="height:64%"></i><i style="height:60%"></i><i style="height:70%"></i><i style="height:74%"></i><i style="height:82%"></i><i style="height:90%"></i></div>
+        </div>
+        <div class="kpi">
+          <div class="l">전환매출</div><div class="v">₩9.74M</div><div class="d up">▲ 9.6%</div>
+          <div class="spark"><i style="height:55%"></i><i style="height:62%"></i><i style="height:58%"></i><i style="height:72%"></i><i style="height:70%"></i><i style="height:84%"></i><i style="height:92%"></i></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- CREATIVE -->
+    <div class="card span7">
+      <div class="ct">② Creative</div>
+      <div class="ch">소재별 성과 · 예산 배분</div>
+      <table>
+        <thead><tr><th>소재</th><th>ROAS</th><th>CTR</th><th>CPA</th><th>예산비중</th><th>상태</th></tr></thead>
+        <tbody>
+          <tr><td class="code">AD-02</td><td class="num"><b>4.62x</b></td><td class="num">2.10%</td><td class="num">₩14,200</td>
+            <td><div class="bar"><i style="width:31%"></i></div></td><td><span class="tag win">증액</span></td></tr>
+          <tr><td class="code">AD-07</td><td class="num">3.91x</td><td class="num">1.78%</td><td class="num">₩17,500</td>
+            <td><div class="bar"><i style="width:24%"></i></div></td><td><span class="tag win">유지</span></td></tr>
+          <tr><td class="code">AD-04</td><td class="num">3.30x</td><td class="num">1.55%</td><td class="num">₩19,800</td>
+            <td><div class="bar"><i style="width:21%"></i></div></td><td><span class="tag win">유지</span></td></tr>
+          <tr><td class="code">AD-05</td><td class="num">1.42x</td><td class="num">0.82%</td><td class="num">₩46,300</td>
+            <td><div class="bar bad"><i style="width:13%"></i></div></td><td><span class="tag guard">정지</span></td></tr>
+          <tr><td class="code">AD-09</td><td class="num">1.21x</td><td class="num">0.71%</td><td class="num">₩51,800</td>
+            <td><div class="bar bad"><i style="width:11%"></i></div></td><td><span class="tag guard">정지</span></td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- FUNNEL -->
+    <div class="card span5">
+      <div class="ct">③ Funnel</div>
+      <div class="ch">전환 퍼널 (D-1)</div>
+      <div class="funnel">
+        <div class="fstep"><div class="fl">노출</div><div class="ftrack"><div class="ffill" style="width:100%">162,300</div></div><div class="fdrop">—</div></div>
+        <div class="fstep"><div class="fl">클릭</div><div class="ftrack"><div class="ffill" style="width:62%">2,510</div></div><div class="fdrop">1.55%</div></div>
+        <div class="fstep"><div class="fl">랜딩 방문</div><div class="ftrack"><div class="ffill" style="width:55%">2,380</div></div><div class="fdrop">▼5%</div></div>
+        <div class="fstep"><div class="fl">장바구니</div><div class="ftrack"><div class="ffill" style="width:34%">195</div></div><div class="fdrop">▼92%</div></div>
+        <div class="fstep"><div class="fl">결제완료</div><div class="ftrack"><div class="ffill" style="width:22%">74</div></div><div class="fdrop warn">▼62%</div></div>
+      </div>
+      <div class="chips"><div class="chip">장바구니→결제 이탈 <b>62%</b> · 개선 1순위</div></div>
+    </div>
+
+    <!-- AUDIENCE -->
+    <div class="card span7">
+      <div class="ct">④ Audience</div>
+      <div class="ch">세그먼트별 성과</div>
+      <div style="display:grid;grid-template-columns:1.2fr .8fr;gap:24px;margin-top:4px">
+        <div class="seg">
+          <div style="font-size:.8rem;font-weight:800;color:var(--soft);margin-bottom:2px">연령대 (비중 · ROAS)</div>
+          <div class="row"><span class="nm">25-34</span><div class="track"><div class="fill" style="width:38%"></div></div><span class="pct">38%</span><span class="roas">3.8x</span></div>
+          <div class="row"><span class="nm">35-44</span><div class="track"><div class="fill" style="width:34%"></div></div><span class="pct">34%</span><span class="roas">3.4x</span></div>
+          <div class="row"><span class="nm">45-54</span><div class="track"><div class="fill" style="width:18%"></div></div><span class="pct">18%</span><span class="roas">2.6x</span></div>
+          <div class="row"><span class="nm">18-24</span><div class="track"><div class="fill" style="width:10%"></div></div><span class="pct">10%</span><span class="roas">2.1x</span></div>
+        </div>
+        <div>
+          <div style="font-size:.8rem;font-weight:800;color:var(--soft);margin-bottom:2px">성별</div>
+          <div class="donut">
+            <div class="ring-wrap"><div class="ring"></div><div class="c"><span style="color:var(--teal);font-size:1.2rem">86%</span><br><span style="font-size:.7rem;color:var(--soft)">여성</span></div></div>
+            <div class="legend">
+              <div><span class="dot" style="background:var(--emerald)"></span>여성 86%</div>
+              <div><span class="dot" style="background:var(--pink)"></span>남성 14%</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="chips">
+        <div style="font-size:.8rem;font-weight:800;color:var(--soft);width:100%;margin-top:6px">관심사 Top</div>
+        <div class="chip">스킨케어·더마 <b>4.1x</b></div>
+        <div class="chip">K-뷰티 <b>3.6x</b></div>
+        <div class="chip">안티에이징 <b>3.2x</b></div>
+        <div class="chip">여행·면세 <b>2.9x</b></div>
+      </div>
+    </div>
+
+    <!-- RETENTION -->
+    <div class="card span5">
+      <div class="ct">⑤ Retention</div>
+      <div class="ch">재구매 · 유지율</div>
+      <div class="reten-top">
+        <div class="rstat"><div class="v">28%</div><div class="l">30일 재구매율</div></div>
+        <div class="rstat"><div class="v">₩41,200</div><div class="l">30일 LTV</div></div>
+        <div class="rstat"><div class="v">2.1회</div><div class="l">평균 구매횟수</div></div>
+      </div>
+      <table class="cohort">
+        <thead><tr><th class="clab"></th><th>M0</th><th>M1</th><th>M2</th><th>M3</th></tr></thead>
+        <tbody>
+          <tr><td class="clab">3월</td>
+            <td><div class="cell" style="background:#0E7C75">100</div></td>
+            <td><div class="cell" style="background:#1FB6AA">31</div></td>
+            <td><div class="cell" style="background:#5DCFC6">22</div></td>
+            <td><div class="cell" style="background:#9FE8E4;color:#0E7C75">18</div></td></tr>
+          <tr><td class="clab">4월</td>
+            <td><div class="cell" style="background:#0E7C75">100</div></td>
+            <td><div class="cell" style="background:#1FB6AA">29</div></td>
+            <td><div class="cell" style="background:#5DCFC6">24</div></td>
+            <td><div class="cell" style="background:#CFEFEC;color:#0E7C75">—</div></td></tr>
+          <tr><td class="clab">5월</td>
+            <td><div class="cell" style="background:#0E7C75">100</div></td>
+            <td><div class="cell" style="background:#1FB6AA">33</div></td>
+            <td><div class="cell" style="background:#CFEFEC;color:#0E7C75">—</div></td>
+            <td><div class="cell" style="background:#CFEFEC;color:#0E7C75">—</div></td></tr>
+        </tbody>
+      </table>
+      <div class="chips"><div class="chip">5월 코호트 M1 <b>33%</b> · 재구매 강세</div></div>
+    </div>
+
+  </div>
+
+  <div class="foot">
+    한 줄 요청 명령 · <code>/advertiser-dashboard</code>　·　소재 코드(AD-0X)는 <code>creatives/</code> 소재와 1:1 연결　·　단일 출처 <code>brand_brief.md</code><br>
+    ※ 수치는 데모입니다. Meta Marketing·GA4 MCP 연동 시 동일 레이아웃에 실데이터가 채워지며, 광고주별로 컬러·로고만 교체해 템플릿화됩니다.
+  </div>
+
+</div>
+</body>
+</html>

@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>아누아 PDRN 세럼 — 광고 소재 v1 (Meta Creatives)</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.css" />
+<style>
+  :root{
+    --emerald:#1FB6AA; --mint:#3FD0C9; --aqua:#9FE8E4;
+    --teal:#0E7C75; --pink:#F58AA8; --paper:#F4FBFA;
+    --ink:#10302E; --soft:#5A7672; --line:#D9EEEC;
+    --font:"Pretendard Variable",Pretendard,-apple-system,system-ui,sans-serif;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  body{font-family:var(--font);background:#E7F3F2;color:var(--ink);
+    -webkit-font-smoothing:antialiased;word-break:keep-all;padding:40px 20px 80px}
+  .page-h{text-align:center;max-width:760px;margin:0 auto 8px}
+  .page-h h1{font-size:clamp(1.6rem,3.4vw,2.4rem);font-weight:800}
+  .page-h p{margin-top:10px;color:var(--soft)}
+  .page-h .src{margin-top:6px;font-size:.85rem;color:var(--soft);font-family:ui-monospace,monospace}
+
+  .gallery{max-width:1180px;margin:40px auto 0;display:flex;flex-wrap:wrap;
+    gap:36px;justify-content:center;align-items:flex-start}
+  .cell{display:flex;flex-direction:column;gap:12px}
+  .meta{font-size:.9rem}
+  .meta .code{font-weight:800;color:var(--teal)}
+  .meta .fmt{margin-left:8px;background:#fff;border:1px solid var(--line);border-radius:999px;
+    padding:2px 10px;font-size:.78rem;font-weight:700;color:var(--soft)}
+  .meta .role{margin-left:6px;font-size:.78rem;font-weight:700}
+  .meta .role.win{color:var(--emerald)} .meta .role.guard{color:#C24A6B}
+
+  /* creative canvases — real ad ratios */
+  .cr{border-radius:20px;overflow:hidden;box-shadow:0 18px 44px rgba(14,124,117,.18);
+    position:relative;color:#fff;background:var(--teal)}
+  .sq{width:380px;height:380px}          /* 1:1 */
+  .st{width:300px;height:533px}          /* 9:16 */
+  .cr .pad{position:absolute;inset:0;padding:28px;display:flex;flex-direction:column}
+  .cr .logo{font-weight:800;letter-spacing:.04em;font-size:.95rem;opacity:.95}
+  .cr .spacer{flex:1}
+  .cr .cta{align-self:flex-start;background:#fff;color:var(--teal);font-weight:800;
+    padding:11px 22px;border-radius:999px;font-size:.95rem;margin-top:14px}
+  .cr .price{margin-top:12px;font-weight:800;font-size:.95rem}
+  .cr .price .was{opacity:.7;text-decoration:line-through;font-weight:600;margin-right:8px}
+  .cr .price .off{background:var(--pink);color:#fff;border-radius:6px;padding:2px 8px;font-size:.78em;margin-left:8px}
+  .cr .disc{position:absolute;left:0;right:0;bottom:0;font-size:.6rem;opacity:.7;
+    padding:0 28px 12px;line-height:1.4}
+
+  /* AD-02 before/after */
+  .ad02{background:linear-gradient(160deg,#fff 0%,var(--aqua) 100%);color:var(--ink)}
+  .ad02 .logo{color:var(--teal)}
+  .ad02 .ba{display:flex;gap:10px;margin-top:6px}
+  .ad02 .ba .b{flex:1;border-radius:12px;overflow:hidden;position:relative;aspect-ratio:1/1.1}
+  .ad02 .ba .b img{width:100%;height:100%;object-fit:cover}
+  .ad02 .ba .b.before img{filter:grayscale(.5) brightness(.92) contrast(.95)}
+  .ad02 .ba .b .t{position:absolute;top:8px;left:8px;background:rgba(16,48,46,.7);color:#fff;
+    font-size:.7rem;font-weight:800;padding:3px 9px;border-radius:999px}
+  .ad02 .ba .b.after .t{background:var(--emerald)}
+  .ad02 h2{font-size:1.5rem;font-weight:800;line-height:1.18;margin-top:14px}
+  .ad02 .hl{color:var(--emerald)}
+  .ad02 .stat{margin-top:6px;font-weight:800;color:var(--teal);font-size:1rem}
+
+  /* AD-04 UGC reel */
+  .ad04 .bg{position:absolute;inset:0}
+  .ad04 .bg img{width:100%;height:100%;object-fit:cover}
+  .ad04 .scrim{position:absolute;inset:0;background:linear-gradient(180deg,rgba(14,124,117,.15) 0%,rgba(10,40,38,.0) 35%,rgba(10,40,38,.78) 100%)}
+  .ad04 .tagup{align-self:flex-start;background:rgba(255,255,255,.85);color:var(--teal);
+    font-weight:800;font-size:.72rem;padding:5px 12px;border-radius:999px}
+  .ad04 h2{font-size:1.45rem;font-weight:800;line-height:1.2;text-shadow:0 2px 12px rgba(0,0,0,.3)}
+  .ad04 .quote{margin-top:8px;font-size:.85rem;opacity:.92}
+
+  /* AD-05 ingredient explainer */
+  .ad05{background:linear-gradient(160deg,#fff,#EAF7F6);color:var(--ink)}
+  .ad05 .logo{color:var(--teal)}
+  .ad05 h2{font-size:1.45rem;font-weight:800;line-height:1.2;margin-top:4px}
+  .ad05 .hl{color:var(--emerald)}
+  .ad05 .layers{margin-top:14px;display:flex;flex-direction:column;gap:6px}
+  .ad05 .layer{height:18px;border-radius:6px;background:var(--mint);opacity:.4}
+  .ad05 .layer:nth-child(2){opacity:.55;width:92%}
+  .ad05 .layer:nth-child(3){opacity:.7;width:84%}
+  .ad05 .layer:nth-child(4){opacity:.85;width:76%}
+  .ad05 .layer:nth-child(5){opacity:1;width:68%}
+  .ad05 .cap{margin-top:10px;font-weight:700;color:var(--soft);font-size:.85rem}
+  .ad05 .cta{background:var(--emerald);color:#fff}
+
+  /* AD-07 PDRN closeup */
+  .ad07 .bg{position:absolute;inset:0}
+  .ad07 .bg img{width:100%;height:100%;object-fit:cover}
+  .ad07 .scrim{position:absolute;inset:0;background:linear-gradient(180deg,rgba(10,40,38,.0) 30%,rgba(10,40,38,.8) 100%)}
+  .ad07 .pdrn{align-self:flex-start;background:var(--pink);color:#fff;font-weight:800;
+    font-size:.78rem;padding:5px 14px;border-radius:999px}
+  .ad07 h2{font-size:1.55rem;font-weight:800;line-height:1.18}
+  .ad07 .sub{margin-top:6px;font-size:.85rem;opacity:.9}
+
+  /* AD-09 clinical graph */
+  .ad09{background:linear-gradient(150deg,var(--teal),var(--emerald))}
+  .ad09 h2{font-size:1.4rem;font-weight:800;line-height:1.2}
+  .ad09 .bars{margin-top:16px;display:flex;flex-direction:column;gap:12px}
+  .ad09 .row{display:flex;align-items:center;gap:10px}
+  .ad09 .row .lab{width:78px;font-size:.78rem;font-weight:700;opacity:.95;text-align:right}
+  .ad09 .row .track{flex:1;height:22px;background:rgba(255,255,255,.18);border-radius:999px;overflow:hidden}
+  .ad09 .row .fill{height:100%;background:#fff;border-radius:999px;display:flex;align-items:center;
+    justify-content:flex-end;padding-right:8px;color:var(--teal);font-weight:800;font-size:.72rem}
+  .ad09 .cta{background:#fff;color:var(--teal)}
+
+  .note{max-width:1180px;margin:48px auto 0;background:#fff;border:1px solid var(--line);
+    border-radius:16px;padding:24px 28px;color:var(--soft);font-size:.9rem;line-height:1.7}
+  .note b{color:var(--ink)}
+  @media print{body{background:#fff}.cr{box-shadow:none;border:1px solid var(--line)}}
+</style>
+</head>
+<body>
+
+  <div class="page-h">
+    <h1>아누아 PDRN 세럼 — 광고 소재 v1</h1>
+    <p>brand_brief를 단일 출처로, 카피와 비주얼을 한 번에. 각 소재는 하나의 USP에 집중합니다.</p>
+    <p class="src">source: ../../brand_brief.md · 코드(AD-0X)는 일일 리포트 소재명과 1:1 연결</p>
+  </div>
+
+  <div class="gallery">
+
+    <!-- AD-02 -->
+    <div class="cell">
+      <div class="meta"><span class="code">AD-02</span> 3초 광채 Before-After<span class="fmt">1:1 피드</span><span class="role win">★ 핵심</span></div>
+      <div class="cr sq ad02">
+        <div class="pad">
+          <div class="logo">ANUA · PDRN 100+</div>
+          <div class="ba">
+            <div class="b before"><span class="t">BEFORE</span><img src="../img/model.jpg" alt="before"></div>
+            <div class="b after"><span class="t">3초 AFTER</span><img src="../img/model.jpg" alt="after"></div>
+          </div>
+          <h2>단 한 방울도 희석 없이,<br><span class="hl">3초 광채 플럼핑</span></h2>
+          <div class="stat">1회 3초 사용 직후 속보습 +24.64%</div>
+          <div class="spacer"></div>
+          <div class="cta">3초 광채 시작하기 →</div>
+        </div>
+        <div class="disc">* 한국피부과학연구원 인체적용시험 · 2024.07 · 40~68세 23명 · 개인차 있음</div>
+      </div>
+    </div>
+
+    <!-- AD-04 -->
+    <div class="cell">
+      <div class="meta"><span class="code">AD-04</span> 휴대용 UGC 후기<span class="fmt">9:16 릴스</span><span class="role win">UGC</span></div>
+      <div class="cr st ad04">
+        <div class="bg"><img src="../img/model.jpg" alt="ugc"></div>
+        <div class="scrim"></div>
+        <div class="pad">
+          <div class="tagup">여행 파우치 필수템 🧳</div>
+          <div class="spacer"></div>
+          <h2>어디서든 3초,<br>사계절 광채 한 방울</h2>
+          <div class="quote">"일시적 수분이 아니라 진짜 채워지는 느낌"</div>
+          <div class="cta">휴대용 광채 챙기기 →</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- AD-07 -->
+    <div class="cell">
+      <div class="meta"><span class="code">AD-07</span> PDRN 성분 클로즈업<span class="fmt">9:16 릴스</span><span class="role win">성분</span></div>
+      <div class="cr st ad07">
+        <div class="bg"><img src="../img/ingredients.jpg" alt="pdrn"></div>
+        <div class="scrim"></div>
+        <div class="pad">
+          <div class="pdrn">PDRN · 연어 DNA 유래</div>
+          <div class="spacer"></div>
+          <h2>PDRN,<br>피부 컨디션을<br>다시 채우다</h2>
+          <div class="sub">건강한 피부 컨디션과 광채를 위한 핵심 시너지 성분</div>
+          <div class="cta">PDRN 세럼 만나기 →</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- AD-05 -->
+    <div class="cell">
+      <div class="meta"><span class="code">AD-05</span> 11중 히알루론산 설명형<span class="fmt">1:1 피드</span><span class="role guard">⚠ 가드레일</span></div>
+      <div class="cr sq ad05">
+        <div class="pad">
+          <div class="logo">ANUA · PDRN 100+</div>
+          <h2>층층이 채우는<br><span class="hl">11중 히알루론산</span></h2>
+          <div class="layers">
+            <div class="layer"></div><div class="layer"></div><div class="layer"></div>
+            <div class="layer"></div><div class="layer"></div>
+          </div>
+          <div class="cap">고·중·저분자 11종이 피부 층층이 속보습을 채움</div>
+          <div class="spacer"></div>
+          <div class="cta">성분 자세히 보기 →</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- AD-09 -->
+    <div class="cell">
+      <div class="meta"><span class="code">AD-09</span> 임상 그래프 단독<span class="fmt">1:1 피드</span><span class="role guard">⚠ 가드레일</span></div>
+      <div class="cr sq ad09">
+        <div class="pad">
+          <div class="logo">ANUA · CLINICAL</div>
+          <h2>흡수를 넘어,<br>생성 증가로 증명</h2>
+          <div class="bars">
+            <div class="row"><span class="lab">흡수 속도</span><div class="track"><div class="fill" style="width:90%">3.14배</div></div></div>
+            <div class="row"><span class="lab">합성효소</span><div class="track"><div class="fill" style="width:82%">+81.8%</div></div></div>
+            <div class="row"><span class="lab">콜라겐</span><div class="track"><div class="fill" style="width:68%">+67.6%</div></div></div>
+          </div>
+          <div class="spacer"></div>
+          <div class="cta">임상 결과 보기 →</div>
+        </div>
+        <div class="disc">* 인간진피섬유아세포 효력시험 / 흡수: 대조군 대비 인체적용시험</div>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="note">
+    <b>내보내기 팁</b> — 각 카드를 캡처하면 바로 Meta 업로드용 소재가 됩니다. 1:1은 380×380, 9:16은 300×533 비율로 제작되어 있어 정사각(1080×1080)·세로(1080×1920)로 그대로 확대 출력됩니다.<br>
+    <b>운영 연결</b> — AD-02(핵심)·AD-04·AD-07은 주력, AD-05·AD-09는 후킹이 약해 <b>가드레일</b> 대상. 일일 리포트에서 CPA 초과 시 정지 권장으로 잡힙니다.<br>
+    <b>단일 출처</b> — 모든 카피·수치·컬러는 <b>brand_brief.md</b>에서 상속했습니다. 톤이 흔들리면 brand_brief로 돌아옵니다.
+  </div>
+
+</body>
+</html>

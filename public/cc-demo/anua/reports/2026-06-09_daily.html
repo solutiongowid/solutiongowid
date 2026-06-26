@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>2026-06-09 아누아 PDRN 세럼 데일리 리포트</title>
+  <link rel="stylesheet" href="../../deck-marketer/assets/fonts/pretendard.css" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: "Pretendard Variable", Pretendard, -apple-system, sans-serif;
+      background: #edeff2;
+      color: #1a1a1a;
+      font-size: 15px;
+      line-height: 1.7;
+      padding: 40px 20px 80px;
+    }
+    .doc { max-width: 760px; margin: 0 auto; }
+    /* Header */
+    .doc-header {
+      background: #1FB6AA;
+      color: white;
+      border-radius: 16px 16px 0 0;
+      padding: 32px 40px 24px;
+    }
+    .eyebrow {
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      opacity: .75;
+      margin-bottom: 8px;
+    }
+    .doc-header h1 { font-size: 22px; font-weight: 700; margin-bottom: 10px; }
+    .doc-header .meta-row {
+      display: flex; gap: 12px; font-size: 12px; opacity: .75; flex-wrap: wrap;
+    }
+    .meta-tag {
+      background: rgba(255,255,255,.18);
+      border-radius: 20px;
+      padding: 3px 12px;
+    }
+    /* Section */
+    .section {
+      background: white;
+      padding: 28px 40px;
+      border-bottom: 1px solid #f0f0f0;
+    }
+    .section:last-child { border-radius: 0 0 16px 16px; border-bottom: none; }
+    .section-label {
+      font-size: 11px; font-weight: 700; letter-spacing: .1em;
+      text-transform: uppercase; color: #1FB6AA; margin-bottom: 16px;
+    }
+    /* KPI cards */
+    .kpi-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+    }
+    .kpi-card {
+      background: #f7fffe;
+      border: 1px solid #d4f0ee;
+      border-radius: 10px;
+      padding: 14px 16px;
+    }
+    .kpi-label { font-size: 12px; color: #888; margin-bottom: 4px; }
+    .kpi-val { font-size: 20px; font-weight: 800; color: #1a1a1a; line-height: 1.2; }
+    .kpi-delta { font-size: 12px; margin-top: 4px; }
+    .up { color: #22a25a; }
+    .down { color: #E54A4A; }
+    .good { color: #22a25a; }
+    /* Tables */
+    table { width: 100%; border-collapse: collapse; font-size: 14px; }
+    th {
+      background: #f7fffe; color: #0E7C75; font-weight: 600;
+      font-size: 12px; text-align: left; padding: 10px 14px;
+      border-bottom: 2px solid #e0f5f3;
+    }
+    td { padding: 10px 14px; border-bottom: 1px solid #f2f2f2; vertical-align: middle; }
+    tr:last-child td { border-bottom: none; }
+    td strong { color: #0E7C75; }
+    .action-badge {
+      display: inline-block; font-size: 11px; font-weight: 700;
+      padding: 2px 10px; border-radius: 20px;
+    }
+    .badge-up { background: #e8faf1; color: #22a25a; }
+    .badge-hold { background: #f0f0f0; color: #666; }
+    /* Guardrail table */
+    .warn-row td { color: #8a3a3a; }
+    .warn-row { background: #fff8f8; }
+    .warn-badge { display: inline-block; font-size: 11px; font-weight: 700; padding: 2px 10px; border-radius: 20px; background: #fdecea; color: #c0392b; }
+    /* GA4 */
+    .ga-grid {
+      display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px;
+    }
+    .ga-item {
+      background: #f9f9f9; border-radius: 8px; padding: 12px 14px;
+      display: flex; justify-content: space-between; align-items: center;
+    }
+    .ga-key { font-size: 13px; color: #666; }
+    .ga-val { font-size: 15px; font-weight: 700; color: #1a1a1a; }
+    /* Action items */
+    .action-list { display: flex; flex-direction: column; gap: 12px; }
+    .action-item {
+      display: flex; gap: 12px; align-items: flex-start;
+      padding: 14px 16px; border-radius: 10px; font-size: 14px;
+    }
+    .action-item.ok { background: #e8faf1; }
+    .action-item.warn { background: #fff3e6; }
+    .action-item.info { background: #f0f7ff; }
+    .action-num {
+      background: #1FB6AA; color: white; font-weight: 700; font-size: 13px;
+      width: 24px; height: 24px; border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0; margin-top: 1px;
+    }
+    .action-item.warn .action-num { background: #E5933A; }
+    .action-item.info .action-num { background: #3A8BE5; }
+    /* Footer note */
+    .footer-note {
+      font-size: 12px; color: #999; padding: 16px 40px;
+      background: white; border-radius: 0 0 16px 16px;
+      border-top: 1px solid #f0f0f0;
+    }
+    @media (max-width: 540px) {
+      .doc-header, .section { padding: 24px 20px; }
+      .kpi-grid { grid-template-columns: repeat(2, 1fr); }
+      .ga-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+  <div class="doc">
+
+    <!-- Header -->
+    <div class="doc-header">
+      <div class="eyebrow">Daily Report · Meta Marketing + GA4</div>
+      <h1>📊 2026-06-09 아누아 PDRN 세럼 데일리 리포트</h1>
+      <div class="meta-row">
+        <span class="meta-tag">D-1 기준 (어제)</span>
+        <span class="meta-tag">채널 #marketing-daily</span>
+        <span class="meta-tag">※ 수치는 데모</span>
+      </div>
+    </div>
+
+    <!-- KPI -->
+    <div class="section">
+      <div class="section-label">핵심 KPI — 어제 D-1 기준</div>
+      <div class="kpi-grid">
+        <div class="kpi-card">
+          <div class="kpi-label">💰 지출</div>
+          <div class="kpi-val">₩446,800</div>
+          <div class="kpi-delta up">▲ +6.8% · 예산 89%</div>
+        </div>
+        <div class="kpi-card">
+          <div class="kpi-label">🎯 ROAS</div>
+          <div class="kpi-val">3.27x</div>
+          <div class="kpi-delta up">▲ +0.15 전일 대비</div>
+        </div>
+        <div class="kpi-card">
+          <div class="kpi-label">📥 CPA</div>
+          <div class="kpi-val">₩18,900</div>
+          <div class="kpi-delta good">▼ -₩900 (개선)</div>
+        </div>
+        <div class="kpi-card">
+          <div class="kpi-label">👀 노출</div>
+          <div class="kpi-val">162,300</div>
+          <div class="kpi-delta" style="color:#888">CTR 1.55%</div>
+        </div>
+        <div class="kpi-card">
+          <div class="kpi-label">🛒 전환수 (구매)</div>
+          <div class="kpi-val">74건</div>
+          <div class="kpi-delta up">▲ +9건</div>
+        </div>
+        <div class="kpi-card">
+          <div class="kpi-label">💵 전환매출</div>
+          <div class="kpi-val">₩1,461,000</div>
+          <div class="kpi-delta up">▲ +12.4%</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Top 3 -->
+    <div class="section">
+      <div class="section-label">🏆 고성과 소재 Top 3</div>
+      <table>
+        <thead>
+          <tr><th>순위</th><th>소재</th><th>ROAS</th><th>CPA</th><th>액션</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>1</td>
+            <td><strong>AD-02</strong> 3초 광채 Before-After</td>
+            <td style="color:#22a25a;font-weight:700">4.62x</td>
+            <td>₩14,200</td>
+            <td><span class="action-badge badge-up">예산 증액 권장</span></td>
+          </tr>
+          <tr>
+            <td>2</td>
+            <td><strong>AD-07</strong> PDRN 성분 클로즈업</td>
+            <td style="color:#22a25a;font-weight:700">3.91x</td>
+            <td>₩17,500</td>
+            <td><span class="action-badge badge-hold">유지</span></td>
+          </tr>
+          <tr>
+            <td>3</td>
+            <td><strong>AD-04</strong> 휴대용 UGC 후기</td>
+            <td style="color:#22a25a;font-weight:700">3.30x</td>
+            <td>₩19,800</td>
+            <td><span class="action-badge badge-hold">유지</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Guardrail -->
+    <div class="section">
+      <div class="section-label">⚠️ 저성과 가드레일</div>
+      <table>
+        <thead>
+          <tr><th>소재</th><th>ROAS</th><th>CPA</th><th>권장</th></tr>
+        </thead>
+        <tbody>
+          <tr class="warn-row">
+            <td><strong>AD-05</strong> 11중 히알루론산 설명형</td>
+            <td style="color:#c0392b;font-weight:700">1.42x</td>
+            <td style="color:#c0392b;font-weight:700">₩46,300</td>
+            <td><span class="warn-badge">CPA 한도 초과 → 정지</span></td>
+          </tr>
+          <tr class="warn-row">
+            <td><strong>AD-09</strong> 임상 그래프 단독</td>
+            <td style="color:#c0392b;font-weight:700">1.21x</td>
+            <td style="color:#c0392b;font-weight:700">₩51,800</td>
+            <td><span class="warn-badge">정지 · 캐러셀 카드로 재편</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- GA4 -->
+    <div class="section">
+      <div class="section-label">🌐 GA4 사이트 지표</div>
+      <div class="ga-grid">
+        <div class="ga-item">
+          <span class="ga-key">세션</span>
+          <span class="ga-val">5,840</span>
+        </div>
+        <div class="ga-item">
+          <span class="ga-key">평균 참여시간</span>
+          <span class="ga-val">1분 38초</span>
+        </div>
+        <div class="ga-item">
+          <span class="ga-key">구매 전환율</span>
+          <span class="ga-val">1.27%</span>
+        </div>
+        <div class="ga-item">
+          <span class="ga-key">장바구니 → 결제 이탈</span>
+          <span class="ga-val" style="color:#E54A4A">62%</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Actions -->
+    <div class="section">
+      <div class="section-label">✅ 오늘의 한 줄 액션</div>
+      <div class="action-list">
+        <div class="action-item ok">
+          <div class="action-num">1</div>
+          <div><strong>AD-02</strong> 예산 +20% 증액 — ROAS 4.62x, 한도 여유</div>
+        </div>
+        <div class="action-item warn">
+          <div class="action-num">2</div>
+          <div><strong>AD-05 · AD-09 정지</strong> — 합산 일 ₩98,100 낭비 차단, AD-02/07로 재배분</div>
+        </div>
+        <div class="action-item info">
+          <div class="action-num">3</div>
+          <div>결제 단계 이탈 62% → <strong>LP 결제 플로우 점검 의뢰</strong> (전환율 개선 우선)</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Footer -->
+    <div class="footer-note">
+      📌 한 줄 요청 명령 · <code>/daily-slack</code> · 소재 코드는 creatives/ 소재와 1:1 연결<br>
+      ※ 수치는 데모입니다. Meta·GA4 MCP 연동 시 동일 포맷에 실데이터가 채워집니다.
+    </div>
+
+  </div>
+</body>
+</html>

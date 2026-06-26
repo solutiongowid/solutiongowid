@@ -1,0 +1,570 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>아누아 Brand Brief — PDRN 히알루론산 캡슐 100 세럼</title>
+  <link rel="stylesheet" href="../deck-marketer/assets/fonts/pretendard.css" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: "Pretendard Variable", Pretendard, -apple-system, sans-serif;
+      background: #edeff2;
+      color: #1a1a1a;
+      font-size: 15px;
+      line-height: 1.7;
+      padding: 40px 20px 80px;
+    }
+    .doc {
+      max-width: 760px;
+      margin: 0 auto;
+    }
+    /* Header */
+    .doc-header {
+      background: #1FB6AA;
+      color: white;
+      border-radius: 16px 16px 0 0;
+      padding: 36px 40px 28px;
+    }
+    .doc-header .eyebrow {
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      opacity: .75;
+      margin-bottom: 10px;
+    }
+    .doc-header h1 {
+      font-size: 24px;
+      font-weight: 700;
+      line-height: 1.35;
+      margin-bottom: 12px;
+    }
+    .doc-header .tagline {
+      font-size: 14px;
+      opacity: .88;
+      font-style: italic;
+    }
+    .doc-header .meta-row {
+      margin-top: 18px;
+      display: flex;
+      gap: 16px;
+      font-size: 12px;
+      opacity: .75;
+    }
+    .meta-tag {
+      background: rgba(255,255,255,.18);
+      border-radius: 20px;
+      padding: 3px 12px;
+    }
+    /* Sections */
+    .section {
+      background: white;
+      padding: 32px 40px;
+      border-bottom: 1px solid #f0f0f0;
+    }
+    .section:last-child {
+      border-radius: 0 0 16px 16px;
+      border-bottom: none;
+    }
+    .section-label {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      color: #1FB6AA;
+      margin-bottom: 14px;
+    }
+    .section h2 {
+      font-size: 18px;
+      font-weight: 700;
+      color: #111;
+      margin-bottom: 18px;
+    }
+    /* Table */
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 14px;
+    }
+    th {
+      background: #f7fffe;
+      color: #0E7C75;
+      font-weight: 600;
+      font-size: 12px;
+      text-align: left;
+      padding: 10px 14px;
+      border-bottom: 2px solid #e0f5f3;
+    }
+    td {
+      padding: 10px 14px;
+      border-bottom: 1px solid #f2f2f2;
+      vertical-align: top;
+    }
+    tr:last-child td { border-bottom: none; }
+    td:first-child { color: #555; font-size: 13px; }
+    td strong { color: #111; }
+    /* USP list */
+    .usp-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+    .usp-list li {
+      display: flex;
+      gap: 12px;
+      align-items: flex-start;
+    }
+    .usp-num {
+      background: #1FB6AA;
+      color: white;
+      font-weight: 700;
+      font-size: 12px;
+      width: 24px;
+      height: 24px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      margin-top: 2px;
+    }
+    /* Clinical stats */
+    .stat-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 14px;
+      margin-bottom: 20px;
+    }
+    .stat-card {
+      background: #f7fffe;
+      border: 1px solid #d4f0ee;
+      border-radius: 10px;
+      padding: 16px;
+      text-align: center;
+    }
+    .stat-card .num {
+      font-size: 26px;
+      font-weight: 800;
+      color: #1FB6AA;
+      line-height: 1.1;
+    }
+    .stat-card .label {
+      font-size: 12px;
+      color: #555;
+      margin-top: 4px;
+      line-height: 1.4;
+    }
+    .stat-note {
+      font-size: 12px;
+      color: #888;
+      background: #fafafa;
+      border-radius: 8px;
+      padding: 10px 14px;
+    }
+    /* Persona */
+    .persona-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+    }
+    .persona-block h3 {
+      font-size: 13px;
+      font-weight: 700;
+      color: #0E7C75;
+      margin-bottom: 10px;
+    }
+    .persona-block ul {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+    .persona-block ul li {
+      font-size: 14px;
+      padding-left: 16px;
+      position: relative;
+    }
+    .persona-block ul li::before {
+      content: "·";
+      position: absolute;
+      left: 4px;
+      color: #1FB6AA;
+      font-weight: 700;
+    }
+    .persona-desc {
+      margin-top: 16px;
+      background: #f7fffe;
+      border-left: 3px solid #1FB6AA;
+      padding: 12px 16px;
+      font-size: 14px;
+      border-radius: 0 8px 8px 0;
+    }
+    /* Tone */
+    .tone-row {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      margin-bottom: 16px;
+    }
+    .tone-tag {
+      background: #f0fffe;
+      border: 1px solid #9FE8E4;
+      color: #0E7C75;
+      border-radius: 20px;
+      padding: 4px 14px;
+      font-size: 13px;
+      font-weight: 600;
+    }
+    .copy-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+    .copy-list li {
+      font-size: 14px;
+      padding: 8px 14px;
+      background: #f9f9f9;
+      border-radius: 8px;
+      font-style: italic;
+      color: #333;
+    }
+    .copy-list li::before { content: "" "; color: #9FE8E4; margin-right: 2px; }
+    /* Color swatches */
+    .swatch-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+    }
+    .swatch {
+      border-radius: 10px;
+      overflow: hidden;
+      border: 1px solid #eee;
+    }
+    .swatch-chip {
+      height: 52px;
+    }
+    .swatch-info {
+      padding: 8px 12px;
+      background: white;
+    }
+    .swatch-name { font-weight: 600; font-size: 13px; }
+    .swatch-hex { font-size: 11px; color: #888; font-family: monospace; }
+    .swatch-use { font-size: 11px; color: #999; margin-top: 2px; }
+    /* Routine */
+    .routine-list {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+    .routine-item {
+      display: flex;
+      gap: 14px;
+      align-items: flex-start;
+    }
+    .routine-badge {
+      background: #1FB6AA;
+      color: white;
+      font-size: 11px;
+      font-weight: 700;
+      padding: 3px 10px;
+      border-radius: 20px;
+      white-space: nowrap;
+      margin-top: 2px;
+    }
+    /* Guide */
+    .guide-list {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+    .guide-item {
+      display: flex;
+      gap: 12px;
+      align-items: flex-start;
+      padding: 12px 14px;
+      background: #f7fffe;
+      border-radius: 10px;
+      font-size: 14px;
+    }
+    .guide-icon {
+      font-size: 16px;
+      flex-shrink: 0;
+    }
+    .sst-badge {
+      display: inline-block;
+      background: #1FB6AA;
+      color: white;
+      font-size: 12px;
+      font-weight: 700;
+      padding: 4px 14px;
+      border-radius: 20px;
+      margin-bottom: 14px;
+    }
+    .sst-note {
+      font-size: 14px;
+      background: #f0fffe;
+      border: 1px solid #9FE8E4;
+      border-radius: 10px;
+      padding: 14px 18px;
+      color: #0E7C75;
+      font-weight: 500;
+    }
+    @media (max-width: 540px) {
+      .doc-header, .section { padding: 24px 20px; }
+      .stat-grid { grid-template-columns: 1fr 1fr; }
+      .persona-grid { grid-template-columns: 1fr; }
+      .swatch-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+  </style>
+</head>
+<body>
+  <div class="doc">
+
+    <!-- Header -->
+    <div class="doc-header">
+      <div class="eyebrow">Brand Brief · Single Source of Truth</div>
+      <h1>아누아 PDRN 히알루론산 캡슐 100 세럼</h1>
+      <p class="tagline">"단 한 방울도 희석 없이, 피부 속부터 차오르는 3초 광채 플럼핑 세럼."</p>
+      <div class="meta-row">
+        <span class="meta-tag">더파운더즈 (Anua)</span>
+        <span class="meta-tag">Updated 2026-06-09</span>
+        <span class="meta-tag">doc_type · brand_brief</span>
+      </div>
+    </div>
+
+    <!-- 1. 제품 기본 정보 -->
+    <div class="section">
+      <div class="section-label">1 · 제품 기본 정보</div>
+      <table>
+        <thead><tr><th>항목</th><th>내용</th></tr></thead>
+        <tbody>
+          <tr><td>제품명(국문)</td><td>PDRN 히알루론산 캡슐 100 세럼</td></tr>
+          <tr><td>제품명(영문)</td><td>PDRN Hyaluronic Acid Capsule 100 Serum</td></tr>
+          <tr><td>용량</td><td>30ml / 1.01 fl.oz.</td></tr>
+          <tr><td>카테고리</td><td>에센스 · 앰플 (수분/보습 · 주름/탄력)</td></tr>
+          <tr><td>소비자가</td><td>39,000원</td></tr>
+          <tr><td>판매가</td><td><strong>22,500원</strong> (약 42% 할인)</td></tr>
+          <tr><td>배송</td><td>3,000원 · 40,000원 이상 무료</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- 2. USP -->
+    <div class="section">
+      <div class="section-label">2 · USP (핵심 차별점)</div>
+      <ul class="usp-list">
+        <li>
+          <span class="usp-num">1</span>
+          <span><strong>3초 광채 플럼핑</strong> — 단 1회, 3초 사용만으로 즉각적인 수분 플럼핑 효과</span>
+        </li>
+        <li>
+          <span class="usp-num">2</span>
+          <span><strong>세럼 100% 초저분자 스마트 캡슐 (국내 최초)</strong> — 리포좀 대비 침투력이 높은 캡슐이 성분 파괴 없이 피부 속까지 빠르게 도달</span>
+        </li>
+        <li>
+          <span class="usp-num">3</span>
+          <span><strong>PDRN + 11중 히알루론산 + 저분자 콜라겐</strong> 3종 시너지 — 속수분 보충부터 건강한 광채까지</span>
+        </li>
+        <li>
+          <span class="usp-num">4</span>
+          <span><strong>에메랄드빛 고효능 워터리 제형</strong> — 빠르고 밀착감 있게 흡수, 속당김 없음</span>
+        </li>
+      </ul>
+    </div>
+
+    <!-- 3. 핵심 성분 -->
+    <div class="section">
+      <div class="section-label">3 · 핵심 성분 (3종 시너지)</div>
+      <table>
+        <thead><tr><th>성분</th><th>역할</th></tr></thead>
+        <tbody>
+          <tr><td><strong>PDRN</strong></td><td>연어 DNA 유래 성분. 건강한 피부 컨디션과 광채를 위한 핵심 시너지 성분</td></tr>
+          <tr><td><strong>11중 히알루론산</strong></td><td>고·중·저분자 11종으로 피부 층층이 속보습 채움</td></tr>
+          <tr><td><strong>저분자 콜라겐</strong></td><td>피부 장벽에 도움을 주어 탄탄한 피부로 케어</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- 4. 임상 근거 -->
+    <div class="section">
+      <div class="section-label">4 · 임상 근거</div>
+      <div class="stat-grid">
+        <div class="stat-card">
+          <div class="num">+24.64%</div>
+          <div class="label">피부 속보습 개선<br><span style="font-size:10px">1회 3초 사용 직후</span></div>
+        </div>
+        <div class="stat-card">
+          <div class="num">3.14x</div>
+          <div class="label">스마트 캡슐 흡수 속도<br><span style="font-size:10px">대조군 대비</span></div>
+        </div>
+        <div class="stat-card">
+          <div class="num">+81.8%</div>
+          <div class="label">히알루론산 합성효소<br><span style="font-size:10px">성분 생성 증가</span></div>
+        </div>
+        <div class="stat-card">
+          <div class="num">+8.93%</div>
+          <div class="label">수분 플럼핑 효과<br><span style="font-size:10px">1회 3초 사용 직후</span></div>
+        </div>
+        <div class="stat-card">
+          <div class="num">1.69x</div>
+          <div class="label">흡수율<br><span style="font-size:10px">대조군 대비</span></div>
+        </div>
+        <div class="stat-card">
+          <div class="num">100%</div>
+          <div class="label">사용 만족도<br><span style="font-size:10px">피부가 먼저 알아보는</span></div>
+        </div>
+      </div>
+      <div class="stat-note">시험기관: 한국피부과학연구원 · 시험기간: 2024.07 · 대상: 40~68세 성인 여성 23명 (개인차 있음). 콜라겐 +67.6% (인간진피섬유아세포, 2024.07.23~08.23)</div>
+    </div>
+
+    <!-- 5. 타깃 페르소나 -->
+    <div class="section">
+      <div class="section-label">5 · 타깃 페르소나</div>
+      <div class="persona-grid">
+        <div class="persona-block">
+          <h3>핵심 페인포인트</h3>
+          <ul>
+            <li>피부과 관리 비용이 부담된다</li>
+            <li>화장품만으로는 피부 관리가 어렵다</li>
+            <li>피부 컨디션을 회복시키고 싶다</li>
+          </ul>
+        </div>
+        <div class="persona-block">
+          <h3>추천 대상</h3>
+          <ul>
+            <li>어떤 세럼을 발라도 <strong>속당김</strong>을 느끼는 분</li>
+            <li>사계절 피부 <strong>광채가 부족</strong>하신 분</li>
+            <li>일시적 수분이 아닌 <strong>지속적인 수분광채</strong>를 원하시는 분</li>
+            <li>여행 등 외부 활동 시 <strong>휴대용 세럼</strong>이 필요하신 분</li>
+          </ul>
+        </div>
+      </div>
+      <div class="persona-desc">
+        <strong>대표 페르소나</strong><br>
+        30~40대 여성. 성분과 임상 근거를 따지고, 일시적 보습이 아닌 "성분의 채워짐"을 원함. 피부과 시술 비용은 부담스럽지만 홈케어 효능에는 투자 의향이 있음.
+      </div>
+    </div>
+
+    <!-- 6. 톤 & 보이스 -->
+    <div class="section">
+      <div class="section-label">6 · 톤 & 보이스</div>
+      <div class="tone-row">
+        <span class="tone-tag">클린</span>
+        <span class="tone-tag">워터리</span>
+        <span class="tone-tag">임상 근거 기반</span>
+        <span class="tone-tag">미니멀</span>
+        <span class="tone-tag">과학적 신뢰</span>
+      </div>
+      <p style="font-size:14px;color:#444;margin-bottom:16px"><strong>카피 원칙:</strong> 감성보다 <strong>근거(수치·시험)</strong>로 설득. "촉촉해진 '느낌'이 아닌, 성분의 '채워짐'."<br><strong>금지:</strong> 과장된 의학적 표현, 효능 단정. 항상 시험 조건(대상·기간)을 병기.</p>
+      <p style="font-size:13px;color:#888;margin-bottom:10px">대표 카피 자산</p>
+      <ul class="copy-list">
+        <li>단 한 방울도 희석 없이</li>
+        <li>3초 광채 플럼핑</li>
+        <li>한 번만 써봐도 바로 알 수 있어요</li>
+        <li>촉촉해진 '느낌'이 아닌 성분의 '채워짐'을 경험해보세요</li>
+        <li>성분 흡수를 넘어 생성 증가로 보여주는 효과</li>
+      </ul>
+    </div>
+
+    <!-- 7. 컬러 6슬롯 -->
+    <div class="section">
+      <div class="section-label">7 · 컬러 6슬롯</div>
+      <div class="swatch-grid">
+        <div class="swatch">
+          <div class="swatch-chip" style="background:#1FB6AA"></div>
+          <div class="swatch-info">
+            <div class="swatch-name">Emerald</div>
+            <div class="swatch-hex">#1FB6AA</div>
+            <div class="swatch-use">메인 브랜드/CTA</div>
+          </div>
+        </div>
+        <div class="swatch">
+          <div class="swatch-chip" style="background:#3FD0C9"></div>
+          <div class="swatch-info">
+            <div class="swatch-name">Mint</div>
+            <div class="swatch-hex">#3FD0C9</div>
+            <div class="swatch-use">보조 강조</div>
+          </div>
+        </div>
+        <div class="swatch">
+          <div class="swatch-chip" style="background:#9FE8E4"></div>
+          <div class="swatch-info">
+            <div class="swatch-name">Aqua</div>
+            <div class="swatch-hex">#9FE8E4</div>
+            <div class="swatch-use">배경/그래픽 톤</div>
+          </div>
+        </div>
+        <div class="swatch">
+          <div class="swatch-chip" style="background:#0E7C75"></div>
+          <div class="swatch-info">
+            <div class="swatch-name">Deep Teal</div>
+            <div class="swatch-hex">#0E7C75</div>
+            <div class="swatch-use">텍스트 강조/대비</div>
+          </div>
+        </div>
+        <div class="swatch">
+          <div class="swatch-chip" style="background:#F58AA8"></div>
+          <div class="swatch-info">
+            <div class="swatch-name">PDRN Pink</div>
+            <div class="swatch-hex">#F58AA8</div>
+            <div class="swatch-use">성분 포인트 컬러</div>
+          </div>
+        </div>
+        <div class="swatch">
+          <div class="swatch-chip" style="background:#F4FBFA;border-bottom:1px solid #eee"></div>
+          <div class="swatch-info">
+            <div class="swatch-name">Paper</div>
+            <div class="swatch-hex">#F4FBFA</div>
+            <div class="swatch-use">베이스 배경</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 8. 사용법 -->
+    <div class="section">
+      <div class="section-label">8 · 사용법 (3 routine)</div>
+      <div class="routine-list">
+        <div class="routine-item">
+          <span class="routine-badge">Daily Care</span>
+          <span style="font-size:14px">토너 사용 후 세럼 단계에서 적당량을 덜어 펴 발라 흡수</span>
+        </div>
+        <div class="routine-item">
+          <span class="routine-badge">Night Care</span>
+          <span style="font-size:14px">수면팩 대신 2~3겹 레이어링 → 다음 날 쫀쫀해진 피부</span>
+        </div>
+        <div class="routine-item">
+          <span class="routine-badge">Make-up Care</span>
+          <span style="font-size:14px">파운데이션 등 베이스에 1~2방울 추가 → 속광 메이크업</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- 9. 활용 가이드 -->
+    <div class="section">
+      <div class="section-label">9 · 활용 가이드 — 다음 단계</div>
+      <div class="guide-list">
+        <div class="guide-item">
+          <span class="guide-icon">🎨</span>
+          <div><strong>소재·LP</strong><br>USP 3종 + 임상 수치 + 컬러 6슬롯 + 톤 원칙을 그대로 반영</div>
+        </div>
+        <div class="guide-item">
+          <span class="guide-icon">📊</span>
+          <div><strong>일일 리포트</strong><br>소재 네이밍은 핵심 메시지(3초 광채 / PDRN / 휴대용 등) 기준으로 분류</div>
+        </div>
+        <div class="guide-item">
+          <span class="guide-icon">📈</span>
+          <div><strong>광고주 리포트</strong><br>컬러 6슬롯·톤을 입혀 브랜드 전용 대시보드로 출력</div>
+        </div>
+      </div>
+      <div class="sst-note" style="margin-top:20px">
+        이 brand_brief가 <strong>단일 출처</strong>입니다. 톤·컬러·메시지가 흔들리면 항상 이 문서로 돌아옵니다.
+      </div>
+    </div>
+
+  </div>
+</body>
+</html>

@@ -1,0 +1,1120 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>아누아 · 광고 성과 대시보드 2026.05</title>
+<link rel="stylesheet" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable.min.css"/>
+<style>
+:root{
+  --bg:#edeff2;--card:#fff;--ink:#1f2228;--fg2:#3a3e46;--muted:#71757e;
+  --line:#e7e8ec;--line2:#eef0f3;--r:10px;
+  --green:#16a34a;--green-d:#15803d;--green-bg:#eaf6ee;--green-light:#f0faf3;
+  --gray:#aab0b8;--red:#dc2626;--yellow:#d97706;--blue:#2563eb;--purple:#7c3aed;
+  --side:224px;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--ink);
+  font-family:"Pretendard Variable",Pretendard,-apple-system,system-ui,sans-serif;
+  font-size:14px;line-height:1.62;letter-spacing:-.01em;font-weight:420;word-break:keep-all}
+
+/* SIDEBAR */
+.side{position:fixed;top:0;left:0;width:var(--side);height:100vh;background:var(--card);
+  border-right:1px solid var(--line);padding:20px 14px;display:flex;flex-direction:column;gap:1px;overflow-y:auto;z-index:30}
+.side .brand{display:flex;align-items:center;gap:8px;margin-bottom:2px;padding:0 8px}
+.side .brand .dot{width:9px;height:9px;border-radius:50%;background:var(--green);flex:none}
+.side .brand b{font-size:15px;color:var(--ink);font-weight:800;letter-spacing:-.02em}
+.side .sub{padding:0 8px;margin-bottom:12px;font-size:11px;color:var(--muted);line-height:1.5}
+.side a{display:flex;align-items:center;gap:8px;padding:8px 10px;border-radius:8px;
+  color:var(--fg2);text-decoration:none;font-size:12.5px;font-weight:500;cursor:pointer}
+.side a .n{width:18px;height:18px;border-radius:5px;background:#eef0f3;
+  display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:700;
+  color:var(--muted);flex:none}
+.side a:hover{background:#f4f5f7;color:var(--ink)}
+.side a.on{background:var(--green-bg);color:var(--green-d);font-weight:700}
+.side a.on .n{background:var(--green-d);color:#fff}
+.side .sdiv{border-top:1px solid var(--line);margin:6px 0}
+.side .stag{padding:4px 10px;font-size:10.5px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.05em}
+.ch-link{display:flex;align-items:center;gap:8px;padding:7px 10px;border-radius:8px;
+  color:var(--fg2);text-decoration:none;font-size:12.5px;font-weight:500;cursor:pointer}
+.ch-link:hover{background:#f4f5f7}
+.ch-link .cdot{width:8px;height:8px;border-radius:50%;flex:none}
+.side .foot{margin-top:auto;font-size:10px;color:#aab0b8;padding:10px 8px 0;line-height:1.5;border-top:1px solid var(--line);margin-top:8px}
+
+/* MAIN */
+.main{margin-left:var(--side);padding:24px 32px 100px}
+.topbar{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:4px}
+.topbar h1{font-size:20px;font-weight:800;letter-spacing:-.025em}
+.topbar .sub{color:var(--muted);font-size:12px;margin-left:auto}
+.badge{display:inline-block;font-size:10px;font-weight:700;padding:2px 7px;border-radius:5px}
+.badge-period{background:#fff4e6;color:#b25e09}
+.badge-demo{background:#f3e8ff;color:#7c3aed}
+
+section{background:var(--card);border:1px solid var(--line);border-radius:var(--r);
+  padding:22px 26px;margin-top:20px;scroll-margin-top:16px}
+.sh{display:flex;align-items:baseline;gap:8px;margin-bottom:14px;flex-wrap:wrap}
+.sno{font-size:11px;font-weight:800;color:var(--green-d);background:var(--green-bg);border-radius:6px;padding:1px 8px;flex:none}
+.sh h2{font-size:17px;font-weight:700;letter-spacing:-.02em}
+.sh .sdesc{font-size:12px;color:var(--muted);margin-left:2px}
+
+/* CH HEADER */
+.ch-hd{display:flex;align-items:center;gap:12px;padding:14px 16px;border-radius:9px;margin-bottom:18px}
+.ch-hd .icon{width:36px;height:36px;border-radius:9px;display:flex;align-items:center;justify-content:center;
+  font-size:16px;font-weight:900;color:#fff;flex:none;letter-spacing:-.5px}
+.ch-hd .name{font-size:18px;font-weight:800;letter-spacing:-.025em}
+.ch-hd .period{font-size:11.5px;color:var(--muted);margin-left:auto}
+.ch-kpis{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-bottom:16px}
+
+/* KPI CARDS */
+.kcard{border:1px solid var(--line);border-radius:9px;padding:13px 15px}
+.kcard .kl{font-size:11px;color:var(--muted);font-weight:600}
+.kcard .kv{font-size:22px;font-weight:800;letter-spacing:-.4px;margin-top:2px;color:var(--ink)}
+.kcard .kt{font-size:11px;font-weight:700;margin-top:3px}
+.kcard.accent{background:var(--green-d);border-color:var(--green-d)}
+.kcard.accent .kl,.kcard.accent .kt{color:#cde7d6}
+.kcard.accent .kv{color:#fff}
+.up{color:#16a34a}.dn{color:#dc2626}.eq{color:var(--muted)}
+
+/* OVERVIEW CARDS */
+.ov-cards{display:grid;grid-template-columns:repeat(5,1fr);gap:10px;margin-bottom:18px}
+
+/* PILLS/TABS */
+.pills{display:flex;gap:5px;flex-wrap:wrap;margin-bottom:16px}
+.pill{padding:5px 13px;border:1px solid var(--line);border-radius:999px;background:var(--card);
+  font-size:12.5px;font-weight:500;color:var(--fg2);cursor:pointer;user-select:none;transition:.1s}
+.pill:hover{border-color:var(--green);color:var(--green-d)}
+.pill.on{background:var(--green-d);border-color:var(--green-d);color:#fff;font-weight:600}
+.tab-panel{display:none}.tab-panel.on{display:block}
+
+/* TABLE */
+.tbl-wrap{overflow:auto;border:1px solid var(--line);border-radius:8px;margin-bottom:16px}
+table{width:100%;border-collapse:collapse;font-size:13px}
+th{background:#f6f7f9;color:var(--muted);padding:7px 10px;text-align:left;
+  font-weight:600;font-size:11px;position:sticky;top:0;z-index:1;border-bottom:1px solid var(--line)}
+td{padding:7px 10px;border-bottom:1px solid var(--line2);color:var(--fg2)}
+tr:last-child td{border-bottom:none}
+tr:hover td{background:#fafbfc}
+.num{text-align:right;font-variant-numeric:tabular-nums;font-weight:700;color:var(--ink)}
+.numr{text-align:right;font-variant-numeric:tabular-nums;color:var(--fg2)}
+
+/* GRADE BADGE */
+.grade{padding:1px 7px;border-radius:5px;font-size:10.5px;font-weight:800}
+.gS{background:#fef3c7;color:#92400e}
+.gA{background:#dcfce7;color:#166534}
+.gB{background:#dbeafe;color:#1d4ed8}
+.gC{background:#f3f4f6;color:#6b7280}
+.gD{background:#fee2e2;color:#991b1b}
+
+/* MINI BAR inline */
+.mbar{display:inline-block;height:4px;border-radius:2px;vertical-align:middle;margin-right:4px}
+
+/* SPARKLINE */
+.spark-wrap{display:flex;align-items:center;gap:6px}
+
+/* CHANNEL COMPARE */
+.comp-row{display:grid;grid-template-columns:110px 1fr 70px 70px 70px;align-items:center;
+  gap:10px;padding:9px 0;border-bottom:1px solid var(--line2)}
+.comp-row:last-child{border-bottom:none}
+.comp-name{font-size:12.5px;font-weight:600;display:flex;align-items:center;gap:6px}
+.comp-dot{width:8px;height:8px;border-radius:50%;flex:none}
+.comp-bar-track{background:#f0f1f3;border-radius:3px;height:7px;overflow:hidden}
+.comp-bar-fill{height:100%;border-radius:3px}
+.comp-val{text-align:right;font-size:12.5px;font-weight:700;font-variant-numeric:tabular-nums}
+.comp-muted{text-align:right;font-size:11px;color:var(--muted);font-variant-numeric:tabular-nums}
+
+/* FUNNEL */
+.funnel-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+.funnel-wrap{display:flex;flex-direction:column;gap:6px}
+.fun-row{display:flex;align-items:center;gap:10px}
+.fun-lbl{width:80px;font-size:11.5px;color:var(--muted);text-align:right;flex:none}
+.fun-track{flex:1;background:#f0f1f3;border-radius:4px;height:30px;overflow:hidden;position:relative}
+.fun-bar{height:100%;border-radius:4px;display:flex;align-items:center;padding:0 10px}
+.fun-vl{font-size:11.5px;font-weight:700;color:#fff;white-space:nowrap}
+.fun-rt{width:54px;font-size:11px;font-weight:700;color:var(--muted);flex:none;text-align:right}
+.fun-drop{font-size:10.5px;color:var(--red);margin-left:4px}
+.funnel-insight{border:1px solid var(--line);border-radius:9px;padding:14px 16px}
+.fi-title{font-size:12px;font-weight:700;color:var(--muted);margin-bottom:10px;text-transform:uppercase;letter-spacing:.05em}
+.fi-row{display:flex;justify-content:space-between;align-items:center;padding:5px 0;border-bottom:1px solid var(--line2);font-size:12.5px}
+.fi-row:last-child{border-bottom:none}
+.fi-val{font-weight:700;color:var(--ink)}
+.fi-good{color:var(--green-d)}.fi-warn{color:#d97706}.fi-bad{color:var(--red)}
+
+/* AUDIENCE */
+.aud-2col{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:14px}
+.aud-box{border:1px solid var(--line);border-radius:9px;padding:14px 16px}
+.aud-ttl{font-size:11px;font-weight:700;color:var(--muted);margin-bottom:10px;text-transform:uppercase;letter-spacing:.06em}
+.aud-row{display:flex;align-items:center;gap:8px;margin-bottom:7px}
+.aud-row:last-child{margin-bottom:0}
+.aud-lbl{width:46px;font-size:11.5px;color:var(--fg2);flex:none}
+.aud-track{flex:1;height:6px;background:#f0f1f3;border-radius:3px;overflow:hidden}
+.aud-fill{height:100%;border-radius:3px}
+.aud-pct{width:34px;font-size:11px;font-weight:700;color:var(--muted);text-align:right;flex:none}
+.gender-wrap{display:flex;height:18px;border-radius:5px;overflow:hidden;gap:2px;margin-bottom:8px}
+.gender-f{background:#e879f9;display:flex;align-items:center;justify-content:center;font-size:10.5px;font-weight:700;color:#fff}
+.gender-m{background:#60a5fa;display:flex;align-items:center;justify-content:center;font-size:10.5px;font-weight:700;color:#fff}
+.dev-row{display:flex;align-items:center;gap:8px;margin-bottom:6px}
+.dev-lbl{width:60px;font-size:11.5px;color:var(--fg2);flex:none}
+
+/* RETENTION */
+.ret-4col{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-bottom:14px}
+.ret-card{border:1px solid var(--line);border-radius:9px;padding:12px 14px}
+.ret-card .rc{font-size:11px;color:var(--muted)}
+.ret-card .rv{font-size:22px;font-weight:800;margin-top:2px;letter-spacing:-.3px}
+.ret-bar{height:5px;background:#f0f1f3;border-radius:3px;margin-top:6px;overflow:hidden}
+.ret-fill{height:100%;border-radius:3px;background:var(--green)}
+.ret-note{font-size:11px;color:var(--muted);margin-top:3px}
+
+/* INSIGHT SECTION */
+.ins-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.ins-card{border:1px solid var(--line);border-radius:10px;padding:16px 18px}
+.ins-tag{display:inline-block;font-size:10px;font-weight:800;padding:2px 8px;border-radius:5px;margin-bottom:8px}
+.ins-tag.good{background:#dcfce7;color:#166534}
+.ins-tag.warn{background:#fef9c3;color:#854d0e}
+.ins-tag.info{background:#dbeafe;color:#1d4ed8}
+.ins-tag.alert{background:#fee2e2;color:#991b1b}
+.ins-title{font-size:14px;font-weight:700;margin-bottom:7px;line-height:1.4}
+.ins-body{font-size:12.5px;color:var(--fg2);line-height:1.65}
+.ins-body ul{list-style:none;padding:0}
+.ins-body li{padding:2px 0 2px 14px;position:relative}
+.ins-body li::before{content:'·';position:absolute;left:0;color:var(--green)}
+.hi{color:var(--green-d);font-weight:700}
+.hw{color:#d97706;font-weight:700}
+.ha{color:#dc2626;font-weight:700}
+.action{background:var(--green-light);border-left:3px solid var(--green);border-radius:0 7px 7px 0;
+  padding:10px 13px;margin-top:10px;font-size:12px;color:var(--green-d);line-height:1.6}
+.action strong{font-weight:700}
+
+/* DAILY METRICS */
+.dm-top{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-bottom:14px}
+
+.two-col{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+
+/* CREATIVE SCORE BAR */
+.score-bar{display:inline-flex;align-items:center;gap:5px}
+.score-fill{height:5px;border-radius:3px;display:inline-block}
+
+@media(max-width:880px){
+  .side{width:58px}
+  .side .brand b,.side .sub,.ch-link span:not(.cdot),.side .stag,.side .foot,
+  .side a span:not(.n){display:none}
+  .main{margin-left:58px;padding:16px}
+  .ov-cards{grid-template-columns:repeat(2,1fr)}
+  .ch-kpis{grid-template-columns:repeat(2,1fr)}
+  .ins-grid{grid-template-columns:1fr}
+  .aud-2col{grid-template-columns:1fr}
+}
+</style>
+</head>
+<body>
+
+<!-- SIDEBAR -->
+<aside class="side">
+  <div class="brand"><div class="dot"></div><b>아누아</b></div>
+  <div class="sub">광고 성과 리포트<br>2026년 5월 · 통합 채널</div>
+  <a href="#s-overview" class="on"><span class="n">①</span><span>전체 개요</span></a>
+  <a href="#s-ch-compare"><span class="n">②</span><span>채널 비교</span></a>
+  <div class="sdiv"></div>
+  <div class="stag">채널별 상세</div>
+  <a class="ch-link" href="#s-meta"><span class="cdot" style="background:#1877f2"></span><span>메타 광고</span></a>
+  <a class="ch-link" href="#s-google"><span class="cdot" style="background:#4285f4"></span><span>구글 광고</span></a>
+  <a class="ch-link" href="#s-naver-pl"><span class="cdot" style="background:#03c75a"></span><span>네이버 파워링크</span></a>
+  <a class="ch-link" href="#s-naver-gfa"><span class="cdot" style="background:#2db400"></span><span>네이버 GFA</span></a>
+  <a class="ch-link" href="#s-naver-shop"><span class="cdot" style="background:#ff6d00"></span><span>네이버 쇼핑</span></a>
+  <a class="ch-link" href="#s-daangn"><span class="cdot" style="background:#ff6f0f"></span><span>당근 광고</span></a>
+  <div class="sdiv"></div>
+  <a href="#s-insights"><span class="n">⑧</span><span>종합 인사이트</span></a>
+  <div class="foot">아누아 × Claude Code 데모<br>강의 시연 자료 · 2026.06</div>
+</aside>
+
+<!-- MAIN -->
+<main class="main">
+  <div class="topbar">
+    <h1>광고 성과 대시보드</h1>
+    <span class="badge badge-period">2026년 5월</span>
+    <span class="badge badge-demo">Claude Code 데모</span>
+    <span class="sub">아누아(ANUA) · 6개 채널 통합 리포트</span>
+  </div>
+
+  <!-- SECTION 1: OVERVIEW -->
+  <section id="s-overview">
+    <div class="sh"><span class="sno">01</span><h2>전체 성과 요약</h2><span class="sdesc">2026년 5월 · 6개 광고 채널 합산</span></div>
+    <div class="ov-cards" id="ov-cards"></div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px">
+      <div>
+        <div style="font-size:12px;font-weight:700;color:var(--muted);margin-bottom:8px;text-transform:uppercase;letter-spacing:.05em">채널별 예산 배분</div>
+        <div id="budget-comp"></div>
+      </div>
+      <div>
+        <div style="font-size:12px;font-weight:700;color:var(--muted);margin-bottom:8px;text-transform:uppercase;letter-spacing:.05em">채널별 ROAS 비교</div>
+        <div id="roas-comp"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION 2: CHANNEL COMPARE TABLE -->
+  <section id="s-ch-compare">
+    <div class="sh"><span class="sno">02</span><h2>채널 비교 분석</h2><span class="sdesc">예산·성과·효율 한눈에</span></div>
+    <div class="tbl-wrap">
+      <table id="ch-compare-table">
+        <thead>
+          <tr>
+            <th>채널</th>
+            <th class="numr">광고비</th>
+            <th class="numr">매출</th>
+            <th class="numr">ROAS</th>
+            <th class="numr">노출</th>
+            <th class="numr">클릭</th>
+            <th class="numr">CTR</th>
+            <th class="numr">CPC</th>
+            <th class="numr">전환</th>
+            <th class="numr">CVR</th>
+            <th class="numr">CPA</th>
+          </tr>
+        </thead>
+        <tbody id="ch-compare-tbody"></tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- CHANNEL SECTIONS (generated by JS) -->
+  <div id="channel-sections"></div>
+
+  <!-- SECTION 8: INSIGHTS -->
+  <section id="s-insights">
+    <div class="sh"><span class="sno">08</span><h2>종합 인사이트 & 액션 플랜</h2><span class="sdesc">AI 분석 기반 채널 최적화 제언</span></div>
+    <div class="ins-grid" id="insights-grid"></div>
+  </section>
+
+</main>
+
+<script>
+// ============================================================
+// DATA DEFINITIONS
+// ============================================================
+const FMT = {
+  won: v => v >= 1e8 ? (v/1e8).toFixed(1)+'억' : v >= 1e4 ? Math.round(v/1e4).toLocaleString()+'만' : v.toLocaleString()+'원',
+  wonFull: v => v.toLocaleString()+'원',
+  pct: v => v.toFixed(1)+'%',
+  x: v => v.toFixed(1)+'x',
+  num: v => v.toLocaleString(),
+  k: v => v >= 10000 ? (v/10000).toFixed(1)+'만' : v >= 1000 ? (v/1000).toFixed(1)+'K' : v.toLocaleString(),
+};
+
+const CHANNELS = [
+  {
+    id:'meta', name:'메타 광고', short:'메타', platform:'Facebook / Instagram',
+    color:'#1877f2', colorLight:'#eff6ff', icon:'f',
+    kpi:{ spend:18200000, revenue:76440000, roas:4.2, impr:2450000, clicks:98000, ctr:4.0, cpc:186, conv:2940, cvr:3.0, cpa:6190 },
+    prevKpi:{ spend:16800000, revenue:65100000, roas:3.9, conv:2540, cpa:6614 },
+    daily:[
+      {d:'6/3',spend:620,impr:84.0,click:3360,ctr:4.0,cpc:185,conv:101,cvr:3.0,roas:4.3},
+      {d:'6/4',spend:580,impr:79.0,click:3002,ctr:3.8,cpc:193,conv:87, cvr:2.9,roas:3.9},
+      {d:'6/5',spend:610,impr:82.0,click:3280,ctr:4.0,cpc:186,conv:98, cvr:3.0,roas:4.2},
+      {d:'6/6',spend:650,impr:88.0,click:3520,ctr:4.0,cpc:185,conv:109,cvr:3.1,roas:4.5},
+      {d:'6/7',spend:590,impr:81.0,click:3083,ctr:3.8,cpc:191,conv:90, cvr:2.9,roas:4.0},
+      {d:'6/8',spend:670,impr:91.0,click:3549,ctr:3.9,cpc:189,conv:111,cvr:3.1,roas:4.6},
+      {d:'6/9',spend:680,impr:93.0,click:3720,ctr:4.0,cpc:183,conv:115,cvr:3.1,roas:4.8},
+    ],
+    creatives:[
+      {name:'실사용자 후기 릴스 30s', type:'릴스',   impr:1500000, ctr:5.1, cvr:3.8, roas:5.8, spend:2800000, grade:'S'},
+      {name:'어성초 클렌저 15초 영상', type:'동영상',  impr:4800000, ctr:4.5, cvr:3.4, roas:5.2, spend:5200000, grade:'A'},
+      {name:'피지 수분 토너 캐러셀',   type:'캐러셀',  impr:3200000, ctr:4.1, cvr:3.1, roas:4.8, spend:4100000, grade:'A'},
+      {name:'제품 성분 강조 이미지',   type:'단일이미지',impr:1800000, ctr:3.2, cvr:2.8, roas:3.9, spend:3600000, grade:'B'},
+      {name:'브랜드 스토리 30초 영상', type:'동영상',  impr:2100000, ctr:2.8, cvr:2.1, roas:3.1, spend:2500000, grade:'C'},
+    ],
+    funnel:[
+      {stage:'노출',     val:2450000},
+      {stage:'클릭',     val:98000},
+      {stage:'랜딩 도달', val:88200},
+      {stage:'장바구니',  val:14112},
+      {stage:'결제 시작', val:5880},
+      {stage:'구매 완료', val:2940},
+    ],
+    audience:{
+      age:[{g:'18-24',pct:28},{g:'25-34',pct:35},{g:'35-44',pct:22},{g:'45-54',pct:11},{g:'55+',pct:4}],
+      female:72, male:28,
+      device:[{t:'모바일',pct:87},{t:'데스크톱',pct:11},{t:'태블릿',pct:2}],
+      region:[{r:'서울',pct:38},{r:'경기',pct:28},{r:'부산',pct:8},{r:'인천',pct:6},{r:'기타',pct:20}],
+    },
+    retention:{new_pct:63,d7:22,d14:31,d30:38,ltv:82000,reorder:1.8},
+  },
+  {
+    id:'google', name:'구글 광고', short:'구글', platform:'Google Search / GDN',
+    color:'#4285f4', colorLight:'#eff6ff', icon:'G',
+    kpi:{ spend:11800000, revenue:44856000, roas:3.8, impr:890000, clicks:44500, ctr:5.0, cpc:265, conv:1335, cvr:3.0, cpa:8837 },
+    prevKpi:{ spend:11200000, revenue:39200000, roas:3.5, conv:1180, cpa:9492 },
+    daily:[
+      {d:'6/3',spend:400,impr:30.0,click:1500,ctr:5.0,cpc:267,conv:45,cvr:3.0,roas:3.8},
+      {d:'6/4',spend:380,impr:28.0,click:1400,ctr:5.0,cpc:271,conv:42,cvr:3.0,roas:3.7},
+      {d:'6/5',spend:400,impr:30.0,click:1500,ctr:5.0,cpc:267,conv:45,cvr:3.0,roas:3.9},
+      {d:'6/6',spend:420,impr:31.0,click:1550,ctr:5.0,cpc:271,conv:47,cvr:3.0,roas:3.8},
+      {d:'6/7',spend:390,impr:29.0,click:1450,ctr:5.0,cpc:269,conv:43,cvr:3.0,roas:3.7},
+      {d:'6/8',spend:430,impr:32.0,click:1600,ctr:5.0,cpc:269,conv:50,cvr:3.1,roas:4.0},
+      {d:'6/9',spend:445,impr:33.0,click:1650,ctr:5.0,cpc:270,conv:52,cvr:3.2,roas:4.1},
+    ],
+    creatives:[
+      {name:'아누아 어성초 클렌저 [브랜드]', type:'반응형검색', impr:320000, ctr:6.8, cvr:4.2, roas:5.5, spend:3200000, grade:'S'},
+      {name:'민감성 피부 추천 스킨케어',    type:'반응형검색', impr:280000, ctr:5.9, cvr:3.8, roas:4.9, spend:2800000, grade:'A'},
+      {name:'저자극 폼클렌저 비교',         type:'반응형검색', impr:190000, ctr:5.2, cvr:3.3, roas:4.2, spend:2300000, grade:'A'},
+      {name:'뷰티 관심고객 디스플레이',     type:'반응형디스플레이', impr:890000, ctr:1.8, cvr:1.9, roas:2.8, spend:2100000, grade:'C'},
+      {name:'리타겟팅 - 장바구니 이탈',    type:'반응형디스플레이', impr:420000, ctr:3.1, cvr:5.2, roas:6.1, spend:1400000, grade:'S'},
+    ],
+    funnel:[
+      {stage:'노출',     val:890000},
+      {stage:'클릭',     val:44500},
+      {stage:'랜딩 도달', val:40050},
+      {stage:'장바구니',  val:5607},
+      {stage:'결제 시작', val:2403},
+      {stage:'구매 완료', val:1335},
+    ],
+    audience:{
+      age:[{g:'18-24',pct:18},{g:'25-34',pct:32},{g:'35-44',pct:28},{g:'45-54',pct:16},{g:'55+',pct:6}],
+      female:68, male:32,
+      device:[{t:'모바일',pct:72},{t:'데스크톱',pct:24},{t:'태블릿',pct:4}],
+      region:[{r:'서울',pct:40},{r:'경기',pct:26},{r:'부산',pct:9},{r:'인천',pct:7},{r:'기타',pct:18}],
+    },
+    retention:{new_pct:58,d7:28,d14:38,d30:45,ltv:96000,reorder:2.1},
+  },
+  {
+    id:'naver-pl', name:'네이버 파워링크', short:'파워링크', platform:'Naver 검색광고',
+    color:'#03c75a', colorLight:'#e8faf0', icon:'N',
+    kpi:{ spend:7900000, revenue:40320000, roas:5.1, impr:420000, clicks:25200, ctr:6.0, cpc:314, conv:1008, cvr:4.0, cpa:7837 },
+    prevKpi:{ spend:7500000, revenue:35625000, roas:4.8, conv:880, cpa:8523 },
+    daily:[
+      {d:'6/3',spend:260,impr:14.0,click:840,ctr:6.0,cpc:310,conv:34,cvr:4.0,roas:5.0},
+      {d:'6/4',spend:250,impr:13.5,click:810,ctr:6.0,cpc:309,conv:32,cvr:4.0,roas:4.9},
+      {d:'6/5',spend:265,impr:14.2,click:852,ctr:6.0,cpc:311,conv:34,cvr:4.0,roas:5.1},
+      {d:'6/6',spend:280,impr:15.0,click:900,ctr:6.0,cpc:311,conv:37,cvr:4.1,roas:5.3},
+      {d:'6/7',spend:255,impr:13.7,click:822,ctr:6.0,cpc:310,conv:33,cvr:4.0,roas:5.0},
+      {d:'6/8',spend:290,impr:15.5,click:930,ctr:6.0,cpc:312,conv:38,cvr:4.1,roas:5.4},
+      {d:'6/9',spend:295,impr:15.8,click:948,ctr:6.0,cpc:311,conv:40,cvr:4.2,roas:5.5},
+    ],
+    creatives:[
+      {name:'어성초 폼클렌저 순위 1위',   type:'파워링크', impr:110000, ctr:8.2, cvr:5.1, roas:7.2, spend:2100000, grade:'S'},
+      {name:'아누아 공식몰 메인',         type:'파워링크', impr:98000,  ctr:7.5, cvr:4.8, roas:6.5, spend:1800000, grade:'A'},
+      {name:'민감성 피부 클렌저 추천',    type:'파워링크', impr:82000,  ctr:6.8, cvr:4.2, roas:5.8, spend:1600000, grade:'A'},
+      {name:'아누아 피지 토너 정품',      type:'파워링크', impr:75000,  ctr:6.2, cvr:3.9, roas:5.2, spend:1500000, grade:'B'},
+      {name:'저자극 스킨케어 세트',       type:'파워링크', impr:55000,  ctr:5.4, cvr:3.1, roas:4.1, spend:900000,  grade:'B'},
+    ],
+    funnel:[
+      {stage:'노출',     val:420000},
+      {stage:'클릭',     val:25200},
+      {stage:'랜딩 도달', val:22680},
+      {stage:'장바구니',  val:4082},
+      {stage:'결제 시작', val:2041},
+      {stage:'구매 완료', val:1008},
+    ],
+    audience:{
+      age:[{g:'18-24',pct:15},{g:'25-34',pct:30},{g:'35-44',pct:30},{g:'45-54',pct:18},{g:'55+',pct:7}],
+      female:70, male:30,
+      device:[{t:'모바일',pct:68},{t:'데스크톱',pct:28},{t:'태블릿',pct:4}],
+      region:[{r:'서울',pct:42},{r:'경기',pct:27},{r:'부산',pct:9},{r:'인천',pct:6},{r:'기타',pct:16}],
+    },
+    retention:{new_pct:55,d7:32,d14:44,d30:52,ltv:108000,reorder:2.4},
+  },
+  {
+    id:'naver-gfa', name:'네이버 GFA', short:'GFA', platform:'Naver 성과형 디스플레이',
+    color:'#2db400', colorLight:'#edfbe6', icon:'N',
+    kpi:{ spend:4900000, revenue:14400000, roas:2.9, impr:1200000, clicks:24000, ctr:2.0, cpc:204, conv:480, cvr:2.0, cpa:10208 },
+    prevKpi:{ spend:5200000, revenue:14456000, roas:2.8, conv:490, cpa:10612 },
+    daily:[
+      {d:'6/3',spend:160,impr:40.0,click:800, ctr:2.0,cpc:200,conv:16,cvr:2.0,roas:2.9},
+      {d:'6/4',spend:155,impr:38.0,click:760, ctr:2.0,cpc:204,conv:15,cvr:2.0,roas:2.8},
+      {d:'6/5',spend:162,impr:40.5,click:810, ctr:2.0,cpc:200,conv:16,cvr:2.0,roas:2.9},
+      {d:'6/6',spend:170,impr:42.0,click:840, ctr:2.0,cpc:202,conv:17,cvr:2.0,roas:3.0},
+      {d:'6/7',spend:158,impr:39.0,click:780, ctr:2.0,cpc:203,conv:15,cvr:1.9,roas:2.8},
+      {d:'6/8',spend:175,impr:43.5,click:870, ctr:2.0,cpc:201,conv:18,cvr:2.1,roas:3.1},
+      {d:'6/9',spend:180,impr:44.0,click:880, ctr:2.0,cpc:205,conv:18,cvr:2.0,roas:3.0},
+    ],
+    creatives:[
+      {name:'아누아 브랜드 배너 여름판',   type:'배너',   impr:380000, ctr:2.4, cvr:2.5, roas:3.8, spend:1400000, grade:'A'},
+      {name:'어성초 한정 할인 배너',       type:'배너',   impr:320000, ctr:2.2, cvr:2.3, roas:3.4, spend:1200000, grade:'B'},
+      {name:'뷰티 관심고객 네이티브',      type:'네이티브',impr:280000, ctr:1.8, cvr:1.8, roas:2.6, spend:1100000, grade:'C'},
+      {name:'스킨케어 동영상 6초',         type:'동영상', impr:220000, ctr:1.5, cvr:1.5, roas:2.1, spend:1200000, grade:'D'},
+    ],
+    funnel:[
+      {stage:'노출',     val:1200000},
+      {stage:'클릭',     val:24000},
+      {stage:'랜딩 도달', val:21600},
+      {stage:'장바구니',  val:2160},
+      {stage:'결제 시작', val:720},
+      {stage:'구매 완료', val:480},
+    ],
+    audience:{
+      age:[{g:'18-24',pct:22},{g:'25-34',pct:33},{g:'35-44',pct:25},{g:'45-54',pct:14},{g:'55+',pct:6}],
+      female:65, male:35,
+      device:[{t:'모바일',pct:82},{t:'데스크톱',pct:15},{t:'태블릿',pct:3}],
+      region:[{r:'서울',pct:36},{r:'경기',pct:29},{r:'부산',pct:9},{r:'인천',pct:7},{r:'기타',pct:19}],
+    },
+    retention:{new_pct:72,d7:18,d14:25,d30:30,ltv:68000,reorder:1.4},
+  },
+  {
+    id:'naver-shop', name:'네이버 쇼핑', short:'쇼핑', platform:'Naver 쇼핑검색 / 브랜드검색',
+    color:'#ff6d00', colorLight:'#fff4ec', icon:'N',
+    kpi:{ spend:4800000, revenue:40320000, roas:8.4, impr:560000, clicks:33600, ctr:6.0, cpc:143, conv:2016, cvr:6.0, cpa:2381 },
+    prevKpi:{ spend:4500000, revenue:33750000, roas:7.5, conv:1688, cpa:2665 },
+    daily:[
+      {d:'6/3',spend:155,impr:18.0,click:1080,ctr:6.0,cpc:143,conv:65,cvr:6.0,roas:8.4},
+      {d:'6/4',spend:148,impr:17.2,click:1032,ctr:6.0,cpc:143,conv:62,cvr:6.0,roas:8.3},
+      {d:'6/5',spend:156,impr:18.1,click:1086,ctr:6.0,cpc:144,conv:65,cvr:6.0,roas:8.5},
+      {d:'6/6',spend:168,impr:19.5,click:1170,ctr:6.0,cpc:144,conv:70,cvr:6.0,roas:8.6},
+      {d:'6/7',spend:152,impr:17.7,click:1062,ctr:6.0,cpc:143,conv:64,cvr:6.0,roas:8.4},
+      {d:'6/8',spend:172,impr:20.0,click:1200,ctr:6.0,cpc:143,conv:73,cvr:6.1,roas:8.7},
+      {d:'6/9',spend:175,impr:20.3,click:1218,ctr:6.0,cpc:144,conv:74,cvr:6.1,roas:8.8},
+    ],
+    creatives:[
+      {name:'어성초 쑥 클렌저 BEST',   type:'쇼핑검색', impr:180000, ctr:7.2, cvr:7.5, roas:11.2, spend:1500000, grade:'S'},
+      {name:'피지 수분 토너 120ml',    type:'쇼핑검색', impr:155000, ctr:6.8, cvr:7.1, roas:10.4, spend:1300000, grade:'S'},
+      {name:'아누아 스킨케어 세트',    type:'쇼핑검색', impr:130000, ctr:6.3, cvr:6.4, roas:9.2,  spend:1100000, grade:'A'},
+      {name:'아누아 브랜드 스토어',    type:'브랜드검색',impr:95000,  ctr:8.5, cvr:8.2, roas:12.1, spend:900000,  grade:'S'},
+    ],
+    funnel:[
+      {stage:'노출',     val:560000},
+      {stage:'클릭',     val:33600},
+      {stage:'랜딩 도달', val:30240},
+      {stage:'장바구니',  val:6048},
+      {stage:'결제 시작', val:3024},
+      {stage:'구매 완료', val:2016},
+    ],
+    audience:{
+      age:[{g:'18-24',pct:20},{g:'25-34',pct:35},{g:'35-44',pct:28},{g:'45-54',pct:13},{g:'55+',pct:4}],
+      female:75, male:25,
+      device:[{t:'모바일',pct:79},{t:'데스크톱',pct:18},{t:'태블릿',pct:3}],
+      region:[{r:'서울',pct:38},{r:'경기',pct:30},{r:'부산',pct:8},{r:'인천',pct:6},{r:'기타',pct:18}],
+    },
+    retention:{new_pct:48,d7:35,d14:48,d30:58,ltv:115000,reorder:2.8},
+  },
+  {
+    id:'daangn', name:'당근 광고', short:'당근', platform:'당근마켓 지역 광고',
+    color:'#ff6f0f', colorLight:'#fff4ec', icon:'D',
+    kpi:{ spend:1900000, revenue:6800000, roas:3.5, impr:680000, clicks:13600, ctr:2.0, cpc:140, conv:272, cvr:2.0, cpa:6985 },
+    prevKpi:{ spend:1600000, revenue:4800000, roas:3.0, conv:200, cpa:8000 },
+    daily:[
+      {d:'6/3',spend:62,impr:22.0,click:440,ctr:2.0,cpc:141,conv:9, cvr:2.0,roas:3.5},
+      {d:'6/4',spend:58,impr:20.5,click:410,ctr:2.0,cpc:141,conv:8, cvr:2.0,roas:3.3},
+      {d:'6/5',spend:63,impr:22.3,click:446,ctr:2.0,cpc:141,conv:9, cvr:2.0,roas:3.6},
+      {d:'6/6',spend:68,impr:24.0,click:480,ctr:2.0,cpc:142,conv:10,cvr:2.1,roas:3.8},
+      {d:'6/7',spend:60,impr:21.2,click:424,ctr:2.0,cpc:142,conv:8, cvr:1.9,roas:3.4},
+      {d:'6/8',spend:72,impr:25.4,click:508,ctr:2.0,cpc:142,conv:10,cvr:2.0,roas:3.7},
+      {d:'6/9',spend:74,impr:26.0,click:520,ctr:2.0,cpc:142,conv:11,cvr:2.1,roas:3.9},
+    ],
+    creatives:[
+      {name:'우리동네 스킨케어 맛집',   type:'피드광고', impr:220000, ctr:2.6, cvr:2.5, roas:4.8, spend:700000, grade:'A'},
+      {name:'아누아 공식 당근 스토어',  type:'스토어광고',impr:180000, ctr:2.2, cvr:2.2, roas:4.1, spend:580000, grade:'A'},
+      {name:'근처 픽업 / 즉시배송',     type:'피드광고', impr:160000, ctr:1.9, cvr:1.8, roas:3.4, spend:400000, grade:'B'},
+      {name:'지역 20대 뷰티 관심',      type:'피드광고', impr:120000, ctr:1.6, cvr:1.5, roas:2.8, spend:220000, grade:'C'},
+    ],
+    funnel:[
+      {stage:'노출',     val:680000},
+      {stage:'클릭',     val:13600},
+      {stage:'랜딩 도달', val:12240},
+      {stage:'장바구니',  val:1224},
+      {stage:'결제 시작', val:544},
+      {stage:'구매 완료', val:272},
+    ],
+    audience:{
+      age:[{g:'18-24',pct:25},{g:'25-34',pct:38},{g:'35-44',pct:24},{g:'45-54',pct:10},{g:'55+',pct:3}],
+      female:60, male:40,
+      device:[{t:'모바일',pct:96},{t:'데스크톱',pct:3},{t:'태블릿',pct:1}],
+      region:[{r:'서울',pct:32},{r:'경기',pct:35},{r:'부산',pct:11},{r:'인천',pct:8},{r:'기타',pct:14}],
+    },
+    retention:{new_pct:80,d7:12,d14:18,d30:22,ltv:55000,reorder:1.2},
+  },
+];
+
+const TOTAL = CHANNELS.reduce((acc, ch) => {
+  acc.spend    += ch.kpi.spend;
+  acc.revenue  += ch.kpi.revenue;
+  acc.impr     += ch.kpi.impr;
+  acc.clicks   += ch.kpi.clicks;
+  acc.conv     += ch.kpi.conv;
+  return acc;
+}, {spend:0, revenue:0, impr:0, clicks:0, conv:0});
+TOTAL.roas = TOTAL.revenue / TOTAL.spend;
+TOTAL.ctr  = TOTAL.clicks / TOTAL.impr * 100;
+TOTAL.cpc  = TOTAL.spend / TOTAL.clicks;
+TOTAL.cvr  = TOTAL.conv / TOTAL.clicks * 100;
+TOTAL.cpa  = TOTAL.spend / TOTAL.conv;
+
+// ============================================================
+// HELPERS
+// ============================================================
+function sparkline(data, w=80, h=24, color='#16a34a') {
+  const mn = Math.min(...data), mx = Math.max(...data);
+  const r = mx - mn || 1;
+  const pts = data.map((v,i) => {
+    const x = (i / (data.length-1)) * w;
+    const y = h - ((v - mn) / r) * (h - 4) - 2;
+    return x+','+y;
+  }).join(' ');
+  return `<svg width="${w}" height="${h}" viewBox="0 0 ${w} ${h}" style="display:block"><polyline points="${pts}" fill="none" stroke="${color}" stroke-width="1.8" stroke-linejoin="round" stroke-linecap="round"/></svg>`;
+}
+
+function miniBar(pct, max, color, w=100) {
+  const fill = (pct / max * w).toFixed(1);
+  return `<div style="background:#f0f1f3;border-radius:3px;height:5px;width:${w}px;overflow:hidden"><div style="height:100%;width:${fill}px;border-radius:3px;background:${color}"></div></div>`;
+}
+
+function trendIcon(cur, prev) {
+  if (!prev) return '<span class="eq">—</span>';
+  const d = cur - prev;
+  const p = (d / prev * 100).toFixed(1);
+  if (d > 0) return `<span class="up">▲ ${p}%</span>`;
+  if (d < 0) return `<span class="dn">▼ ${Math.abs(p)}%</span>`;
+  return '<span class="eq">—</span>';
+}
+
+function gradeHtml(g) {
+  return `<span class="grade g${g}">${g}</span>`;
+}
+
+// ============================================================
+// RENDER OVERVIEW
+// ============================================================
+function renderOverview() {
+  const ov = document.getElementById('ov-cards');
+  ov.innerHTML = `
+    <div class="kcard"><div class="kl">총 광고비</div><div class="kv">${FMT.won(TOTAL.spend)}</div><div class="kt eq">2026년 5월 합산</div></div>
+    <div class="kcard"><div class="kl">총 매출 (광고 기여)</div><div class="kv">${FMT.won(TOTAL.revenue)}</div><div class="kt up">▲ 전월 대비 +18.3%</div></div>
+    <div class="kcard accent"><div class="kl">전체 ROAS</div><div class="kv">${FMT.x(TOTAL.roas)}</div><div class="kt">전월 3.9x → 4.5x</div></div>
+    <div class="kcard"><div class="kl">총 전환</div><div class="kv">${FMT.num(TOTAL.conv)}건</div><div class="kt up">▲ +16.8%</div></div>
+    <div class="kcard"><div class="kl">평균 CPA</div><div class="kv">${FMT.won(Math.round(TOTAL.cpa))}</div><div class="kt up">▲ 개선 -9.5%</div></div>
+  `;
+
+  const maxSpend = Math.max(...CHANNELS.map(c => c.kpi.spend));
+  const maxRoas  = Math.max(...CHANNELS.map(c => c.kpi.roas));
+
+  document.getElementById('budget-comp').innerHTML = CHANNELS.map(ch => `
+    <div class="comp-row">
+      <div class="comp-name"><span class="comp-dot" style="background:${ch.color}"></span>${ch.short}</div>
+      <div class="comp-bar-track"><div class="comp-bar-fill" style="width:${(ch.kpi.spend/maxSpend*100).toFixed(1)}%;background:${ch.color}"></div></div>
+      <div class="comp-val" style="color:${ch.color}">${FMT.won(ch.kpi.spend)}</div>
+      <div class="comp-muted">${(ch.kpi.spend/TOTAL.spend*100).toFixed(1)}%</div>
+    </div>
+  `).join('');
+
+  document.getElementById('roas-comp').innerHTML = CHANNELS.map(ch => `
+    <div class="comp-row">
+      <div class="comp-name"><span class="comp-dot" style="background:${ch.color}"></span>${ch.short}</div>
+      <div class="comp-bar-track"><div class="comp-bar-fill" style="width:${(ch.kpi.roas/maxRoas*100).toFixed(1)}%;background:${ch.color}"></div></div>
+      <div class="comp-val" style="color:${ch.kpi.roas>=5?'#16a34a':ch.kpi.roas>=4?'#2563eb':ch.kpi.roas>=3?'#d97706':'#dc2626'}">${FMT.x(ch.kpi.roas)}</div>
+      <div class="comp-muted">${FMT.won(ch.kpi.cpa)} CPA</div>
+    </div>
+  `).join('');
+}
+
+// ============================================================
+// RENDER CHANNEL COMPARE TABLE
+// ============================================================
+function renderCompareTable() {
+  const tbody = document.getElementById('ch-compare-tbody');
+  tbody.innerHTML = CHANNELS.map(ch => {
+    const k = ch.kpi;
+    const roasColor = k.roas >= 6 ? '#166534' : k.roas >= 4 ? '#1d4ed8' : k.roas >= 3 ? '#d97706' : '#dc2626';
+    const roasBg = k.roas >= 6 ? '#dcfce7' : k.roas >= 4 ? '#dbeafe' : k.roas >= 3 ? '#fef9c3' : '#fee2e2';
+    return `<tr>
+      <td><span style="display:inline-flex;align-items:center;gap:6px">
+        <span style="width:8px;height:8px;border-radius:50%;background:${ch.color};flex:none;display:inline-block"></span>
+        <strong>${ch.name}</strong></span></td>
+      <td class="num">${FMT.won(k.spend)}</td>
+      <td class="num">${FMT.won(k.revenue)}</td>
+      <td class="num"><span style="background:${roasBg};color:${roasColor};padding:2px 8px;border-radius:5px;font-size:12px;font-weight:800">${FMT.x(k.roas)}</span></td>
+      <td class="num">${FMT.k(k.impr)}</td>
+      <td class="num">${FMT.k(k.clicks)}</td>
+      <td class="num">${FMT.pct(k.ctr)}</td>
+      <td class="num">${k.cpc.toLocaleString()}원</td>
+      <td class="num">${FMT.num(k.conv)}건</td>
+      <td class="num">${FMT.pct(k.cvr)}</td>
+      <td class="num">${FMT.won(k.cpa)}</td>
+    </tr>`;
+  }).join('') + `<tr style="background:#f6f7f9">
+      <td><strong>합계 / 평균</strong></td>
+      <td class="num"><strong>${FMT.won(TOTAL.spend)}</strong></td>
+      <td class="num"><strong>${FMT.won(TOTAL.revenue)}</strong></td>
+      <td class="num"><strong>${FMT.x(TOTAL.roas)}</strong></td>
+      <td class="num">${FMT.k(TOTAL.impr)}</td>
+      <td class="num">${FMT.k(TOTAL.clicks)}</td>
+      <td class="num">${FMT.pct(TOTAL.ctr)}</td>
+      <td class="num">${Math.round(TOTAL.cpc).toLocaleString()}원</td>
+      <td class="num"><strong>${FMT.num(TOTAL.conv)}건</strong></td>
+      <td class="num">${FMT.pct(TOTAL.cvr)}</td>
+      <td class="num">${FMT.won(Math.round(TOTAL.cpa))}</td>
+    </tr>`;
+}
+
+// ============================================================
+// RENDER DAILY KPI TAB
+// ============================================================
+function renderDailyKpi(ch) {
+  const roas_data = ch.daily.map(d => d.roas);
+  const conv_data = ch.daily.map(d => d.conv);
+  const spend_data = ch.daily.map(d => d.spend);
+  const ctr_data = ch.daily.map(d => d.ctr);
+
+  const prev = ch.prevKpi;
+  const cur  = ch.kpi;
+
+  const kpis = `
+  <div class="dm-top">
+    <div class="kcard">
+      <div class="kl">이번 달 광고비</div>
+      <div class="kv">${FMT.won(cur.spend)}</div>
+      <div class="kt">${trendIcon(cur.spend, prev.spend)}</div>
+    </div>
+    <div class="kcard accent">
+      <div class="kl">ROAS</div>
+      <div class="kv">${FMT.x(cur.roas)}</div>
+      <div class="kt">${trendIcon(cur.roas, prev.roas)}</div>
+    </div>
+    <div class="kcard">
+      <div class="kl">전환 수</div>
+      <div class="kv">${FMT.num(cur.conv)}건</div>
+      <div class="kt">${trendIcon(cur.conv, prev.conv)}</div>
+    </div>
+    <div class="kcard">
+      <div class="kl">CPA</div>
+      <div class="kv">${FMT.won(cur.cpa)}</div>
+      <div class="kt">${trendIcon(prev.cpa, cur.cpa)}</div>
+    </div>
+  </div>`;
+
+  const header = `<div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:14px">
+    <div>
+      <div style="font-size:11px;color:var(--muted);margin-bottom:4px">일별 ROAS 추이 (최근 7일)</div>
+      ${sparkline(roas_data, 320, 36, ch.color)}
+    </div>
+    <div>
+      <div style="font-size:11px;color:var(--muted);margin-bottom:4px">일별 전환 수 (최근 7일)</div>
+      ${sparkline(conv_data, 320, 36, '#16a34a')}
+    </div>
+  </div>`;
+
+  const tableRows = ch.daily.map(d => `
+    <tr>
+      <td><strong>${d.d}</strong></td>
+      <td class="num">${(d.spend*1000).toLocaleString()}원</td>
+      <td class="num">${FMT.k(d.impr*1000)}</td>
+      <td class="num">${FMT.k(d.click)}</td>
+      <td class="num">${d.ctr}%</td>
+      <td class="num">${d.cpc}원</td>
+      <td class="num">${d.conv}건</td>
+      <td class="num">${d.cvr}%</td>
+      <td class="num"><span style="font-weight:800;color:${d.roas>=5?'#166534':d.roas>=4?'#1d4ed8':'#d97706'}">${d.roas}x</span></td>
+    </tr>
+  `).join('');
+
+  return kpis + header + `
+  <div class="tbl-wrap">
+    <table>
+      <thead><tr>
+        <th>날짜</th><th class="numr">광고비</th><th class="numr">노출</th><th class="numr">클릭</th>
+        <th class="numr">CTR</th><th class="numr">CPC</th><th class="numr">전환</th><th class="numr">CVR</th><th class="numr">ROAS</th>
+      </tr></thead>
+      <tbody>${tableRows}</tbody>
+    </table>
+  </div>`;
+}
+
+// ============================================================
+// RENDER CREATIVE TAB
+// ============================================================
+function renderCreative(ch) {
+  const maxRoas = Math.max(...ch.creatives.map(c => c.roas));
+  const maxCtr  = Math.max(...ch.creatives.map(c => c.ctr));
+
+  const sorted = [...ch.creatives].sort((a,b) => b.roas - a.roas);
+
+  const rows = sorted.map(c => `
+    <tr>
+      <td>${c.name}</td>
+      <td><span style="background:#f0f1f3;border-radius:4px;padding:1px 6px;font-size:11px;color:var(--muted)">${c.type}</span></td>
+      <td class="num">${FMT.k(c.impr)}</td>
+      <td>
+        <div style="display:flex;align-items:center;gap:6px">
+          ${miniBar(c.ctr, maxCtr, ch.color, 60)}
+          <span style="font-size:12px;font-weight:700">${c.ctr}%</span>
+        </div>
+      </td>
+      <td class="num">${c.cvr}%</td>
+      <td>
+        <div style="display:flex;align-items:center;gap:6px">
+          ${miniBar(c.roas, maxRoas, '#16a34a', 60)}
+          <span style="font-size:12px;font-weight:800;color:${c.roas>=6?'#166534':c.roas>=4?'#1d4ed8':'#d97706'}">${c.roas}x</span>
+        </div>
+      </td>
+      <td class="num">${FMT.won(c.spend)}</td>
+      <td>${gradeHtml(c.grade)}</td>
+    </tr>
+  `).join('');
+
+  return `
+  <div class="tbl-wrap">
+    <table>
+      <thead><tr>
+        <th>소재명</th><th>유형</th><th class="numr">노출</th>
+        <th>CTR</th><th class="numr">CVR</th><th>ROAS</th><th class="numr">지출</th><th>등급</th>
+      </tr></thead>
+      <tbody>${rows}</tbody>
+    </table>
+  </div>
+  <div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:10px">
+    ${['S','A','B','C','D'].map(g => `<span class="grade g${g}">${g} 등급</span>`).join('')}
+    <span style="font-size:11px;color:var(--muted);margin-left:4px">S: ROAS 5.5x+ / A: 4.5x+ / B: 3.5x+ / C: 2.5x+ / D: 2.5x 미만</span>
+  </div>`;
+}
+
+// ============================================================
+// RENDER FUNNEL TAB
+// ============================================================
+function renderFunnel(ch) {
+  const funnel = ch.funnel;
+  const maxVal = funnel[0].val;
+  const colors = ['#dbeafe','#bfdbfe','#93c5fd','#60a5fa','#3b82f6','#1d4ed8'];
+
+  const rows = funnel.map((f, i) => {
+    const pct = (f.val / maxVal * 100).toFixed(1);
+    const drop = i > 0 ? `<span class="fun-drop">▼ ${(100 - f.val/funnel[i-1].val*100).toFixed(1)}%</span>` : '';
+    return `
+      <div class="fun-row">
+        <div class="fun-lbl">${f.stage}</div>
+        <div class="fun-track">
+          <div class="fun-bar" style="width:${pct}%;background:${ch.color};opacity:${0.4+i*0.1}">
+            <span class="fun-vl">${FMT.k(f.val)}</span>
+          </div>
+        </div>
+        <div class="fun-rt">${pct}%</div>
+        ${drop}
+      </div>
+    `;
+  }).join('');
+
+  const insights = [
+    { label: '클릭→랜딩 도달률', val: (funnel[2].val/funnel[1].val*100).toFixed(1)+'%', cls: 'fi-good' },
+    { label: '랜딩→장바구니율', val: (funnel[3].val/funnel[2].val*100).toFixed(1)+'%', cls: funnel[3].val/funnel[2].val > 0.12 ? 'fi-good' : 'fi-warn' },
+    { label: '장바구니→결제율', val: (funnel[4].val/funnel[3].val*100).toFixed(1)+'%', cls: 'fi-good' },
+    { label: '결제→구매완료율', val: (funnel[5].val/funnel[4].val*100).toFixed(1)+'%', cls: 'fi-good' },
+    { label: '전체 노출→전환율', val: (funnel[5].val/funnel[0].val*100).toFixed(3)+'%', cls: 'fi-good' },
+  ];
+
+  return `
+  <div class="funnel-grid">
+    <div>
+      <div style="font-size:12px;font-weight:700;color:var(--muted);margin-bottom:10px;text-transform:uppercase;letter-spacing:.05em">전환 퍼널 (2026년 5월)</div>
+      <div class="funnel-wrap">${rows}</div>
+    </div>
+    <div class="funnel-insight">
+      <div class="fi-title">단계별 전환율</div>
+      ${insights.map(ins => `
+        <div class="fi-row">
+          <span>${ins.label}</span>
+          <span class="fi-val ${ins.cls}">${ins.val}</span>
+        </div>
+      `).join('')}
+      <div style="margin-top:12px;padding:10px;background:var(--green-light);border-radius:7px;font-size:12px;color:var(--green-d);line-height:1.6">
+        <strong>퍼널 핵심 이탈 구간:</strong><br>
+        랜딩→장바구니 단계 이탈률 <strong>${(100 - funnel[3].val/funnel[2].val*100).toFixed(1)}%</strong>로 가장 높음.<br>
+        상세페이지 최적화 및 장바구니 유도 UX 개선 필요.
+      </div>
+    </div>
+  </div>`;
+}
+
+// ============================================================
+// RENDER AUDIENCE TAB
+// ============================================================
+function renderAudience(ch) {
+  const aud = ch.audience;
+  const maxAge = Math.max(...aud.age.map(a => a.pct));
+
+  const ageRows = aud.age.map(a => `
+    <div class="aud-row">
+      <div class="aud-lbl">${a.g}</div>
+      <div class="aud-track"><div class="aud-fill" style="width:${(a.pct/maxAge*100).toFixed(1)}%;background:${ch.color}"></div></div>
+      <div class="aud-pct">${a.pct}%</div>
+    </div>
+  `).join('');
+
+  const devRows = aud.device.map(d => `
+    <div class="aud-row">
+      <div class="aud-lbl">${d.t}</div>
+      <div class="aud-track"><div class="aud-fill" style="width:${d.pct}%;background:${d.t==='모바일'?'#8b5cf6':'#60a5fa'}"></div></div>
+      <div class="aud-pct">${d.pct}%</div>
+    </div>
+  `).join('');
+
+  const regRows = aud.region.map(r => `
+    <div class="aud-row">
+      <div class="aud-lbl">${r.r}</div>
+      <div class="aud-track"><div class="aud-fill" style="width:${r.pct/aud.region[0].pct*100}%;background:${ch.color}"></div></div>
+      <div class="aud-pct">${r.pct}%</div>
+    </div>
+  `).join('');
+
+  return `
+  <div class="aud-2col">
+    <div class="aud-box">
+      <div class="aud-ttl">연령대 분포</div>
+      ${ageRows}
+    </div>
+    <div>
+      <div class="aud-box" style="margin-bottom:14px">
+        <div class="aud-ttl">성별</div>
+        <div class="gender-wrap">
+          <div class="gender-f" style="flex:${aud.female}">여 ${aud.female}%</div>
+          <div class="gender-m" style="flex:${aud.male}">남 ${aud.male}%</div>
+        </div>
+        <div style="font-size:11px;color:var(--muted)">여성 비중 <strong style="color:${ch.color}">${aud.female}%</strong>로 ${aud.female>=70?'압도적 다수':'높은 편'}</div>
+      </div>
+      <div class="aud-box">
+        <div class="aud-ttl">디바이스</div>
+        ${devRows}
+      </div>
+    </div>
+  </div>
+  <div class="aud-box">
+    <div class="aud-ttl">지역 분포 (상위 5)</div>
+    ${regRows}
+  </div>`;
+}
+
+// ============================================================
+// RENDER RETENTION TAB
+// ============================================================
+function renderRetention(ch) {
+  const ret = ch.retention;
+  const maxLtv = 120000;
+  const maxD30 = 60;
+
+  return `
+  <div class="ret-4col">
+    <div class="ret-card">
+      <div class="rc">신규 고객 비율</div>
+      <div class="rv" style="color:${ch.color}">${ret.new_pct}%</div>
+      <div class="ret-bar"><div class="ret-fill" style="width:${ret.new_pct}%;background:${ch.color}"></div></div>
+      <div class="ret-note">재구매 ${100-ret.new_pct}%</div>
+    </div>
+    <div class="ret-card">
+      <div class="rc">D7 재구매율</div>
+      <div class="rv" style="color:${ret.d7>=25?'#16a34a':'#d97706'}">${ret.d7}%</div>
+      <div class="ret-bar"><div class="ret-fill" style="width:${ret.d7/maxD30*100}%;background:${ret.d7>=25?'#16a34a':'#d97706'}"></div></div>
+      <div class="ret-note">7일 내 재구매</div>
+    </div>
+    <div class="ret-card">
+      <div class="rc">D30 재구매율</div>
+      <div class="rv" style="color:${ret.d30>=40?'#16a34a':ret.d30>=25?'#d97706':'#dc2626'}">${ret.d30}%</div>
+      <div class="ret-bar"><div class="ret-fill" style="width:${ret.d30/maxD30*100}%;background:${ret.d30>=40?'#16a34a':ret.d30>=25?'#d97706':'#dc2626'}"></div></div>
+      <div class="ret-note">30일 내 재구매</div>
+    </div>
+    <div class="ret-card">
+      <div class="rc">고객 LTV (추정)</div>
+      <div class="rv" style="color:#7c3aed">${FMT.won(ret.ltv)}</div>
+      <div class="ret-bar"><div class="ret-fill" style="width:${ret.ltv/maxLtv*100}%;background:#7c3aed"></div></div>
+      <div class="ret-note">평균 재구매 ${ret.reorder}회</div>
+    </div>
+  </div>
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px">
+    <div class="funnel-insight">
+      <div class="fi-title">리텐션 지표 현황</div>
+      <div class="fi-row"><span>신규 고객 CPA</span><span class="fi-val">${FMT.won(Math.round(ch.kpi.cpa / (ret.new_pct/100)))}</span></div>
+      <div class="fi-row"><span>재구매 고객 비중</span><span class="fi-val fi-good">${100-ret.new_pct}%</span></div>
+      <div class="fi-row"><span>D30 재구매율</span><span class="fi-val ${ret.d30>=40?'fi-good':ret.d30>=25?'':' fi-warn'}">${ret.d30}%</span></div>
+      <div class="fi-row"><span>예상 LTV / CPA 비율</span><span class="fi-val fi-good">${(ret.ltv/ch.kpi.cpa).toFixed(1)}x</span></div>
+    </div>
+    <div style="background:var(--green-light);border-left:3px solid var(--green);border-radius:0 9px 9px 0;padding:14px 16px;font-size:12.5px;color:var(--green-d);line-height:1.7">
+      <strong>리텐션 개선 포인트</strong><br>
+      ${ret.d30 < 35
+        ? `D30 재구매율 <strong>${ret.d30}%</strong>로 개선 여지 있음. 구매 후 14일 리마케팅 시퀀스 (1차: 사용 후기 유도 / 2차: 보완 제품 추천) 세팅 권고.`
+        : `D30 재구매율 <strong>${ret.d30}%</strong>로 우수. 재구매 고객 구독 전환 및 세트 구성 업셀링 캠페인 시도 권고.`
+      }
+    </div>
+  </div>`;
+}
+
+// ============================================================
+// RENDER CHANNEL SECTIONS
+// ============================================================
+function renderChannelSections() {
+  const container = document.getElementById('channel-sections');
+  const sectionNums = ['03','04','05','06','07','08'];
+
+  CHANNELS.forEach((ch, idx) => {
+    const sectionId = `s-${ch.id}`;
+    const tabPrefix = `tab-${ch.id}`;
+
+    const section = document.createElement('section');
+    section.id = sectionId;
+
+    section.innerHTML = `
+      <div class="sh">
+        <span class="sno">${sectionNums[idx]}</span>
+        <h2>${ch.name}</h2>
+        <span class="sdesc">${ch.platform}</span>
+      </div>
+      <div class="ch-hd" style="background:${ch.colorLight}">
+        <div class="icon" style="background:${ch.color}">${ch.icon}</div>
+        <div>
+          <div class="ch-name">${ch.name}</div>
+          <div style="font-size:11.5px;color:var(--muted)">${ch.platform}</div>
+        </div>
+        <div style="display:flex;gap:16px;margin-left:auto;align-items:center;flex-wrap:wrap">
+          <div style="text-align:right">
+            <div style="font-size:10px;color:var(--muted)">광고비</div>
+            <div style="font-size:16px;font-weight:800;color:${ch.color}">${FMT.won(ch.kpi.spend)}</div>
+          </div>
+          <div style="text-align:right">
+            <div style="font-size:10px;color:var(--muted)">ROAS</div>
+            <div style="font-size:22px;font-weight:900;color:${ch.kpi.roas>=6?'#166534':ch.kpi.roas>=4?ch.color:'#d97706'}">${FMT.x(ch.kpi.roas)}</div>
+          </div>
+          <div style="text-align:right">
+            <div style="font-size:10px;color:var(--muted)">전환</div>
+            <div style="font-size:16px;font-weight:800;color:var(--ink)">${FMT.num(ch.kpi.conv)}건</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="pills" id="${tabPrefix}-pills"></div>
+      <div id="${tabPrefix}-content"></div>
+    `;
+
+    container.appendChild(section);
+
+    // Setup tabs
+    const tabs = [
+      { id: 'daily',     label: 'Daily KPI',  render: () => renderDailyKpi(ch) },
+      { id: 'creative',  label: '소재 성과',   render: () => renderCreative(ch) },
+      { id: 'funnel',    label: '퍼널',        render: () => renderFunnel(ch) },
+      { id: 'audience',  label: '오디언스',    render: () => renderAudience(ch) },
+      { id: 'retention', label: '리텐션',      render: () => renderRetention(ch) },
+    ];
+
+    const pillsEl   = document.getElementById(`${tabPrefix}-pills`);
+    const contentEl = document.getElementById(`${tabPrefix}-content`);
+
+    let activeTab = 'daily';
+
+    function activateTab(tabId) {
+      activeTab = tabId;
+      pillsEl.querySelectorAll('.pill').forEach(p => p.classList.toggle('on', p.dataset.tab === tabId));
+      const t = tabs.find(t => t.id === tabId);
+      contentEl.innerHTML = t ? t.render() : '';
+    }
+
+    tabs.forEach(t => {
+      const pill = document.createElement('button');
+      pill.className = 'pill' + (t.id === activeTab ? ' on' : '');
+      pill.textContent = t.label;
+      pill.dataset.tab = t.id;
+      pill.addEventListener('click', () => activateTab(t.id));
+      pillsEl.appendChild(pill);
+    });
+
+    activateTab('daily');
+  });
+}
+
+// ============================================================
+// RENDER INSIGHTS
+// ============================================================
+function renderInsights() {
+  const insights = [
+    {
+      tag: '최고 효율 채널', tagCls: 'good',
+      title: '네이버 쇼핑, ROAS 8.4x — 전체 채널 1위',
+      body: `<ul>
+        <li>예산 비중 <span class="hi">9.7%</span>에서 매출 기여 <span class="hi">18.1%</span> 달성 (효율 2배)</li>
+        <li>쇼핑검색 CPC <span class="hi">143원</span>으로 최저 — 클릭당 비용 절감 탁월</li>
+        <li>브랜드 스토어 소재 ROAS <span class="hi">12.1x</span>로 단일 최고 성과</li>
+      </ul>
+      <div class="action"><strong>추천 액션:</strong> 네이버 쇼핑 예산 9.7% → <strong>15%</strong>로 증액 (월 +260만원). 베스트 소재 기반 입찰가 확대.</div>`,
+    },
+    {
+      tag: '예산 재배분', tagCls: 'warn',
+      title: '네이버 GFA ROAS 2.9x, 전채널 최하위',
+      body: `<ul>
+        <li>CPA <span class="hw">10,208원</span>으로 전체 평균보다 <span class="hw">+66%</span> 높음</li>
+        <li>6초 동영상 소재 ROAS <span class="ha">2.1x</span>로 낮음 — 소재 교체 필요</li>
+        <li>D30 재구매율 30%로 신규 고객 획득 후 리텐션도 낮은 편</li>
+      </ul>
+      <div class="action"><strong>추천 액션:</strong> GFA 예산 <strong>10% 감액</strong> 후 소재 전면 교체 (리타겟팅 배너 우선). 리타겟팅 세그먼트 강화.</div>`,
+    },
+    {
+      tag: '소재 인사이트', tagCls: 'info',
+      title: '실사용자 UGC·리뷰 소재가 브랜드 소재 대비 압도',
+      body: `<ul>
+        <li>메타 "실사용자 후기 릴스" ROAS <span class="hi">5.8x</span> (1위) — 브랜드 30초 영상 3.1x 대비 +87%</li>
+        <li>구글 리타겟팅 소재 ROAS <span class="hi">6.1x</span> — 장바구니 이탈 재유도 효과 탁월</li>
+        <li>15초 이하 짧은 영상 소재 CVR이 30초 대비 평균 <span class="hi">+42%</span> 높음</li>
+      </ul>
+      <div class="action"><strong>추천 액션:</strong> 6월 소재 리뉴얼 시 UGC 리뷰 기반 15초 릴스 우선 제작. 메타·구글 동시 집행.</div>`,
+    },
+    {
+      tag: '퍼널 최적화', tagCls: 'warn',
+      title: '랜딩→장바구니 전환율 업계 대비 개선 여지',
+      body: `<ul>
+        <li>메타 랜딩→장바구니 전환율 <span class="hw">16.0%</span> — 네이버 쇼핑 20.0% 대비 낮음</li>
+        <li>전체 채널 장바구니 이탈률 평균 <span class="hw">62.3%</span></li>
+        <li>결제 시작→구매 완료율은 평균 <span class="hi">50% 이상</span>으로 양호</li>
+      </ul>
+      <div class="action"><strong>추천 액션:</strong> 메타 랜딩 페이지 개선 — 성분 강조보다 Before/After 후기, 장바구니 담기 CTA 팝업 추가.</div>`,
+    },
+    {
+      tag: '오디언스 인사이트', tagCls: 'info',
+      title: '25-34세 여성이 전환의 핵심 세그먼트',
+      body: `<ul>
+        <li>25-34세 여성 전환 기여 <span class="hi">48.3%</span> — 모든 채널에서 공통 1위 세그먼트</li>
+        <li>모바일 전환 비율 <span class="hi">81.2%</span> — 모바일 최적화 소재 우선 집행 필수</li>
+        <li>당근 광고 경기 35%로 타 채널 대비 수도권 외곽 비중 높음 — 지방 확대 가능성</li>
+      </ul>
+      <div class="action"><strong>추천 액션:</strong> 25-34세 여성 세그먼트 Custom Audience 구성 후 메타·구글 유사 오디언스(LAL) 확대 운영.</div>`,
+    },
+    {
+      tag: '리텐션 전략', tagCls: 'good',
+      title: '네이버 쇼핑 고객 LTV 최고 — 재구매 강화 기회',
+      body: `<ul>
+        <li>네이버 쇼핑 LTV <span class="hi">115,000원</span>, D30 재구매율 <span class="hi">58%</span>로 전채널 1위</li>
+        <li>파워링크 유입 고객 LTV <span class="hi">108,000원</span> — 고가치 검색 의도 고객</li>
+        <li>메타·당근 D30 재구매율 22-38%로 리텐션 캠페인 추가 필요</li>
+      </ul>
+      <div class="action"><strong>추천 액션:</strong> 구매 후 7일·14일 이메일/카카오 알림톡 자동화 시퀀스 세팅. 2차 구매 쿠폰 (10% OFF) 제공.</div>`,
+    },
+  ];
+
+  document.getElementById('insights-grid').innerHTML = insights.map(ins => `
+    <div class="ins-card">
+      <span class="ins-tag ${ins.tagCls}">${ins.tag}</span>
+      <div class="ins-title">${ins.title}</div>
+      <div class="ins-body">${ins.body}</div>
+    </div>
+  `).join('');
+}
+
+// ============================================================
+// SIDEBAR ACTIVE STATE
+// ============================================================
+function setupScrollSpy() {
+  const links = document.querySelectorAll('.side a[href^="#"]');
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        links.forEach(l => l.classList.toggle('on', l.getAttribute('href') === '#' + e.target.id));
+      }
+    });
+  }, { threshold: 0.1, rootMargin: '-20% 0px -70% 0px' });
+
+  document.querySelectorAll('section[id]').forEach(s => observer.observe(s));
+}
+
+// ============================================================
+// INIT
+// ============================================================
+document.addEventListener('DOMContentLoaded', () => {
+  renderOverview();
+  renderCompareTable();
+  renderChannelSections();
+  renderInsights();
+  setupScrollSpy();
+});
+</script>
+</body>
+</html>

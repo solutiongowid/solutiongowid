@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>아누아 PDRN 히알루론산 캡슐 100 세럼 — 3초 광채 플럼핑</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.css" />
+<style>
+  :root{
+    --emerald:#1FB6AA; --mint:#3FD0C9; --aqua:#9FE8E4;
+    --teal:#0E7C75; --pink:#F58AA8; --paper:#F4FBFA;
+    --ink:#10302E; --soft:#5A7672; --line:#D9EEEC;
+    --font:"Pretendard Variable",Pretendard,-apple-system,system-ui,sans-serif;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{font-family:var(--font);color:var(--ink);background:var(--paper);
+    -webkit-font-smoothing:antialiased;word-break:keep-all;line-height:1.6}
+  img{display:block;max-width:100%}
+  .wrap{max-width:1080px;margin:0 auto;padding:0 24px}
+  .accent{color:var(--emerald)}
+  .pink{color:var(--pink)}
+
+  /* sticky CTA bar */
+  .bar{position:fixed;inset:auto 0 0 0;z-index:50;background:rgba(255,255,255,.92);
+    backdrop-filter:blur(10px);border-top:1px solid var(--line);
+    display:flex;align-items:center;justify-content:space-between;gap:16px;
+    padding:12px clamp(16px,4vw,40px)}
+  .bar .p{font-weight:800}
+  .bar .p .was{color:var(--soft);font-weight:600;text-decoration:line-through;font-size:.85em;margin-right:8px}
+  .bar .p .now{color:var(--teal);font-size:1.25em}
+  .bar .p .off{margin-left:8px;background:var(--pink);color:#fff;font-size:.7em;font-weight:800;padding:3px 8px;border-radius:999px;vertical-align:middle}
+  .btn{display:inline-block;background:var(--emerald);color:#fff;font-weight:800;
+    padding:14px 28px;border-radius:999px;text-decoration:none;white-space:nowrap;
+    box-shadow:0 8px 22px rgba(31,182,170,.35);transition:transform .15s}
+  .btn:hover{transform:translateY(-2px)}
+
+  /* hero */
+  .hero{position:relative;overflow:hidden;
+    background:radial-gradient(120% 90% at 70% 10%,#fff 0%,var(--aqua) 55%,var(--mint) 100%)}
+  .hero .wrap{display:grid;grid-template-columns:1.1fr .9fr;gap:32px;align-items:center;
+    padding-top:clamp(48px,7vw,96px);padding-bottom:clamp(48px,7vw,96px)}
+  .eyebrow{display:inline-block;font-weight:800;color:var(--teal);letter-spacing:.02em;
+    background:rgba(255,255,255,.7);border:1px solid #fff;border-radius:999px;
+    padding:7px 16px;font-size:clamp(.85rem,1.4vw,1rem);margin-bottom:18px}
+  .hero h1{font-size:clamp(2.3rem,5.4vw,4rem);font-weight:800;line-height:1.12;letter-spacing:-.02em}
+  .hero .sub{margin-top:18px;font-size:clamp(1.05rem,1.8vw,1.4rem);color:var(--soft);font-weight:500;max-width:24ch}
+  .hero-cta{margin-top:30px;display:flex;align-items:center;gap:18px;flex-wrap:wrap}
+  .hero-cta .price{font-weight:800;font-size:clamp(1.1rem,1.8vw,1.4rem)}
+  .hero-cta .price .was{color:var(--soft);text-decoration:line-through;font-weight:600;font-size:.8em;margin-right:8px}
+  .hero-cta .price .now{color:var(--teal)}
+  .hero-img{position:relative}
+  .hero-img img{border-radius:24px;box-shadow:0 24px 60px rgba(14,124,117,.25)}
+  .hero-badge{position:absolute;left:-12px;bottom:24px;background:#fff;border-radius:18px;
+    padding:14px 20px;box-shadow:0 12px 30px rgba(14,124,117,.2);text-align:center}
+  .hero-badge .n{font-size:1.8rem;font-weight:800;color:var(--emerald);line-height:1}
+  .hero-badge .t{font-size:.78rem;font-weight:700;color:var(--soft);margin-top:4px}
+
+  section{padding:clamp(56px,8vw,104px) 0}
+  .sec-eye{font-weight:800;color:var(--emerald);letter-spacing:.08em;text-transform:uppercase;
+    font-size:clamp(.8rem,1.1vw,.95rem);text-align:center}
+  .sec-h{margin-top:10px;text-align:center;font-size:clamp(1.7rem,3.4vw,2.7rem);font-weight:800;
+    line-height:1.25;letter-spacing:-.015em}
+  .sec-lead{margin-top:14px;text-align:center;color:var(--soft);font-size:clamp(1rem,1.5vw,1.25rem);
+    max-width:46ch;margin-left:auto;margin-right:auto}
+
+  /* pain */
+  .pain{background:#fff}
+  .pain-grid{margin-top:clamp(28px,4vw,48px);display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+  .pain-card{background:var(--paper);border:1px solid var(--line);border-radius:18px;padding:28px;text-align:center}
+  .pain-card .ic{font-size:2rem}
+  .pain-card .q{margin-top:12px;font-weight:700;font-size:clamp(1.05rem,1.5vw,1.25rem);line-height:1.4}
+
+  /* hook stat */
+  .hook{background:linear-gradient(135deg,var(--teal),var(--emerald));color:#fff;text-align:center}
+  .hook .big{font-size:clamp(3.4rem,11vw,8rem);font-weight:800;line-height:.95;letter-spacing:-.03em}
+  .hook .big small{font-size:.32em;font-weight:700;vertical-align:super}
+  .hook .cap{font-size:clamp(1.2rem,2.4vw,1.9rem);font-weight:800;margin-top:6px}
+  .hook .desc{margin-top:18px;color:rgba(255,255,255,.85);font-size:clamp(1rem,1.5vw,1.2rem);max-width:40ch;margin-inline:auto}
+
+  /* ingredients */
+  .ing-grid{margin-top:clamp(28px,4vw,48px);display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+  .ing-card{background:#fff;border:1px solid var(--line);border-radius:20px;padding:30px;box-shadow:0 10px 30px rgba(14,124,117,.06)}
+  .ing-card .tag{display:inline-block;font-weight:800;color:var(--teal);background:var(--aqua);
+    border-radius:999px;padding:6px 14px;font-size:.9rem}
+  .ing-card.pdrn .tag{background:#FBD7E1;color:#C24A6B}
+  .ing-card h3{margin-top:14px;font-size:1.35rem;font-weight:800}
+  .ing-card p{margin-top:8px;color:var(--soft)}
+
+  /* clinical */
+  .clin{background:#fff}
+  .clin-grid{margin-top:clamp(28px,4vw,48px);display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+  .clin-card{background:var(--paper);border:1px solid var(--line);border-radius:18px;padding:26px 20px;text-align:center}
+  .clin-card .v{font-size:clamp(1.8rem,3.2vw,2.6rem);font-weight:800;color:var(--emerald);letter-spacing:-.02em}
+  .clin-card .l{margin-top:8px;font-weight:700;font-size:.98rem}
+  .clin-card .s{margin-top:4px;color:var(--soft);font-size:.82rem}
+  .clin-note{margin-top:22px;text-align:center;color:var(--soft);font-size:.82rem;line-height:1.6}
+
+  /* recommend */
+  .rec{background:linear-gradient(160deg,var(--aqua),var(--paper))}
+  .rec-grid{margin-top:clamp(28px,4vw,48px);display:grid;grid-template-columns:1fr 1fr;gap:14px;max-width:760px;margin-inline:auto}
+  .rec-item{background:rgba(255,255,255,.7);border:1px solid #fff;border-radius:14px;padding:18px 22px;
+    font-weight:600;display:flex;gap:12px;align-items:center}
+  .rec-item .plus{color:var(--emerald);font-weight:800;font-size:1.3rem}
+
+  /* how to */
+  .how-grid{margin-top:clamp(28px,4vw,48px);display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+  .how-card{background:#fff;border:1px solid var(--line);border-radius:18px;padding:28px;text-align:center}
+  .how-card .step{font-weight:800;color:var(--emerald)}
+  .how-card h4{margin-top:8px;font-size:1.2rem;font-weight:800}
+  .how-card p{margin-top:10px;color:var(--soft);font-size:.98rem}
+
+  /* final cta */
+  .final{background:linear-gradient(135deg,var(--emerald),var(--teal));color:#fff;text-align:center}
+  .final h2{font-size:clamp(1.9rem,4vw,3rem);font-weight:800;line-height:1.25}
+  .final .price{margin-top:24px;font-size:clamp(1.3rem,2.4vw,1.8rem);font-weight:800}
+  .final .price .was{opacity:.7;text-decoration:line-through;font-weight:600;font-size:.8em;margin-right:10px}
+  .final .btn{margin-top:26px;background:#fff;color:var(--teal);font-size:1.1rem;box-shadow:0 12px 30px rgba(0,0,0,.18)}
+  .final .micro{margin-top:16px;opacity:.85;font-size:.9rem}
+
+  footer{background:var(--ink);color:rgba(255,255,255,.6);text-align:center;padding:40px 24px 100px;font-size:.85rem}
+
+  @media (max-width:880px){
+    .hero .wrap{grid-template-columns:1fr;text-align:center}
+    .hero-cta{justify-content:center}
+    .hero-img{order:-1;max-width:420px;margin:0 auto}
+    .pain-grid,.ing-grid,.how-grid{grid-template-columns:1fr}
+    .clin-grid{grid-template-columns:1fr 1fr}
+    .rec-grid{grid-template-columns:1fr}
+  }
+</style>
+</head>
+<body>
+
+  <!-- HERO -->
+  <header class="hero">
+    <div class="wrap">
+      <div>
+        <span class="eyebrow">PDRN · 11중 히알루론산 · 콜라겐</span>
+        <h1>단 한 방울도 희석 없이,<br /><span class="accent">3초 광채 플럼핑</span></h1>
+        <p class="sub">피부 속부터 차오르는 광채. 한 번만 써봐도 바로 알 수 있어요.</p>
+        <div class="hero-cta">
+          <a class="btn" href="#buy">3초 광채 시작하기</a>
+          <div class="price"><span class="was">39,000원</span><span class="now">22,500원</span></div>
+        </div>
+      </div>
+      <div class="hero-img">
+        <img src="img/hero-product.jpg" alt="아누아 PDRN 히알루론산 캡슐 100 세럼" />
+        <div class="hero-badge"><div class="n">100%</div><div class="t">사용 만족도</div></div>
+      </div>
+    </div>
+  </header>
+
+  <!-- PAIN -->
+  <section class="pain">
+    <div class="wrap">
+      <p class="sec-eye">이런 고민, 있으신가요?</p>
+      <h2 class="sec-h">화장품만으로는<br /><span class="accent">피부 관리가 어려웠다면</span></h2>
+      <div class="pain-grid">
+        <div class="pain-card"><div class="ic">💸</div><p class="q">피부과 관리 비용이 부담돼요</p></div>
+        <div class="pain-card"><div class="ic">😟</div><p class="q">화장품만으로는 피부 관리가 어려워요</p></div>
+        <div class="pain-card"><div class="ic">✨</div><p class="q">피부 컨디션을 회복시키고 싶어요</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- HOOK STAT -->
+  <section class="hook">
+    <div class="wrap">
+      <div class="big">+24.64<small>%</small></div>
+      <div class="cap">단 1회, 3초 사용으로 속보습 개선</div>
+      <p class="desc">"촉촉해진 '느낌'이 아닌, 성분의 '채워짐'을 경험해보세요."</p>
+    </div>
+  </section>
+
+  <!-- INGREDIENTS -->
+  <section>
+    <div class="wrap">
+      <p class="sec-eye">Key Ingredients</p>
+      <h2 class="sec-h">PDRN + 히알루론산 + 콜라겐<br /><span class="accent">최적의 성분 케미</span></h2>
+      <div class="ing-grid">
+        <div class="ing-card pdrn">
+          <span class="tag">PDRN</span>
+          <h3>연어 DNA 유래 성분</h3>
+          <p>건강한 피부 컨디션과 광채를 위한 아누아의 핵심 시너지 성분.</p>
+        </div>
+        <div class="ing-card">
+          <span class="tag">11중 히알루론산</span>
+          <h3>층층이 속보습</h3>
+          <p>고·중·저분자 11종 히알루론산으로 피부 층층이 속보습을 채움.</p>
+        </div>
+        <div class="ing-card">
+          <span class="tag">저분자 콜라겐</span>
+          <h3>탄탄한 피부 장벽</h3>
+          <p>피부 장벽에 도움을 주어 탄탄한 피부로 케어.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CLINICAL -->
+  <section class="clin">
+    <div class="wrap">
+      <p class="sec-eye">Clinical Result</p>
+      <h2 class="sec-h">성분 흡수를 넘어<br /><span class="accent">생성 증가로 보여주는 효과</span></h2>
+      <div class="clin-grid">
+        <div class="clin-card"><div class="v">3.14배</div><div class="l">흡수 속도</div><div class="s">대조군 대비</div></div>
+        <div class="clin-card"><div class="v">+24.64%</div><div class="l">속보습 개선</div><div class="s">1회 3초 사용 직후</div></div>
+        <div class="clin-card"><div class="v">+81.8%</div><div class="l">히알루론산 합성효소</div><div class="s">생성 증가</div></div>
+        <div class="clin-card"><div class="v">+67.6%</div><div class="l">콜라겐</div><div class="s">생성 증가</div></div>
+      </div>
+      <p class="clin-note">* 시험기관: 한국피부과학연구원 · 시험기간: 2024.07 · 대상: 40~68세 성인 여성 23명 (개인차 있음)<br />
+        * 흡수 관련: 대조군 대비 인체적용시험 / 생성 증가: 인간진피섬유아세포 효력시험</p>
+    </div>
+  </section>
+
+  <!-- RECOMMEND -->
+  <section class="rec">
+    <div class="wrap">
+      <p class="sec-eye">Recommend</p>
+      <h2 class="sec-h">이런 분들께 <span class="accent">추천해요</span></h2>
+      <div class="rec-grid">
+        <div class="rec-item"><span class="plus">+</span>어떤 세럼을 발라도 속당김을 느끼는 분</div>
+        <div class="rec-item"><span class="plus">+</span>사계절 피부 광채가 부족하신 분</div>
+        <div class="rec-item"><span class="plus">+</span>지속적인 수분광채를 원하시는 분</div>
+        <div class="rec-item"><span class="plus">+</span>여행 등 외부 활동 시 휴대용 세럼이 필요하신 분</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- HOW TO USE -->
+  <section>
+    <div class="wrap">
+      <p class="sec-eye">How to Use</p>
+      <h2 class="sec-h">하루의 마지막,<br /><span class="accent">3초면 충분합니다</span></h2>
+      <div class="how-grid">
+        <div class="how-card"><div class="step">☀ Daily</div><h4>데일리 케어</h4><p>토너 후 세럼 단계에서 적당량을 덜어 펴 발라 흡수시켜 줍니다.</p></div>
+        <div class="how-card"><div class="step">🌙 Night</div><h4>나이트 케어</h4><p>수면팩 대신 2~3겹 레이어링하면 다음 날 쫀쫀해진 피부를 경험.</p></div>
+        <div class="how-card"><div class="step">💄 Make-up</div><h4>메이크업 케어</h4><p>파운데이션 베이스에 1~2방울 추가해 속광 메이크업을 완성.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FINAL CTA -->
+  <section class="final" id="buy">
+    <div class="wrap">
+      <h2>피부가 먼저 알아보는 만족도, <span class="pink">100%</span><br />지금 3초 광채를 시작하세요.</h2>
+      <div class="price"><span class="was">39,000원</span>22,500원 <span style="font-size:.7em">(42% OFF)</span></div>
+      <a class="btn" href="https://anua.kr/product/detail.html?product_no=359">아누아 PDRN 세럼 구매하기</a>
+      <p class="micro">30ml · 40,000원 이상 무료배송</p>
+    </div>
+  </section>
+
+  <footer>
+    ANUA · PDRN Hyaluronic Acid Capsule 100 Serum · 데모 랜딩페이지 (brand_brief 기반 생성)
+  </footer>
+
+  <!-- STICKY BAR -->
+  <div class="bar">
+    <div class="p"><span class="was">39,000원</span><span class="now">22,500원</span><span class="off">42%</span></div>
+    <a class="btn" href="#buy">구매하기</a>
+  </div>
+
+</body>
+</html>
