@@ -1,8 +1,8 @@
 import { createClient } from '@supabase/supabase-js';
 
-const supabaseUrl = 'https://hcaevdnfemmesbojgvim.supabase.co';
-const supabaseAnonKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImhjYWV2ZG5mZW1tZXNib2pndmltIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzA4NjA2NzksImV4cCI6MjA4NjQzNjY3OX0.4Bf630J1TlCBxlO6Qad3qck4z7PXYQg2yNUO38pY9Do';
-const supabaseServiceKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImhjYWV2ZG5mZW1tZXNib2pndmltIiwicm9sZSI6InNlcnZpY2Vfcm9sZSIsImlhdCI6MTc3MDg2MDY3OSwiZXhwIjoyMDg2NDM2Njc5fQ.C97iKnSnAYV2VfEvteTo6WkgvrQCt6gHqr1GrWIh6-Y';
+const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL!;
+const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!;
+const supabaseServiceKey = process.env.SUPABASE_SERVICE_ROLE_KEY!;
 
 export const supabase = createClient(supabaseUrl, supabaseAnonKey);
 export const supabaseAdmin = createClient(supabaseUrl, supabaseServiceKey);
