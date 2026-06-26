@@ -256,8 +256,9 @@ export default function SurveyForm({ isOpen, onClose, utmParams }: SurveyFormPro
             <option value="">선택해주세요</option>
             <option value="10억 미만">10억 미만</option>
             <option value="10~30억">10~30억</option>
-            <option value="30~80억">30~80억</option>
-            <option value="80억 이상">80억 이상</option>
+            <option value="30억~100억">30억~100억</option>
+            <option value="100억~200억">100억~200억</option>
+            <option value="200억 이상">200억 이상</option>
           </select>
         </div>
 
