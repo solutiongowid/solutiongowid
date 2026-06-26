@@ -56,7 +56,7 @@ export async function POST(request: NextRequest) {
       }).catch((err) => console.error('Google Sheets error:', err));
     }
 
-    fetch('https://hooks.zapier.com/hooks/catch/10485854/4ymog3i/', {
+    fetch('https://hooks.zapier.com/hooks/catch/10485854/428w9mp/', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
