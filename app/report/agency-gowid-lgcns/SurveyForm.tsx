@@ -1,6 +1,7 @@
 'use client';
 
 import { useState, FormEvent } from 'react';
+import { useRouter } from 'next/navigation';
 
 interface SurveyFormProps {
   isOpen: boolean;
@@ -9,6 +10,7 @@ interface SurveyFormProps {
 }
 
 export default function SurveyForm({ isOpen, onClose, utmParams }: SurveyFormProps) {
+  const router = useRouter();
   const [formData, setFormData] = useState({
     companyName: '',
     name: '',
@@ -22,7 +24,6 @@ export default function SurveyForm({ isOpen, onClose, utmParams }: SurveyFormPro
 
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitError, setSubmitError] = useState('');
-  const [isSuccess, setIsSuccess] = useState(false);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
     const { name, value } = e.target;
@@ -102,7 +103,7 @@ export default function SurveyForm({ isOpen, onClose, utmParams }: SurveyFormPro
         throw new Error(data.error || '제출에 실패했습니다.');
       }
 
-      setIsSuccess(true);
+      router.push('/report/agency-gowid-lgcns/thank-you');
 
       setFormData({
         companyName: '',
@@ -123,97 +124,7 @@ export default function SurveyForm({ isOpen, onClose, utmParams }: SurveyFormPro
     }
   };
 
-  const handleDownload = () => {
-    const link = document.createElement('a');
-    link.href = '/agency_ax_report.pdf';
-    link.download = '광고대행사를 위한 AX 밀도 경영 리포트.pdf';
-    link.click();
-  };
-
-  const handleClose = () => {
-    setIsSuccess(false);
-    onClose();
-  };
-
   if (!isOpen) return null;
-
-  if (isSuccess) {
-    return (
-      <div className="modal-overlay" onClick={handleClose}>
-        <div className="modal-content success-modal" onClick={(e) => e.stopPropagation()}>
-          <button className="modal-close" onClick={handleClose} aria-label="닫기">
-            ✕
-          </button>
-
-          <div style={{
-            padding: '3rem 2.5rem',
-            display: 'flex',
-            flexDirection: 'column',
-            alignItems: 'center',
-            textAlign: 'center'
-          }}>
-            <h2 className="modal-title" style={{ marginBottom: '1.5rem' }}>감사합니다!</h2>
-            <p className="modal-description" style={{
-              fontSize: '1.125rem',
-              color: '#6b7280',
-              marginBottom: '3rem',
-              lineHeight: '1.6'
-            }}>
-              제출이 완료되었습니다.<br/>
-              아래 버튼을 클릭하여 리포트를 다운로드하세요.
-            </p>
-
-            <div style={{
-              display: 'flex',
-              gap: '1rem',
-              width: '100%',
-              maxWidth: '400px'
-            }}>
-              <button
-                onClick={handleClose}
-                className="success-button secondary-button"
-                style={{
-                  flex: 1,
-                  padding: '1rem 1.5rem',
-                  fontSize: '1rem',
-                  fontWeight: '600',
-                  borderRadius: '8px',
-                  border: '2px solid #e5e7eb',
-                  background: '#ffffff',
-                  color: '#374151',
-                  cursor: 'pointer',
-                  transition: 'all 0.2s ease',
-                  minHeight: '52px'
-                }}
-              >
-                닫기
-              </button>
-              <button
-                onClick={handleDownload}
-                className="success-button primary-button"
-                style={{
-                  flex: 1,
-                  padding: '1rem 1.5rem',
-                  fontSize: '1rem',
-                  fontWeight: '600',
-                  borderRadius: '8px',
-                  border: 'none',
-                  background: 'linear-gradient(135deg, #A50034 0%, #870029 100%)',
-                  color: '#ffffff',
-                  cursor: 'pointer',
-                  transition: 'all 0.2s ease',
-                  minHeight: '52px',
-                  boxShadow: '0 4px 12px rgba(165, 0, 52, 0.4)'
-                }}
-              >
-                리포트 다운로드
-              </button>
-            </div>
-          </div>
-        </div>
-      </div>
-    );
-  }
 
   return (
     <div className="modal-overlay" onClick={onClose}>
