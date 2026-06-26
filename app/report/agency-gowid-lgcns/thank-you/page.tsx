@@ -66,13 +66,6 @@ export default function AgencyGowidLgcnsThankYouPage() {
               >
                 리포트 다운로드
               </button>
-              <a
-                href="/report/agency-gowid-lgcns"
-                className="thank-you-cta-secondary"
-                style={{ borderColor: 'rgba(255,255,255,0.2)', color: 'rgba(255,255,255,0.7)' }}
-              >
-                페이지로 돌아가기
-              </a>
             </div>
           </div>
         </div>
