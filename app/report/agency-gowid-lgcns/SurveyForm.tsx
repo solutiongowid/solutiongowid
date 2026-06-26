@@ -124,7 +124,10 @@ export default function SurveyForm({ isOpen, onClose, utmParams }: SurveyFormPro
   };
 
   const handleDownload = () => {
-    window.open('https://forms.gle/5xKYkD1oQPw7GAc79', '_blank');
+    const link = document.createElement('a');
+    link.href = '/agency_ax_report.pdf';
+    link.download = '광고대행사를 위한 AX 밀도 경영 리포트.pdf';
+    link.click();
   };
 
   const handleClose = () => {
