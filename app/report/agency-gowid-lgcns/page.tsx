@@ -1,13 +1,12 @@
-'use client';
-
 import Image from 'next/image';
-import ReportPreviewCarousel from './ReportPreviewCarousel';
+import ReportGallery from './ReportGallery';
 
-const GOOGLE_FORM_URL = 'https://forms.gle/5xKYkD1oQPw7GAc79';
+const PDF_PATH = '/agency_ax_report.pdf';
+const PDF_FILENAME = '광고대행사를 위한 AX 밀도 경영 리포트.pdf';
 
 export default function AgencyGowidLgcnsPage() {
   return (
-    <div className="report-page agency-theme">
+    <div className="report-page agency-report">
       {/* 네비게이션 */}
       <nav className="report-nav">
         <div className="report-container">
@@ -21,7 +20,7 @@ export default function AgencyGowidLgcnsPage() {
                 priority
               />
             </a>
-            <a href={GOOGLE_FORM_URL} target="_blank" rel="noopener noreferrer" className="report-nav-button">
+            <a href={PDF_PATH} download={PDF_FILENAME} className="report-nav-button">
               무료 다운로드
             </a>
           </div>
@@ -34,22 +33,26 @@ export default function AgencyGowidLgcnsPage() {
           <div className="report-header-content">
             <div className="report-header-text-wrapper">
               <h1 className="report-h1">
-                <strong>
-                  <span className="desktop-title">광고대행사를 위한<br/>AX 밀도 경영 리포트</span>
-                  <span className="mobile-title">광고대행사를 위한<br/>AX 밀도 경영 리포트</span>
-                </strong>
+                <span className="desktop-title">
+                  <strong>광고대행사</strong>를 위한<br/>
+                  <strong>AX 밀도 경영 리포트</strong>
+                </span>
+                <span className="mobile-title">
+                  <strong>광고대행사</strong>를 위한<br/>
+                  <strong>AX 밀도 경영 리포트</strong>
+                </span>
               </h1>
               <div className="report-subtitle">
                 LG CNS × 고위드<br/>
                 국내 광고대행사 재무 데이터 × AI 전환<br className="desktop-br"/>밀도·수익성 분석
               </div>
-              <a href={GOOGLE_FORM_URL} target="_blank" rel="noopener noreferrer" className="report-button-primary">
+              <a href={PDF_PATH} download={PDF_FILENAME} className="report-button-primary">
                 무료 다운로드
               </a>
             </div>
             <div className="report-header-image-wrapper">
               <Image
-                src="/agency-lgcns-cover.png"
+                src="/agency_cover.png"
                 alt="광고대행사를 위한 AX 밀도 경영 리포트"
                 width={600}
                 height={450}
@@ -64,36 +67,50 @@ export default function AgencyGowidLgcnsPage() {
       {/* 추천 대상 섹션 */}
       <section className="report-section report-section-recommendations">
         <div className="report-container">
-          <div className="report-recommendation-content">
-            <div className="report-recommendation-left">
-              <h2 className="report-h2">이런 분들께 추천합니다</h2>
-              <div className="report-recommendation-list">
-                <div className="report-recommendation-item">
-                  <div className="report-recommendation-digit">1</div>
-                  <div>"AI 툴을 도입했는데도 팀 효율과 수익성이 기대만큼 오르지 않는다"고 느끼는 광고대행사 대표</div>
-                </div>
-                <div className="report-recommendation-item">
-                  <div className="report-recommendation-digit">2</div>
-                  <div>"AX 전환에 예산을 투입했더니 오히려 운영 비용이 늘었다"고 겪은 CFO/COO</div>
-                </div>
-                <div className="report-recommendation-item">
-                  <div className="report-recommendation-digit">3</div>
-                  <div>매출은 유지되는데 수익률이 계속 낮아지는 이유가 궁금한 광고대행사 경영진</div>
-                </div>
-                <div className="report-recommendation-item">
-                  <div className="report-recommendation-digit">4</div>
-                  <div>AI 툴 활용은 알지만 조직 전체의 AX 밀도를 높이는 전략이 없는 팀장/PM</div>
-                </div>
-              </div>
+          <h2 className="report-h2">이런 분들께 추천합니다</h2>
+          <div className="report-recommendation-list">
+            <div className="report-recommendation-item">
+              <svg className="report-recommendation-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.5}>
+                <path strokeLinecap="round" strokeLinejoin="round" d="M17.982 18.725A7.488 7.488 0 0012 15.75a7.488 7.488 0 00-5.982 2.975m11.963 0a9 9 0 10-11.963 0m11.963 0A8.966 8.966 0 0112 21a8.966 8.966 0 01-5.982-2.275M15 9.75a3 3 0 11-6 0 3 3 0 016 0z" />
+              </svg>
+              <p className="report-recommendation-text">
+                &ldquo;AI 툴을 도입했는데도 팀 효율과 수익성이 기대만큼 오르지 않는다&rdquo;고 느끼는 <strong>광고대행사 대표</strong>
+              </p>
             </div>
-            <div className="report-recommendation-right">
-              <ReportPreviewCarousel />
+            <div className="report-recommendation-item">
+              <svg className="report-recommendation-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.5}>
+                <path strokeLinecap="round" strokeLinejoin="round" d="M2.25 18L9 11.25l4.306 4.307a11.95 11.95 0 015.814-5.519l2.74-1.22m0 0l-5.94-2.28m5.94 2.28l-2.28 5.941" />
+              </svg>
+              <p className="report-recommendation-text">
+                &ldquo;AX 전환에 예산을 투입했더니 오히려 운영 비용이 늘었다&rdquo;고 겪은 <strong>CFO/COO</strong>
+              </p>
+            </div>
+            <div className="report-recommendation-item">
+              <svg className="report-recommendation-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.5}>
+                <path strokeLinecap="round" strokeLinejoin="round" d="M3.75 21h16.5M4.5 3h15M5.25 3v18m13.5-18v18M9 6.75h1.5m-1.5 3h1.5m-1.5 3h1.5m3-6H15m-1.5 3H15m-1.5 3H15M9 21v-3.375c0-.621.504-1.125 1.125-1.125h3.75c.621 0 1.125.504 1.125 1.125V21" />
+              </svg>
+              <p className="report-recommendation-text">
+                매출은 유지되는데 수익률이 계속 낮아지는 이유가 궁금한 <strong>광고대행사 경영진</strong>
+              </p>
+            </div>
+            <div className="report-recommendation-item">
+              <svg className="report-recommendation-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.5}>
+                <path strokeLinecap="round" strokeLinejoin="round" d="M18 18.72a9.094 9.094 0 003.741-.479 3 3 0 00-4.682-2.72m.94 3.198l.001.031c0 .225-.012.447-.037.666A11.944 11.944 0 0112 21c-2.17 0-4.207-.576-5.963-1.584A6.062 6.062 0 016 18.719m12 0a5.971 5.971 0 00-.941-3.197m0 0A5.995 5.995 0 0012 12.75a5.995 5.995 0 00-5.058 2.772m0 0a3 3 0 00-4.681 2.72 8.986 8.986 0 003.74.477m.94-3.197a5.971 5.971 0 00-.94 3.197M15 6.75a3 3 0 11-6 0 3 3 0 016 0zm6 3a2.25 2.25 0 11-4.5 0 2.25 2.25 0 014.5 0zm-13.5 0a2.25 2.25 0 11-4.5 0 2.25 2.25 0 014.5 0z" />
+              </svg>
+              <p className="report-recommendation-text">
+                AI 툴 활용은 알지만 조직 전체의 AX 밀도를 높이는 전략이 없는 <strong>팀장/PM</strong>
+              </p>
             </div>
           </div>
         </div>
       </section>
 
-      {/* 이 리포트를 시작하며 */}
+      {/* 갤러리 섹션 */}
+      <section className="report-section report-section-gallery">
+        <ReportGallery />
+      </section>
+
+      {/* 인트로 섹션 */}
       <section className="report-section report-section-feature">
         <div className="report-container">
           <div className="report-feature-content">
@@ -102,11 +119,11 @@ export default function AgencyGowidLgcnsPage() {
               <p>
                 AI 전환 비용이 늘면 많은 광고대행사가 가장 먼저 인력 구조를 조정합니다.<br/>
                 그러나 국내 광고대행사의 재무 데이터는,<br className="desktop-br"/>
-                흑자와 적자를 가른 선행 조건이 인력 수가 아니라 AX 밀도였다는 점을 보여줍니다.
+                흑자와 적자를 가른 선행 조건이 <strong>인력 수가 아니라 AX 밀도</strong>였다는 점을 보여줍니다.
               </p>
               <p>
                 연매출 성장 구간을 안정적으로 통과한 대행사는<br className="desktop-br"/>
-                AI를 도입한 '순서'와 '밀도'에서 차이를 만들었습니다.
+                AI를 도입한 <strong>&lsquo;순서&rsquo;와 &lsquo;밀도&rsquo;</strong>에서 차이를 만들었습니다.
               </p>
               <p>
                 LG CNS와 고위드는 국내 광고대행사의 재무제표와<br className="desktop-br"/>
@@ -118,7 +135,7 @@ export default function AgencyGowidLgcnsPage() {
         </div>
       </section>
 
-      {/* 데이터가 보여준 3가지 핵심 발견 */}
+      {/* 핵심 발견 섹션 */}
       <section className="report-section report-section-about">
         <div className="report-container">
           <div className="report-feature-content">
@@ -142,7 +159,7 @@ export default function AgencyGowidLgcnsPage() {
         </div>
       </section>
 
-      {/* LG CNS × 고위드 */}
+      {/* 파트너 소개 섹션 */}
       <section className="report-section report-section-feature">
         <div className="report-container">
           <div className="report-feature-content">
@@ -169,7 +186,7 @@ export default function AgencyGowidLgcnsPage() {
             <h3 className="report-h3">
               <strong>우리 회사의 AX 밀도,<br/>지금 어디에 위치할까요?</strong>
             </h3>
-            <a href={GOOGLE_FORM_URL} target="_blank" rel="noopener noreferrer" className="report-button-cta">
+            <a href={PDF_PATH} download={PDF_FILENAME} className="report-button-cta">
               무료 다운로드
             </a>
           </div>

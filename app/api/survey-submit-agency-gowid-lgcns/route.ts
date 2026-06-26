@@ -1,0 +1,90 @@
+import { NextRequest, NextResponse } from 'next/server';
+import { supabaseAdmin } from '@/app/lib/supabase';
+
+export async function POST(request: NextRequest) {
+  try {
+    const body = await request.json();
+
+    const { companyName, name, position, department, email, phone, annualRevenue, timestamp, utm_source, utm_medium, utm_campaign, utm_content } = body;
+
+    if (!companyName || !name || !position || !email || !phone) {
+      return NextResponse.json(
+        { error: '모든 필드를 입력해주세요.' },
+        { status: 400 }
+      );
+    }
+
+    const notes = [
+      department ? `부서: ${department}` : null,
+      annualRevenue ? `연매출: ${annualRevenue}` : null,
+    ].filter(Boolean).join(' | ') || null;
+
+    const { error: supabaseError } = await supabaseAdmin
+      .from('leads')
+      .insert([
+        {
+          company_name: companyName,
+          contact_name: name,
+          job_title: position,
+          email,
+          phone_number: phone,
+          lead_source: utm_source || 'report-download',
+          lead_source_detail: utm_medium || null,
+          campaign: utm_campaign || 'agency-gowid-lgcns',
+          campaign_detail: utm_campaign || null,
+          funnel_stage: 'new',
+          lead_type: 'potential',
+          notes,
+        },
+      ]);
+
+    if (supabaseError) {
+      console.error('Supabase error:', supabaseError);
+      return NextResponse.json(
+        { error: '데이터 저장 중 오류가 발생했습니다.' },
+        { status: 500 }
+      );
+    }
+
+    const GOOGLE_SCRIPT_URL = process.env.GOOGLE_SCRIPT_SURVEY_URL || '';
+
+    if (GOOGLE_SCRIPT_URL) {
+      fetch(GOOGLE_SCRIPT_URL, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ companyName, name, position, email, phone, timestamp }),
+      }).catch((err) => console.error('Google Sheets error:', err));
+    }
+
+    fetch('https://hooks.zapier.com/hooks/catch/10485854/4ymog3i/', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        company_name: companyName,
+        name,
+        position,
+        department,
+        email,
+        phone,
+        annual_revenue: annualRevenue,
+        utm_source: utm_source || '',
+        utm_medium: utm_medium || '',
+        utm_campaign: utm_campaign || 'agency-gowid-lgcns',
+        utm_content: utm_content || '',
+        timestamp,
+      }),
+    }).catch((err) => console.error('Zapier webhook error:', err));
+
+    return NextResponse.json({
+      success: true,
+      message: '정보가 성공적으로 제출되었습니다.',
+    });
+
+  } catch (error) {
+    console.error('Error in survey-submit-agency-gowid-lgcns API:', error);
+    return NextResponse.json(
+      { error: '서버 오류가 발생했습니다.' },
+      { status: 500 }
+    );
+  }
+}

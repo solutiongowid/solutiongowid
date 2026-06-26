@@ -380,10 +380,6 @@ html, body {
   display: none;
 }
 
-.mobile-br {
-  display: none;
-}
-
 @media (max-width: 768px) {
   .report-h1 {
     font-size: 2.25rem;
@@ -400,10 +396,6 @@ html, body {
 
   .desktop-br {
     display: none;
-  }
-
-  .mobile-br {
-    display: block;
   }
 
   .webinar-logo-grid {
@@ -1492,6 +1484,89 @@ html, body {
   color: #5BC500;
 }
 
+/* 웨비나 유도 카드 */
+.thank-you-webinar-card {
+  max-width: 560px;
+  margin: 2.5rem auto 0;
+  background: white;
+  border-radius: 1rem;
+  border: 1.5px solid #e5f4d4;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.06);
+  padding: 2rem 1.75rem;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+}
+
+.thank-you-webinar-date {
+  display: inline-block;
+  background: rgba(91, 197, 0, 0.12);
+  color: #4a9f00;
+  font-size: 0.8125rem;
+  font-weight: 700;
+  padding: 0.375rem 0.875rem;
+  border-radius: 9999px;
+  letter-spacing: 0.02em;
+}
+
+.thank-you-webinar-title {
+  font-size: 1.375rem;
+  font-weight: 700;
+  color: #1a1a1a;
+  line-height: 1.4;
+  margin: 0;
+}
+
+.thank-you-webinar-description {
+  font-size: 0.9375rem;
+  line-height: 1.6;
+  color: #555;
+  margin: 0;
+}
+
+.thank-you-webinar-cta {
+  margin-top: 0.5rem;
+  background: linear-gradient(135deg, #5BC500 0%, #4a9f00 100%);
+  color: white;
+  text-decoration: none;
+  padding: 0.875rem 1.75rem;
+  border-radius: 12px;
+  font-size: 1rem;
+  font-weight: 700;
+  box-shadow: 0 4px 16px rgba(91, 197, 0, 0.3);
+  transition: all 0.2s ease;
+  min-height: 48px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.thank-you-webinar-cta:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 6px 20px rgba(91, 197, 0, 0.4);
+}
+
+@media (max-width: 768px) {
+  .thank-you-webinar-card {
+    padding: 1.75rem 1.25rem;
+    margin-top: 2rem;
+  }
+  .thank-you-webinar-title {
+    font-size: 1.1875rem;
+  }
+  .thank-you-webinar-description {
+    font-size: 0.875rem;
+  }
+  .thank-you-webinar-description .desktop-br {
+    display: none;
+  }
+  .thank-you-webinar-cta {
+    width: 100%;
+  }
+}
+
 @media (max-width: 768px) {
   .thank-you-main {
     padding: 6rem 0 3rem;
@@ -1514,120 +1589,178 @@ html, body {
   }
 }
 
+/* ===== AGENCY REPORT (LG CNS × 고위드) ===== */
 
-/* ===== AGENCY THEME (LG CNS cherry red) ===== */
-.agency-theme .report-nav-button {
-  background: linear-gradient(135deg, #A50034 0%, #870029 100%);
-}
-.agency-theme .report-nav-button:hover {
-  background: linear-gradient(135deg, #870029 0%, #6D0021 100%);
-  box-shadow: 0 4px 12px rgba(165, 0, 52, 0.3);
-}
-.agency-theme .report-header {
-  background: linear-gradient(135deg, #FFF5F8 0%, #ffffff 100%);
-}
-.agency-theme .report-button-primary {
-  background: linear-gradient(135deg, #A50034 0%, #870029 100%);
-  box-shadow: 0 4px 20px rgba(165, 0, 52, 0.3);
-}
-.agency-theme .report-button-primary:hover {
-  background: linear-gradient(135deg, #870029 0%, #6D0021 100%);
-  box-shadow: 0 6px 30px rgba(165, 0, 52, 0.4);
-}
-.agency-theme .report-recommendation-digit {
-  background: #A50034;
-}
-.agency-theme .report-section-feature {
-  background: #FFF0F5;
-}
-.agency-theme .carousel-indicator.active {
-  background: #A50034;
-}
-.agency-theme .report-button-cta {
-  background: linear-gradient(135deg, #A50034 0%, #870029 100%);
-  box-shadow: 0 4px 20px rgba(165, 0, 52, 0.3);
-}
-.agency-theme .report-button-cta:hover {
-  box-shadow: 0 6px 30px rgba(165, 0, 52, 0.4);
-}
-.agency-theme .report-footer-link:hover {
-  color: #A50034;
-}
-
-/* ===== FnB REPORT (외식 프랜차이즈) — Orange Color Overrides ===== */
-.fnb-report .report-header {
-  background: linear-gradient(135deg, #FFF8F3 0%, #ffffff 100%);
-}
-.fnb-report .report-section-feature {
-  background: #FFF8F3;
-}
-.fnb-report .report-nav-button {
-  background: linear-gradient(135deg, #E07A3C 0%, #C4611E 100%);
-}
-.fnb-report .report-nav-button:hover {
-  background: linear-gradient(135deg, #C4611E 0%, #A34F18 100%);
-  box-shadow: 0 4px 12px rgba(224, 122, 60, 0.3);
-}
-.fnb-report .report-button-primary {
-  background: linear-gradient(135deg, #E07A3C 0%, #C4611E 100%);
-  box-shadow: 0 4px 20px rgba(224, 122, 60, 0.3);
-}
-.fnb-report .report-button-primary:hover {
-  background: linear-gradient(135deg, #C4611E 0%, #A34F18 100%);
-  box-shadow: 0 6px 30px rgba(224, 122, 60, 0.4);
-}
-.fnb-report .report-button-cta {
-  background: linear-gradient(135deg, #E07A3C 0%, #C4611E 100%);
-  box-shadow: 0 4px 20px rgba(224, 122, 60, 0.3);
-}
-.fnb-report .report-button-cta:hover {
-  box-shadow: 0 6px 30px rgba(224, 122, 60, 0.4);
-}
-.fnb-report .report-recommendation-digit {
-  background: #E07A3C;
-}
-.fnb-report .carousel-indicator.active {
-  background: #E07A3C;
-}
-.fnb-report .report-footer-link:hover {
-  color: #E07A3C;
-}
-
-/* ===== AGENCY REPORT (LG CNS × 고위드) — Red Color Overrides ===== */
+/* 헤더 다크 테마 */
 .agency-report .report-header {
-  background: linear-gradient(135deg, #FFF5F8 0%, #ffffff 100%);
+  background: #17171c;
 }
+.agency-report .report-header .report-h1,
+.agency-report .report-header .report-subtitle {
+  color: #ffffff;
+}
+
+/* 섹션 색상 */
 .agency-report .report-section-feature {
   background: #FFF0F5;
 }
+
+/* 네비게이션 버튼 — <a> 태그이므로 display 추가 */
 .agency-report .report-nav-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
   background: linear-gradient(135deg, #A50034 0%, #870029 100%);
+  color: white;
+  height: 40px;
+  padding: 0 16px;
+  font-size: 0.875rem;
 }
 .agency-report .report-nav-button:hover {
   background: linear-gradient(135deg, #870029 0%, #6D0021 100%);
   box-shadow: 0 4px 12px rgba(165, 0, 52, 0.3);
 }
+
+/* 히어로 버튼 — <a> 태그 */
 .agency-report .report-button-primary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
   background: linear-gradient(135deg, #A50034 0%, #870029 100%);
   box-shadow: 0 4px 20px rgba(165, 0, 52, 0.3);
+  color: white;
+  height: 48px;
+  padding: 0 20px;
+  font-size: 1rem;
+  align-self: center;
 }
 .agency-report .report-button-primary:hover {
   background: linear-gradient(135deg, #870029 0%, #6D0021 100%);
   box-shadow: 0 6px 30px rgba(165, 0, 52, 0.4);
 }
+@media (min-width: 768px) {
+  .agency-report .report-button-primary {
+    align-self: flex-start;
+  }
+}
+
+/* CTA 버튼 — <a> 태그 */
 .agency-report .report-button-cta {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
   background: linear-gradient(135deg, #A50034 0%, #870029 100%);
   box-shadow: 0 4px 20px rgba(165, 0, 52, 0.3);
+  color: white;
+  height: 48px;
+  padding: 0 20px;
+  font-size: 1rem;
+  border: none;
 }
 .agency-report .report-button-cta:hover {
+  background: linear-gradient(135deg, #870029 0%, #6D0021 100%);
   box-shadow: 0 6px 30px rgba(165, 0, 52, 0.4);
 }
-.agency-report .report-recommendation-digit {
-  background: #A50034;
+
+/* 추천 대상 — 카드형 2×2 그리드 */
+.agency-report .report-recommendation-list {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1rem;
 }
-.agency-report .carousel-indicator.active {
-  background: #A50034;
+@media (min-width: 768px) {
+  .agency-report .report-recommendation-list {
+    grid-template-columns: 1fr 1fr;
+  }
 }
+.agency-report .report-recommendation-item {
+  display: flex;
+  align-items: center;
+  gap: 0.875rem;
+  padding: 1.125rem 1.25rem;
+  background: #ffffff;
+  border: 1px solid #ececec;
+  border-radius: 16px;
+}
+.agency-report .report-recommendation-icon {
+  flex-shrink: 0;
+  width: 24px;
+  height: 24px;
+  color: #9ca3af;
+}
+.agency-report .report-recommendation-text {
+  margin: 0;
+  font-size: 1.125rem;
+  color: #333;
+  word-break: keep-all;
+  line-height: 1.6;
+}
+@media (max-width: 768px) {
+  .agency-report .report-recommendation-text {
+    font-size: 1rem;
+  }
+}
+
+/* 갤러리 섹션 — 가로 무한 마퀴 */
+.agency-report .report-section-gallery {
+  overflow: hidden;
+  padding: 3rem 0;
+}
+.report-gallery {
+  width: 100%;
+  overflow: hidden;
+}
+.report-gallery-track {
+  display: flex;
+  width: max-content;
+  animation: reportGalleryScroll 45s linear infinite;
+}
+.report-gallery-track:hover {
+  animation-play-state: paused;
+}
+.report-gallery-item {
+  flex-shrink: 0;
+  padding-right: 1.5rem;
+}
+.report-gallery-item img {
+  display: block;
+  height: 240px;
+  width: auto;
+  border-radius: 12px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+  pointer-events: none;
+  user-select: none;
+  -webkit-user-drag: none;
+  -webkit-touch-callout: none;
+}
+@keyframes reportGalleryScroll {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+
+/* h1/h2 크기 통일 */
+.agency-report .report-h1 {
+  font-size: 2.25rem;
+}
+@media (min-width: 768px) {
+  .agency-report .report-h1 {
+    font-size: 3rem;
+  }
+}
+.agency-report .report-h2,
+.agency-report .report-h2.for-feature {
+  font-size: 1.75rem;
+}
+@media (min-width: 768px) {
+  .agency-report .report-h2,
+  .agency-report .report-h2.for-feature {
+    font-size: 2.25rem;
+  }
+}
+
 .agency-report .report-footer-link:hover {
   color: #A50034;
 }
