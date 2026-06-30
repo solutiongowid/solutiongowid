@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { supabaseAdmin } from '@/app/lib/supabase';
 
-const ZAPIER_IT_CONSULTING_HOOK_URL = 'ZAPIER_IT_CONSULTING_HOOK_URL_HERE';
+const ZAPIER_IT_CONSULTING_HOOK_URL = 'https://hooks.zapier.com/hooks/catch/10485854/42cujal/';
 
 export const config = {
   api: {
