@@ -259,7 +259,6 @@ export default function LeadForm({ utmParams }: LeadFormProps) {
                     className={`it-service-btn${service === svc ? ' selected' : ''}`}
                     onClick={() => setService(svc)}
                   >
-                    <span className="it-service-icon">{svc === 'Google Workspace' ? '🔵' : '🟦'}</span>
                     <span>{svc === 'Google Workspace' ? 'Google\nWorkspace' : 'Microsoft\n365'}</span>
                   </button>
                 ))}

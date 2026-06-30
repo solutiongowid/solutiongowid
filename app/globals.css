@@ -1767,7 +1767,7 @@ html, body {
 
 /* ── IT Consulting Lead Form ── */
 .it-form-main {
-  padding: 2.5rem 0 4rem;
+  padding: 7rem 0 5rem;
   min-height: calc(100vh - 120px);
   display: flex;
   align-items: flex-start;
@@ -1776,6 +1776,11 @@ html, body {
   max-width: 560px;
   margin: 0 auto;
   width: 100%;
+}
+@media (max-width: 768px) {
+  .it-form-main {
+    padding: 6rem 0 4rem;
+  }
 }
 .it-form-wrap {
   width: 100%;
