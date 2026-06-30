@@ -89,7 +89,7 @@ export default function CosmeticRoundTablePage() {
         <p className="crt-kicker">PRIVATE ROUNDTABLE</p>
         <h1>AI CFO 시대, K-뷰티의 경영 가시성<br />마진·재고·현금흐름 실전편</h1>
         <p>코스메틱 대표·CFO 프라이빗 라운드테이블</p>
-        <span className="crt-seats">선착순 20석 · 7월 9일(목) 18:00</span>
+        <span className="crt-seats">선착순 20석 · 7월 15일(수) 18:00</span>
       </div>
 
       <div className="crt-wrap">
@@ -105,7 +105,7 @@ export default function CosmeticRoundTablePage() {
             <h2>행사 정보</h2>
             <table className="crt-info">
               <tbody>
-                <tr><td>일시</td><td>2026년 7월 9일(목) 18:00 ~ 20:00</td></tr>
+                <tr><td>일시</td><td>2026년 7월 15일(수) 18:00 ~ 20:00</td></tr>
                 <tr><td>장소</td><td>고위드 본사 14층</td></tr>
                 <tr><td>대상</td><td>코스메틱 업종 대표·CFO 등 의사결정권자</td></tr>
                 <tr><td>규모</td><td>선착순 20석 한정 · 참가 비용 무료(다과 제공)</td></tr>
