@@ -18,6 +18,7 @@ export default function LeadForm({ utmParams }: LeadFormProps) {
   const [companyName, setCompanyName] = useState('');
   const [contactName, setContactName] = useState('');
   const [email, setEmail] = useState('');
+  const [phone, setPhone] = useState('');
 
   // Page 2 - Google
   const [gEdition, setGEdition] = useState('');
@@ -94,6 +95,7 @@ export default function LeadForm({ utmParams }: LeadFormProps) {
     if (!contactName.trim()) { setError('담당자명을 입력해주세요.'); return; }
     if (!email.trim()) { setError('이메일 주소를 입력해주세요.'); return; }
     if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) { setError('올바른 이메일 형식을 입력해주세요.'); return; }
+    if (!phone.trim()) { setError('연락처를 입력해주세요.'); return; }
     setStep(2);
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
@@ -127,6 +129,7 @@ export default function LeadForm({ utmParams }: LeadFormProps) {
         companyName,
         contactName,
         email,
+        phone,
         gEdition, gPlan, gCount, gFile, gFileName, gNote,
         mEdition, mPlan, mCount, mTeams, mCopilot, mFile, mFileName, mNote,
         timestamp,
@@ -308,6 +311,22 @@ export default function LeadForm({ utmParams }: LeadFormProps) {
                 placeholder="example@company.com"
                 autoComplete="email"
                 inputMode="email"
+              />
+            </div>
+
+            <div className="form-group">
+              <label htmlFor="phone" className="form-label">
+                연락처 <span className="required">*</span>
+              </label>
+              <input
+                type="tel"
+                id="phone"
+                value={phone}
+                onChange={(e) => setPhone(e.target.value)}
+                className="form-input"
+                placeholder="010-1234-5678"
+                autoComplete="tel"
+                inputMode="tel"
               />
             </div>
 

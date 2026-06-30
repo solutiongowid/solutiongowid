@@ -42,6 +42,7 @@ export async function POST(request: NextRequest) {
       companyName,
       contactName,
       email,
+      phone,
       // Google Workspace fields
       gEdition,
       gPlan,
@@ -115,6 +116,7 @@ export async function POST(request: NextRequest) {
         company_name: companyName,
         contact_name: contactName,
         email,
+        phone_number: phone || null,
         lead_source: utm_source || 'lead-form-it-consulting',
         lead_source_detail: utm_medium || null,
         campaign: 'it-consulting-lead-form',
@@ -134,6 +136,7 @@ export async function POST(request: NextRequest) {
       company_name: companyName,
       contact_name: contactName,
       email,
+      phone: phone || '',
       utm_source: utm_source || '',
       utm_medium: utm_medium || '',
       utm_campaign: utm_campaign || '',
