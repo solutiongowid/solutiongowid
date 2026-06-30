@@ -31,23 +31,32 @@ export async function POST(request: NextRequest) {
       return NextResponse.json({ error: '데이터 저장 중 오류가 발생했습니다.' }, { status: 500 });
     }
 
-    await fetch('https://hooks.zapier.com/hooks/catch/10485854/42ecrsw/', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        company_name: company,
-        contact_name: name,
-        job_title: title,
-        phone_number: phone,
-        campaign: 'cosmetic-round-table',
-        event_date: '2026-07-09',
-        utm_source: utm_source || '',
-        utm_medium: utm_medium || '',
-        utm_campaign: utm_campaign || '',
-        landing_page: 'cosmetic-round-table',
-        timestamp: new Date().toISOString(),
-      }),
-    }).catch((err) => console.error('Zapier webhook error:', err));
+    try {
+      const zapierRes = await fetch('https://hooks.zapier.com/hooks/catch/10485854/42ecrsw/', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          company_name: company,
+          contact_name: name,
+          job_title: title,
+          phone_number: phone,
+          campaign: 'cosmetic-round-table',
+          event_date: '2026-07-09',
+          utm_source: utm_source || '',
+          utm_medium: utm_medium || '',
+          utm_campaign: utm_campaign || '',
+          landing_page: 'cosmetic-round-table',
+          timestamp: new Date().toISOString(),
+        }),
+      });
+      console.log('[Zapier] status:', zapierRes.status, 'ok:', zapierRes.ok);
+      if (!zapierRes.ok) {
+        const text = await zapierRes.text();
+        console.error('[Zapier] error body:', text);
+      }
+    } catch (zapierErr) {
+      console.error('[Zapier] fetch failed:', zapierErr);
+    }
 
     return NextResponse.json({ success: true });
   } catch (error) {
