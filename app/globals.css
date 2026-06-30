@@ -1764,3 +1764,207 @@ html, body {
 .agency-report .report-footer-link:hover {
   color: #A50034;
 }
+
+/* ── IT Consulting Lead Form ── */
+.it-form-main {
+  padding: 2.5rem 0 4rem;
+  min-height: calc(100vh - 120px);
+  display: flex;
+  align-items: flex-start;
+}
+.it-form-center {
+  max-width: 560px;
+  margin: 0 auto;
+  width: 100%;
+}
+.it-form-wrap {
+  width: 100%;
+}
+
+/* intro box */
+.it-intro-box {
+  background: #f5f7fa;
+  border-left: 3px solid #00A852;
+  border-radius: 0 8px 8px 0;
+  padding: 14px 16px;
+  margin-bottom: 20px;
+  font-size: 13.5px;
+  line-height: 1.65;
+  color: #444;
+}
+.it-intro-divider {
+  height: 1px;
+  background: rgba(0,168,82,0.2);
+  margin: 12px 0;
+}
+.it-intro-cta {
+  font-size: 13px;
+  color: #555;
+}
+
+/* service selection */
+.it-service-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+  margin-top: 8px;
+}
+.it-service-btn {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  padding: 16px 12px;
+  border: 2px solid #e0e3e8;
+  border-radius: 10px;
+  background: #fff;
+  cursor: pointer;
+  font-size: 13.5px;
+  font-weight: 600;
+  color: #333;
+  white-space: pre-line;
+  text-align: center;
+  line-height: 1.4;
+  transition: border-color 0.15s, background 0.15s;
+}
+.it-service-btn:hover {
+  border-color: #00A852;
+}
+.it-service-btn.selected {
+  border-color: #00A852;
+  background: #f0faf5;
+  color: #00A852;
+}
+.it-service-icon {
+  font-size: 22px;
+}
+
+/* radio list */
+.it-radio-list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-top: 6px;
+}
+.it-radio-list.it-radio-row {
+  flex-direction: row;
+  gap: 10px;
+}
+.it-radio-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 14px;
+  border: 1.5px solid #e0e3e8;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 13.5px;
+  color: #444;
+  transition: border-color 0.15s, background 0.15s;
+  user-select: none;
+}
+.it-radio-item.grow {
+  flex: 1;
+}
+.it-radio-item:hover {
+  border-color: #00A852;
+}
+.it-radio-item.selected {
+  border-color: #00A852;
+  background: #f0faf5;
+  color: #00A852;
+  font-weight: 600;
+}
+.it-radio-input {
+  display: none;
+}
+.it-radio-dot {
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  border: 2px solid currentColor;
+  flex-shrink: 0;
+  position: relative;
+}
+.it-radio-item.selected .it-radio-dot::after {
+  content: '';
+  position: absolute;
+  inset: 2px;
+  border-radius: 50%;
+  background: #00A852;
+}
+
+/* upload area */
+.it-upload-area {
+  border: 2px dashed #d0d5dd;
+  border-radius: 10px;
+  padding: 20px 16px;
+  text-align: center;
+  cursor: pointer;
+  transition: border-color 0.15s, background 0.15s;
+  margin-top: 6px;
+}
+.it-upload-area:hover {
+  border-color: #00A852;
+  background: #f9fdfb;
+}
+.it-upload-icon {
+  font-size: 22px;
+  margin-bottom: 6px;
+}
+.it-upload-text {
+  font-size: 13px;
+  color: #666;
+}
+.it-upload-link {
+  color: #00A852;
+  font-weight: 600;
+  text-decoration: underline;
+}
+.it-upload-hint {
+  font-size: 11.5px;
+  color: #999;
+  margin-top: 4px;
+}
+.it-upload-selected {
+  margin-top: 8px;
+  font-size: 12.5px;
+  color: #00A852;
+  font-weight: 600;
+  word-break: break-all;
+}
+
+/* textarea */
+.it-textarea {
+  min-height: 90px;
+  resize: vertical;
+}
+
+/* misc */
+.it-opt {
+  color: #aaa;
+  font-weight: 400;
+}
+.it-field-hint {
+  font-size: 12px;
+  color: #999;
+  margin-top: 5px;
+}
+.it-back-btn {
+  background: none;
+  border: none;
+  color: #555;
+  font-size: 13.5px;
+  cursor: pointer;
+  padding: 0;
+  font-weight: 500;
+}
+.it-back-btn:hover {
+  color: #00A852;
+}
+.it-form-footer-note {
+  text-align: center;
+  font-size: 12px;
+  color: #aaa;
+  margin-top: 12px;
+}
