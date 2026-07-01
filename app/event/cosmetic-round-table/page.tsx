@@ -48,7 +48,7 @@ export default function CosmeticRoundTablePage() {
   return (
     <>
       <style>{`
-        :root{--green:#E3F3E6;--accent:#2F9E55;--accent-dk:#247A42;--bg:#F5F7F5;--line:#E5E8ED;--ink:#1B2430;--muted:#6B7480}
+        :root{--green:#B6B3CA;--accent:#2F9E55;--accent-dk:#247A42;--bg:#F5F7F5;--line:#E5E8ED;--ink:#1B2430;--muted:#6B7480}
         *{box-sizing:border-box}
         body{margin:0;background:var(--bg);color:var(--ink);line-height:1.6}
         .crt-hero{background:var(--green);color:var(--ink);padding:26px 24px 28px;border-radius:0 0 20px 20px;text-align:center}
