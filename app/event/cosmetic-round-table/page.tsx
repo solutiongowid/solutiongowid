@@ -56,7 +56,7 @@ export default function CosmeticRoundTablePage() {
         .crt-kicker{font-size:11.5px;letter-spacing:.14em;color:var(--accent-dk);font-weight:700;margin:0 0 8px}
         .crt-hero h1{font-size:20px;line-height:1.4;margin:0 0 6px;font-weight:800}
         .crt-hero p{margin:4px 0 0;font-size:13.5px;color:var(--muted)}
-        .crt-seats{display:inline-block;margin-top:14px;padding:6px 14px;background:#E2E1EE;border:1px solid #B6B3CA;color:var(--accent-dk);border-radius:999px;font-size:12.5px;font-weight:600}
+        .crt-seats{display:inline-block;margin-top:14px;padding:6px 14px;background:#E2E1EE;border:1px solid #B6B3CA;color:#6B67A8;border-radius:999px;font-size:12.5px;font-weight:600}
         .crt-wrap{max-width:620px;margin:0 auto;padding:0 18px 56px}
         .crt-card{background:#fff;border:1px solid var(--line);border-radius:16px;padding:24px;margin-top:18px}
         .crt-card h2{font-size:16px;margin:0 0 14px;font-weight:700}
