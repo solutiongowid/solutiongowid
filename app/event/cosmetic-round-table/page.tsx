@@ -56,7 +56,7 @@ export default function CosmeticRoundTablePage() {
         .crt-kicker{font-size:11.5px;letter-spacing:.14em;color:var(--accent-dk);font-weight:700;margin:0 0 8px}
         .crt-hero h1{font-size:20px;line-height:1.4;margin:0 0 6px;font-weight:800}
         .crt-hero p{margin:4px 0 0;font-size:13.5px;color:var(--muted)}
-        .crt-seats{display:inline-block;margin-top:14px;padding:6px 14px;background:#fff;border:1px solid var(--accent);color:var(--accent-dk);border-radius:999px;font-size:12.5px;font-weight:600}
+        .crt-seats{display:inline-block;margin-top:14px;padding:6px 14px;background:#E2E1EE;border:1px solid #B6B3CA;color:var(--accent-dk);border-radius:999px;font-size:12.5px;font-weight:600}
         .crt-wrap{max-width:620px;margin:0 auto;padding:0 18px 56px}
         .crt-card{background:#fff;border:1px solid var(--line);border-radius:16px;padding:24px;margin-top:18px}
         .crt-card h2{font-size:16px;margin:0 0 14px;font-weight:700}
@@ -85,7 +85,7 @@ export default function CosmeticRoundTablePage() {
 
       <div className="crt-hero">
         {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img className="crt-logo" src="/gowid-logo.png" alt="gowid" />
+        <img className="crt-logo" src="/gowid-logo-basic.png" alt="gowid" />
         <p className="crt-kicker">PRIVATE ROUNDTABLE</p>
         <h1>AI CFO 시대, K-뷰티의 경영 가시성<br />마진·재고·현금흐름 실전편</h1>
         <p>코스메틱 대표·CFO 프라이빗 라운드테이블</p>
