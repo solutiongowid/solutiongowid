@@ -10,5 +10,9 @@ export const metadata: Metadata = {
 };
 
 export default function Layout({ children }: { children: React.ReactNode }) {
-  return <>{children}</>;
+  return (
+    <div style={{ overflowY: 'auto', height: '100dvh' }}>
+      {children}
+    </div>
+  );
 }
