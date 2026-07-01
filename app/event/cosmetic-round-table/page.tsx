@@ -89,6 +89,12 @@ export default function CosmeticRoundTablePage() {
         <p className="crt-kicker">PRIVATE ROUNDTABLE</p>
         <h1>AI CFO 시대, K-뷰티의 경영 가시성<br />마진·재고·현금흐름 실전편</h1>
         <p>코스메틱 대표·CFO 프라이빗 라운드테이블</p>
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img
+          src="/cosmetic-roundtable-banner.png"
+          alt="코스메틱 라운드테이블 배너"
+          style={{ width: '100%', maxWidth: '480px', margin: '16px auto 0', display: 'block', borderRadius: '14px' }}
+        />
         <span className="crt-seats">선착순 20석 · 7월 15일(수) 18:00</span>
       </div>
 
