@@ -51,7 +51,13 @@ export default function CosmeticRoundTablePage() {
         :root{--green:#B6B3CA;--accent:#2F9E55;--accent-dk:#247A42;--bg:#F5F7F5;--line:#E5E8ED;--ink:#1B2430;--muted:#6B7480}
         *{box-sizing:border-box}
         body{margin:0;background:var(--bg);color:var(--ink);line-height:1.6}
-        .crt-hero{background:var(--green);color:var(--ink);padding:26px 24px 28px;border-radius:0 0 20px 20px;text-align:center}
+        .crt-hero{position:relative;overflow:hidden;background:var(--green);color:var(--ink);padding:26px 24px 28px;border-radius:0 0 20px 20px;text-align:center}
+        .crt-hero::before{content:"";position:absolute;inset:-40%;z-index:0;filter:blur(60px);background:
+          radial-gradient(ellipse 55% 45% at 22% 28%,#C9C6E0 0%,rgba(201,198,224,0) 70%),
+          radial-gradient(ellipse 60% 50% at 82% 22%,#B0ACD4 0%,rgba(176,172,212,0) 72%),
+          radial-gradient(ellipse 65% 55% at 68% 88%,#A8A4CE 0%,rgba(168,164,206,0) 74%),
+          radial-gradient(ellipse 55% 50% at 12% 82%,#D2CFE6 0%,rgba(210,207,230,0) 70%)}
+        .crt-hero>*{position:relative;z-index:1}
         .crt-logo{height:24px;width:auto;margin:0 auto 14px;display:block}
         .crt-kicker{font-size:11.5px;letter-spacing:.14em;color:var(--accent-dk);font-weight:700;margin:0 0 8px}
         .crt-hero h1{font-size:20px;line-height:1.4;margin:0 0 6px;font-weight:800}
