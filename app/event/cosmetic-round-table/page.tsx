@@ -52,11 +52,12 @@ export default function CosmeticRoundTablePage() {
         *{box-sizing:border-box}
         body{margin:0;background:var(--bg);color:var(--ink);line-height:1.6}
         .crt-hero{position:relative;overflow:hidden;background:var(--green);color:var(--ink);padding:26px 24px 28px;border-radius:0 0 20px 20px;text-align:center}
-        .crt-hero::before{content:"";position:absolute;inset:-40%;z-index:0;filter:blur(60px);background:
-          radial-gradient(ellipse 55% 45% at 22% 28%,#C9C6E0 0%,rgba(201,198,224,0) 70%),
-          radial-gradient(ellipse 60% 50% at 82% 22%,#B0ACD4 0%,rgba(176,172,212,0) 72%),
-          radial-gradient(ellipse 65% 55% at 68% 88%,#A8A4CE 0%,rgba(168,164,206,0) 74%),
-          radial-gradient(ellipse 55% 50% at 12% 82%,#D2CFE6 0%,rgba(210,207,230,0) 70%)}
+        .crt-hero::before{content:"";position:absolute;inset:-45%;z-index:0;filter:blur(70px);background:
+          radial-gradient(ellipse 50% 45% at 20% 25%,#F0EEFA 0%,rgba(240,238,250,0) 68%),
+          radial-gradient(ellipse 58% 52% at 85% 18%,#7E76C4 0%,rgba(126,118,196,0) 70%),
+          radial-gradient(ellipse 62% 55% at 72% 90%,#6C63B8 0%,rgba(108,99,184,0) 72%),
+          radial-gradient(ellipse 55% 50% at 10% 88%,#C9C4EC 0%,rgba(201,196,236,0) 70%),
+          radial-gradient(ellipse 45% 40% at 50% 55%,#9A93D6 0%,rgba(154,147,214,0) 72%)}
         .crt-hero>*{position:relative;z-index:1}
         .crt-logo{height:24px;width:auto;margin:0 auto 14px;display:block}
         .crt-kicker{font-size:11.5px;letter-spacing:.14em;color:var(--accent-dk);font-weight:700;margin:0 0 8px}
