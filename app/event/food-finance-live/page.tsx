@@ -386,7 +386,7 @@ export default function FoodFinanceLivePage() {
                 '온라인 라이브 + 현장 병행 진행이며, 참가 확정자분들께 접속 링크를 안내드립니다.',
                 '참가비가 없는 무료 행사입니다.',
                 '라이브세션 종료 후 녹화본을 신청자 전원에게 발송해 드립니다.',
-                '현장 정원이 한정되어 있어 조기 마감될 수 있습니다.',
+                '현장(오프라인) 참석 신청은 정원 마감으로 더 이상 불가능하며, 온라인 참석만 신청 가능합니다.',
                 '참석자 혜택은 광고성 정보 수신 및 제3자 제공 동의를 한 당일 참석자에게 제공합니다.',
               ].map((notice, i) => (
                 <p key={i} style={{ fontSize: '0.8125rem', lineHeight: '1.6', color: '#999', marginBottom: '0.375rem' }}>
@@ -426,8 +426,7 @@ export default function FoodFinanceLivePage() {
               <div style={{ background: '#fff8f4', border: `1px solid ${accentBorder}`, borderRadius: '0.75rem', padding: '1.25rem 1.5rem', marginBottom: '1.75rem', fontSize: '0.9rem', color: '#444', lineHeight: '1.7' }}>
                 <p style={{ margin: '0 0 0.75rem' }}>안녕하세요,<br /><strong>푸드 브랜드 — 버는 돈, 남기는 돈, 쥐는 돈</strong><br />라이브세션에 관심을 가져주셔서 진심으로 감사드립니다.</p>
                 <p style={{ margin: '0 0 0.75rem' }}>본 행사는<br /><strong>푸드 브랜드 대표, 재무 운영 담당, 멀티채널 운영 담당자</strong> 분들을 위한 자리입니다.</p>
-                <p style={{ margin: '0 0 0.75rem' }}>🚀 장소 제약으로 인해 오프라인 참석은 신청 후 별도 추첨을 통해 확정됩니다.</p>
-                <p style={{ margin: '0 0 0.75rem', fontSize: '0.8rem', color: '#888' }}>*오프라인 신청 후 추첨에서 확정되지 않으실 경우 자동으로 온라인 참석으로 안내드립니다.</p>
+                <p style={{ margin: '0 0 0.75rem', fontSize: '0.8rem', color: '#999' }}>현장 참석 정원이 모두 마감되어 오프라인 신청은 불가능합니다. 온라인 참석으로 신청해 주세요.</p>
                 <p style={{ margin: 0, fontSize: '0.875rem', fontWeight: '600', color: accentColor }}>🎁 참가신청자 전원 세미나 자료 제공</p>
               </div>
               {submitError && <div className="form-error">{submitError}</div>}
@@ -469,10 +468,10 @@ export default function FoodFinanceLivePage() {
               </div>
               <div className="form-group">
                 <label htmlFor="attendanceType" className="form-label">온/오프라인 참석 선택 <span className="required">*</span></label>
-                <p style={{ fontSize: '0.8rem', color: '#888', lineHeight: '1.6', marginBottom: '0.625rem' }}>업계 핵심 관계자들과의 네트워킹 시간이 마련되어 있습니다. 최종 선정 여부는 제출해주신 연락처를 통해 안내드릴 예정입니다.</p>
+                <p style={{ fontSize: '0.8rem', color: '#999', lineHeight: '1.6', marginBottom: '0.625rem' }}>현장 정원이 모두 마감되어 오프라인 참석 신청은 불가능합니다.</p>
                 <select id="attendanceType" name="attendanceType" value={formData.attendanceType} onChange={handleChange} className="form-input" required>
                   <option value="">선택해주세요</option>
-                  <option value="오프라인">오프라인 참석 (추첨)</option>
+                  <option value="오프라인" disabled>오프라인 참석 (마감)</option>
                   <option value="온라인">온라인 참석</option>
                 </select>
               </div>
