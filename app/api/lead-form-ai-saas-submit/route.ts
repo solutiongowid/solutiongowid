@@ -1,8 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { supabaseAdmin } from '@/app/lib/supabase';
 
-// TODO: 신일님이 제공할 Zapier catch-hook URL로 교체
-const ZAPIER_WEBHOOK_URL = 'https://hooks.zapier.com/hooks/catch/10485854/PLACEHOLDER/';
+const ZAPIER_WEBHOOK_URL = 'https://hooks.zapier.com/hooks/catch/10485854/4u61hnl/';
 
 export async function POST(request: NextRequest) {
   try {
