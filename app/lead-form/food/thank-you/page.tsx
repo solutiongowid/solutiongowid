@@ -64,48 +64,6 @@ export default function FoodLeadFormThankYouPage() {
               메일이 보이지 않는다면 스팸함도 확인해주세요.
             </p>
           </div>
-
-          <div style={{
-            marginTop: '3rem',
-            maxWidth: '560px',
-            marginLeft: 'auto',
-            marginRight: 'auto',
-            background: 'white',
-            border: '1.5px solid rgba(255, 107, 53, 0.25)',
-            borderRadius: '1rem',
-            padding: '2rem',
-            textAlign: 'center',
-          }}>
-            <div style={{ fontSize: '0.875rem', fontWeight: 700, color: '#FF6B35', marginBottom: '0.75rem', letterSpacing: '0.05em' }}>
-              7월 8일 (수) 오후 7시 · 라이브 세션
-            </div>
-            <h2 style={{ fontSize: '1.375rem', fontWeight: 700, color: '#1a1a1a', margin: '0 0 1rem', lineHeight: 1.4 }}>
-              푸드 브랜드를 위한<br/>
-              라이브 세션도 신청해보세요!
-            </h2>
-            <p style={{ fontSize: '1rem', color: '#555', lineHeight: 1.65, margin: '0 0 0.75rem' }}>
-              버는 돈, 남기는 돈, 쥐는 돈을 라이브로 풀어드립니다.<br/>
-              강남구 도산대로 317 호림아트센터 14층 현장 + 온라인 병행
-            </p>
-            <a
-              href="/event/food-finance-live"
-              style={{
-                display: 'inline-flex',
-                alignItems: 'center',
-                marginTop: '1.25rem',
-                padding: '0.875rem 2rem',
-                background: 'linear-gradient(135deg, #FF6B35 0%, #e55a25 100%)',
-                color: 'white',
-                textDecoration: 'none',
-                borderRadius: '12px',
-                fontSize: '1rem',
-                fontWeight: 700,
-                boxShadow: '0 4px 16px rgba(255, 107, 53, 0.3)',
-              }}
-            >
-              라이브세션 신청하기 →
-            </a>
-          </div>
         </div>
       </main>
 
