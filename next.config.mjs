@@ -39,6 +39,8 @@ const nextConfig = {
       { source: '/anua-dashboard/', destination: '/api/serve-html/anua-dashboard' },
       { source: '/self-check/fashion', destination: '/self-check/fashion/index.html' },
       { source: '/self-check/fashion/', destination: '/self-check/fashion/index.html' },
+      { source: '/self-check/food', destination: '/self-check/food/index.html' },
+      { source: '/self-check/food/', destination: '/self-check/food/index.html' },
     ];
   },
 };
