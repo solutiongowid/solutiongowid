@@ -461,7 +461,7 @@ function qp(k){ try{ return new URLSearchParams(location.search).get(k)||''; }ca
 var REV={'1':'10억 미만','2':'10-30억','3':'30-100억','4':'100-200억','5':'200억+'};
 var FREE=['gmail.com','naver.com','daum.net','hanmail.net','nate.com','kakao.com','hotmail.com','outlook.com','outlook.kr','yahoo.com','yahoo.co.kr','icloud.com','me.com','live.com','gmx.com','proton.me','protonmail.com','korea.com','empas.com','dreamwiz.com','hanmir.com'];
 function isCompanyEmail(e){ e=(e||'').trim().toLowerCase(); if(!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(e))return false; var d=e.split('@')[1]; return FREE.indexOf(d)===-1; }
-var ZAP_HOOK='https://hooks.zapier.com/hooks/catch/10485854/REPLACE_ME/';
+var ZAP_HOOK='https://hooks.zapier.com/hooks/catch/10485854/4uwqrw3/';
 function captureLead(){
   var leak=R?R.leak:'gp';
   var corp=document.getElementById('cap-corp').value.trim(), cname=document.getElementById('cap-name').value.trim(), title=document.getElementById('cap-title').value.trim()||null, email=document.getElementById('cap-email').value.trim(), phone=document.getElementById('cap-phone').value.trim();
