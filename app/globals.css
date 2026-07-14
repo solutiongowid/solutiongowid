@@ -1396,6 +1396,9 @@ html, body {
   .lead-form-fashion-h1 {
     font-size: 1.5rem;
   }
+  .lead-form-fashion-subtitle {
+    font-size: 1rem;
+  }
 }
 
 /* ===== Thank-you 페이지 ===== */

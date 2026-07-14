@@ -45,10 +45,11 @@ export default function FashionLeadFormPage() {
                   위한 벤치마크 리포트 2026
                 </strong>
               </h1>
-              <div className="report-subtitle">
-                버는 돈, 남기는 돈, 쥐는 돈<br/>
-                라이프·패션 121개사 + 정점 브랜드 20개사<br className="mobile-br" />
-                2개년 재무제표 직접 분석
+              <div className="report-subtitle lead-form-fashion-subtitle">
+                매출은 성장하면 보입니다.<br/>
+                그러나 손에 &apos;쥐는&apos; 현금은 그렇지 않습니다.<br/>
+                &apos;진짜 마진&apos;을 잡는 방법, 라이프·패션<br/>
+                121개사 데이터를 분석해서 알아냈습니다.
               </div>
 
               <div className="lead-form-cover-wrapper">
