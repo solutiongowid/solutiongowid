@@ -372,6 +372,10 @@ html, body {
   margin: 0 0 1.5rem 0;
 }
 
+.lead-form-fashion-h1 {
+  font-size: 2.5rem;
+}
+
 .desktop-title {
   display: inline;
 }
@@ -1388,6 +1392,9 @@ html, body {
   }
   .lead-form-card-title {
     font-size: 1.375rem;
+  }
+  .lead-form-fashion-h1 {
+    font-size: 1.5rem;
   }
 }
 

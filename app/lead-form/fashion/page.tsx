@@ -39,10 +39,10 @@ export default function FashionLeadFormPage() {
         <div className="report-container">
           <div className="lead-form-grid">
             <div className="lead-form-hero">
-              <h1 className="report-h1">
+              <h1 className="report-h1 lead-form-fashion-h1">
                 <strong>
-                  라이프·패션 브랜드를 위한<br/>
-                  벤치마크 리포트 2026
+                  라이프·패션 브랜드를<br/>
+                  위한 벤치마크 리포트 2026
                 </strong>
               </h1>
               <div className="report-subtitle">
@@ -65,11 +65,11 @@ export default function FashionLeadFormPage() {
               <ul className="lead-form-bullets">
                 <li>
                   <span className="lead-form-bullet-check" style={{ background: '#329451' }}>✓</span>
-                  <span>라이프·패션 121개사 2024·2025 재무제표 1:1 페어 분석 + 은행 입출금 42개월 실측</span>
+                  <span>라이프·패션 121개사 2년 재무제표 직접 분석</span>
                 </li>
                 <li>
                   <span className="lead-form-bullet-check" style={{ background: '#329451' }}>✓</span>
-                  <span>GP율·영업이익률·운전자본 구간별 기준선 및 사입형·제조형 자가진단 체크리스트</span>
+                  <span>GP율·OP율·운전자본 구간별 기준선 및 내 회사 자가진단 체크리스트</span>
                 </li>
                 <li>
                   <span className="lead-form-bullet-check" style={{ background: '#329451' }}>✓</span>
