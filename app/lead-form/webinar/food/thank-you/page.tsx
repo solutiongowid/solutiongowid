@@ -57,12 +57,20 @@ export default function WebinarFoodLeadFormThankYouPage() {
 
             <h1 className="thank-you-title">신청이 완료되었습니다</h1>
             <p className="thank-you-description">
-              제출해주신 이메일 주소로 라이브세션 녹화본을 발송해드렸습니다.<br/>
-              메일함을 확인해주세요.
+              아래 버튼을 눌러 라이브세션 녹화본을 바로 확인하세요.
             </p>
-            <p className="thank-you-note">
-              메일이 보이지 않는다면 스팸함도 확인해주세요.
-            </p>
+
+            <div className="thank-you-cta-group">
+              <a
+                href="https://drive.google.com/drive/folders/1FheB2IMzD9yowh3m6tFcGA4VOydzjhOo?usp=sharing"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="thank-you-cta-primary"
+                style={{ background: 'linear-gradient(135deg, #FF6B35 0%, #e55a25 100%)', boxShadow: '0 4px 16px rgba(255, 107, 53, 0.3)' }}
+              >
+                녹화본 바로보기
+              </a>
+            </div>
           </div>
         </div>
       </main>

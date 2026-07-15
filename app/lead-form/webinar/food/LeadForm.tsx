@@ -94,7 +94,7 @@ export default function WebinarFoodLeadForm({ utmParams }: WebinarFoodLeadFormPr
       <div className="lead-form-card-header">
         <h2 className="lead-form-card-title">라이브세션 다시보기 신청</h2>
         <p className="lead-form-card-description">
-          아래 정보를 입력하시면 제출하신 이메일로 라이브세션 녹화본을 보내드립니다.
+          아래 정보를 입력하시면 라이브세션 녹화본을 바로 확인하실 수 있습니다.
         </p>
       </div>
 
