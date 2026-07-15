@@ -56,7 +56,7 @@ export default function WebinarFoodLeadFormPage() {
                   src="/lead-form-webinar-food-cover.png"
                   alt="푸드 브랜드 현금흐름 라이브세션 다시보기"
                   width={600}
-                  height={315}
+                  height={334}
                   priority
                   className="report-cover-image"
                 />
