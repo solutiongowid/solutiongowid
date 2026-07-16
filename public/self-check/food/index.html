@@ -479,7 +479,7 @@ function captureLead(){
   if(ZAP_HOOK.indexOf('REPLACE_ME')===-1){ fetch(ZAP_HOOK,{method:'POST',mode:'no-cors',body:JSON.stringify(zapPayload)}).catch(function(){}); }
 }
 
-function go(step){ document.querySelectorAll('.step').forEach(function(s){s.classList.remove('on');}); document.getElementById('s'+step).classList.add('on'); document.querySelectorAll('.prog .pi').forEach(function(p){ p.classList.toggle('on', parseInt(p.dataset.pi,10)<=step); }); window.scrollTo({top:0,behavior:'smooth'}); }
+function go(step){ document.querySelectorAll('.step').forEach(function(s){s.classList.remove('on');}); document.getElementById('s'+step).classList.add('on'); document.querySelectorAll('.prog .pi').forEach(function(p){ p.classList.toggle('on', parseInt(p.dataset.pi,10)<=step); }); window.scrollTo({top:0,behavior:'auto'}); }
 function page1done(){ return ANS.stage&&ANS.growth&&ANS.channel&&ANS.pressure; }
 function page2done(){ return ANS.costratio&&ANS.gptrend&&ANS.op&&ANS.inv&&ANS.cash&&ANS.burn; }
 function gateValid(){ var v=function(id){return document.getElementById(id).value.trim();}; return v('cap-corp')&&v('cap-name')&&v('cap-title')&&v('cap-phone')&&isCompanyEmail(v('cap-email')); }
