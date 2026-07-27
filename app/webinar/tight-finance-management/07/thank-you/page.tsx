@@ -13,9 +13,9 @@ export default function TightFinanceManagement07ThankYouPage() {
         신청해주셔서 감사합니다!
       </h1>
       <p style={{ fontSize: '1.0625rem', color: '#666', lineHeight: '1.8', marginBottom: '2.5rem', maxWidth: '480px' }}>
-        입력해주신 이메일로<br />
-        웨비나 참석 가능한 링크를 전달드렸습니다.<br />
-        7월 29일(수) 오후 3시에 뵙겠습니다.
+        신청이 완료되었습니다.<br />
+        아래 링크에서 웨비나 일정을 등록할 수 있습니다.<br />
+        링크는 신청하신 메일을 통해서도 확인하실 수 있습니다.
       </p>
       <div style={{
         background: '#fff', border: '1px solid rgba(91, 197, 0, 0.18)',
