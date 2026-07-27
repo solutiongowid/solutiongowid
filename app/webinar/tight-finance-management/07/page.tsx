@@ -288,7 +288,7 @@ export default function TightFinanceManagement07Page() {
           <div className="report-container">
             <div className="report-cta-content">
               <h3 className="report-h3" style={{ color: '#111' }}>
-                <strong>돈이 새는 순간을 막는 법,<br />7월 29일 온라인에서 확인하세요.</strong>
+                <strong>돈이 새는 순간을 막는 법,<br />7/29 온라인 세미나에서 확인하세요</strong>
               </h3>
               <button
                 onClick={openModal}
