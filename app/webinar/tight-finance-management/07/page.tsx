@@ -354,7 +354,7 @@ export default function TightFinanceManagement07Page() {
                   <span className="checkbox-text">개인정보 처리방침 및 마케팅 수신에 동의합니다 (필수)</span>
                 </label>
                 <p style={{ fontSize: '0.75rem', color: '#999', lineHeight: '1.5', marginTop: '0.5rem', paddingLeft: '1.625rem' }}>
-                  금번 수집하는 개인정보는 웨비나 참석 안내 용도로 사용됩니다. 웨비나 이후 관련 서비스 소개를 위해 연락드릴 수 있습니다.
+                  수집하는 개인정보는 웨비나 참석 안내 용도로 사용됩니다. 신청해주신 링크로 참여 링크 및 발표 자료를 보내드립니다.
                 </p>
               </div>
               <div style={{ position: 'relative', zIndex: 10, pointerEvents: isSubmitting ? 'none' : 'auto' }}>
