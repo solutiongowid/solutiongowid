@@ -30,6 +30,18 @@ export default function TightFinanceManagement07ThankYouPage() {
         <p style={{ fontSize: '0.9375rem', color: '#555' }}>온라인 ZOOM</p>
       </div>
       <a
+        href="https://us06web.zoom.us/meeting/register/mYcwae5aSDeT33AEN99lDA"
+        target="_blank"
+        rel="noopener noreferrer"
+        style={{
+          display: 'inline-block', background: '#5BC500', color: '#fff', fontSize: '1rem', fontWeight: '700',
+          padding: '0.875rem 2.5rem', borderRadius: '0.75rem', textDecoration: 'none',
+          boxShadow: '0 4px 20px rgba(91, 197, 0, 0.25)', marginBottom: '1.5rem',
+        }}
+      >
+        ZOOM 등록하기
+      </a>
+      <a
         href="/webinar/tight-finance-management/07"
         style={{
           fontSize: '0.9375rem', color: '#5BC500', textDecoration: 'underline', fontWeight: '600',
