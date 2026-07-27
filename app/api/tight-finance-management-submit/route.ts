@@ -1,8 +1,8 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { supabase } from '@/app/lib/supabase';
 
-// TODO: 담당자가 Zapier webhook URL 전달 예정 (Zapier -> Stibee 참석 안내 메일 발송)
-const ZAPIER_WEBHOOK_URL = '';
+// Zapier -> Stibee 참석 안내 메일 발송
+const ZAPIER_WEBHOOK_URL = 'https://hooks.zapier.com/hooks/catch/10485854/44ehrab/';
 
 export async function POST(request: NextRequest) {
   try {
