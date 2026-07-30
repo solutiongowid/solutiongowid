@@ -35,7 +35,7 @@ export default function B2bSaasLeadFormPage() {
         </div>
       </nav>
 
-      <header className="report-header lead-form-header-section" style={{ background: 'linear-gradient(135deg, #f0faf4 0%, #ffffff 100%)' }}>
+      <header className="report-header lead-form-header-section" style={{ background: 'linear-gradient(135deg, #eef6fc 0%, #ffffff 100%)' }}>
         <div className="report-container">
           <div className="lead-form-grid">
             <div className="lead-form-hero">
@@ -64,15 +64,15 @@ export default function B2bSaasLeadFormPage() {
 
               <ul className="lead-form-bullets">
                 <li>
-                  <span className="lead-form-bullet-check" style={{ background: '#00A852' }}>✓</span>
-                  <span>B2B 소프트웨어 582개사 세금계산서·법인카드·국민연금 고용기록 2년 추적 분석</span>
+                  <span className="lead-form-bullet-check" style={{ background: '#3A92D1' }}>✓</span>
+                  <span>B2B 소프트웨어 582개사 거래처 단위 매출 데이터 2년 분석</span>
                 </li>
                 <li>
-                  <span className="lead-form-bullet-check" style={{ background: '#00A852' }}>✓</span>
+                  <span className="lead-form-bullet-check" style={{ background: '#3A92D1' }}>✓</span>
                   <span>반복매출 비중별 4개 그룹 NRR·성장 분해·인당 매출 벤치마크 + 5문항 자가진단 체크리스트</span>
                 </li>
                 <li>
-                  <span className="lead-form-bullet-check" style={{ background: '#00A852' }}>✓</span>
+                  <span className="lead-form-bullet-check" style={{ background: '#3A92D1' }}>✓</span>
                   <span>성장률은 비슷해도 유지율은 2배 차이 — 첫 12개월에 승부가 나는 이유</span>
                 </li>
               </ul>

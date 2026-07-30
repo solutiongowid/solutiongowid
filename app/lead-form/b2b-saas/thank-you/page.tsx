@@ -39,12 +39,12 @@ export default function B2bSaasLeadFormThankYouPage() {
         </div>
       </nav>
 
-      <main className="thank-you-main" style={{ background: 'linear-gradient(135deg, #f0faf4 0%, #ffffff 100%)' }}>
+      <main className="thank-you-main" style={{ background: 'linear-gradient(135deg, #eef6fc 0%, #ffffff 100%)' }}>
         <div className="report-container">
           <div className="thank-you-content">
             <div className="thank-you-check" aria-hidden="true">
               <svg width="80" height="80" viewBox="0 0 80 80" fill="none">
-                <circle cx="40" cy="40" r="40" fill="#00A852" />
+                <circle cx="40" cy="40" r="40" fill="#3A92D1" />
                 <path
                   d="M24 41.5L34.5 52L56 30"
                   stroke="white"

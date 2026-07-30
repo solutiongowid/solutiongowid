@@ -257,7 +257,7 @@ export default function B2bSaasLeadForm({ utmParams }: B2bSaasLeadFormProps) {
             type="submit"
             disabled={isSubmitting}
             className="form-submit-button"
-            style={{ background: isSubmitting ? '#ccc' : 'linear-gradient(135deg, #00A852 0%, #048848 100%)', boxShadow: isSubmitting ? 'none' : '0 4px 16px rgba(0, 168, 82, 0.3)' }}
+            style={{ background: isSubmitting ? '#ccc' : 'linear-gradient(135deg, #3A92D1 0%, #2C74A8 100%)', boxShadow: isSubmitting ? 'none' : '0 4px 16px rgba(58, 146, 209, 0.3)' }}
           >
             {isSubmitting ? '제출 중...' : '리포트 받기'}
           </button>
