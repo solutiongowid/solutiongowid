@@ -15,6 +15,7 @@ export async function POST(request: NextRequest) {
       email,
       phone,
       annualBilling,
+      concerns,
       agreeMarketing,
       timestamp,
       utm_source,
@@ -40,12 +41,15 @@ export async function POST(request: NextRequest) {
       );
     }
 
+    const concernList: string[] = Array.isArray(concerns)
+      ? concerns.filter((item): item is string => typeof item === 'string' && item.trim() !== '')
+      : [];
+    const concern = concernList.join(' | ') || null;
+
     const notes = [
       department ? `부서: ${department}` : null,
       annualBilling ? `연 취급고: ${annualBilling}` : null,
-      utm_term ? `utm_term: ${utm_term}` : null,
-      gclid ? `gclid: ${gclid}` : null,
-      fbclid ? `fbclid: ${fbclid}` : null,
+      concern ? `재무 어려움: ${concern}` : null,
     ].filter(Boolean).join(' | ') || null;
 
     const { error: supabaseError } = await supabaseAdmin
@@ -63,11 +67,15 @@ export async function POST(request: NextRequest) {
           campaign_detail: utm_campaign || null,
           funnel_stage: 'new',
           lead_type: 'potential',
+          concern,
           notes,
           utm_source: utm_source || null,
           utm_medium: utm_medium || null,
           utm_campaign: utm_campaign || null,
           utm_content: utm_content || null,
+          utm_term: utm_term || null,
+          gclid: gclid || null,
+          fbclid: fbclid || null,
         },
       ]);
 
@@ -91,6 +99,7 @@ export async function POST(request: NextRequest) {
           email,
           phone,
           annual_billing: annualBilling,
+          concern: concern || '',
           utm_source: utm_source || '',
           utm_medium: utm_medium || '',
           utm_campaign: utm_campaign || '',

@@ -17,6 +17,14 @@ interface AgencyLeadFormProps {
   utmParams: AgencyUtmParams;
 }
 
+const CONCERN_OPTIONS = [
+  '광고비 매체비 결제 한도가 부족하다',
+  '매체비는 먼저 나가고 광고주 정산은 늦게 들어온다',
+  '성수기/대형 캠페인 때 현금 부족으로 집행 타이밍이 부담된다',
+  '고객사 캠페인별 실제 이익이 잘 보이지 않는다',
+  '여러 카드, 계좌, 미디어랩 여신을 나눠 써서 관리가 복잡하다',
+];
+
 export default function AgencyLeadForm({ utmParams }: AgencyLeadFormProps) {
   const router = useRouter();
 
@@ -31,8 +39,18 @@ export default function AgencyLeadForm({ utmParams }: AgencyLeadFormProps) {
     agreeMarketing: false,
   });
 
+  const [concerns, setConcerns] = useState<string[]>([]);
+  const [concernEtcChecked, setConcernEtcChecked] = useState(false);
+  const [concernEtc, setConcernEtc] = useState('');
+
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitError, setSubmitError] = useState('');
+
+  const toggleConcern = (option: string) => {
+    setConcerns(prev =>
+      prev.includes(option) ? prev.filter(item => item !== option) : [...prev, option]
+    );
+  };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
     const { name, value } = e.target;
@@ -60,7 +78,15 @@ export default function AgencyLeadForm({ utmParams }: AgencyLeadFormProps) {
     }
     if (!formData.phone.trim()) { setSubmitError('연락처를 입력해주세요.'); return; }
     if (!formData.annualBilling) { setSubmitError('연 취급고 구간을 선택해주세요.'); return; }
+    if (concernEtcChecked && !concernEtc.trim()) {
+      setSubmitError('기타 항목을 직접 입력해주세요.'); return;
+    }
     if (!formData.agreeMarketing) { setSubmitError('마케팅 활용 동의가 필요합니다.'); return; }
+
+    const selectedConcerns = [
+      ...concerns,
+      ...(concernEtcChecked && concernEtc.trim() ? [`기타: ${concernEtc.trim()}`] : []),
+    ];
 
     setIsSubmitting(true);
 
@@ -74,6 +100,7 @@ export default function AgencyLeadForm({ utmParams }: AgencyLeadFormProps) {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
           ...formData,
+          concerns: selectedConcerns,
           timestamp: formattedTimestamp,
           ...utmParams,
         }),
@@ -236,6 +263,49 @@ export default function AgencyLeadForm({ utmParams }: AgencyLeadFormProps) {
             <option value="100~300억">100~300억</option>
             <option value="300억 이상">300억 이상</option>
           </select>
+        </div>
+
+        <div className="form-group">
+          <label className="form-label">
+            현재 재무적 관점에서 겪는 어려움을 모두 선택해주세요
+          </label>
+          <div style={{ display: 'flex', flexDirection: 'column', gap: '0.75rem' }}>
+            {CONCERN_OPTIONS.map((option) => (
+              <label key={option} className="checkbox-label">
+                <input
+                  type="checkbox"
+                  className="checkbox-input"
+                  checked={concerns.includes(option)}
+                  onChange={() => toggleConcern(option)}
+                />
+                <span className="checkbox-text">{option}</span>
+              </label>
+            ))}
+
+            <label className="checkbox-label">
+              <input
+                type="checkbox"
+                className="checkbox-input"
+                checked={concernEtcChecked}
+                onChange={(e) => {
+                  setConcernEtcChecked(e.target.checked);
+                  if (!e.target.checked) setConcernEtc('');
+                }}
+              />
+              <span className="checkbox-text">기타 (직접 입력)</span>
+            </label>
+
+            {concernEtcChecked && (
+              <input
+                type="text"
+                value={concernEtc}
+                onChange={(e) => setConcernEtc(e.target.value)}
+                className="form-input"
+                placeholder="어떤 어려움을 겪고 계신가요?"
+                aria-label="기타 어려움 직접 입력"
+              />
+            )}
+          </div>
         </div>
 
         <div className="form-group-checkbox">
