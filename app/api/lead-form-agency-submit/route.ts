@@ -1,8 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { supabaseAdmin } from '@/app/lib/supabase';
 
-// TODO: 스티비 연동용 Zapier Catch Hook URL 입력
-const ZAPIER_WEBHOOK_URL = '';
+const ZAPIER_WEBHOOK_URL = 'https://hooks.zapier.com/hooks/catch/10485854/46dfxd1/';
 
 export async function POST(request: NextRequest) {
   try {
