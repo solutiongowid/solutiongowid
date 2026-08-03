@@ -4,12 +4,6 @@ import { useState, useEffect } from 'react';
 import Image from 'next/image';
 import AgencyLeadForm, { AgencyUtmParams } from './LeadForm';
 
-const HIGHLIGHTS = [
-  { value: '16일치', label: '통장 잔고 중앙값 (94개사)' },
-  { value: '61%', label: '한 달을 못 버티는 잔고 비중' },
-  { value: '19.6%', label: 'GP마진 중앙값 (56개사)' },
-];
-
 export default function AgencyLeadFormPage() {
   const [utmParams, setUtmParams] = useState<AgencyUtmParams>({
     utm_source: '',
@@ -52,7 +46,7 @@ export default function AgencyLeadFormPage() {
         </div>
       </nav>
 
-      <header className="report-header lead-form-header-section" style={{ background: 'linear-gradient(135deg, #F0F4E3 0%, #ffffff 100%)' }}>
+      <header className="report-header lead-form-header-section" style={{ background: 'linear-gradient(135deg, #eef6fc 0%, #ffffff 100%)' }}>
         <div className="report-container">
           <div className="lead-form-grid">
             <div className="lead-form-hero">
@@ -63,8 +57,9 @@ export default function AgencyLeadFormPage() {
                 </strong>
               </h1>
               <div className="report-subtitle">
-                광고대행사 160개사 세금계산서·통장 실측 데이터 기반<br className="mobile-br" />
-                분명 흑자인데, 통장은 왜 비어갈까?
+                국내 광고대행사 160개사<br className="mobile-br" />
+                결제·계좌·세금계산서·재무제표 데이터 분석<br className="mobile-br" />
+                분명 흑자인데, 통장은 왜 비어갈까요
               </div>
 
               <div className="lead-form-cover-wrapper">
@@ -72,7 +67,7 @@ export default function AgencyLeadFormPage() {
                   src="/lead-form-agency-cover.png"
                   alt="광고대행사 현금흐름 벤치마크 리포트 2026"
                   width={600}
-                  height={425}
+                  height={320}
                   priority
                   className="report-cover-image"
                 />
@@ -80,47 +75,18 @@ export default function AgencyLeadFormPage() {
 
               <ul className="lead-form-bullets">
                 <li>
-                  <span className="lead-form-bullet-check" style={{ background: '#3A4A32' }}>✓</span>
-                  <span>취급고가 아닌 &lsquo;실질 GP&rsquo; 구하는 법과 규모별 마진 벤치마크</span>
+                  <span className="lead-form-bullet-check" style={{ background: '#3A92D1' }}>✓</span>
+                  <span>광고대행사 160개사의 결제·계좌·세금계산서와 DART 공시 재무제표 분석</span>
                 </li>
                 <li>
-                  <span className="lead-form-bullet-check" style={{ background: '#3A4A32' }}>✓</span>
-                  <span>인건비율 60% 선과 적자 전환 구간, GP 대비 운영비 기준선</span>
+                  <span className="lead-form-bullet-check" style={{ background: '#3A92D1' }}>✓</span>
+                  <span>취급고 규모별 GP마진·1인당 GP·인건비율·영업이익률 벤치마크 + 7문항 자가진단 체크리스트</span>
                 </li>
                 <li>
-                  <span className="lead-form-bullet-check" style={{ background: '#3A4A32' }}>✓</span>
-                  <span>현금 갭·운전자금 공식, 카드 한도 천장과 7문항 자가진단</span>
+                  <span className="lead-form-bullet-check" style={{ background: '#3A92D1' }}>✓</span>
+                  <span>통장 잔고는 중앙값 16일치, 입금은 40일 뒤 — 흑자도산이 이 산업에 유독 잦은 이유</span>
                 </li>
               </ul>
-
-              <div
-                style={{
-                  display: 'flex',
-                  flexWrap: 'wrap',
-                  gap: '0.75rem',
-                  marginTop: '0.25rem',
-                }}
-              >
-                {HIGHLIGHTS.map((item) => (
-                  <div
-                    key={item.value}
-                    style={{
-                      flex: '1 1 8rem',
-                      background: 'rgba(255, 255, 255, 0.85)',
-                      border: '1px solid rgba(35, 45, 29, 0.12)',
-                      borderRadius: '0.75rem',
-                      padding: '0.875rem 1rem',
-                    }}
-                  >
-                    <div style={{ fontSize: '1.375rem', fontWeight: 700, color: '#232D1D', lineHeight: 1.2 }}>
-                      {item.value}
-                    </div>
-                    <div style={{ fontSize: '0.8125rem', color: '#5f6a58', marginTop: '0.25rem', lineHeight: 1.4 }}>
-                      {item.label}
-                    </div>
-                  </div>
-                ))}
-              </div>
             </div>
 
             <div className="lead-form-side">

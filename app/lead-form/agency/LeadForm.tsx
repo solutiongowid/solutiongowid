@@ -268,7 +268,7 @@ export default function AgencyLeadForm({ utmParams }: AgencyLeadFormProps) {
             type="submit"
             disabled={isSubmitting}
             className="form-submit-button"
-            style={{ background: isSubmitting ? '#ccc' : 'linear-gradient(135deg, #3A4A32 0%, #232D1D 100%)', boxShadow: isSubmitting ? 'none' : '0 4px 16px rgba(35, 45, 29, 0.28)' }}
+            style={{ background: isSubmitting ? '#ccc' : 'linear-gradient(135deg, #3A92D1 0%, #2C74A8 100%)', boxShadow: isSubmitting ? 'none' : '0 4px 16px rgba(58, 146, 209, 0.3)' }}
           >
             {isSubmitting ? '제출 중...' : '리포트 받기'}
           </button>
