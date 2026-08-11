@@ -1,8 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { supabase } from '@/app/lib/supabase';
 
-// Zapier 웹훅 ID는 추후 전달받는 대로 채워 넣는다.
-const ZAPIER_WEBHOOK_URL = '';
+const ZAPIER_WEBHOOK_URL = 'https://hooks.zapier.com/hooks/catch/10485854/46x4x5i/';
 
 export async function POST(request: NextRequest) {
   try {
