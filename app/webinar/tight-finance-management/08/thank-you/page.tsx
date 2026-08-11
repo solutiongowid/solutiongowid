@@ -14,8 +14,7 @@ export default function TightFinanceManagement08ThankYouPage() {
       </h1>
       <p style={{ fontSize: '1.0625rem', color: '#666', lineHeight: '1.8', marginBottom: '2.5rem', maxWidth: '480px' }}>
         신청이 완료되었습니다.<br />
-        아래 링크에서 웨비나 일정을 등록할 수 있습니다.<br />
-        링크는 신청하신 메일을 통해서도 확인하실 수 있습니다.
+        참여 링크는 신청하신 이메일로 안내드립니다.
       </p>
       <div style={{
         background: '#fff', border: '1px solid rgba(91, 197, 0, 0.18)',
@@ -29,18 +28,6 @@ export default function TightFinanceManagement08ThankYouPage() {
         <p style={{ fontSize: '0.9375rem', color: '#555' }}>2026년 8월 20일 (목) 오전 11:00 – 12:00</p>
         <p style={{ fontSize: '0.9375rem', color: '#555' }}>온라인 ZOOM</p>
       </div>
-      <a
-        href="https://us06web.zoom.us/j/85055086306"
-        target="_blank"
-        rel="noopener noreferrer"
-        style={{
-          display: 'inline-block', background: '#5BC500', color: '#fff', fontSize: '1rem', fontWeight: '700',
-          padding: '0.875rem 2.5rem', borderRadius: '0.75rem', textDecoration: 'none',
-          boxShadow: '0 4px 20px rgba(91, 197, 0, 0.25)', marginBottom: '1.5rem',
-        }}
-      >
-        ZOOM 등록하기
-      </a>
       <a
         href="/webinar/tight-finance-management/08"
         style={{
