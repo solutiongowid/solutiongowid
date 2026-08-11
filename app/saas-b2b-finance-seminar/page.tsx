@@ -1,6 +1,7 @@
 'use client';
 
 import { useState, useEffect, FormEvent } from 'react';
+import Image from 'next/image';
 
 export default function SaasB2bFinanceSeminarPage() {
   const [openFaq, setOpenFaq] = useState<number | null>(0);
@@ -147,15 +148,15 @@ export default function SaasB2bFinanceSeminarPage() {
               <p style={{ textAlign: 'center', margin: '0 0 2.5rem', color: '#8a8fa8', fontSize: '0.9375rem', lineHeight: '1.6' }}>
                 오프라인 · 정원 <b style={{ color: accentColor, fontWeight: 700 }}>30명 추첨</b> · 참가비 무료 · 신청 마감 <b style={{ color: accentColor, fontWeight: 700 }}>8월 18일(화)</b>
               </p>
-              <div style={{
-                maxWidth: '600px', margin: '0 auto', aspectRatio: '1200 / 630',
-                borderRadius: '1rem', border: '1px dashed #c6cde6', background: tint,
-                display: 'flex', alignItems: 'center', justifyContent: 'center', textAlign: 'center', padding: '1rem',
-              }}>
-                <span style={{ color: '#9aa2c0', fontSize: '0.9375rem', fontWeight: 600, letterSpacing: '0.02em' }}>
-                  이미지 영역
-                  <em style={{ display: 'block', marginTop: '0.375rem', fontStyle: 'normal', fontSize: '0.8125rem', fontWeight: 500, color: '#b6bdd4' }}>1200 × 630</em>
-                </span>
+              <div style={{ maxWidth: '600px', margin: '0 auto' }}>
+                <Image
+                  src="/saas-b2b-finance-seminar-thumbnail.png"
+                  alt="테크 기업의 자금 관리 공식 - GOWID 세미나"
+                  width={1724}
+                  height={1073}
+                  priority
+                  style={{ width: '100%', height: 'auto', display: 'block', borderRadius: '1rem', border: '1px solid #e0e0e0' }}
+                />
               </div>
             </div>
           </div>
@@ -236,10 +237,10 @@ export default function SaasB2bFinanceSeminarPage() {
                   <div style={{ fontSize: '1rem', color: '#888' }}>세션</div>
                 </div>
                 {[
-                  { time: '18:00 ~ 18:10', title: '오프닝 — 지금 B2B 테크가 서 있는 자리', speaker: '고위드 대표', details: ['AI로 이동한 투자와 소프트웨어 예산의 변화', '혁신성장 기업이 만들어갈 다음 노동시장'] },
-                  { time: '18:10 ~ 18:30', session: '세션 1', title: '기업이란 무엇인가', speakerName: '고위드 대표', details: ['기업을 현금을 창출하는 존재로 정의하는 법', '고객과의 신뢰를 구조화하는 기업 경영의 본질', '매출·매출총이익(GP)·영업이익(OP)·현금흐름으로 돌아보는 성장'] },
-                  { time: '18:30 ~ 18:50', session: '세션 2', title: '대표가 직접 보는 현금 관리', speakerName: '고위드 재무 리드', details: ['발생주의 회계와 현금 관리를 분리하는 법', '목적 없는 비용을 걷어내는 일간·주간·월간 루틴', '제품과 프로젝트별 관리회계와 경영 가시성'] },
-                  { time: '18:50 ~ 19:15', session: '세션 3', title: '582곳과 494곳의 숫자', speakerName: '조인혁', speakerCompany: '고위드', details: ['투자 지형 — 전체 시장보다 빠르게 줄어든 B2B 소프트웨어 투자', '성장의 출처 — 비슷한 성장률을 만든 서로 다른 비용 구조', '예산의 행방 — 매출보다 빠르게 늘어난 서버비', '우리 회사 숫자 — 현장에서 함께 점검하는 자가진단 5문항'] },
+                  { time: '18:00 ~ 18:10', title: '오프닝 — 지금 B2B 테크가 서 있는 자리', speaker: '김항기 대표', details: ['AI로 이동한 투자와 소프트웨어 예산의 변화', '혁신성장 기업이 만들어갈 다음 노동시장'] },
+                  { time: '18:10 ~ 18:30', session: '세션 1', title: '기업이란 무엇인가', speakerName: '김항기 대표', details: ['기업을 현금을 창출하는 존재로 정의하는 법', '고객과의 신뢰를 구조화하는 기업 경영의 본질', '매출·매출총이익(GP)·영업이익(OP)·현금흐름으로 돌아보는 성장'] },
+                  { time: '18:30 ~ 18:50', session: '세션 2', title: '대표가 직접 보는 현금 관리', speakerName: '지윤실 재무리드', details: ['발생주의 회계와 현금 관리를 분리하는 법', '목적 없는 비용을 걷어내는 일간·주간·월간 루틴', '제품과 프로젝트별 관리회계와 경영 가시성'] },
+                  { time: '18:50 ~ 19:15', session: '세션 3', title: '582곳과 494곳의 숫자', speakerName: '조인혁 사업개발', details: ['투자 지형 — 전체 시장보다 빠르게 줄어든 B2B 소프트웨어 투자', '성장의 출처 — 비슷한 성장률을 만든 서로 다른 비용 구조', '예산의 행방 — 매출보다 빠르게 늘어난 서버비', '우리 회사 숫자 — 현장에서 함께 점검하는 자가진단 5문항'] },
                   { time: '19:15 ~ 19:30', title: '질의응답', speaker: '연사 전원' },
                   { time: '19:30 ~ 20:00', title: '참석자 네트워킹', speaker: '참석자 전원' },
                 ].map((item, i) => (
@@ -248,7 +249,7 @@ export default function SaasB2bFinanceSeminarPage() {
                     <div>
                       {item.session && <div style={{ fontSize: '1rem', fontWeight: '700', color: accentColor, marginBottom: '0.25rem' }}>{item.session}</div>}
                       <div style={{ fontSize: '1.0625rem', color: '#222', marginBottom: (item.details || item.speaker || item.speakerName) ? '0.25rem' : '0' }}>{item.title}</div>
-                      {item.speakerName && <div style={{ fontSize: '0.875rem', color: '#888', marginBottom: '0.5rem' }}>{item.speakerCompany ? `${item.speakerName} · ${item.speakerCompany}` : item.speakerName}</div>}
+                      {item.speakerName && <div style={{ fontSize: '0.875rem', color: '#888', marginBottom: '0.5rem' }}>{item.speakerName}</div>}
                       {item.speaker && !item.speakerName && <div style={{ fontSize: '0.875rem', color: '#888' }}>{item.speaker}</div>}
                       {item.details && (
                         <ul style={{ listStyle: 'none', padding: 0, margin: 0 }}>
@@ -268,10 +269,10 @@ export default function SaasB2bFinanceSeminarPage() {
               {/* 모바일 */}
               <div className="cosmetic-timetable-mobile" style={{ marginBottom: '3rem' }}>
                 {[
-                  { time: '18:00 ~ 18:10', title: '오프닝 — 지금 B2B 테크가 서 있는 자리', speaker: '고위드 대표' },
-                  { time: '18:10 ~ 18:30', session: '세션 1', title: '기업이란 무엇인가', speakerName: '고위드 대표', details: ['현금을 창출하는 존재로 정의하는 법', '매출·GP·OP·현금흐름으로 돌아보는 성장'] },
-                  { time: '18:30 ~ 18:50', session: '세션 2', title: '대표가 직접 보는 현금 관리', speakerName: '고위드 재무 리드', details: ['발생주의 회계와 현금 관리 분리', '일간·주간·월간 관리 루틴'] },
-                  { time: '18:50 ~ 19:15', session: '세션 3', title: '582곳과 494곳의 숫자', speakerName: '조인혁 · 고위드', details: ['B2B 소프트웨어 투자 지형', '매출보다 빠르게 늘어난 서버비', '자가진단 5문항'] },
+                  { time: '18:00 ~ 18:10', title: '오프닝 — 지금 B2B 테크가 서 있는 자리', speaker: '김항기 대표' },
+                  { time: '18:10 ~ 18:30', session: '세션 1', title: '기업이란 무엇인가', speakerName: '김항기 대표', details: ['현금을 창출하는 존재로 정의하는 법', '매출·GP·OP·현금흐름으로 돌아보는 성장'] },
+                  { time: '18:30 ~ 18:50', session: '세션 2', title: '대표가 직접 보는 현금 관리', speakerName: '지윤실 재무리드', details: ['발생주의 회계와 현금 관리 분리', '일간·주간·월간 관리 루틴'] },
+                  { time: '18:50 ~ 19:15', session: '세션 3', title: '582곳과 494곳의 숫자', speakerName: '조인혁 사업개발', details: ['B2B 소프트웨어 투자 지형', '매출보다 빠르게 늘어난 서버비', '자가진단 5문항'] },
                   { time: '19:15 ~ 19:30', title: '질의응답', speaker: '연사 전원' },
                   { time: '19:30 ~ 20:00', title: '참석자 네트워킹', speaker: '참석자 전원' },
                 ].map((item, i) => (
