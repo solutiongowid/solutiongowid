@@ -140,13 +140,13 @@ export default function SaasB2bFinanceSeminarPage() {
                 <strong>테크 기업의<br />자금 관리 공식</strong>
               </h1>
               <p style={{ textAlign: 'center', margin: '0 0 1rem', color: '#3a3a3a', fontSize: '1.4rem', fontWeight: 700, lineHeight: '1.4' }}>
-                성장을 만든 숫자와 현금의 흐름을 함께 살펴봅니다
+                성장을 만든 숫자와 현금의 흐름을<br className="mobile-only-br" /> 함께 살펴봅니다
               </p>
               <p style={{ textAlign: 'center', margin: '0 0 1.25rem', color: '#5b6070', fontSize: '1.0625rem', lineHeight: '1.7' }}>
                 B2B 소프트웨어 582곳과 AI 기업 494곳의 실제 재무 데이터로 살펴본 상반기 변화
               </p>
               <p style={{ textAlign: 'center', margin: '0 0 2.5rem', color: '#8a8fa8', fontSize: '0.9375rem', lineHeight: '1.6' }}>
-                오프라인 · 정원 <b style={{ color: accentColor, fontWeight: 700 }}>30명 추첨</b> · 참가비 무료 · 신청 마감 <b style={{ color: accentColor, fontWeight: 700 }}>8월 18일(화)</b>
+                오프라인 · 정원 <b style={{ color: accentColor, fontWeight: 700 }}>30명 추첨</b> · 참가비 무료<br className="mobile-only-br" /> 신청 마감 <b style={{ color: accentColor, fontWeight: 700 }}>8월 18일(화)</b>
               </p>
               <div style={{ maxWidth: '600px', margin: '0 auto' }}>
                 <Image
@@ -175,7 +175,7 @@ export default function SaasB2bFinanceSeminarPage() {
               <div style={{ display: 'flex', flexDirection: 'column', gap: '0.875rem', maxWidth: '660px', margin: '0 auto 2rem', textAlign: 'left' }}>
                 {[
                   <><strong>B2B 소프트웨어 투자 라운드는 2022년 294건에서 2025년 132건으로 줄었습니다.</strong> 전체 시장이 38% 감소하는 동안 B2B 소프트웨어는 55% 감소했습니다.</>,
-                  <><strong>네 그룹의 성장률은 모두 20% 안팎이었습니다.</strong> 비슷한 성장률을 만드는 데 들어간 비용은 매출의 41%와 83%로 갈렸습니다.</>,
+                  <><strong>네 그룹의 성장률은 모두 20% 안팎이었습니다.</strong><br className="mobile-only-br" /> 비슷한 성장률을 만드는 데 들어간 비용은<br className="mobile-only-br" /> 매출의 41%와 83%로 갈렸습니다.</>,
                   <><strong>서버비는 1.75배, 매출은 1.28배 늘었습니다.</strong> 열에 여덟이 적자였고, 서버비는 손익계산서보다 먼저 통장에서 빠져나갔습니다.</>,
                 ].map((text, i) => (
                   <div key={i} style={{ display: 'flex', gap: '0.75rem', alignItems: 'flex-start', fontSize: '1.0625rem', lineHeight: '1.7', color: '#333' }}>
