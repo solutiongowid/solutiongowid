@@ -133,7 +133,7 @@ export default function SaasB2bFinanceSeminarPage() {
             <div style={{ maxWidth: '820px', margin: '0 auto', textAlign: 'center' }}>
               <div style={{ marginBottom: '1.5rem' }}>
                 <span className="badge" style={{ fontSize: '0.875rem', padding: '0.5rem 1.25rem', background: accentLight, color: accentColor, border: `1px solid ${accentBorder}` }}>
-                  8월 20일(목) 오후 6시 · 고위드 사옥 14층
+                  8월 25일(화) 오후 6시 · 고위드 사옥 14층
                 </span>
               </div>
               <h1 className="report-h1" style={{ textAlign: 'center', marginBottom: '1rem', color: '#111' }}>
@@ -330,7 +330,7 @@ export default function SaasB2bFinanceSeminarPage() {
               <table style={{ width: '100%', borderCollapse: 'collapse' }}>
                 <tbody>
                   {[
-                    { th: '일시', td: '2026년 8월 20일(목) 18:00~20:00' },
+                    { th: '일시', td: '2026년 8월 25일(화) 18:00~20:00' },
                     { th: '장소', td: '고위드 사옥 14층 대회의실 · 서울' },
                     { th: '정원', td: '30명 · 추첨', hi: true },
                     { th: '참가비', td: '무료' },
@@ -438,7 +438,7 @@ export default function SaasB2bFinanceSeminarPage() {
             <button className="modal-close" onClick={closeModal} aria-label="닫기">✕</button>
             <div className="modal-header">
               <h2 className="modal-title">참가 신청</h2>
-              <p className="modal-description">8월 20일(목) 오후 6시 · 고위드 사옥 14층</p>
+              <p className="modal-description">8월 25일(화) 오후 6시 · 고위드 사옥 14층</p>
             </div>
             <form onSubmit={handleSubmit} className="modal-form">
               <div style={{ background: tint, border: `1px solid ${accentBorder}`, borderRadius: '0.75rem', padding: '1.25rem 1.5rem', marginBottom: '1.75rem', fontSize: '0.875rem', color: '#444', lineHeight: '1.7' }}>
