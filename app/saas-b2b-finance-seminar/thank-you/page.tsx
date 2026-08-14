@@ -23,7 +23,7 @@ export default function SaasB2bFinanceSeminarThankYouPage() {
         <p style={{ fontSize: '1rem', color: '#222', fontWeight: '700', marginBottom: '0.25rem' }}>
           테크 기업의 자금 관리 공식
         </p>
-        <p style={{ fontSize: '0.9375rem', color: '#555' }}>2026년 8월 20일 (목) 오후 6시~8시</p>
+        <p style={{ fontSize: '0.9375rem', color: '#555' }}>2026년 8월 25일 (화) 오후 6시~8시</p>
         <p style={{ fontSize: '0.9375rem', color: '#555' }}>고위드 사옥 14층 대회의실 · 서울</p>
       </div>
       <a
