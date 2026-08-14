@@ -57,8 +57,8 @@ export default function AiMlBenchmarkPage() {
                   </strong>
                 </h1>
                 <div className="report-subtitle">
-                  고위드<br/>
-                  국내 AI·ML 기업 494곳의 통장·세금계산서 실측<br className="desktop-br"/>투자금 잔존율 · 서버비 증가율 분석
+                  고위드 <br className="desktop-br"/>
+                  국내 AI·ML 기업 494곳의 통장·세금계산서 실측<br/>투자금 잔존율 · 서버비 증가율 분석
                 </div>
                 <button onClick={openModal} className="report-button-primary">
                   무료 다운로드
