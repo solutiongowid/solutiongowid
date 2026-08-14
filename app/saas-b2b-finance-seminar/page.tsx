@@ -146,7 +146,7 @@ export default function SaasB2bFinanceSeminarPage() {
                 B2B 소프트웨어 582곳과 AI 기업 494곳의 실제 재무 데이터로 살펴본 상반기 변화
               </p>
               <p style={{ textAlign: 'center', margin: '0 0 2.5rem', color: '#8a8fa8', fontSize: '0.9375rem', lineHeight: '1.6' }}>
-                오프라인 · 정원 <b style={{ color: accentColor, fontWeight: 700 }}>30명 추첨</b> · 참가비 무료<br className="mobile-only-br" /> 신청 마감 <b style={{ color: accentColor, fontWeight: 700 }}>8월 18일(화)</b>
+                오프라인 · 정원 <b style={{ color: accentColor, fontWeight: 700 }}>30명 추첨</b> · 참가비 무료<br className="mobile-only-br" /> 신청 마감 <b style={{ color: accentColor, fontWeight: 700 }}>8월 23일(일)</b>
               </p>
               <div style={{ maxWidth: '600px', margin: '0 auto' }}>
                 <Image
@@ -334,7 +334,7 @@ export default function SaasB2bFinanceSeminarPage() {
                     { th: '장소', td: '고위드 사옥 14층 대회의실 · 서울' },
                     { th: '정원', td: '30명 · 추첨', hi: true },
                     { th: '참가비', td: '무료' },
-                    { th: '신청 마감', td: '2026년 8월 18일(화)' },
+                    { th: '신청 마감', td: '2026년 8월 23일(일)' },
                   ].map((row, i) => (
                     <tr key={i}>
                       <th style={{ padding: '1rem 1.25rem', borderBottom: '1px solid #e8e8e8', textAlign: 'left', fontSize: '1rem', width: '150px', color: '#888', fontWeight: 600 }}>{row.th}</th>
@@ -404,7 +404,7 @@ export default function SaasB2bFinanceSeminarPage() {
               {[
                 '오프라인 행사이며 고위드 사옥 14층 대회의실에서 진행합니다.',
                 '정원은 30명이며 추첨 결과를 신청자에게 개별 안내합니다.',
-                '참가비는 없으며 신청 마감은 2026년 8월 18일(화)입니다.',
+                '참가비는 없으며 신청 마감은 2026년 8월 23일(일)입니다.',
                 '발표 자료와 벤치마크 리포트는 광고성 정보 수신 및 제3자 제공에 동의한 참석자에게 제공합니다.',
               ].map((notice, i) => (
                 <p key={i} style={{ fontSize: '0.8125rem', lineHeight: '1.6', color: '#999', marginBottom: '0.375rem' }}>
