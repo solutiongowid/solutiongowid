@@ -1,8 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { supabaseAdmin } from '@/app/lib/supabase';
 
-// TODO: 스티비 발송용 Zapier 웹훅 URL로 교체 (담당자가 웹훅 ID 전달 예정)
-const ZAPIER_WEBHOOK_URL = process.env.ZAPIER_WEBHOOK_URL_AI_ML || '';
+const ZAPIER_WEBHOOK_URL = 'https://hooks.zapier.com/hooks/catch/10485854/4t30xui/';
 
 export async function POST(request: NextRequest) {
   try {
@@ -49,28 +48,24 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    if (ZAPIER_WEBHOOK_URL) {
-      fetch(ZAPIER_WEBHOOK_URL, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          company_name: companyName,
-          name,
-          position,
-          department,
-          email,
-          phone,
-          annual_revenue: annualRevenue,
-          utm_source: utm_source || '',
-          utm_medium: utm_medium || '',
-          utm_campaign: utm_campaign || 'ai-ml',
-          utm_content: utm_content || '',
-          timestamp,
-        }),
-      }).catch((err) => console.error('Zapier webhook error:', err));
-    } else {
-      console.warn('ZAPIER_WEBHOOK_URL_AI_ML is not set — skipping Stibee report email trigger.');
-    }
+    fetch(ZAPIER_WEBHOOK_URL, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        company_name: companyName,
+        name,
+        position,
+        department,
+        email,
+        phone,
+        annual_revenue: annualRevenue,
+        utm_source: utm_source || '',
+        utm_medium: utm_medium || '',
+        utm_campaign: utm_campaign || 'ai-ml',
+        utm_content: utm_content || '',
+        timestamp,
+      }),
+    }).catch((err) => console.error('Zapier webhook error:', err));
 
     return NextResponse.json({
       success: true,
