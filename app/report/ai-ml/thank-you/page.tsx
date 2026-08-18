@@ -1,9 +1,27 @@
 'use client';
 
+import { useEffect } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 
+type FbqFn = (...args: unknown[]) => void;
+
+declare global {
+  interface Window {
+    fbq?: FbqFn;
+  }
+}
+
 export default function AiMlThankYouPage() {
+  useEffect(() => {
+    if (typeof window.fbq === 'function') {
+      window.fbq('track', 'Lead', {
+        content_name: 'report-ai-ml',
+        content_category: 'ai-ml-report',
+      });
+    }
+  }, []);
+
   return (
     <div className="report-page">
       <nav className="report-nav">

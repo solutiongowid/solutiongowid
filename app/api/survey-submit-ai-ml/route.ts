@@ -48,24 +48,28 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    fetch(ZAPIER_WEBHOOK_URL, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        company_name: companyName,
-        name,
-        position,
-        department,
-        email,
-        phone,
-        annual_revenue: annualRevenue,
-        utm_source: utm_source || '',
-        utm_medium: utm_medium || '',
-        utm_campaign: utm_campaign || 'ai-ml',
-        utm_content: utm_content || '',
-        timestamp,
-      }),
-    }).catch((err) => console.error('Zapier webhook error:', err));
+    try {
+      await fetch(ZAPIER_WEBHOOK_URL, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          company_name: companyName,
+          name,
+          position,
+          department,
+          email,
+          phone,
+          annual_revenue: annualRevenue,
+          utm_source: utm_source || '',
+          utm_medium: utm_medium || '',
+          utm_campaign: utm_campaign || 'ai-ml',
+          utm_content: utm_content || '',
+          timestamp,
+        }),
+      });
+    } catch (err) {
+      console.error('Zapier webhook error:', err);
+    }
 
     return NextResponse.json({
       success: true,
