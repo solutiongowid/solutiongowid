@@ -13,8 +13,8 @@ export default function FnbFinanceWebinarThankYouPage() {
         신청이 완료되었습니다!
       </h1>
       <p style={{ fontSize: '1.0625rem', color: '#666', lineHeight: '1.8', marginBottom: '2.5rem', maxWidth: '480px' }}>
-        웨비나 접속 링크를 이메일로 보내드리겠습니다.<br />
-        8월 19일(수) 오후 4시에 뵙겠습니다.
+        웨비나 녹화본을 이메일로 보내드리겠습니다.<br />
+        조금만 기다려 주세요.
       </p>
       <div style={{
         background: '#fff', border: '1px solid rgba(255,107,53,0.18)',
@@ -25,8 +25,8 @@ export default function FnbFinanceWebinarThankYouPage() {
         <p style={{ fontSize: '1rem', color: '#222', fontWeight: '700', marginBottom: '0.25rem' }}>
           F&amp;B 브랜드의 현금 공백
         </p>
-        <p style={{ fontSize: '0.9375rem', color: '#555' }}>2026년 8월 19일 (수) 오후 4시~5시 30분</p>
-        <p style={{ fontSize: '0.9375rem', color: '#555' }}>온라인 Zoom 라이브</p>
+        <p style={{ fontSize: '0.9375rem', color: '#555' }}>2026년 8월 19일 (수) 진행 완료</p>
+        <p style={{ fontSize: '0.9375rem', color: '#555' }}>신청 시 녹화본 제공</p>
       </div>
       <a
         href="/event/fnb-finance-webinar"

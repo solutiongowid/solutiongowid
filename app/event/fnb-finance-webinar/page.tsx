@@ -145,7 +145,7 @@ export default function FnbFinanceWebinarPage() {
                   onClick={openModal}
                   style={{ background: accentColor, color: '#fff', cursor: 'pointer' }}
                 >
-                  무료 웨비나 신청하기
+                  웨비나 녹화본 신청하기
                 </button>
               </div>
             </div>
@@ -158,7 +158,7 @@ export default function FnbFinanceWebinarPage() {
             <div style={{ maxWidth: '800px', margin: '0 auto', textAlign: 'center' }}>
               <div style={{ marginBottom: '1.5rem' }}>
                 <span className="badge" style={{ fontSize: '0.875rem', padding: '0.5rem 1.25rem', background: accentLight, color: accentColor, border: `1px solid ${accentBorder}` }}>
-                  8월 19일 (수) 오후 4시~5시 30분 | 온라인 Zoom 라이브
+                  8월 19일(수) 진행 완료 | 신청 시 녹화본 제공
                 </span>
               </div>
               <h1 className="report-h1" style={{ textAlign: 'center', marginBottom: '1rem', color: '#111' }}>
@@ -282,7 +282,7 @@ export default function FnbFinanceWebinarPage() {
                 className="report-button-primary"
                 style={{ marginTop: '2.5rem', background: accentColor, color: '#fff', boxShadow: '0 4px 20px rgba(255, 107, 53, 0.25)', cursor: 'pointer' }}
               >
-                무료 웨비나 신청하기
+                웨비나 녹화본 신청하기
               </button>
             </div>
           </div>
@@ -368,7 +368,7 @@ export default function FnbFinanceWebinarPage() {
                 {[
                   { icon: '🧮', title: '현금 공백 자가진단 양식', desc: '세 공백 중 어디서 묶이는지 직접 확인' },
                   { icon: '🤝', title: '한도 사전 조회\n+ 1:1 자금운영 상담', desc: '신청 즉시 확인, 상담권 제공' },
-                  { icon: '📄', title: '발표 자료 PDF 제공', desc: '당일 참석자 대상' },
+                  { icon: '📄', title: '발표 자료 PDF 제공', desc: '신청자 전원 제공' },
                   { icon: '🎥', title: '녹화본 다시보기', desc: '신청자 전원 이메일 발송' },
                 ].map((b, i) => (
                   <div key={i} style={{ background: '#fff', border: `1px solid ${accentBorder}`, borderRadius: '0.75rem', padding: '1.5rem 1.25rem', textAlign: 'center' }}>
@@ -388,11 +388,11 @@ export default function FnbFinanceWebinarPage() {
             <div style={{ maxWidth: '640px', margin: '0 auto' }}>
               <h2 className="report-h2" style={{ textAlign: 'center', marginBottom: '2rem', color: '#111' }}>자주 묻는 질문</h2>
               {[
-                { q: '진행 방식이 어떻게 되나요?', a: '온라인 Zoom 라이브로 진행합니다. 신청 완료 시 이메일로 접속 링크를 안내드립니다.' },
+                { q: '웨비나가 이미 종료됐는데 신청할 수 있나요?', a: '네, 가능합니다. 8월 19일(수) 진행된 웨비나는 종료되었지만, 지금 신청하시면 녹화본을 이메일로 보내드립니다.' },
                 { q: '참여 비용이 있나요?', a: '네, 참가비는 없습니다.' },
-                { q: '참석하지 못하면 녹화본을 받을 수 있나요?', a: '네, 종료 후 신청자 전원에게 녹화본을 이메일로 발송해 드립니다.' },
+                { q: '녹화본은 언제 받을 수 있나요?', a: '신청 완료 후 순차적으로 이메일을 통해 녹화본을 보내드립니다.' },
                 { q: '푸드커머스와 프랜차이즈를 같이 다루던데, 우리 회사에 맞나요?', a: '두 업종은 돈이 묶이는 자리가 같습니다. 원물이나 완제품을 먼저 매입하고, 파는 곳(대형 유통 또는 가맹점)에서 수수료를 뗀 정산이 나중에 들어오는 구조가 동일합니다. 세션을 업종이 아니라 매입에서 정산까지의 구간으로 나눠 구성했고, 각 구간마다 푸드와 프랜차이즈 사례를 함께 다룹니다.' },
-                { q: '사전 질문은 어떻게 활용되나요?', a: '신청 시 남겨주신 질문을 본론과 Q&A 시간에 우선 다뤄드립니다.' },
+                { q: '사전 질문은 어떻게 활용되나요?', a: '신청 시 남겨주신 질문은 확인 후 녹화본과 함께 안내드리는 자료·상담에 참고해드립니다.' },
               ].map((faq, i) => (
                 <div key={i} style={{ borderBottom: '1px solid #e0e0e0' }}>
                   <button
@@ -425,7 +425,7 @@ export default function FnbFinanceWebinarPage() {
                 className="report-button-cta"
                 style={{ background: accentColor, color: '#fff', boxShadow: '0 4px 20px rgba(255, 107, 53, 0.25)', cursor: 'pointer' }}
               >
-                무료 웨비나 신청하기
+                웨비나 녹화본 신청하기
               </button>
             </div>
           </div>
@@ -437,11 +437,10 @@ export default function FnbFinanceWebinarPage() {
             <div style={{ maxWidth: '640px', margin: '0 auto', textAlign: 'left' }}>
               <p style={{ fontSize: '0.875rem', fontWeight: '600', color: '#aaa', marginBottom: '1rem' }}>유의사항</p>
               {[
-                '본 행사는 온라인(Zoom)에서 진행되며, 참가 확정자분들께 접속 링크를 안내드립니다.',
-                '참가비가 없는 무료 행사입니다.',
-                '녹화본은 웨비나 종료 후 신청자 전원에게 이메일로 발송해 드립니다.',
-                '발표 자료와 한도 사전 조회·1:1 자금운영 상담은 당일 참석자를 대상으로 제공합니다.',
-                '참가자 모집은 조기 마감될 수 있습니다.',
+                '본 웨비나는 2026년 8월 19일(수)에 온라인(Zoom)으로 진행이 완료되었습니다.',
+                '신청 시 참가비 없이 녹화본을 받아보실 수 있습니다.',
+                '녹화본과 발표 자료는 신청 완료 후 순차적으로 이메일을 통해 발송해 드립니다.',
+                '한도 사전 조회·1:1 자금운영 상담은 신청 후 별도로 안내드립니다.',
               ].map((notice, i) => (
                 <p key={i} style={{ fontSize: '0.8125rem', lineHeight: '1.6', color: '#999', marginBottom: '0.375rem' }}>
                   <span>· </span>{notice}
@@ -473,13 +472,13 @@ export default function FnbFinanceWebinarPage() {
           <div className="modal-content" onClick={(e) => e.stopPropagation()} style={{ maxWidth: '560px', padding: 0 }}>
             <button className="modal-close" onClick={closeModal} aria-label="닫기">✕</button>
             <div className="modal-header">
-              <h2 className="modal-title">무료 웨비나 신청</h2>
-              <p className="modal-description">8월 19일(수) 오후 4시~5시 30분 · 온라인 Zoom</p>
+              <h2 className="modal-title">웨비나 녹화본 신청</h2>
+              <p className="modal-description">8월 19일(수) 진행 완료 · 신청 시 녹화본 제공</p>
             </div>
             <form onSubmit={handleSubmit} className="modal-form">
               <div style={{ background: '#fff8f4', border: `1px solid ${accentBorder}`, borderRadius: '0.75rem', padding: '1.25rem 1.5rem', marginBottom: '1.75rem', fontSize: '0.875rem', color: '#444', lineHeight: '1.75' }}>
                 <p style={{ margin: '0 0 0.75rem' }}>안녕하세요,<br /><strong>F&amp;B 브랜드의 현금 공백</strong> 웨비나에 관심을 가져주셔서 감사드립니다.</p>
-                <p style={{ margin: '0 0 0.75rem' }}>본 행사는 <strong>푸드커머스 브랜드와 프랜차이즈 본부의 대표, 재무 운영 담당</strong> 분들을 위한 자리입니다.</p>
+                <p style={{ margin: '0 0 0.75rem' }}>8월 19일(수) 진행된 본 웨비나는 종료되었으며, <strong>푸드커머스 브랜드와 프랜차이즈 본부의 대표, 재무 운영 담당</strong> 분들을 위한 콘텐츠를 녹화본으로 만나보실 수 있습니다.</p>
                 <p style={{ margin: 0, fontWeight: '600', color: accentColor }}>신청자 전원에게 녹화본을 보내드립니다.</p>
               </div>
               {submitError && <div className="form-error">{submitError}</div>}
