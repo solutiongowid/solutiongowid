@@ -1,0 +1,655 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI로 가속화되는 경영 의사결정 | 고위드 × Mastercard</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@300;400;600;700;800&family=JetBrains+Mono:wght@500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.css">
+<style>
+  :root{
+    --green:#2FCB82;
+    --green-soft:#8CF0BE;
+    --gold:#D9A66B;
+    --gold-soft:#EBD5A0;
+    --ink:#070F0B;
+    --ink-2:#0B1E14;
+    --ink-3:#122A1D;
+    --line:rgba(217,166,107,0.16);
+    --line-g:rgba(47,203,130,0.2);
+    --tx:#EDEBE4;
+    --tx-dim:rgba(237,235,228,0.62);
+    --tx-faint:rgba(237,235,228,0.40);
+  }
+  *{box-sizing:border-box;margin:0;padding:0;}
+  html{scroll-behavior:smooth;}
+  body{
+    background:var(--ink);
+    color:var(--tx);
+    font-family:'Pretendard','Inter Tight',system-ui,sans-serif;
+    -webkit-font-smoothing:antialiased;
+    letter-spacing:-0.01em;
+    line-height:1.65;
+    overflow-x:hidden;
+    padding-bottom:80px;
+    word-break:keep-all;
+    overflow-wrap:break-word;
+  }
+  a{color:inherit;text-decoration:none;}
+  .br-lg{display:inline;}
+  @media(max-width:680px){.br-lg{display:none;}}
+  ::selection{background:rgba(47,203,130,0.28);color:#fff;}
+  .mono{font-family:'JetBrains Mono',monospace;}
+  .wrap{max-width:1120px;margin:0 auto;padding:0 24px;}
+  @media(min-width:1024px){.wrap{padding:0 48px;}}
+  .grad-text{
+    background:linear-gradient(100deg,var(--green) 0%,var(--green-soft) 30%,var(--gold-soft) 70%,var(--gold) 100%);
+    -webkit-background-clip:text;background-clip:text;color:transparent;
+  }
+
+  /* ---------- BANNER ---------- */
+  .banner{
+    display:flex;align-items:center;justify-content:center;gap:12px;flex-wrap:wrap;
+    background:linear-gradient(90deg,#0d1a15,#1c1408);
+    border-bottom:1px solid var(--line);
+    color:var(--green-soft);font-size:12.5px;letter-spacing:0.02em;
+    padding:9px 20px;text-align:center;
+  }
+  .banner .dot{width:7px;height:7px;border-radius:50%;background:var(--green);box-shadow:0 0 0 4px rgba(47,203,130,0.16);flex:none;}
+  .banner a{color:var(--tx-dim);text-decoration:underline;text-underline-offset:3px;transition:color .2s;}
+  .banner a:hover{color:var(--gold);}
+
+  /* ---------- NAV ---------- */
+  nav{position:sticky;top:0;z-index:40;background:rgba(7,15,11,0.72);backdrop-filter:blur(14px);border-bottom:1px solid rgba(255,255,255,0.06);}
+  .nav-inner{display:flex;align-items:center;justify-content:space-between;height:66px;max-width:1120px;margin:0 auto;padding:0 24px;}
+  @media(min-width:1024px){.nav-inner{padding:0 48px;}}
+  .brand{display:flex;align-items:center;gap:14px;}
+  .brand-mark{font-weight:700;letter-spacing:0.06em;color:#fff;font-size:15px;}
+  .brand-sep{width:1px;height:16px;background:var(--line);}
+  .brand-sub{font-size:12.5px;color:var(--tx-dim);letter-spacing:0.02em;}
+  .nav-links{display:flex;align-items:center;gap:26px;}
+  .nav-links a.l{font-size:13.5px;color:var(--tx-dim);transition:color .2s;}
+  .nav-links a.l:hover{color:var(--tx);}
+  .nav-cta{padding:8px 18px;border:1px solid var(--green);border-radius:2px;color:var(--green)!important;letter-spacing:0.02em;font-size:13.5px;font-weight:600;transition:all .25s;}
+  .nav-cta:hover{background:var(--green);color:var(--ink)!important;}
+  @media(max-width:820px){.nav-links a.l:not(.nav-cta){display:none;}.brand-sub{display:none;}}
+
+  /* ---------- HERO ---------- */
+  .hero{position:relative;padding:120px 0 100px;overflow:hidden;
+    background:radial-gradient(120% 80% at 50% -10%,#0a1c13 0%,var(--ink) 55%);}
+  .hero-canvas{position:absolute;inset:0;z-index:0;width:100%;height:100%;opacity:.65;pointer-events:none;}
+  .hero-veil{position:absolute;inset:0;z-index:1;pointer-events:none;
+    background:radial-gradient(60% 55% at 50% 40%,var(--ink) 0%,rgba(7,15,11,0.74) 46%,transparent 82%);}
+  .hero-glow{position:absolute;top:-16%;left:50%;transform:translateX(-50%);width:900px;height:620px;max-width:160vw;pointer-events:none;z-index:1;
+    background:
+      radial-gradient(circle at 38% 45%,rgba(47,203,130,0.2),transparent 60%),
+      radial-gradient(circle at 64% 52%,rgba(217,166,107,0.14),transparent 60%);
+    filter:blur(26px);}
+  .hero-inner{position:relative;text-align:center;z-index:2;}
+  .kicker{display:inline-flex;align-items:center;gap:12px;font-size:12.5px;letter-spacing:0.18em;
+    text-transform:uppercase;color:var(--gold-soft);margin-bottom:30px;font-weight:600;}
+  .kicker-line{width:34px;height:1px;background:linear-gradient(90deg,transparent,var(--green));}
+  .hero h1{font-size:clamp(2.2rem,6vw,4rem);line-height:1.18;color:#fff;font-weight:800;}
+  .hero-lede{margin:26px auto 0;max-width:600px;font-size:clamp(1rem,2vw,1.15rem);line-height:1.75;color:var(--tx-dim);font-weight:300;}
+  .hero-meta{display:flex;align-items:center;justify-content:center;gap:22px;flex-wrap:wrap;margin-top:44px;}
+  .meta-item{display:flex;flex-direction:column;gap:5px;text-align:center;}
+  .meta-k{font-size:11px;letter-spacing:0.16em;text-transform:uppercase;color:var(--green);font-weight:600;}
+  .meta-v{font-size:14px;color:var(--tx);}
+  .meta-div{width:1px;height:30px;background:var(--line);}
+  @media(max-width:680px){.meta-div{display:none;}.hero-meta{gap:20px 28px;}}
+  .hero-cta{display:flex;align-items:center;justify-content:center;gap:16px;margin-top:48px;flex-wrap:wrap;}
+
+  /* ---------- BUTTONS ---------- */
+  .btn{display:inline-flex;align-items:center;gap:10px;height:52px;padding:0 28px;border-radius:2px;
+    font-size:14.5px;font-weight:600;letter-spacing:0.01em;transition:all .28s cubic-bezier(.16,.8,.3,1);border:none;cursor:pointer;font-family:inherit;}
+  .btn-primary{background:linear-gradient(120deg,var(--green) 0%,var(--green-soft) 34%,var(--gold-soft) 70%,var(--gold) 100%);
+    color:#071a10;box-shadow:0 12px 30px -12px rgba(47,203,130,0.45),0 12px 30px -14px rgba(217,166,107,0.5);}
+  .btn-primary:hover{transform:translateY(-2px);filter:brightness(1.05);
+    box-shadow:0 18px 42px -12px rgba(47,203,130,0.5),0 18px 42px -14px rgba(217,166,107,0.55);}
+  .btn-ghost{border:1px solid rgba(237,235,228,0.24);color:var(--tx);background:transparent;}
+  .btn-ghost:hover{border-color:var(--green);color:var(--green);}
+
+  .gift-note{margin-top:22px;font-size:13px;color:var(--tx-faint);max-width:480px;margin-left:auto;margin-right:auto;}
+  .gift-note strong{color:var(--gold-soft);font-weight:600;}
+
+  /* ---------- SECTIONS ---------- */
+  .section{padding:96px 0;position:relative;border-bottom:1px solid rgba(255,255,255,0.04);}
+  .section-alt{background:linear-gradient(180deg,var(--ink-2),var(--ink));border-top:1px solid rgba(255,255,255,0.04);}
+  .eyebrow{font-size:11.5px;letter-spacing:0.2em;text-transform:uppercase;color:var(--gold);margin-bottom:16px;font-weight:600;}
+  .center{text-align:center;}
+  .h2{font-size:clamp(1.6rem,3.4vw,2.3rem);line-height:1.32;color:#fff;font-weight:800;}
+  .sec-lede{max-width:640px;margin:22px auto 0;font-size:15.5px;line-height:1.8;color:var(--tx-dim);font-weight:300;}
+
+  /* ---------- PILLARS ---------- */
+  .pillars{display:grid;grid-template-columns:repeat(4,1fr);gap:18px;margin-top:56px;}
+  @media(max-width:980px){.pillars{grid-template-columns:repeat(2,1fr);}}
+  @media(max-width:560px){.pillars{grid-template-columns:1fr;}}
+  .pillar{position:relative;padding:32px 28px;background:linear-gradient(180deg,rgba(255,255,255,0.03),transparent);
+    border:1px solid rgba(255,255,255,0.07);border-radius:4px;transition:border-color .3s,transform .3s;}
+  .pillar:hover{border-color:var(--line-g);transform:translateY(-3px);}
+  .pillar-no{display:block;font-size:2.1rem;margin-bottom:14px;line-height:1;font-weight:800;}
+  .pillar-title{font-size:18px;color:#fff;font-weight:700;margin-bottom:10px;letter-spacing:-0.02em;}
+  .pillar-body{font-size:14px;line-height:1.75;color:var(--tx-dim);font-weight:300;}
+
+  /* ---------- AGENDA ---------- */
+  .agenda{margin-top:56px;border-top:1px solid rgba(255,255,255,0.08);}
+  .row{display:grid;grid-template-columns:150px 1fr;gap:26px;padding:24px 6px;
+    border-bottom:1px solid rgba(255,255,255,0.08);transition:background .3s;}
+  .row:hover{background:rgba(47,203,130,0.03);}
+  .row.is-key{background:linear-gradient(90deg,rgba(47,203,130,0.05),rgba(217,166,107,0.03) 60%,transparent);}
+  .row-time{font-size:15px;color:var(--green);letter-spacing:0.01em;white-space:nowrap;padding-top:2px;font-weight:600;}
+  .row-dur{display:block;font-size:11.5px;color:var(--tx-faint);font-weight:400;margin-top:3px;}
+  @media(max-width:640px){.row{grid-template-columns:1fr;gap:8px;}}
+  .row-title{font-size:16.5px;color:#fff;font-weight:600;line-height:1.5;display:flex;flex-wrap:wrap;align-items:center;gap:10px;letter-spacing:-0.01em;}
+  .row-tag{font-size:10px;letter-spacing:0.14em;color:var(--ink);
+    background:linear-gradient(100deg,var(--green),var(--gold));padding:3px 8px;border-radius:2px;font-weight:800;}
+  .row-speaker{margin-top:9px;display:flex;align-items:center;gap:10px;flex-wrap:wrap;}
+  .row-speaker-name{font-size:14px;color:var(--gold-soft);font-weight:700;letter-spacing:-0.01em;}
+  .row-speaker-org{font-size:12.5px;color:var(--tx-dim);font-weight:300;}
+  .row-speaker-org::before{content:"·";margin-right:10px;color:var(--tx-faint);}
+  .row-desc{margin-top:11px;font-size:14px;line-height:1.7;color:var(--tx-dim);font-weight:300;max-width:620px;}
+
+  /* ---------- VENUE ---------- */
+  .venue-grid{display:grid;grid-template-columns:1fr 1.1fr;gap:28px;margin-top:52px;align-items:stretch;text-align:left;}
+  @media(max-width:860px){.venue-grid{grid-template-columns:1fr;}}
+  .venue-info{background:linear-gradient(180deg,rgba(255,255,255,0.03),transparent);border:1px solid rgba(255,255,255,0.08);border-radius:6px;padding:34px 32px;}
+  .venue-name{font-size:21px;color:#fff;font-weight:700;letter-spacing:-0.02em;line-height:1.35;}
+  .venue-room{margin-top:6px;font-size:14.5px;color:var(--gold-soft);font-weight:600;}
+  .venue-list{margin-top:24px;display:flex;flex-direction:column;gap:15px;}
+  .venue-list li{display:flex;gap:16px;font-size:14.5px;line-height:1.65;}
+  .venue-k{flex:0 0 84px;font-size:11px;letter-spacing:0.1em;text-transform:uppercase;color:var(--green);font-weight:700;padding-top:3px;}
+  .venue-v{color:var(--tx-dim);font-weight:300;}
+  .venue-links{margin-top:28px;display:flex;gap:12px;flex-wrap:wrap;}
+  .venue-links a{display:inline-flex;align-items:center;gap:7px;height:42px;padding:0 18px;border:1px solid rgba(237,235,228,0.24);border-radius:3px;font-size:13.5px;font-weight:500;color:var(--tx);transition:all .25s;}
+  .venue-links a:hover{border-color:var(--green);color:var(--green);}
+  .venue-map{border-radius:6px;overflow:hidden;border:1px solid rgba(255,255,255,0.08);min-height:360px;background:var(--ink-3);}
+  .venue-map iframe{width:100%;height:100%;min-height:360px;border:0;display:block;filter:invert(0.92) hue-rotate(180deg) brightness(0.95) contrast(0.9);}
+
+  /* ---------- FAQ ---------- */
+  .faq{margin-top:52px;display:flex;flex-direction:column;gap:12px;}
+  .faq-item{background:rgba(7,15,11,0.5);border:1px solid rgba(255,255,255,0.08);border-radius:5px;padding:0;transition:border-color .28s;overflow:hidden;}
+  .faq-item:hover{border-color:var(--line-g);}
+  .faq-item[open]{border-color:var(--line);background:linear-gradient(180deg,rgba(47,203,130,0.04),transparent);}
+  .faq-item summary{list-style:none;cursor:pointer;padding:20px 22px;display:flex;align-items:center;gap:14px;font-size:15.5px;color:#fff;font-weight:600;letter-spacing:-0.01em;}
+  .faq-item summary::-webkit-details-marker{display:none;}
+  .faq-mark{color:var(--green);font-size:16px;font-weight:800;flex:none;}
+  .faq-chevron{margin-left:auto;color:var(--gold);flex:none;transition:transform .3s;font-size:13px;}
+  .faq-item[open] .faq-chevron{transform:rotate(180deg);}
+  .faq-a{padding:0 22px 20px 52px;font-size:14px;line-height:1.75;color:var(--tx-dim);font-weight:300;}
+
+  /* ---------- CTA / APPLY ---------- */
+  .apply{position:relative;padding:110px 0 96px;overflow:hidden;text-align:center;
+    background:radial-gradient(100% 100% at 50% 0%,#0b2015,var(--ink));border-top:1px solid rgba(255,255,255,0.05);}
+  .apply-glow{position:absolute;bottom:-40%;left:50%;transform:translateX(-50%);width:820px;height:600px;max-width:180vw;pointer-events:none;
+    background:radial-gradient(circle at 40% 50%,rgba(47,203,130,0.15),transparent 60%),
+      radial-gradient(circle at 62% 55%,rgba(217,166,107,0.13),transparent 60%);
+    filter:blur(28px);}
+  .apply-inner{position:relative;}
+  .apply h2{font-size:clamp(1.7rem,4vw,2.5rem);line-height:1.28;color:#fff;font-weight:800;margin-top:16px;}
+  .apply-sub{max-width:480px;margin:20px auto 0;font-size:15px;line-height:1.75;color:var(--tx-dim);font-weight:300;}
+
+  .form-card{position:relative;text-align:left;max-width:560px;margin:48px auto 0;background:rgba(7,15,11,0.55);
+    border:1px solid rgba(255,255,255,0.09);border-radius:6px;padding:38px 34px;}
+  .field{margin-bottom:18px;}
+  .field label{display:block;font-size:13px;font-weight:600;color:var(--tx);margin-bottom:8px;letter-spacing:-0.01em;}
+  .field label .req{color:var(--green);margin-left:2px;}
+  .field input{
+    width:100%;font-family:inherit;font-size:14.5px;color:var(--tx);
+    background:rgba(255,255,255,0.03);border:1px solid rgba(237,235,228,0.18);border-radius:3px;
+    padding:12px 14px;outline:none;transition:border-color .2s ease,background .2s ease;
+  }
+  .field input::placeholder{color:var(--tx-faint);}
+  .field input:focus{border-color:var(--green);background:rgba(47,203,130,0.04);}
+  .field-row{display:grid;grid-template-columns:1fr 1fr;gap:14px;}
+  @media(max-width:480px){.field-row{grid-template-columns:1fr;}}
+
+  .consent-box{margin-top:8px;margin-bottom:16px;padding:18px 18px;background:rgba(255,255,255,0.02);border:1px solid rgba(255,255,255,0.08);border-radius:5px;}
+  .consent-title{font-size:13px;font-weight:700;margin-bottom:10px;color:var(--tx);}
+  .consent-scroll{max-height:150px;overflow-y:auto;font-size:12px;line-height:1.75;color:var(--tx-faint);padding-right:8px;}
+  .consent-scroll p{margin-bottom:8px;}
+  .consent-scroll b{color:var(--tx-dim);}
+  .consent-scroll ul{padding-left:18px;margin-bottom:8px;}
+  .consent-check{display:flex;align-items:flex-start;gap:10px;margin-top:14px;padding-top:14px;border-top:1px solid rgba(237,235,228,0.14);cursor:pointer;}
+  .consent-check input{flex:none;width:17px;height:17px;margin-top:2px;accent-color:var(--green);}
+  .consent-check span{font-size:13px;font-weight:600;color:var(--tx);}
+
+  .submit-btn{width:100%;justify-content:center;margin-top:6px;}
+  .submit-hint{font-size:12px;color:var(--tx-faint);text-align:center;margin-top:14px;}
+  .success-msg{display:none;margin-top:16px;padding:13px 16px;border-radius:5px;background:rgba(47,203,130,0.08);border:1px solid var(--line-g);color:var(--green-soft);font-size:13px;font-weight:600;}
+  .success-msg.show{display:block;}
+
+  /* ---------- FOOTER ---------- */
+  .footer{padding:56px 0 36px;border-top:1px solid rgba(255,255,255,0.08);background:var(--ink-2);}
+  .foot-grid{display:grid;grid-template-columns:1.5fr 1fr;gap:40px;}
+  @media(max-width:640px){.foot-grid{grid-template-columns:1fr;gap:32px;}}
+  .foot-tag{font-size:13.5px;line-height:1.7;color:var(--tx-dim);font-weight:300;max-width:340px;}
+  .foot-hosts{display:flex;gap:20px;flex-wrap:wrap;margin-top:22px;}
+  .foot-host{display:flex;flex-direction:column;gap:9px;}
+  .foot-host-l{font-size:10px;letter-spacing:0.16em;text-transform:uppercase;color:var(--green);font-weight:600;}
+  .logo-plate{background:#fff;color:#071a10;border-radius:3px;padding:7px 14px;display:inline-flex;align-items:center;width:fit-content;font-size:13.5px;font-weight:700;letter-spacing:-0.01em;}
+  .foot-col-title{font-size:12.5px;font-weight:600;color:#fff;margin-bottom:16px;letter-spacing:-0.01em;}
+  .foot-links{display:flex;flex-direction:column;gap:11px;}
+  .foot-links a{font-size:13.5px;color:var(--tx-dim);transition:color .2s;width:fit-content;}
+  .foot-links a:hover{color:var(--gold);}
+  .foot-bottom{margin-top:40px;padding-top:20px;border-top:1px solid rgba(255,255,255,0.07);text-align:right;}
+  .foot-bottom p{font-size:12px;color:var(--tx-faint);}
+  @media(max-width:640px){.foot-bottom{text-align:left;}}
+
+  /* ---------- STICKY CTA ---------- */
+  .sticky-cta{position:fixed;left:0;right:0;bottom:0;z-index:50;
+    background:rgba(7,15,11,0.92);backdrop-filter:blur(10px);
+    border-top:1px solid var(--line);padding:12px 20px;}
+  .sticky-inner{max-width:1120px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;gap:16px;}
+  .sticky-text{font-size:12.5px;color:var(--tx-dim);display:none;}
+  .sticky-cta .btn{width:100%;justify-content:center;height:48px;}
+  @media(min-width:560px){.sticky-text{display:block;}.sticky-cta .btn{width:auto;}}
+</style>
+</head>
+<body>
+
+  <div class="banner">
+    <span class="dot"></span>
+    전석 초청제 · 좌석 한정 100석
+    <a href="#apply">지금 신청하기 →</a>
+  </div>
+
+  <nav>
+    <div class="nav-inner">
+      <div class="brand">
+        <div class="brand-mark">GOWID <span style="color:var(--tx-faint);font-weight:400;">×</span> MASTERCARD</div>
+        <div class="brand-sep"></div>
+        <div class="brand-sub">AI로 가속화되는 경영 의사결정</div>
+      </div>
+      <div class="nav-links">
+        <a class="l" href="#overview">개요</a>
+        <a class="l" href="#program">프로그램</a>
+        <a class="l" href="#venue">장소</a>
+        <a class="l" href="#faq">FAQ</a>
+        <a class="l nav-cta" href="#apply">신청하기</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <div class="hero">
+    <canvas id="dataflow-canvas" class="hero-canvas" aria-hidden="true"></canvas>
+    <div class="hero-veil"></div>
+    <div class="hero-glow"></div>
+    <div class="wrap hero-inner">
+      <div class="kicker"><span class="kicker-line"></span>초청제 프라이빗 디너 세미나</div>
+      <h1>AI로 가속화되는<br class="br-lg"> <span class="grad-text">경영 의사결정</span></h1>
+      <p class="hero-lede">대표가 매주 보는 숫자와, 그 숫자 때문에 뒤집힌 결정을 공개합니다.<br class="br-lg">같은 결정의 무게를 지닌 대표·C레벨 100명이 함께 듣습니다.</p>
+
+      <div class="hero-meta">
+        <div class="meta-item">
+          <div class="meta-k">Date</div>
+          <div class="meta-v mono">2026.10.01 (THU) 18:30</div>
+        </div>
+        <div class="meta-div"></div>
+        <div class="meta-item">
+          <div class="meta-k">Venue</div>
+          <div class="meta-v">엘리에나 호텔 5F 그랜드볼룸</div>
+        </div>
+        <div class="meta-div"></div>
+        <div class="meta-item">
+          <div class="meta-k">Guest</div>
+          <div class="meta-v">대표 · C레벨 100인</div>
+        </div>
+      </div>
+
+      <div class="hero-cta">
+        <a href="#apply" class="btn btn-primary">신청하기 →</a>
+        <a href="#program" class="btn btn-ghost">프로그램 보기</a>
+      </div>
+      <p class="gift-note">참석이 확정되신 분께는 <strong>최대 약 13만 원 상당의 식사</strong>와<br><strong>최대 약 5만 원 상당의 기념품</strong>이 제공될 예정입니다.</p>
+    </div>
+  </div>
+
+  <!-- OVERVIEW -->
+  <section class="section" id="overview">
+    <div class="wrap center">
+      <div class="eyebrow">Overview</div>
+      <h2 class="h2">전석 초청제로 진행되는<br>프라이빗 디너 세미나입니다</h2>
+      <p class="sec-lede">참가비는 없습니다. 조직의 데이터를 대표가 매일 볼 수 있는 숫자로 바꾸는 방법부터, 그 숫자로 실제 의사결정을 뒤집은 사례, 결제 인프라 관점에서 무엇을 통제해야 하는지까지 — 디너와 함께 세 시간 동안 실전 경험을 그대로 공유합니다.</p>
+
+      <div class="pillars">
+        <div class="pillar">
+          <span class="pillar-no grad-text">01</span>
+          <div class="pillar-title">Surface</div>
+          <p class="pillar-body">조직의 데이터를 한 곳에 모으려면 대표가 구성원에게 무엇을 요구해야 하는지, OpenAI가 보이게 합니다.</p>
+        </div>
+        <div class="pillar">
+          <span class="pillar-no grad-text">02</span>
+          <div class="pillar-title">Decide</div>
+          <p class="pillar-body">고위드 김항기 대표가 매주 들여다보는 지표를 공개하고, 그 숫자 때문에 뒤집힌 의사결정을 사례로 풉니다.</p>
+        </div>
+        <div class="pillar">
+          <span class="pillar-no grad-text">03</span>
+          <div class="pillar-title">Govern</div>
+          <p class="pillar-body">마스터카드 이원웅 상무가 결제 인프라 관점에서 무엇을 잠그고 무엇을 열어야 하는지 정리합니다.</p>
+        </div>
+        <div class="pillar">
+          <span class="pillar-no grad-text">04</span>
+          <div class="pillar-title">Networking</div>
+          <p class="pillar-body">매출 규모가 비슷한 대표·C레벨 100명과 라운드테이블 디너에서 직접 교류합니다.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROGRAM -->
+  <section class="section section-alt" id="program">
+    <div class="wrap center">
+      <div class="eyebrow">Program</div>
+      <h2 class="h2">프로그램 구성</h2>
+      <p class="sec-lede">세 시간을 디너와 함께 진행합니다. 각 세션은 다음 세션의 질문을 남기고 끝납니다.</p>
+
+      <div class="agenda" style="text-align:left;">
+        <div class="row is-key">
+          <div class="row-time mono">18:30<span class="row-dur">30분</span></div>
+          <div>
+            <div class="row-title">리셉션 & 디너 시작<span class="row-tag">DINNER</span></div>
+            <div class="row-desc">체크인 후 명찰을 받고 배정된 테이블에 착석합니다. 디너 서빙이 시작되며 세미나를 준비합니다.</div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="row-time mono">19:00<span class="row-dur">30분</span></div>
+          <div>
+            <div class="row-title">AI를 통한 재무 가시성 높이기<span class="row-tag">OPENING</span></div>
+            <div class="row-speaker">
+              <span class="row-speaker-name">연사 조율 중</span>
+              <span class="row-speaker-org">OpenAI</span>
+            </div>
+            <div class="row-desc">조직의 데이터를 한 곳에 모으려면 대표가 구성원에게 무엇을 요구해야 하는지 다룹니다.</div>
+          </div>
+        </div>
+        <div class="row is-key">
+          <div class="row-time mono">19:30<span class="row-dur">40분</span></div>
+          <div>
+            <div class="row-title">재무적 기준의 경영 의사결정이란<span class="row-tag">KEYNOTE</span></div>
+            <div class="row-speaker">
+              <span class="row-speaker-name">김항기</span>
+              <span class="row-speaker-org">고위드 대표</span>
+            </div>
+            <div class="row-desc">대표가 매주 들여다보는 지표를 공개하고, 그 숫자 때문에 뒤집힌 의사결정을 사례로 풉니다.</div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="row-time mono">20:10<span class="row-dur">30분</span></div>
+          <div>
+            <div class="row-title">경영 의사결정에 맞춰 재무 통제력을 갖추는 방법<span class="row-tag">PARTNER</span></div>
+            <div class="row-speaker">
+              <span class="row-speaker-name">이원웅</span>
+              <span class="row-speaker-org">마스터카드 상무</span>
+            </div>
+            <div class="row-desc">무엇을 잠그고 무엇을 열 것인가. 결제 인프라 관점에서 재무 통제력을 정리합니다.</div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="row-time mono">20:40<span class="row-dur">40분</span></div>
+          <div>
+            <div class="row-title">라운드테이블 디너 네트워킹<span class="row-tag">NETWORKING</span></div>
+            <div class="row-desc">100석을 12개 테이블로 나눕니다. 매출 규모가 비슷한 회사끼리 묶어 앉히고, 디저트·커피와 함께 자유롭게 교류합니다.</div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="row-time mono">21:20<span class="row-dur">10분</span></div>
+          <div>
+            <div class="row-title">클로징<span class="row-tag">CLOSE</span></div>
+            <div class="row-desc">주최사 인사와 기념 촬영.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- VENUE -->
+  <section class="section" id="venue">
+    <div class="wrap center">
+      <div class="eyebrow">Venue Guide</div>
+      <h2 class="h2">행사장 안내</h2>
+
+      <div class="venue-grid">
+        <div class="venue-info">
+          <div class="venue-name">엘리에나 호텔 5F 그랜드볼룸</div>
+          <div class="venue-room">서울 강남 · 학동역 도보 4분</div>
+          <ul class="venue-list">
+            <li><span class="venue-k">입장</span><span class="venue-v">본 세미나는 전석 초청제로 진행됩니다. 아래 폼으로 참석 신청을 남겨주시면 검토 후 참석 확정 안내를 순차적으로 드립니다. 좌석이 한정되어 있어 확정 안내를 받지 못하신 경우 현장 참석이 어려울 수 있는 점 양해 부탁드립니다.</span></li>
+            <li><span class="venue-k">QR TIP</span><span class="venue-v">행사 전 등록하신 연락처로 입장 QR코드를 보내드릴 예정입니다. 현장 등록 데스크에서 QR코드를 제시해 주시면 빠르게 입장하실 수 있습니다.</span></li>
+            <li><span class="venue-k">등록데스크</span><span class="venue-v">엘리에나 호텔 5F 등록 데스크 (오후 6시부터 운영)</span></li>
+          </ul>
+          <div class="venue-links">
+            <a href="https://map.naver.com/p/search/엘리에나호텔%20서울%20강남" target="_blank" rel="noopener">네이버지도에서 보기</a>
+            <a href="https://www.google.com/maps/search/?api=1&query=%EC%97%98%EB%A6%AC%EC%97%90%EB%82%98%20%ED%98%B8%ED%85%94%20%EC%84%9C%EC%9A%B8%20%EA%B0%95%EB%82%A8" target="_blank" rel="noopener">구글지도에서 보기</a>
+          </div>
+        </div>
+        <div class="venue-map">
+          <iframe src="https://www.google.com/maps?q=%EC%97%98%EB%A6%AC%EC%97%90%EB%82%98%20%ED%98%B8%ED%85%94%20%EC%84%9C%EC%9A%B8%20%EA%B0%95%EB%82%A8&output=embed" loading="lazy" referrerpolicy="no-referrer-when-downgrade" allowfullscreen title="엘리에나 호텔 위치"></iframe>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- APPLY -->
+  <div class="apply" id="apply">
+    <div class="apply-glow"></div>
+    <div class="wrap apply-inner">
+      <div class="eyebrow">Application</div>
+      <h2>참석 신청</h2>
+      <p class="apply-sub">아래 정보를 남겨주시면 검토 후 참석 확정 안내를 드립니다.</p>
+
+      <form id="applyForm" class="form-card">
+        <div class="field">
+          <label>이름<span class="req">*</span></label>
+          <input type="text" name="name" placeholder="홍길동" required>
+        </div>
+        <div class="field-row">
+          <div class="field">
+            <label>연락처<span class="req">*</span></label>
+            <input type="tel" name="phone" placeholder="010-0000-0000" required>
+          </div>
+          <div class="field">
+            <label>이메일 주소<span class="req">*</span></label>
+            <input type="email" name="email" placeholder="name@company.com" required>
+          </div>
+        </div>
+        <div class="field-row">
+          <div class="field">
+            <label>기업명<span class="req">*</span></label>
+            <input type="text" name="company" placeholder="주식회사 고위드" required>
+          </div>
+          <div class="field">
+            <label>직급<span class="req">*</span></label>
+            <input type="text" name="position" placeholder="대표이사" required>
+          </div>
+        </div>
+
+        <div class="consent-box">
+          <div class="consent-title">[필수] 개인정보 수집 및 이용 동의</div>
+          <div class="consent-scroll">
+            <p>고위드는 「개인정보 보호법」에 따라 아래와 같이 개인정보를 수집·이용하고자 합니다. 내용 확인 후 동의해 주시기 바랍니다.</p>
+            <p><b>1. 수집 및 이용 목적</b></p>
+            <ul>
+              <li>행사 참가 사전등록 및 참석자 본인 확인</li>
+              <li>행사 안내, 리마인드 메시지(알림톡/문자) 발송 및 운영 관련 고지 사항 전달</li>
+              <li>행사 출입증(네임텍) 발급 및 현장 입장 확인</li>
+              <li>행사 만족도 조사 및 참석자 관리</li>
+            </ul>
+            <p><b>2. 수집하는 개인정보 항목</b><br>필수 항목: 이름, 연락처(휴대전화번호), 이메일 주소, 기업명, 직급</p>
+            <p><b>3. 개인정보의 보유 및 이용 기간</b><br>행사 종료 후 1년간 보관하며, 보유 기간이 경과한 후에는 지체 없이 파기합니다. 단, 관계 법령에 따라 보존이 필요한 경우에는 해당 법령에서 정한 기간 동안 보관합니다.</p>
+            <p><b>4. 동의 거부권 및 불이익 안내</b><br>귀하는 개인정보 수집 및 이용에 대한 동의를 거부할 권리가 있습니다. 단, 필수 항목 수집 동의를 거부할 경우 행사 사전등록 및 현장 참석이 제한될 수 있습니다.</p>
+          </div>
+          <label class="consent-check">
+            <input type="checkbox" name="consent" required>
+            <span>[필수] 개인정보 수집 및 이용에 동의합니다.</span>
+          </label>
+        </div>
+
+        <button type="submit" class="btn btn-primary submit-btn">신청하기</button>
+        <p class="submit-hint">신청하기를 누르면 작성하신 내용이 담긴 이메일이 자동으로 열립니다. 그대로 발송해 주시면 신청이 접수됩니다.</p>
+        <div class="success-msg" id="successMsg">이메일 작성 화면이 열렸습니다. 발송을 완료해 주시면 신청이 접수됩니다.</div>
+      </form>
+    </div>
+  </div>
+
+  <!-- FAQ -->
+  <section class="section section-alt" id="faq">
+    <div class="wrap center">
+      <div class="eyebrow">FAQ</div>
+      <h2 class="h2">자주 묻는 질문</h2>
+
+      <div class="faq" style="text-align:left;">
+        <details class="faq-item">
+          <summary><span class="faq-mark">Q</span>참가비가 있나요?<span class="faq-chevron">▾</span></summary>
+          <div class="faq-a">참가비는 없습니다. 전석 초청제로 진행되며, 참석이 확정되신 분께는 디너와 기념품이 함께 제공됩니다.</div>
+        </details>
+        <details class="faq-item">
+          <summary><span class="faq-mark">Q</span>신청 후 언제 참석 여부를 알 수 있나요?<span class="faq-chevron">▾</span></summary>
+          <div class="faq-a">신청 검토 후 참석 확정 안내를 순차적으로 드립니다. 좌석이 한정되어 있어 확정 메일을 받지 못하신 경우 현장 참석이 어려울 수 있습니다.</div>
+        </details>
+        <details class="faq-item">
+          <summary><span class="faq-mark">Q</span>동반 참석이 가능한가요?<span class="faq-chevron">▾</span></summary>
+          <div class="faq-a">본 행사는 1인 초청 좌석으로 운영됩니다. 동반 참석이 필요하신 경우 문의(moon@gowid.com)로 별도 요청해 주세요.</div>
+        </details>
+        <details class="faq-item">
+          <summary><span class="faq-mark">Q</span>주차가 가능한가요?<span class="faq-chevron">▾</span></summary>
+          <div class="faq-a">엘리에나 호텔 내 주차장을 이용하실 수 있습니다. 자세한 안내는 참석 확정 메일에 함께 전달드립니다.</div>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="wrap">
+      <div class="foot-grid">
+        <div>
+          <p class="foot-tag">한국에서 AI 도입을 결재하는 사람들이 한 자리에 모입니다.<br>AI로 가속화되는 경영 의사결정 · 2026.10.01</p>
+          <div class="foot-hosts">
+            <div class="foot-host">
+              <div class="foot-host-l">Host</div>
+              <div class="logo-plate">Mastercard</div>
+            </div>
+            <div class="foot-host">
+              <div class="foot-host-l">Host</div>
+              <div class="logo-plate">gowid</div>
+            </div>
+          </div>
+        </div>
+        <div>
+          <div class="foot-col-title">Menu</div>
+          <div class="foot-links">
+            <a href="#overview">개요</a>
+            <a href="#program">프로그램</a>
+            <a href="#venue">장소</a>
+            <a href="#faq">FAQ</a>
+            <a href="#apply">신청하기</a>
+          </div>
+        </div>
+      </div>
+      <div class="foot-bottom">
+        <p>문의 · moon@gowid.com</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- STICKY CTA -->
+  <div class="sticky-cta">
+    <div class="sticky-inner">
+      <div class="sticky-text">AI로 가속화되는 경영 의사결정 · 10.1(목) 18:30 · 엘리에나 호텔</div>
+      <a href="#apply" class="btn btn-primary">신청하기 →</a>
+    </div>
+  </div>
+
+  <script>
+    (function(){
+      const canvas = document.getElementById('dataflow-canvas');
+      if(!canvas) return;
+      const ctx = canvas.getContext('2d');
+      const hero = canvas.parentElement;
+      const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      const glyphs = '0123456789%₩·+'.split('');
+      let w, h, columns, drops, fontSize, dpr;
+
+      function resize(){
+        dpr = Math.min(window.devicePixelRatio || 1, 2);
+        w = hero.offsetWidth;
+        h = hero.offsetHeight;
+        canvas.width = w * dpr;
+        canvas.height = h * dpr;
+        canvas.style.width = w + 'px';
+        canvas.style.height = h + 'px';
+        ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+        fontSize = Math.max(13, Math.min(18, w / 90));
+        columns = Math.floor(w / (fontSize * 1.7));
+        drops = new Array(columns).fill(0).map(() => Math.random() * -(h / fontSize));
+        ctx.clearRect(0, 0, w, h);
+      }
+      resize();
+      window.addEventListener('resize', resize);
+
+      if(reduceMotion){
+        ctx.font = '13px "JetBrains Mono", monospace';
+        ctx.fillStyle = 'rgba(47,203,130,0.14)';
+        for(let i = 0; i < columns; i++){
+          ctx.fillText(glyphs[Math.floor(Math.random() * glyphs.length)], i * fontSize * 1.7 + fontSize, (i % 12) * fontSize * 3);
+        }
+        return;
+      }
+
+      function draw(){
+        ctx.fillStyle = 'rgba(7,15,11,0.13)';
+        ctx.fillRect(0, 0, w, h);
+        ctx.font = fontSize + 'px "JetBrains Mono", monospace';
+        for(let i = 0; i < columns; i++){
+          const x = i * fontSize * 1.7 + fontSize;
+          const y = drops[i] * fontSize;
+          const isGold = Math.random() < 0.16;
+          ctx.fillStyle = isGold ? 'rgba(217,166,107,0.55)' : 'rgba(47,203,130,0.5)';
+          const ch = glyphs[Math.floor(Math.random() * glyphs.length)];
+          ctx.fillText(ch, x, y);
+          if(y > h && Math.random() > 0.975){
+            drops[i] = 0;
+          }
+          drops[i]++;
+        }
+        requestAnimationFrame(draw);
+      }
+      requestAnimationFrame(draw);
+    })();
+
+    document.getElementById('applyForm').addEventListener('submit', function(e){
+      e.preventDefault();
+      const f = e.target;
+      const name = f.name.value.trim();
+      const phone = f.phone.value.trim();
+      const email = f.email.value.trim();
+      const company = f.company.value.trim();
+      const position = f.position.value.trim();
+      const consent = f.consent.checked;
+
+      if(!name || !phone || !email || !company || !position || !consent){
+        f.reportValidity();
+        return;
+      }
+
+      const subject = encodeURIComponent(`[AI로 가속화되는 경영 의사결정] 참석 신청 - ${company} / ${name}`);
+      const body = encodeURIComponent(
+        `아래 내용으로 참석 신청합니다.\n\n` +
+        `이름: ${name}\n` +
+        `연락처: ${phone}\n` +
+        `이메일: ${email}\n` +
+        `기업명: ${company}\n` +
+        `직급: ${position}\n\n` +
+        `개인정보 수집·이용 동의: 동의함`
+      );
+      window.location.href = `mailto:moon@gowid.com?subject=${subject}&body=${body}`;
+
+      document.getElementById('successMsg').classList.add('show');
+    });
+  </script>
+
+</body>
+</html>

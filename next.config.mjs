@@ -41,6 +41,8 @@ const nextConfig = {
       { source: '/self-check/fashion/', destination: '/self-check/fashion/index.html' },
       { source: '/self-check/food', destination: '/self-check/food/index.html' },
       { source: '/self-check/food/', destination: '/self-check/food/index.html' },
+      { source: '/event/seminar/ai-decision-making-2026', destination: '/event/seminar/ai-decision-making-2026/index.html' },
+      { source: '/event/seminar/ai-decision-making-2026/', destination: '/event/seminar/ai-decision-making-2026/index.html' },
     ];
   },
 };
