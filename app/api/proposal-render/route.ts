@@ -259,13 +259,8 @@ export async function POST(request: NextRequest) {
     return NextResponse.json({ ok: true, pdfUrl });
   } catch (error) {
     console.error('Error in proposal-render API:', error);
-    // TODO(debug): 원인 파악되면 이 debug 필드는 제거한다 — 런타임 로그 조회 권한이
-    // 없어서 임시로 에러 메시지를 응답에 노출해 원인을 확인 중.
     return NextResponse.json(
-      {
-        error: '서버 오류가 발생했습니다.',
-        debug: error instanceof Error ? { message: error.message, stack: error.stack, cause: String((error as { cause?: unknown }).cause) } : String(error),
-      },
+      { error: '서버 오류가 발생했습니다.' },
       { status: 500 }
     );
   }
