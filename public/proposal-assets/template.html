@@ -1,0 +1,371 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<title>{{COMPANY}} 현금공백 진단, 솔루션 제안</title>
+<link rel="stylesheet" href="assets/deck.css">
+</head>
+<body>
+<div class="deck v2">
+
+<!-- ============ 1. 커버 ============ -->
+<section class="slide cover">
+  <div class="topbar"></div>
+  <div class="mark"><img src="assets/gowid-wordmark.png" alt="gowid"></div>
+  <div class="inner">
+    <div class="title">
+      <div class="l1">{{COMPANY}} 현금공백 진단</div>
+      <div class="l2">유사 사례 기반 솔루션 제안</div>
+    </div>
+    <div class="selected">
+      <span class="lab">선택하신 자금 운영 문제</span>
+      <span class="val">{{SELECTED}}</span>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 2. 제안 배경 ============ -->
+<section class="slide">
+  <div class="kicker">제안 배경</div>
+  <h1>{{COMPANY_WA}} 같은 구조를 지나온 소프트웨어 기업이 있습니다</h1>
+  <p class="lead">
+    {{COMPANY}}님이 선택하신 자금 운영 문제는 <b>{{SELECTED}}</b>입니다.
+    같은 소프트웨어라도 돈이 도는 순서는 제각각입니다.
+    이 제안서는 그중 <b>이미 매출이 나고 있고, 인프라 비용과 광고비가 매달 먼저 나가는 기업</b>의 사례입니다.
+  </p>
+  <div class="body">
+    <div class="grid g2">
+      <div class="card tall">
+        <div class="clabel dark">{{COMPANY}}님이 선택한 항목</div>
+        <h3>{{SELECTED}}</h3>
+        <p>서비스는 팔리고 있는데, 유저를 데려오는 광고비와 매달 나가는 인프라 비용을 감당할 현금이 늘 앞서 나가는 상태입니다.
+           성장 속도를 자금이 따라가지 못하는 구간입니다.</p>
+      </div>
+      <div class="card tall">
+        <div class="clabel">고위드 고객사 사례</div>
+        <h3>소프트웨어 기업 A사</h3>
+        <p>외부 솔루션을 얹어 서비스를 제공하고, <b>쓴 만큼 매달 이용료를 내는</b> 구조로 운영하던 기업입니다.
+           매출은 나고 있었지만 원가와 획득비가 늘 먼저 나갔습니다.</p>
+        <p class="note" style="margin-top:12px">고객사 요청에 따라 사명은 비공개 처리했습니다.</p>
+      </div>
+    </div>
+    <div class="band plain">
+      <span class="blabel">구성</span>
+      이 제안서는 <b>A사가 겪은 문제 → 고위드가 제공한 솔루션 → 실제로 바뀐 결과</b> 순서입니다.
+      마지막 장에서 A사를 담당한 {{AE_TITLE}}와 30분 온라인 미팅을 신청하실 수 있습니다.
+    </div>
+  </div>
+  <div class="foot"><span>{{COMPANY}} 현금공백 진단, 솔루션 제안</span><span>2</span></div>
+</section>
+
+<!-- ============ 3. 케이스 프로필 ============ -->
+<section class="slide">
+  <div class="kicker">유사 케이스 - A사</div>
+  <h1>서비스는 팔리는데, 원가와 광고비가 먼저 나갔습니다</h1>
+  <p class="lead">
+    A사의 제품에는 문제가 없었습니다. 걸린 곳은 <b>돈이 나가고 들어오는 순서</b>였습니다.
+  </p>
+  <div class="body dense">
+    <div class="strip" style="grid-template-columns:repeat(4,1fr)">
+      <div class="cell"><div class="k">유형</div><div class="v">B2B 소프트웨어</div></div>
+      <div class="cell"><div class="k">원가 구조</div><div class="v">인프라 · 솔루션 이용료</div></div>
+      <div class="cell"><div class="k">매출총이익률</div><div class="v">50~60%</div></div>
+      <div class="cell"><div class="k">광고비 회수</div><div class="v" style="color:#C24747">약 3개월</div></div>
+    </div>
+    <div class="grid g2">
+      <div class="card">
+        <div class="clabel dark">잘되고 있던 것</div>
+        <ul class="bul">
+          <li>유저를 <b>데려오고, 결제시키고, 유지시키는</b> 구조가 확인된 상태</li>
+          <li>광고를 집행한 만큼 가입과 결제가 따라오는 구간</li>
+          <li>더 태울 수 있으면 매출을 더 키울 수 있는 상황</li>
+        </ul>
+      </div>
+      <div class="card">
+        <div class="clabel dark">발목을 잡던 것</div>
+        <ul class="bul gray">
+          <li>요청이 들어올 때마다 <b>원가가 실시간으로 나가는</b> 구조</li>
+          <li>광고비 · 솔루션 이용료 · 클라우드 비용이 모두 현금 선지출</li>
+          <li>성장에 필요한 돈이 전부 자기 현금에서 나가는 구조</li>
+        </ul>
+      </div>
+    </div>
+    <div class="band plain">
+      <span class="blabel">구조</span>
+      잘되던 것과 발목을 잡던 것의 원인은 하나입니다 — <b>원가와 광고비가 매출보다 먼저 나가는 구조</b>입니다.
+    </div>
+  </div>
+  <div class="foot"><span>{{COMPANY}} 현금공백 진단, 솔루션 제안</span><span>3</span></div>
+</section>
+
+<!-- ============ 4. 문제 1 — 현금 흐름 구조 ============ -->
+<section class="slide">
+  <div class="kicker">문제 진단 1 · 회수 시점</div>
+  <h1>유저를 데려오는 돈이 먼저 나가고, 회수는 그 뒤 3개월입니다</h1>
+  <p class="lead">
+    소프트웨어 서비스는 유저 한 명을 데려오는 데 <b>광고비가 먼저</b> 나가고,
+    그 유저가 쓰는 동안 <b>인프라 비용이 매달</b> 나갑니다. 낸 돈이 돌아오는 것은 그 뒤입니다.
+  </p>
+  <div class="body tight">
+    <div class="tlx">
+      <div class="track"></div>
+      <div class="gaplabel">현금 공백 — 나간 돈이 돌아오기까지</div>
+      <div class="nodes">
+        <div class="node out">
+          <div class="dot"></div>
+          <div class="when">획득 시점</div>
+          <div class="what">광고 집행</div>
+          <div class="amt out">현금 유출 · 유저 획득비</div>
+          <div class="desc">유저 한 명을 데려오는 값이 먼저 나간다</div>
+        </div>
+        <div class="node mid">
+          <div class="dot"></div>
+          <div class="when">사용 기간</div>
+          <div class="what">서비스 제공</div>
+          <div class="amt out">현금 유출 · 인프라 비용</div>
+          <div class="desc">요청이 들어올 때마다 원가가 실시간으로 나간다</div>
+        </div>
+        <div class="node in">
+          <div class="dot"></div>
+          <div class="when">그 뒤 3개월</div>
+          <div class="what">광고비 회수</div>
+          <div class="amt in">현금 유입</div>
+          <div class="desc">광고비가 매출로 돌아오기까지의 기간</div>
+        </div>
+      </div>
+    </div>
+    <div class="band plain">
+      <span class="blabel">핵심</span>
+      예전 소프트웨어는 한 번 만들어 복사해 팔면 됐습니다. 지금은 <b>팔 때마다 원가가 나갑니다.</b>
+      매출총이익률이 50~60%까지 내려앉는 이유이고, 매출이 2배면 묶이는 현금도 2배입니다.
+    </div>
+  </div>
+  <div class="foot"><span>{{COMPANY}} 현금공백 진단, 솔루션 제안</span><span>4</span></div>
+</section>
+
+<!-- ============ 5. 문제 2 — 금융 미스매치 ============ -->
+<section class="slide">
+  <div class="kicker">문제 진단 2 · 금융 조달</div>
+  <h1>지금 성장하고 있는데, 신용평가에 들어가는 숫자는 지난해입니다</h1>
+  <p class="lead">
+    A사가 찾던 것은 <b>결제 한도</b>였습니다. 매달 돌아오는 비용이라 투자 라운드로 메우기에는 회전이 너무 잦았습니다.
+    그런데 신용평가 기준이 맞지 않았습니다.
+  </p>
+  <div class="body">
+    <div class="grid g2">
+      <div class="card tall">
+        <div class="clabel dark">시중 금융사의 신용평가 기준</div>
+        <h3>직전 1~3개년 재무제표</h3>
+        <p>소프트웨어 기업은 초기 몇 년이 개발과 재투자 구간입니다. 지금 매출이 몇 배로 뛰고 있어도
+           <b>신용평가에 반영되는 것은 지난해 손익</b>입니다.</p>
+        <p>그 결과 A사에 나온 한도는 필요한 규모에 한참 못 미쳤습니다.</p>
+      </div>
+      <div class="card tall">
+        <div class="clabel dark">결과</div>
+        <h3>광고비 캐파 = 매출 캐파</h3>
+        <p>데려와서 결제시키고 유지시킬 수 있다는 것이 확인된 뒤에도, <b>태울 수 있는 광고비가 한도에 묶였습니다.</b>
+           더 팔 수 있는데 못 태우는 상황이 반복됐습니다.</p>
+        <p>그사이에도 솔루션 이용료와 클라우드 비용은 매달 현금으로 빠져나갔습니다.</p>
+      </div>
+    </div>
+    <div class="band plain">
+      <span class="blabel">정리</span>
+      <b>성장할수록 현금이 먼저 나가는 구조</b>였고, 그 구조를 받아줄 결제 한도가 없었습니다.
+    </div>
+  </div>
+  <div class="foot"><span>{{COMPANY}} 현금공백 진단, 솔루션 제안</span><span>5</span></div>
+</section>
+
+<!-- ============ 6. 솔루션 1 — 한도 설계 ============ -->
+<section class="slide">
+  <div class="kicker">고위드가 제공한 솔루션 1 · 한도</div>
+  <h1>지난해 손익 대신, 지금의 매출 흐름으로 한도를 열었습니다</h1>
+  <p class="lead">
+    고위드는 과거 재무제표 대신 <b>실시간 성장 데이터</b>로 신용평가해 한도를 냅니다.
+    A사는 매달 나가는 비용과 매입 대금을 <b>한 장으로 묶을 수 있는 한도</b>를 받았습니다.
+  </p>
+  <div class="body">
+    <div class="grid g3">
+      <div class="card tall">
+        <div class="clabel">신용평가 기준</div>
+        <div class="big ink" style="font-size:28px">실시간 성장 데이터</div>
+        <div class="big-sub">지난해 손익 대신 지금의 매출 흐름으로 신용평가</div>
+        <p style="margin-top:14px">매출이 오르면 한도도 따라 오릅니다. 집행 계획을 한도에 맞춰 줄일 일이 없어집니다.</p>
+      </div>
+      <div class="card tall">
+        <div class="clabel">신용공여일</div>
+        <div class="big">최소 53<span class="unit">일</span></div>
+        <div class="big-sub">결제일부터 대금 지급까지 기본 53일 ~ 최장 87일</div>
+        <p style="margin-top:14px">그만큼 지급 시점이 뒤로 밀리고, 그사이 확보되는 현금은 다음 집행에 넣습니다.</p>
+      </div>
+      <div class="card tall">
+        <div class="clabel">커버 범위</div>
+        <div class="big ink" style="font-size:28px">인프라 · 광고 · 솔루션</div>
+        <div class="big-sub">결제 상단을 차지하는 항목을 한 장으로 통합</div>
+        <p style="margin-top:14px">흩어져 나가던 비용이 한 장에 모이면서 어디에 얼마가 나가는지도 같이 보입니다.</p>
+      </div>
+    </div>
+    <div class="band plain">
+      <span class="blabel">요점</span>
+      한도가 커지면 <b>매달 나가는 비용을 한 장으로 묶을 수</b> 있고, 결제일과 지급일 사이 53~87일이 그대로 손에 쥐는 현금이 됩니다.
+    </div>
+  </div>
+  <div class="foot"><span>{{COMPANY}} 현금공백 진단, 솔루션 제안</span><span>6</span></div>
+</section>
+
+<!-- ============ 7. 솔루션 작동 방식 ============ -->
+<section class="slide">
+  <div class="kicker">고위드가 제공한 솔루션 2 · 작동 방식</div>
+  <h1>매달 나가던 이용료를 1년치 한 번으로 바꿨습니다</h1>
+  <p class="lead">
+    A사는 솔루션 이용료를 <b>월 사용량대로 매달</b> 결제하고 있었습니다.
+    이 계약을 연 약정으로 바꾸고 1년치를 카드로 한 번에 결제했습니다 — <b>2,824만 원 단건</b>입니다.
+  </p>
+  <div class="body">
+    <div class="cmp">
+      <div class="side">
+        <span class="tag">BEFORE</span>
+        <h3>매달 같은 크기의 현금이 반복해서 빠졌습니다</h3>
+        <ul class="bul gray">
+          <li>쓴 만큼 내는 <b>월 종량 결제</b> — 매달 현금 유출</li>
+          <li>연 약정 단가를 받을 수 없는 계약 구조</li>
+          <li>매입 원가가 사용량을 따라 그대로 따라 올라감</li>
+        </ul>
+      </div>
+      <div class="side after">
+        <span class="tag">AFTER</span>
+        <h3>1년치를 카드 한 번으로 결제했습니다</h3>
+        <ul class="bul">
+          <li>1년치 이용료를 <b>카드로 일시 결제</b> — 2,824만 원 단건</li>
+          <li>연 약정 단가가 적용되면서 <b>원가가 내려감</b></li>
+          <li>현금은 카드 여신 기간만큼 <b>뒤로 밀림</b></li>
+        </ul>
+      </div>
+    </div>
+    <div class="band plain">
+      <span class="blabel">두 방향</span>
+      <b>광고비 한도로 매출을 키우거나, 선결제 유동성으로 원가를 깎거나.</b> A사는 뒤쪽을 먼저 썼습니다.
+    </div>
+  </div>
+  <div class="foot"><span>{{COMPANY}} 현금공백 진단, 솔루션 제안</span><span>7</span></div>
+</section>
+
+<!-- ============ 8. 결과 ============ -->
+<section class="slide">
+  <div class="kicker">A사의 결과</div>
+  <h1>고위드가 준 것은 유동성인데, 남은 것은 이익률이었습니다</h1>
+  <p class="lead">
+    나가는 돈의 총액은 그대로입니다. 결제 방식을 바꾼 것만으로 <b>단가와 현금 시점이 동시에</b> 움직였습니다.
+  </p>
+  <div class="body">
+    <div class="grid g3">
+      <div class="card tall">
+        <div class="clabel">결제 방식</div>
+        <div class="big ink" style="font-size:28px">월 종량 &rarr; 연 약정</div>
+        <div class="big-sub">1년치 카드 일시 결제</div>
+        <p style="margin-top:14px">1월에 <b>2,824만 원 단건</b>으로 1년치를 결제했습니다.</p>
+      </div>
+      <div class="card tall">
+        <div class="clabel">원가</div>
+        <div class="big ink" style="font-size:28px">연 약정 단가 적용</div>
+        <div class="big-sub">같은 서비스를 더 낮은 단가로</div>
+        <p style="margin-top:14px">월 종량 단가보다 낮아져 <b>원가율이 내려갔습니다.</b></p>
+      </div>
+      <div class="card tall">
+        <div class="clabel">현금</div>
+        <div class="big">최장 87<span class="unit">일</span></div>
+        <div class="big-sub">카드 여신만큼 지급 시점 이연</div>
+        <p style="margin-top:14px">1년치를 미리 확보하고도 <b>현금은 뒤로 밀렸습니다.</b></p>
+      </div>
+    </div>
+    <div class="band amber">
+      <span class="blabel">조건</span>
+      통하려면 세 가지가 맞아야 합니다 — 연 약정에 할인이 있을 것, 할인이 카드 수수료보다 클 것,
+      1년치를 한 번에 결제할 한도가 있을 것. 셋 중 하나라도 어긋나면 선결제가 이익이 되지 않으니 미팅에서 먼저 확인합니다.
+      위 수치는 A사의 실제 결과로, 계약 조건과 신용평가에 따라 달라질 수 있습니다.
+    </div>
+  </div>
+  <div class="foot"><span>{{COMPANY}} 현금공백 진단, 솔루션 제안</span><span>8</span></div>
+</section>
+
+<!-- ============ 9. 고객사 적용 ============ -->
+<section class="slide">
+  <div class="kicker">{{COMPANY}} 적용</div>
+  <h1>{{COMPANY}}에 적용하면 어떻게 해결할 수 있을까요?</h1>
+  <p class="lead">
+    30분 미팅에서 {{COMPANY}}의 숫자를 세 가지로 나눠 봅니다.
+    매달 남는 돈, 고객 하나의 값어치, 광고비가 돌아오는 기간 — <b>시점이 서로 달라 따로 봐야 맞습니다.</b>
+  </p>
+  <div class="body">
+    <div class="steps">
+      <div class="step-card">
+        <div class="sn">STEP 1</div>
+        <h3>매달 남는 돈 확인</h3>
+        <p>유저 한 명이 내는 돈에서 그 유저에게 들어간 인프라 비용을 뺍니다. 여기가 플러스인지부터 봅니다.</p>
+      </div>
+      <div class="step-card">
+        <div class="sn">STEP 2</div>
+        <h3>고객 하나의 값어치</h3>
+        <p>매달 남는 돈에 유지 기간을 곱해 고객 값어치를 내고, 유저 한 명 데려오는 값의 3배를 넘는지 봅니다.</p>
+      </div>
+      <div class="step-card">
+        <div class="sn">STEP 3</div>
+        <h3>회수 기간과 한도</h3>
+        <p>획득비를 매달 남는 돈으로 나누면 회수까지 몇 달인지 나옵니다. 그 기간을 한도로 메우는 방식을 그립니다.</p>
+      </div>
+    </div>
+    <div class="band plain">
+      <span class="blabel">미팅에서</span>
+      세 단계 모두 {{COMPANY}}의 실제 숫자로 계산합니다.
+      실제 한도는 신용평가 결과에 따라 결정되며, 미팅에서 산출하는 숫자는 예상치입니다.
+    </div>
+  </div>
+  <div class="foot"><span>{{COMPANY}} 현금공백 진단, 솔루션 제안</span><span>9</span></div>
+</section>
+
+<!-- ============ 10. CTA ============ -->
+<section class="slide">
+  <div class="kicker">다음 단계</div>
+  <h1>이 기업을 직접 담당한 {{AE_TITLE}}와 30분 이야기해보세요</h1>
+  <p class="lead">
+    A사의 한도 설계와 선결제 전환을 담당했던 {{AE_TITLE}}가 {{COMPANY}}의 상황을 듣고,
+    같은 방식으로 풀 수 있는지 바로 확인해 드립니다.
+  </p>
+  <div class="body">
+    <div class="cta-wrap">
+      <div class="ae">
+        <div class="who">
+          <div class="avatar photo"><img src="assets/ae-moon.png" alt="{{AE_NAME}}"></div>
+          <div>
+            <div class="nm">{{AE_NAME}} {{AE_TITLE}}</div>
+            <div class="ro">{{AE_ROLE}}</div>
+          </div>
+        </div>
+        <div class="quote">
+          &ldquo;A사도 처음엔 지난해 손익만 보면 한도가 낮게 나오던 기업이었습니다.
+          인프라 · 광고비가 어떻게 나가는지만 보면 <b>{{COMPANY}}도 지금 얼마까지 열 수 있는지</b>
+          바로 계산해 드립니다.&rdquo;
+        </div>
+      </div>
+      <div class="cta">
+        <div class="h">30분 온라인 미팅 신청</div>
+        <div class="d">
+          {{COMPANY}}의 자금 구조를 듣고, 예상 한도와 현금 시나리오를 정리해 드립니다.
+          미팅 전 준비하실 자료는 없습니다.
+        </div>
+        <a class="btn" href="{{MEETING_URL}}">온라인 미팅 신청 접수하기</a>
+        <div class="meta">
+          <span>30분 소요</span><span>온라인 진행</span><span>사전 자료 불필요</span>
+        </div>
+      </div>
+    </div>
+    <div class="note mt22" style="text-align:center">
+      버튼이 열리지 않으면 아래 주소로 접속해 주세요 &nbsp;·&nbsp; {{MEETING_URL}}
+    </div>
+  </div>
+  <div class="foot"><span>{{COMPANY}} 현금공백 진단, 솔루션 제안</span><span>10</span></div>
+</section>
+
+</div>
+</body>
+</html>
