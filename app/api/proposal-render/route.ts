@@ -196,8 +196,19 @@ export async function POST(request: NextRequest) {
       MEETING_URL: DEFAULTS.MEETING_URL,
     };
 
-    const html = buildInlinedHtml(fields);
-    const pdfBuffer = await renderPdf(html);
+    let html: string;
+    try {
+      html = buildInlinedHtml(fields);
+    } catch (e) {
+      throw new Error(`[stage:build-html] ${e instanceof Error ? e.message : String(e)}`, { cause: e });
+    }
+
+    let pdfBuffer: Buffer;
+    try {
+      pdfBuffer = await renderPdf(html);
+    } catch (e) {
+      throw new Error(`[stage:render-pdf] ${e instanceof Error ? e.message : String(e)}`, { cause: e });
+    }
 
     // Supabase Storage 키는 한글 등 비-ASCII 문자가 든 경로를 거부한다(Invalid key) —
     // 기업명은 storage 경로가 아니라 tracking 테이블 컬럼에만 사람이 읽는 값으로 남긴다.
@@ -240,8 +251,13 @@ export async function POST(request: NextRequest) {
     return NextResponse.json({ ok: true, pdfUrl });
   } catch (error) {
     console.error('Error in proposal-render API:', error);
+    // TODO(debug): 원인 파악되면 이 debug 필드는 제거한다 — 런타임 로그 조회 권한이
+    // 없어서 임시로 에러 메시지를 응답에 노출해 원인을 확인 중.
     return NextResponse.json(
-      { error: '서버 오류가 발생했습니다.' },
+      {
+        error: '서버 오류가 발생했습니다.',
+        debug: error instanceof Error ? { message: error.message, stack: error.stack } : String(error),
+      },
       { status: 500 }
     );
   }
