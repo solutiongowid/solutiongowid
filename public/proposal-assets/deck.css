@@ -1,0 +1,342 @@
+/* 번들 폰트 — 다른 컴퓨터에 Pretendard 가 깔려 있지 않아도 같은 결과가 나오도록
+   스킬 안에 woff2 를 넣어 두고 여기서 직접 물린다. */
+@font-face{font-family:'PretendardPack';src:url('fonts/Pretendard-Regular.woff2') format('woff2');font-weight:400;font-display:block}
+@font-face{font-family:'PretendardPack';src:url('fonts/Pretendard-SemiBold.woff2') format('woff2');font-weight:600;font-display:block}
+@font-face{font-family:'PretendardPack';src:url('fonts/Pretendard-Bold.woff2') format('woff2');font-weight:700;font-display:block}
+@font-face{font-family:'PretendardPack';src:url('fonts/Pretendard-ExtraBold.woff2') format('woff2');font-weight:800;font-display:block}
+
+/* ============================================================
+   고위드 맞춤 제안서 덱 — COMEUP2026 제안서 디자인 시스템 준용
+   색·타이포는 원본 PDF에서 추출한 값(그린 #12B569 / 잉크 #111727 /
+   카드 #F5F6F8 / 그린밴드 #E6F5EC)을 그대로 쓴다.
+   1 슬라이드 = 1280x720 = PDF 1페이지.
+   ============================================================ */
+
+:root{
+  --green:#12B569;
+  --green-d:#0E9A59;
+  --green-bg:#E6F5EC;
+  --green-line:#C7E7D5;
+
+  --ink:#111727;
+  --fg2:#3D4657;
+  --muted:#6B7382;
+  --faint:#9AA1AD;
+
+  --card:#F5F6F8;
+  --line:#E6E8EC;
+  --white:#fff;
+
+  --amber-bg:#FDF4E3;
+  --amber-line:#EEDCB4;
+  --amber-text:#8A6516;
+
+  --red:#C24747;
+
+  /* 타이포 5단계 */
+  --fz-h1:40px;
+  --fz-lead:16px;
+  --fz-title:20px;
+  --fz-body:14.5px;
+  --fz-cap:12.5px;
+
+  --pad-x:80px;
+  --pad-t:64px;
+}
+
+*{box-sizing:border-box;margin:0;padding:0}
+
+html,body{
+  background:#E9EAEE;
+  font-family:'PretendardPack','Pretendard','Pretendard Variable',-apple-system,'Apple SD Gothic Neo','Malgun Gothic',sans-serif;
+  color:var(--ink);
+  -webkit-font-smoothing:antialiased;
+}
+
+.deck{display:flex;flex-direction:column;align-items:center;gap:24px;padding:24px 0}
+
+.slide{
+  position:relative;
+  width:1280px;height:720px;
+  background:var(--white);
+  padding:var(--pad-t) var(--pad-x) 0;
+  overflow:hidden;
+  flex:0 0 auto;
+}
+
+/* ---------- 공통 헤더 ---------- */
+.kicker{
+  font-size:var(--fz-cap);font-weight:700;color:var(--green);
+  letter-spacing:.01em;margin-bottom:12px;
+}
+h1{
+  font-size:var(--fz-h1);font-weight:800;letter-spacing:-.028em;
+  line-height:1.28;color:var(--ink);
+}
+.lead{
+  margin-top:18px;font-size:var(--fz-lead);color:var(--fg2);
+  line-height:1.6;letter-spacing:-.01em;max-width:1010px;
+}
+.lead b, .lead strong{font-weight:700;color:var(--ink)}
+
+/* ---------- 본문 영역 ---------- */
+.body{margin-top:40px}
+.body.tight{margin-top:30px}
+.mt18{margin-top:18px}
+.mt22{margin-top:22px}
+.mt28{margin-top:28px}
+
+/* ---------- 카드 그리드 ---------- */
+.grid{display:grid;gap:22px}
+.g2{grid-template-columns:1fr 1fr}
+.g3{grid-template-columns:1fr 1fr 1fr}
+.g4{grid-template-columns:repeat(4,1fr)}
+
+.card{
+  background:var(--card);border-radius:14px;padding:26px 28px;
+}
+.card.tall{min-height:196px}
+.card .clabel{
+  font-size:var(--fz-cap);font-weight:700;color:var(--green);margin-bottom:12px;
+  letter-spacing:.01em;
+}
+.card .clabel.dark{color:var(--fg2)}
+.card h3{
+  font-size:var(--fz-title);font-weight:700;letter-spacing:-.02em;
+  line-height:1.35;margin-bottom:12px;
+}
+.card p{font-size:var(--fz-body);color:var(--fg2);line-height:1.62;letter-spacing:-.01em}
+.card p + p{margin-top:8px}
+.card p b{font-weight:700;color:var(--ink)}
+
+/* 큰 숫자 */
+.big{
+  font-size:34px;font-weight:800;color:var(--green);letter-spacing:-.03em;
+  line-height:1.15;margin-top:6px;
+}
+.big.ink{color:var(--ink)}
+.big .unit{font-size:20px;font-weight:700;margin-left:2px}
+.big-sub{font-size:var(--fz-cap);color:var(--faint);margin-top:10px}
+
+/* ---------- 지표 스트립 ---------- */
+.strip{display:grid;background:var(--card);border-radius:14px;overflow:hidden}
+.strip .cell{padding:22px 26px;border-left:1px solid #E4E6EA}
+.strip .cell:first-child{border-left:0}
+.strip .cell .k{font-size:var(--fz-cap);color:var(--muted);margin-bottom:8px}
+.strip .cell .v{font-size:18px;font-weight:700;letter-spacing:-.02em}
+.strip .cell .v.green{color:var(--green)}
+
+/* ---------- 번호 행 ---------- */
+.rows{display:flex;flex-direction:column;gap:18px}
+.row{
+  background:var(--card);border-radius:14px;padding:24px 28px;
+  display:flex;gap:20px;align-items:flex-start;
+}
+.row .num{
+  flex:0 0 auto;width:30px;height:30px;border-radius:50%;
+  background:var(--ink);color:#fff;font-size:13px;font-weight:700;
+  display:flex;align-items:center;justify-content:center;margin-top:1px;
+}
+.row .num.green{background:var(--green)}
+.row .rc h4{font-size:16px;font-weight:700;letter-spacing:-.02em;margin-bottom:8px}
+.row .rc h4 em{font-style:normal;color:var(--green)}
+.row .rc p{font-size:var(--fz-body);color:var(--fg2);line-height:1.62;letter-spacing:-.01em}
+.row .rc p b{font-weight:700;color:var(--ink)}
+
+/* ---------- 그린 밴드 ---------- */
+.band{
+  background:var(--green-bg);border-radius:14px;padding:22px 28px;
+  font-size:15px;color:var(--fg2);line-height:1.6;letter-spacing:-.01em;
+}
+.band b{font-weight:700;color:var(--ink)}
+.band.amber{background:var(--white);border:1px solid #D9A63A;border-radius:12px;color:var(--amber-text)}
+.band.amber b{color:var(--amber-text)}
+.band.amber{position:relative;margin-top:30px;padding-top:30px}
+.band.amber .blabel{position:absolute;top:-10px;left:26px;background:var(--amber-text);color:#fff;font-size:11.5px;font-weight:700;letter-spacing:.02em;padding:4px 11px;border-radius:6px}
+
+/* 결론 바 (plain) — 초록 슬래브 대신 흰 바탕 + 얇은 테두리.
+   같은 색면이 장마다 반복되면 강조가 벽지가 되므로, 색은 라벨에만 남긴다. */
+.band.plain{
+  position:relative;background:var(--white);
+  border:1px solid var(--green);
+  border-radius:12px;
+  padding:30px 28px 26px;margin-top:30px;color:var(--fg2);
+}
+.band.plain .blabel{
+  position:absolute;top:-10px;left:26px;
+  background:var(--green);color:#fff;
+  font-size:11.5px;font-weight:700;letter-spacing:.02em;
+  padding:4px 11px;border-radius:6px;
+}
+
+/* 담당자 사진 — 이니셜 원 대신 실사. 얼굴이 원 안에 오도록 위쪽을 잡는다. */
+.ae .avatar.photo{background:var(--line);overflow:hidden;width:72px;height:72px}
+.ae .avatar.photo img{width:100%;height:100%;object-fit:cover;object-position:50% 50%;display:block}
+
+/* ---------- 칩 / 노트 ---------- */
+.chip{
+  display:inline-block;background:var(--amber-bg);border-radius:999px;
+  padding:8px 16px;font-size:var(--fz-cap);font-weight:700;color:var(--amber-text);
+}
+.note{font-size:var(--fz-cap);color:var(--faint);line-height:1.6}
+
+/* ---------- 불릿 ---------- */
+ul.bul{list-style:none}
+ul.bul li{
+  position:relative;padding-left:16px;font-size:var(--fz-body);color:var(--fg2);
+  line-height:1.62;letter-spacing:-.01em;
+}
+ul.bul li + li{margin-top:9px}
+ul.bul li::before{
+  content:"";position:absolute;left:0;top:8px;width:5px;height:5px;
+  border-radius:50%;background:var(--green);
+}
+ul.bul li b{font-weight:700;color:var(--ink)}
+ul.bul.gray li::before{background:#C3C8D0}
+
+/* ---------- 푸터 ---------- */
+.foot{
+  position:absolute;left:var(--pad-x);right:var(--pad-x);bottom:34px;
+  display:flex;justify-content:space-between;align-items:center;
+  padding-top:14px;border-top:1px solid var(--line);
+  font-size:var(--fz-cap);color:var(--faint);
+}
+
+/* ---------- 커버 ---------- */
+.slide.cover{padding:0}
+.cover .topbar{position:absolute;top:0;left:0;right:0;height:8px;background:var(--green)}
+.cover .inner{padding:0 var(--pad-x);height:100%;display:flex;flex-direction:column;justify-content:center}
+.cover .mark{position:absolute;top:128px;left:var(--pad-x);width:104px}
+.cover .mark img{width:100%;display:block}
+.cover .title{letter-spacing:-.035em;line-height:1.24}
+.cover .title .l1{font-size:50px;font-weight:800;color:var(--ink)}
+.cover .title .l2{font-size:50px;font-weight:700;color:#8E97A5;margin-top:4px}
+.cover .selected{
+  margin-top:38px;display:inline-flex;align-items:center;gap:14px;
+  background:var(--green-bg);border-radius:10px;padding:15px 22px;
+  font-size:14.5px;color:var(--fg2);width:fit-content;
+}
+.cover .selected .lab{font-weight:700;color:var(--green-d);font-size:12.5px}
+.cover .selected .val{font-weight:700;color:var(--ink)}
+
+/* ---------- 타임라인 (발주 → 판매 → 회수) ----------
+   점 3개를 한 축 위에 올려 시간의 흐름을 보이게 한다.
+   축의 색이 왼쪽(유출·빨강)에서 오른쪽(유입·초록)으로 넘어가면서
+   그 사이 구간이 곧 '현금 공백'이라는 것을 말 없이 보여준다. */
+.tlx{position:relative;padding-top:34px}
+.tlx .track{
+  position:absolute;left:16.666%;right:16.666%;top:53px;height:5px;border-radius:3px;
+  background:linear-gradient(90deg,var(--red) 0%,#D8B0A8 30%,#D9DDE3 55%,#7FD3AB 82%,var(--green) 100%);
+}
+.tlx .gaplabel{
+  position:absolute;top:0;left:0;right:0;text-align:center;
+  font-size:var(--fz-cap);font-weight:700;color:var(--muted);letter-spacing:.01em;
+}
+.tlx .gaplabel::before,
+.tlx .gaplabel::after{
+  content:"";position:absolute;top:9px;width:22%;height:1px;background:#DDE1E7;
+}
+.tlx .gaplabel::before{left:19%}
+.tlx .gaplabel::after{right:19%}
+.tlx .nodes{display:grid;grid-template-columns:repeat(3,1fr);position:relative}
+.tlx .node{text-align:center;padding:0 26px}
+.tlx .dot{
+  width:20px;height:20px;border-radius:50%;background:#fff;
+  border:5px solid #C9CED6;margin:9px auto 20px;
+}
+.tlx .node.out .dot{border-color:var(--red)}
+.tlx .node.mid .dot{border-color:#B9BFC8}
+.tlx .node.in .dot{border-color:var(--green)}
+.tlx .when{font-size:var(--fz-cap);color:var(--faint);margin-bottom:8px}
+.tlx .what{font-size:20px;font-weight:700;letter-spacing:-.02em;margin-bottom:10px}
+.tlx .amt{font-size:var(--fz-body);font-weight:700;letter-spacing:-.01em}
+.tlx .amt.out{color:var(--red)}
+.tlx .amt.in{color:var(--green)}
+.tlx .desc{font-size:var(--fz-body);color:var(--fg2);line-height:1.6;margin-top:6px}
+
+/* ---------- Before / After ---------- */
+.cmp{display:grid;grid-template-columns:1fr 1fr;gap:22px}
+.cmp .side{border-radius:14px;padding:26px 28px;background:var(--card)}
+.cmp .side.after{background:var(--green-bg)}
+.cmp .side .tag{
+  display:inline-block;font-size:11.5px;font-weight:700;letter-spacing:.04em;
+  padding:5px 11px;border-radius:6px;background:#E3E6EB;color:var(--muted);margin-bottom:14px;
+}
+.cmp .side.after .tag{background:var(--green);color:#fff}
+.cmp .side h3{font-size:18px;font-weight:700;letter-spacing:-.02em;line-height:1.4;margin-bottom:16px}
+
+/* ---------- 한도 구성 바 ---------- */
+.limitbar{display:flex;height:60px;border-radius:12px;overflow:hidden}
+.limitbar .seg{display:flex;align-items:center;padding:0 24px;color:#fff;font-weight:700;font-size:15px;letter-spacing:-.02em}
+.limitbar .seg.base{background:var(--ink);flex:2.5}
+.limitbar .seg.fuel{background:var(--green);flex:2}
+.limitbar-legend{display:flex;gap:26px;margin-top:14px;font-size:var(--fz-cap);color:var(--muted)}
+.limitbar-legend .li{display:flex;align-items:center;gap:8px}
+.limitbar-legend .sw{width:10px;height:10px;border-radius:3px}
+.limitbar-legend .sw.base{background:var(--ink)}
+.limitbar-legend .sw.fuel{background:var(--green)}
+
+/* ---------- CTA ---------- */
+.cta-wrap{display:grid;grid-template-columns:1.02fr .98fr;gap:24px;align-items:stretch}
+.ae{background:var(--card);border-radius:14px;padding:30px 32px;display:flex;flex-direction:column;justify-content:center}
+.ae .who{display:flex;align-items:center;gap:16px;margin-bottom:20px}
+.ae .avatar{
+  width:52px;height:52px;border-radius:50%;background:var(--ink);color:#fff;
+  display:flex;align-items:center;justify-content:center;font-size:19px;font-weight:700;
+}
+.ae .nm{font-size:19px;font-weight:700;letter-spacing:-.02em}
+.ae .ro{font-size:var(--fz-cap);color:var(--muted);margin-top:5px}
+.ae .quote{font-size:var(--fz-body);color:var(--fg2);line-height:1.62;letter-spacing:-.01em}
+.ae .quote b{color:var(--ink);font-weight:700}
+
+.cta{
+  background:var(--green-bg);border-radius:14px;padding:30px 32px;
+  display:flex;flex-direction:column;justify-content:center;
+}
+.cta .h{font-size:19px;font-weight:700;letter-spacing:-.02em;line-height:1.4;margin-bottom:10px}
+.cta .d{font-size:var(--fz-body);color:var(--fg2);line-height:1.62;margin-bottom:22px}
+.cta .btn{
+  display:block;text-decoration:none;text-align:center;
+  background:var(--green);color:#fff;font-size:16px;font-weight:700;letter-spacing:-.02em;
+  padding:18px 24px;border-radius:10px;
+}
+.cta .meta{display:flex;gap:20px;margin-top:16px;font-size:var(--fz-cap);color:var(--muted);justify-content:center}
+
+/* ---------- 스텝 ---------- */
+.steps{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
+.step-card{background:var(--card);border-radius:14px;padding:26px 28px;min-height:176px}
+.step-card .sn{font-size:var(--fz-cap);font-weight:700;color:var(--green);letter-spacing:.04em;margin-bottom:12px}
+.step-card h3{font-size:17px;font-weight:700;letter-spacing:-.02em;margin-bottom:10px}
+.step-card p{font-size:var(--fz-body);color:var(--fg2);line-height:1.62;letter-spacing:-.01em}
+
+@media print{
+  body{background:#fff}
+  .deck{gap:0;padding:0}
+}
+
+/* ============================================================
+   제안서 덱 공통 겉옷 (.deck.v2)
+   초록은 결론 바 한 곳에만 남기고, 나머지 초록은 회색으로 내린다.
+   본문은 남는 세로를 위아래로 나눠 가지므로 장마다 아래가 다르게
+   비지 않는다.
+   ============================================================ */
+.deck.v2 .slide{display:flex;flex-direction:column}
+.deck.v2 .slide.cover{display:block}
+.deck.v2 .body{flex:1;display:flex;flex-direction:column;gap:46px;padding-bottom:118px}
+/* 결론 바는 늘 본문 맨 아래에 선다. 장마다 아래가 다르게 비지 않고,
+   장을 넘겨도 결론이 같은 높이에서 나온다. */
+.deck.v2 .body > .band{margin-top:auto}
+.deck.v2 .band.plain,.deck.v2 .band.amber{margin-top:auto}
+/* 본문이 얇은 장(타임라인 한 덩어리)은 결론까지 한 묶음으로 세로 중앙에 둔다.
+   아래로만 밀면 본문과 결론 사이가 크게 벌어진다. */
+.deck.v2 .body.dense{gap:28px;margin-top:28px}
+.deck.v2 .body.dense .limitbar{height:52px}
+.deck.v2 .body.dense .strip .cell{padding:18px 26px}
+.deck.v2 .body.dense .card{padding:22px 26px}
+.deck.v2 .body.tight{justify-content:center}
+.deck.v2 .body.tight > .band{margin-top:0}
+.deck.v2 .kicker{color:var(--muted)}
+.deck.v2 .foot{border-top:0;padding-top:0}
+.deck.v2 .card .clabel{color:var(--fg2)}
+.deck.v2 .step-card .sn{color:var(--muted)}
+.deck.v2 ul.bul li::before{background:#C3C8D0}
