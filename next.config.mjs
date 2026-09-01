@@ -1,17 +1,9 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  // @sparticuz/chromium은 실제 Chromium 바이너리(bin/*.br)를 패키지 안에 파일로 들고 있다 —
-  // 번들러가 이 패키지를 코드에 인라인하면 그 바이너리 파일들이 배포에서 빠진다
-  // ("input directory .../bin does not exist" 런타임 에러). serverExternalPackages로
-  // 번들링 대상에서 빼고 node_modules 그대로 배포하게 한다.
-  // https://github.com/Sparticuz/chromium#bundler-configuration
-  serverExternalPackages: ['@sparticuz/chromium', 'puppeteer-core'],
-  // 위 externalize만으로는 부족하다 — chromium.executablePath()가 bin/*.br 경로를
-  // 런타임에 동적으로 계산해서 읽기 때문에 Next의 정적 파일 트레이서가 못 잡는다.
-  // 이 라우트가 배포될 때 그 바이너리들을 명시적으로 같이 담아준다.
-  outputFileTracingIncludes: {
-    '/api/proposal-render': ['./node_modules/@sparticuz/chromium/bin/**'],
-  },
+  // puppeteer-core는 번들링 대상에서 빼고 node_modules 그대로 쓴다.
+  // (@sparticuz/chromium-min은 바이너리를 패키지에 안 들고 있어 이 문제 자체가 없다 —
+  // 런타임에 GitHub 릴리즈에서 받아 /tmp에 풀어 쓴다. app/api/proposal-render/route.ts 참고)
+  serverExternalPackages: ['puppeteer-core'],
   experimental: {
     serverActions: {
       bodySizeLimit: '12mb',

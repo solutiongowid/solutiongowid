@@ -102,13 +102,21 @@ const PRINT_CSS = `
 }
 </style>`;
 
+// @sparticuz/chromium(풀 패키지)은 bin/*.br 바이너리를 패키지 파일로 들고 있는데,
+// Turbopack이 함수 배포 트레이싱에서 그 바이너리를 계속 빠뜨렸다
+// ("input directory .../bin does not exist"). -min 패키지는 바이너리를 아예 갖고
+// 있지 않고 첫 콜드스타트 때 이 pack URL에서 내려받아 /tmp에 풀어 쓴다 —
+// 번들러 트레이싱 문제 자체가 없어진다. URL은 설치된 버전과 반드시 맞춰야 한다.
+const CHROMIUM_PACK_URL =
+  'https://github.com/Sparticuz/chromium/releases/download/v149.0.0/chromium-v149.0.0-pack.x64.tar';
+
 async function launchBrowser() {
   const puppeteer = await import('puppeteer-core');
   if (process.env.VERCEL) {
-    const chromium = (await import('@sparticuz/chromium')).default;
+    const chromium = (await import('@sparticuz/chromium-min')).default;
     return puppeteer.launch({
       args: chromium.args,
-      executablePath: await chromium.executablePath(),
+      executablePath: await chromium.executablePath(CHROMIUM_PACK_URL),
       headless: true,
     });
   }
