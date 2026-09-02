@@ -27,6 +27,20 @@ const TEMPLATE_DEFAULTS: Record<
     AE_TITLE: '리드',
     MEETING_URL: 'https://calendar.app.google/yye21goC1ppWwyuP7',
   },
+  fashion: {
+    SELECTED: '원단·임가공비 선지출과 납품 후 익월 정산까지 발생하는 시차 부담',
+    AE_NAME: '백소연',
+    AE_ROLE: '고위드 커머스 · 패션 브랜드 담당',
+    AE_TITLE: '매니저',
+    MEETING_URL: 'https://solutiongowid.com/meeting',
+  },
+  cosmetic: {
+    SELECTED: 'MOQ 발주 대금과 인플루언서 · MCN 마케팅비의 동시 집행 부담',
+    AE_NAME: '백소연',
+    AE_ROLE: '고위드 커머스 · 뷰티 브랜드 담당',
+    AE_TITLE: '매니저',
+    MEETING_URL: 'https://solutiongowid.com/meeting',
+  },
 };
 
 /** 받침 유무로 조사를 고른다 (gowid-proposal 스킬 generate.py의 josa()와 동일 로직). */

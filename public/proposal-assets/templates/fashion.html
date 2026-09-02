@@ -1,0 +1,377 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<title>{{COMPANY}} 현금공백 진단, 솔루션 제안</title>
+<link rel="stylesheet" href="assets/deck.css">
+</head>
+<body>
+<div class="deck v2">
+
+<!-- ============ 1. 커버 ============ -->
+<section class="slide cover">
+  <div class="topbar"></div>
+  <div class="mark"><img src="assets/gowid-wordmark.png" alt="gowid"></div>
+  <div class="inner">
+    <div class="title">
+      <div class="l1">{{COMPANY}} 현금공백 진단</div>
+      <div class="l2">발주와 정산 사이, 시차 기반 솔루션 제안</div>
+    </div>
+    <div class="selected">
+      <span class="lab">선택하신 자금 운영 문제</span>
+      <span class="val">{{SELECTED}}</span>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 2. 제안 배경 ============ -->
+<section class="slide">
+  <div class="kicker">제안 배경</div>
+  <h1>발주는 시즌에 한 번, 정산은 납품이 끝난 뒤입니다</h1>
+  <p class="lead">
+    {{COMPANY}}님이 선택하신 자금 운영 문제는 <b>{{SELECTED}}</b>입니다.
+    이 제안서는 그 시차가 어디서 생기는지 짚고, <b>결제 조건으로 그 구간을 어떻게 메우는지</b>까지 순서대로 정리한 것입니다.
+  </p>
+  <div class="body">
+    <div class="grid g2">
+      <div class="card tall">
+        <div class="clabel dark">{{COMPANY}}님이 선택한 항목</div>
+        <h3>{{SELECTED}}</h3>
+        <p>옷은 계획대로 나가고 있는데, 다음 시즌 원단을 잡을 현금이 늘 부족한 상태입니다.
+           매출이 아니라 <b>돈이 오가는 순서</b>에서 생기는 문제입니다.</p>
+      </div>
+      <div class="card tall">
+        <div class="clabel">패션 브랜드의 공통 구조</div>
+        <h3>시즌 일괄 발주 · 납품 후 익월 정산</h3>
+        <p>시즌 물량을 한 번에 발주하면서 <b>원단비와 임가공비가 앞단에 몰리고</b>,
+           대형 유통사 납품 대금은 그 뒤 정산 주기를 거쳐 들어옵니다.</p>
+      </div>
+    </div>
+    <div class="band plain">
+      <span class="blabel">구성</span>
+      이 제안서는 <b>시차가 생기는 지점 → 고위드의 한도 설계 → 결제 조건이 바뀌면 달라지는 것</b> 순서입니다.
+      마지막 장에서 담당 {{AE_TITLE}}와 30분 온라인 미팅을 신청하실 수 있습니다.
+    </div>
+  </div>
+  <div class="foot"><span>{{COMPANY}} 현금공백 진단, 솔루션 제안</span><span>2</span></div>
+</section>
+
+<!-- ============ 3. 구조 진단 ============ -->
+<section class="slide">
+  <div class="kicker">구조 진단 · 자금이 오가는 순서</div>
+  <h1>시즌 물량은 한 번에 나가고, 대금은 나눠서 들어옵니다</h1>
+  <p class="lead">
+    시즌 발주는 브랜드가 한 해 매출을 만드는 방식입니다.
+    다만 그 방식이 <b>현금 지출을 앞으로, 회수를 뒤로</b> 밀어놓습니다.
+  </p>
+  <div class="body dense">
+    <div class="strip" style="grid-template-columns:repeat(4,1fr)">
+      <div class="cell"><div class="k">발주 방식</div><div class="v">시즌 물량 일괄</div></div>
+      <div class="cell"><div class="k">선지출 항목</div><div class="v">원단비 · 임가공비</div></div>
+      <div class="cell"><div class="k">납품처</div><div class="v">대형 유통사</div></div>
+      <div class="cell"><div class="k">대금 회수</div><div class="v" style="color:#C24747">납품 후 익월 정산</div></div>
+    </div>
+    <div class="grid g2">
+      <div class="card">
+        <div class="clabel dark">잘 돌아가고 있는 것</div>
+        <ul class="bul">
+          <li>시즌 기획과 물량 판단이 서 있어 <b>발주 규모를 스스로 정할 수 있는</b> 상태</li>
+          <li>대형 유통사 납품처를 확보해 판로가 안정적으로 잡혀 있음</li>
+          <li>물량만 받쳐주면 시즌 매출을 더 키울 수 있는 상황</li>
+        </ul>
+      </div>
+      <div class="card">
+        <div class="clabel dark">발목을 잡는 것</div>
+        <ul class="bul gray">
+          <li>시즌 물량을 한 번에 걸어 <b>원단비 · 임가공비가 한꺼번에</b> 빠져나감</li>
+          <li>납품을 마쳐도 정산까지 한 달 이상 대금이 묶임</li>
+          <li>다음 시즌 발주 시점이 직전 시즌 정산보다 먼저 돌아옴</li>
+        </ul>
+      </div>
+    </div>
+    <div class="band plain">
+      <span class="blabel">구조</span>
+      양쪽 원인은 하나입니다 — 큰 지출은 시즌 앞단에 한꺼번에, 회수는 납품이 끝난 뒤에.
+      <b>이 둘 사이에 벌어진 간격이 시차</b>이고, 제안서가 다루는 것은 그 구간입니다.
+    </div>
+  </div>
+  <div class="foot"><span>{{COMPANY}} 현금공백 진단, 솔루션 제안</span><span>3</span></div>
+</section>
+
+<!-- ============ 4. 문제 진단 1 — 결제 조건 ============ -->
+<section class="slide">
+  <div class="kicker">문제 진단 1 · 결제 조건</div>
+  <h1>원단비가 나가는 날과 정산일 사이가 비어 있습니다</h1>
+  <p class="lead">
+    시즌 발주를 넣는 순간 원단비와 임가공비가 먼저 빠져나가고,
+    그 돈이 돌아오는 것은 <b>납품을 마치고 정산 주기를 지난 뒤</b>입니다.
+  </p>
+  <div class="body tight">
+    <div class="tlx">
+      <div class="track"></div>
+      <div class="gaplabel">현금 공백 — 나간 돈이 돌아오기까지</div>
+      <div class="nodes">
+        <div class="node out">
+          <div class="dot"></div>
+          <div class="when">시즌 발주</div>
+          <div class="what">원단 · 임가공 발주</div>
+          <div class="amt out">현금 유출 · 시즌 물량 전량</div>
+          <div class="desc">거래처 조건에 맞춰 앞단에서 현금으로 집행</div>
+        </div>
+        <div class="node mid">
+          <div class="dot"></div>
+          <div class="when">생산 · 납품</div>
+          <div class="what">유통사 납품</div>
+          <div class="amt out">현금 유출 · 물류 · 운영비</div>
+          <div class="desc">납품을 마쳐도 대금은 아직 들어오지 않는다</div>
+        </div>
+        <div class="node in">
+          <div class="dot"></div>
+          <div class="when">납품 후 익월</div>
+          <div class="what">판매 대금 정산</div>
+          <div class="amt in">현금 유입</div>
+          <div class="desc">유통사 정산 주기를 거쳐 그제야 회수된다</div>
+        </div>
+      </div>
+    </div>
+    <div class="band plain">
+      <span class="blabel">흐름</span>
+      발주에 나간 돈은 정산일까지 그대로 잠겨 있고, 그 기간은 브랜드가 자기 현금으로 버팁니다.
+      시즌 물량을 키우면 버텨야 할 금액도 같이 커집니다 — <b>키울수록 공백이 깊어지는 구조</b>입니다.
+    </div>
+  </div>
+  <div class="foot"><span>{{COMPANY}} 현금공백 진단, 솔루션 제안</span><span>4</span></div>
+</section>
+
+<!-- ============ 5. 문제 진단 2 — 금융 조달 ============ -->
+<section class="slide">
+  <div class="kicker">문제 진단 2 · 금융 조달</div>
+  <h1>필요한 것은 투자가 아니라 발주 시점의 결제 한도입니다</h1>
+  <p class="lead">
+    이 공백은 시즌마다 돌아오고, 시즌이 끝나면 회수됩니다.
+    그런데 <b>심사 기준이 이 주기와 맞지 않습니다.</b>
+  </p>
+  <div class="body">
+    <div class="grid g2">
+      <div class="card tall">
+        <div class="clabel dark">시중 금융사의 심사 기준</div>
+        <h3>직전 1~3개년 재무제표</h3>
+        <p>패션 브랜드는 매출이 시즌에 몰려 있습니다. 연 단위로 눌러 담은 재무제표만 보면
+           <b>지금 시즌이 얼마나 잘 나가고 있는지</b>가 심사에 거의 반영되지 않습니다.</p>
+        <p>업력이 짧을수록 제출할 과거 실적 자체가 부족합니다.</p>
+      </div>
+      <div class="card tall">
+        <div class="clabel dark">결과</div>
+        <h3>발주 규모 = 보유 현금</h3>
+        <p>쓸 수 있는 한도가 없으면 결제 수단은 사실상 현금뿐입니다.
+           <b>더 팔 수 있는데 시즌 물량을 못 늘리는</b> 상황이 시즌마다 반복됩니다.</p>
+        <p>정산이 밀리면 다음 시즌 발주까지 함께 흔들립니다.</p>
+      </div>
+    </div>
+    <div class="band plain">
+      <span class="blabel">정리</span>
+      돈이 모자란 것이 아니라 <b>필요한 때에 없는 것</b>이고, 그 시차를 메워줄 결제 조건이 없었습니다.
+    </div>
+  </div>
+  <div class="foot"><span>{{COMPANY}} 현금공백 진단, 솔루션 제안</span><span>5</span></div>
+</section>
+
+<!-- ============ 6. 솔루션 1 — 한도 설계 ============ -->
+<section class="slide">
+  <div class="kicker">고위드가 제공한 솔루션 1 · 한도</div>
+  <h1>지금의 매출 흐름으로 심사해, 두 갈래 한도를 엽니다</h1>
+  <p class="lead">
+    고위드는 지난해 재무제표가 아니라 <b>실시간 매출 데이터</b>를 기준으로 한도를 심사합니다.
+    일상 지출에 쓰는 일반 한도와, <b>매입 대금 결제 전용 한도</b>를 나눠 설계합니다.
+  </p>
+  <div class="body">
+    <div class="limitbar">
+      <div class="seg base">일반 한도</div>
+      <div class="seg fuel">매입 대금 결제 전용 한도</div>
+    </div>
+    <div class="limitbar-legend">
+      <div class="li"><span class="sw base"></span>일반 법인카드 한도 — 물류비 · 운영비 등 일상 지출</div>
+      <div class="li"><span class="sw fuel"></span>매입 대금 결제 전용 한도 — 원단 · 임가공 대금</div>
+    </div>
+    <div class="grid g3">
+      <div class="card tall">
+        <div class="clabel">심사 기준</div>
+        <div class="big ink" style="font-size:28px">실시간 매출 데이터</div>
+        <div class="big-sub">과거 재무제표가 아닌 지금의 시즌 흐름으로 심사</div>
+      </div>
+      <div class="card tall">
+        <div class="clabel">신용공여일</div>
+        <div class="big">최소 53<span class="unit">일</span></div>
+        <div class="big-sub">결제일부터 대금 지급까지 기본 53일 ~ 최장 87일</div>
+      </div>
+      <div class="card tall">
+        <div class="clabel">쓰는 시점</div>
+        <div class="big ink" style="font-size:28px">시즌 발주 시점</div>
+        <div class="big-sub">현금 잔고가 아니라 한도로 발주 규모를 정한다</div>
+      </div>
+    </div>
+    <div class="band plain">
+      <span class="blabel">한도</span>
+      결제일과 지급일 사이의 <b>53~87일이 그대로 손에 쥐는 현금</b>이 됩니다.
+      정산이 들어오기 전에 다음 발주를 걸 수 있는 폭이 여기서 나옵니다.
+    </div>
+  </div>
+  <div class="foot"><span>{{COMPANY}} 현금공백 진단, 솔루션 제안</span><span>6</span></div>
+</section>
+
+<!-- ============ 7. 솔루션 2 — 작동 방식 ============ -->
+<section class="slide">
+  <div class="kicker">고위드가 제공한 솔루션 2 · 작동 방식</div>
+  <h1>원단 · 임가공 대금을 카드 결제로 돌립니다</h1>
+  <p class="lead">
+    시즌 발주에 나가던 매입 대금을 <b>매입 대금 결제 전용 한도로 카드 결제</b>하면,
+    같은 발주를 넣어도 통장에서 현금이 빠지는 시점이 뒤로 밀립니다.
+  </p>
+  <div class="body">
+    <div class="cmp">
+      <div class="side">
+        <span class="tag">BEFORE</span>
+        <h3>보유 현금이 시즌 물량의 상한이었습니다</h3>
+        <ul class="bul gray">
+          <li>시즌 발주 즉시 <b>원단비 · 임가공비가 현금으로</b> 유출</li>
+          <li>납품을 마쳐도 정산 전까지 대금이 묶임</li>
+          <li>수중의 현금만큼만 발주 가능 → <b>시즌 규모가 자금에 묶임</b></li>
+        </ul>
+      </div>
+      <div class="side after">
+        <span class="tag">AFTER</span>
+        <h3>매입 대금이 카드 결제로 대체됩니다</h3>
+        <ul class="bul">
+          <li>원단 · 임가공 대금을 <b>매입 대금 한도로 카드 결제</b></li>
+          <li>결제일부터 대금 지급까지 <b>최소 53일</b>의 시간 확보</li>
+          <li>그 사이 <b>유통사 정산이 들어와</b> 결제일을 받아낸다</li>
+        </ul>
+      </div>
+    </div>
+    <div class="band plain">
+      <span class="blabel">요점</span>
+      나가는 돈의 총액이 줄어드는 것이 아니라, <b>나가는 시점이 정산일 뒤로 밀리는 것</b>입니다.
+      발주와 정산의 순서가 뒤집히면 시즌을 넘길 현금이 남습니다.
+    </div>
+  </div>
+  <div class="foot"><span>{{COMPANY}} 현금공백 진단, 솔루션 제안</span><span>7</span></div>
+</section>
+
+<!-- ============ 8. 결제 조건이 바뀌면 ============ -->
+<section class="slide">
+  <div class="kicker">결제 조건이 바뀌면</div>
+  <h1>발주 규모를 현금 잔고에 맞추지 않아도 됩니다</h1>
+  <p class="lead">
+    시차가 메워지면 브랜드가 시즌을 정하는 기준이 바뀝니다 —
+    얼마가 통장에 있는지가 아니라 <b>얼마나 팔 수 있는지</b>로 옮겨갑니다.
+  </p>
+  <div class="body">
+    <div class="grid g3">
+      <div class="card tall">
+        <div class="clabel">시즌 물량</div>
+        <div class="big ink" style="font-size:26px">판매 계획 기준</div>
+        <div class="big-sub">보유 현금이 아닌 수요로 발주 규모를 정한다</div>
+        <p style="margin-top:14px">현금이 모자라 물량을 줄이는 판단을 시즌마다 반복하지 않게 됩니다.</p>
+      </div>
+      <div class="card tall">
+        <div class="clabel">정산 대기 구간</div>
+        <div class="big">53~87<span class="unit">일</span></div>
+        <div class="big-sub">결제일과 지급일 사이 확보되는 시간</div>
+        <p style="margin-top:14px">납품 후 익월 정산이 이 구간 안에 들어오면 공백이 사실상 닫힙니다.</p>
+      </div>
+      <div class="card tall">
+        <div class="clabel">거래처 조건</div>
+        <div class="big ink" style="font-size:26px">결제 지연 해소</div>
+        <div class="big-sub">원단 · 임가공 거래처 협상력</div>
+        <p style="margin-top:14px">대금을 제때 치르는 브랜드가 되면 단가와 납기 협상에서 위치가 달라집니다.</p>
+      </div>
+    </div>
+    <div class="band amber">
+      <span class="blabel">짚을 점</span>
+      이 장은 결제 조건이 바뀌었을 때의 구조 설명이지 특정 고객사의 실적이 아닙니다.
+      실제 효과는 시즌 주기 · 거래처 결제 조건 · 유통사 정산일에 따라 달라집니다.
+    </div>
+  </div>
+  <div class="foot"><span>{{COMPANY}} 현금공백 진단, 솔루션 제안</span><span>8</span></div>
+</section>
+
+<!-- ============ 9. 고객사 적용 ============ -->
+<section class="slide">
+  <div class="kicker">{{COMPANY}} 적용</div>
+  <h1>{{COMPANY}}에 적용하면 어떻게 해결할 수 있을까요?</h1>
+  <p class="lead">
+    브랜드마다 시즌 주기와 유통사 정산 조건이 다릅니다.
+    30분 미팅에서 <b>{{COMPANY}} 기준의 예상 한도와 현금 시나리오</b>를 직접 산출해 드립니다.
+  </p>
+  <div class="body">
+    <div class="steps">
+      <div class="step-card">
+        <div class="sn">STEP 1</div>
+        <h3>시즌 자금 구조 확인</h3>
+        <p>시즌 발주 규모, 원단 · 임가공 거래처 결제 조건, 유통사 정산일 — 현금이 어디서 묶이는지 짚습니다.</p>
+      </div>
+      <div class="step-card">
+        <div class="sn">STEP 2</div>
+        <h3>예상 한도 산출</h3>
+        <p>일반 한도와 매입 대금 한도를 나눠, {{COMPANY}}의 매출 데이터 기준으로 예상 한도를 계산합니다.</p>
+      </div>
+      <div class="step-card">
+        <div class="sn">STEP 3</div>
+        <h3>발주 · 정산 일정 맞추기</h3>
+        <p>발주일과 정산일 사이 며칠이 비는지 세어, 신용공여 기간으로 그 구간이 덮이는지 확인합니다.</p>
+      </div>
+    </div>
+    <div class="band plain">
+      <span class="blabel">미팅에서</span>
+      세 단계 모두 {{COMPANY}}의 실제 숫자로 계산합니다.
+      실제 한도는 심사 결과에 따라 결정되며, 미팅에서 산출하는 숫자는 예상치입니다.
+    </div>
+  </div>
+  <div class="foot"><span>{{COMPANY}} 현금공백 진단, 솔루션 제안</span><span>9</span></div>
+</section>
+
+<!-- ============ 10. CTA ============ -->
+<section class="slide">
+  <div class="kicker">다음 단계</div>
+  <h1>패션 브랜드 자금 구조를 다뤄온 {{AE_TITLE}}와 30분 이야기해보세요</h1>
+  <p class="lead">
+    시즌 발주와 유통 정산 사이의 시차를 결제 조건으로 풀어온 {{AE_TITLE}}가 {{COMPANY}}의 상황을 듣고,
+    같은 방식으로 메울 수 있는지 바로 확인해 드립니다.
+  </p>
+  <div class="body">
+    <div class="cta-wrap">
+      <div class="ae">
+        <div class="who">
+          <div class="avatar">{{AE_INITIAL}}</div>
+          <div>
+            <div class="nm">{{AE_NAME}} {{AE_TITLE}}</div>
+            <div class="ro">{{AE_ROLE}}</div>
+          </div>
+        </div>
+        <div class="quote">
+          &ldquo;시즌 발주일과 유통사 정산일만 알려주시면, 그 사이가 며칠 비는지 그 자리에서 세어 드립니다.
+          {{COMPANY_GA}} 지금 얼마까지 열 수 있는지도 같이 계산해 볼 수 있습니다.&rdquo;
+        </div>
+      </div>
+      <div class="cta">
+        <div class="h">30분 온라인 미팅 신청</div>
+        <div class="d">
+          {{COMPANY}}의 시즌 자금 구조를 듣고, 예상 한도와 현금 시나리오를 정리해 드립니다.
+          미팅 전 준비하실 자료는 없습니다.
+        </div>
+        <a class="btn" href="{{MEETING_URL}}">온라인 미팅 신청 접수하기</a>
+        <div class="meta">
+          <span>30분 소요</span><span>온라인 진행</span><span>사전 자료 불필요</span>
+        </div>
+      </div>
+    </div>
+    <div class="note mt22" style="text-align:center">
+      버튼이 열리지 않으면 아래 주소로 접속해 주세요 &nbsp;·&nbsp; {{MEETING_URL}}
+    </div>
+  </div>
+  <div class="foot"><span>{{COMPANY}} 현금공백 진단, 솔루션 제안</span><span>10</span></div>
+</section>
+
+</div>
+</body>
+</html>
