@@ -41,6 +41,20 @@ const TEMPLATE_DEFAULTS: Record<
     AE_TITLE: '매니저',
     MEETING_URL: 'https://calendar.app.google/NrsvnAUivUxWjsFj7',
   },
+  agency: {
+    SELECTED: '매체비는 먼저 나가고, 광고주 대금은 두 달 뒤 들어오는 구조',
+    AE_NAME: '김원석',
+    AE_ROLE: '고위드 인플로우 · 광고 · 마케팅 대행사 담당',
+    AE_TITLE: '매니저',
+    MEETING_URL: 'https://calendar.app.google/GsejCbqK3og6tGxU7',
+  },
+  production: {
+    SELECTED: '제작비 · 인플루언서 정산은 현금으로 먼저 나가고, 광고주 대금은 뒤에 들어오는 구조',
+    AE_NAME: '김원석',
+    AE_ROLE: '고위드 인플로우 · 광고 · 마케팅 대행사 담당',
+    AE_TITLE: '매니저',
+    MEETING_URL: 'https://calendar.app.google/rQyK7yR1fCcUr8Gf8',
+  },
 };
 
 /** 받침 유무로 조사를 고른다 (gowid-proposal 스킬 generate.py의 josa()와 동일 로직). */
