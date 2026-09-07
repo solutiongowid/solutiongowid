@@ -49,7 +49,7 @@ export async function POST(request: NextRequest) {
     }
 
     if (ZAPIER_WEBHOOK_URL) {
-      fetch(ZAPIER_WEBHOOK_URL, {
+      await fetch(ZAPIER_WEBHOOK_URL, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
