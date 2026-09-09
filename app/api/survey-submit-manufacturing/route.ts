@@ -1,8 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { supabaseAdmin } from '@/app/lib/supabase';
 
-// TODO: 자퍼 웹훅 URL 전달받으면 채워넣기 (스티비 리포트 메일 발송용)
-const ZAPIER_WEBHOOK_URL = '';
+const ZAPIER_WEBHOOK_URL = 'https://hooks.zapier.com/hooks/catch/10485854/4hjgujo/';
 
 export async function POST(request: NextRequest) {
   try {
