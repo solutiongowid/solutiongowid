@@ -58,7 +58,7 @@ export default function ManufacturingBenchmarkPage() {
                 </h1>
                 <div className="report-subtitle">
                   고위드 <br className="desktop-br"/>
-                  국내 하드웨어/제조 116개사의 재무제표·통장 데이터 실측<br/>영업흑자 71%가 현금유출, 회수까지 중앙값 109일
+                  국내 하드웨어/제조 116개사의 재무제표·통장 데이터 실측<br/>흑자 기업과 적자 기업의 현금흐름, 손익 구조 차이
                 </div>
                 <button onClick={openModal} className="report-button-primary">
                   무료 다운로드
@@ -161,7 +161,7 @@ export default function ManufacturingBenchmarkPage() {
           <div className="report-container">
             <div className="report-cta-content">
               <h3 className="report-h3">
-                <strong>우리 회사의 잔고 일수는<br/>지금 며칠치일까요?</strong>
+                <strong>흑자 기업과 적자 기업의<br/>현금흐름 차이, 지금 확인하세요</strong>
               </h3>
               <button onClick={openModal} className="report-button-cta">
                 무료 다운로드
